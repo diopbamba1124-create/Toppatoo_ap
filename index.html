@@ -1,2521 +1,930 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<meta name="description"
-content="Toppatoo — Sama Wergu Yaram">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Toppatoo — Sama Wergu Yaram</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-}
-
-:root{
-    --primary:#087f78;
-    --primary-dark:#05645f;
-    --primary-light:#e8f7f5;
-    --text:#173b3a;
-    --muted:#6c817f;
-    --background:#f7fbfa;
-    --white:#ffffff;
-    --border:#e2eeec;
-    --success:#278154;
-    --danger:#c0392b;
-    --shadow:0 18px 50px rgba(8,127,120,.10);
-}
-
-html{
-    scroll-behavior:smooth;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--background);
-    color:var(--text);
-    line-height:1.6;
+    font-family:Arial,sans-serif;
+    background:#f5faf9;
+    color:#173b3a;
 }
-
-button{
-    font-family:inherit;
-    cursor:pointer;
-}
-
-.container{
-    width:min(1120px,92%);
-    margin:auto;
-}
-
-/* =========================
-   HEADER
-========================= */
 
 header{
+    background:white;
+    border-bottom:1px solid #e5eeee;
     position:sticky;
     top:0;
-    z-index:1000;
-    background:rgba(255,255,255,.96);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--border);
+    z-index:10;
 }
 
-.navbar{
-    min-height:74px;
+.nav{
+    max-width:1100px;
+    margin:auto;
+    padding:14px 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:20px;
+    gap:15px;
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    text-decoration:none;
-}
-
-.logo-image{
-    height:52px;
-    width:auto;
-    max-width:210px;
+    height:50px;
+    max-width:190px;
     object-fit:contain;
 }
 
-.logo-fallback{
-    color:var(--primary);
+.logo-text{
+    color:#087f78;
     font-size:24px;
     font-weight:900;
 }
 
-.nav-links{
-    display:flex;
-    gap:28px;
-}
-
-.nav-links a{
-    text-decoration:none;
-    color:#496361;
-    font-size:14px;
-    font-weight:600;
-}
-
-.nav-links a:hover{
-    color:var(--primary);
-}
-
-.nav-buttons{
+nav{
     display:flex;
     gap:10px;
 }
 
-.btn{
+button{
     border:0;
-    border-radius:13px;
+    border-radius:10px;
     padding:12px 18px;
-    font-weight:700;
-    font-size:14px;
-    transition:.2s ease;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.btn:hover{
-    transform:translateY(-2px);
-}
-
-.btn-primary{
-    background:var(--primary);
+.primary{
+    background:#087f78;
     color:white;
 }
 
-.btn-primary:hover{
-    background:var(--primary-dark);
-}
-
-.btn-secondary{
+.secondary{
     background:white;
-    color:var(--primary);
-    border:1px solid #c8dfdc;
+    color:#087f78;
+    border:1px solid #cbdedc;
 }
 
-.btn-light{
-    background:white;
-    color:var(--primary);
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:0 20px;
 }
-
-/* =========================
-   HERO
-========================= */
 
 .hero{
-    padding:85px 0 75px;
-}
-
-.hero-grid{
-    display:grid;
-    grid-template-columns:1.05fr .95fr;
-    align-items:center;
-    gap:65px;
-}
-
-.badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:var(--primary-light);
-    color:var(--primary);
-    padding:8px 14px;
-    border-radius:30px;
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:22px;
+    padding:80px 20px;
+    text-align:center;
 }
 
 .hero h1{
-    font-size:clamp(44px,6vw,70px);
-    line-height:1.03;
-    letter-spacing:-2.5px;
-    margin-bottom:23px;
+    font-size:55px;
+    margin-bottom:20px;
 }
 
 .hero h1 span{
-    color:var(--primary);
+    color:#087f78;
 }
 
-.hero-description{
-    color:var(--muted);
+.hero p{
+    max-width:650px;
+    margin:0 auto 30px;
+    color:#687c7a;
     font-size:18px;
-    max-width:600px;
-    margin-bottom:30px;
 }
 
-.hero-actions{
+.actions{
     display:flex;
+    justify-content:center;
+    gap:12px;
     flex-wrap:wrap;
-    gap:12px;
 }
-
-/* =========================
-   HEALTH CARD
-========================= */
-
-.health-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:30px;
-    padding:24px;
-    box-shadow:var(--shadow);
-}
-
-.health-card-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:22px;
-}
-
-.active{
-    background:#e7f8ef;
-    color:var(--success);
-    padding:7px 11px;
-    border-radius:30px;
-    font-size:12px;
-    font-weight:700;
-}
-
-.profile{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    background:var(--primary-light);
-    padding:18px;
-    border-radius:20px;
-    margin-bottom:15px;
-}
-
-.avatar{
-    width:52px;
-    height:52px;
-    border-radius:17px;
-    display:grid;
-    place-items:center;
-    background:white;
-    font-size:24px;
-}
-
-.profile strong{
-    display:block;
-}
-
-.profile small{
-    color:var(--muted);
-}
-
-.health-items{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.health-item{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:17px;
-}
-
-.health-item strong{
-    display:block;
-}
-
-.health-item small{
-    color:var(--muted);
-}
-
-/* =========================
-   SECTIONS
-========================= */
 
 .section{
-    padding:80px 0;
+    padding:60px 20px;
 }
 
-.section-heading{
+.title{
     text-align:center;
-    max-width:700px;
-    margin:0 auto 45px;
+    margin-bottom:35px;
 }
 
-.section-heading h2{
-    font-size:38px;
-    line-height:1.15;
-    margin:10px 0 14px;
-}
-
-.section-heading p{
-    color:var(--muted);
-}
-
-.tag{
-    color:var(--primary);
-    font-weight:800;
-    font-size:13px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-}
-
-/* =========================
-   FEATURES
-========================= */
-
-.features{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:17px;
-}
-
-.feature{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:23px;
-    padding:25px;
-    transition:.25s ease;
-}
-
-.feature:hover{
-    transform:translateY(-5px);
-    box-shadow:var(--shadow);
-}
-
-.feature-icon{
-    width:52px;
-    height:52px;
-    border-radius:16px;
-    display:grid;
-    place-items:center;
-    background:var(--primary-light);
-    font-size:24px;
-    margin-bottom:19px;
-}
-
-.feature h3{
-    margin-bottom:8px;
-}
-
-.feature p{
-    color:var(--muted);
-    font-size:14px;
-}
-
-/* =========================
-   AUDIENCE
-========================= */
-
-.audience{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
-
-.audience-card{
-    border-radius:28px;
-    padding:35px;
-    background:white;
-    border:1px solid var(--border);
-}
-
-.audience-card.professional{
-    background:var(--primary);
-    color:white;
-}
-
-.audience-icon{
+.title h2{
     font-size:35px;
-    margin-bottom:18px;
-}
-
-.audience-card h3{
-    font-size:25px;
     margin-bottom:10px;
 }
 
-.audience-card p{
-    margin-bottom:22px;
-    color:var(--muted);
+.title p{
+    color:#687c7a;
 }
 
-.professional p{
-    color:rgba(255,255,255,.78);
+.cards{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
 }
 
-/* =========================
-   MODAL
-========================= */
+.card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    border:1px solid #e1eceb;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.card .icon{
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#687c7a;
+    line-height:1.5;
+}
+
+.dashboard{
+    display:none;
+    padding:50px 20px;
+}
+
+.dashboard-box{
+    max-width:1100px;
+    margin:auto;
+}
+
+.welcome{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:20px;
+    border:1px solid #e1eceb;
+}
+
+.welcome p{
+    color:#687c7a;
+    margin:5px 0 15px;
+}
+
+.dashboard-cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.registry{
+    display:none;
+    padding:50px 20px;
+}
+
+.registry-box{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    border:1px solid #e1eceb;
+}
+
+.registry-box p{
+    color:#687c7a;
+    margin:10px 0 25px;
+}
+
+.registry-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.registry-item{
+    border:1px solid #e1eceb;
+    padding:20px;
+    border-radius:15px;
+}
+
+.registry-item h3{
+    margin-bottom:8px;
+}
+
+.registry-item p{
+    margin:0;
+}
 
 .modal{
     display:none;
     position:fixed;
     inset:0;
-    z-index:2000;
-    background:rgba(23,59,58,.45);
-    padding:20px;
+    background:rgba(0,0,0,.45);
     align-items:center;
     justify-content:center;
+    padding:20px;
+    z-index:100;
 }
 
-.modal.show{
+.modal.active{
     display:flex;
 }
 
 .modal-box{
-    width:min(520px,100%);
-    max-height:90vh;
-    overflow-y:auto;
+    width:100%;
+    max-width:450px;
     background:white;
-    border-radius:25px;
+    border-radius:20px;
     padding:30px;
-    box-shadow:0 25px 80px rgba(0,0,0,.18);
     position:relative;
 }
 
-.modal-close{
+.close{
     position:absolute;
-    top:15px;
-    right:18px;
-    border:0;
-    background:transparent;
+    right:15px;
+    top:10px;
+    background:none;
     font-size:25px;
-    color:var(--muted);
 }
 
 .modal-box h2{
     margin-bottom:8px;
 }
 
-.modal-box p{
-    color:var(--muted);
+.modal-box > p{
+    color:#687c7a;
     margin-bottom:20px;
 }
 
 .form-group{
-    margin-bottom:16px;
+    margin-bottom:15px;
 }
 
 .form-group label{
     display:block;
-    font-size:14px;
-    font-weight:700;
     margin-bottom:6px;
+    font-weight:bold;
 }
 
-.form-group input,
-.form-group select{
+input,select{
     width:100%;
     padding:13px;
-    border:1px solid var(--border);
-    border-radius:12px;
+    border:1px solid #d7e5e3;
+    border-radius:10px;
     font-size:15px;
-    outline:none;
-}
-
-.form-group input:focus,
-.form-group select:focus{
-    border-color:var(--primary);
 }
 
 .message{
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:15px;
     display:none;
-    padding:13px;
-    border-radius:12px;
-    margin:15px 0;
-    font-size:14px;
 }
 
-.message.success{
+.success{
     display:block;
-    background:#e7f8ef;
-    color:var(--success);
+    background:#e8f7ef;
+    color:#21764b;
 }
 
-.message.error{
+.error{
     display:block;
-    background:#fdecea;
-    color:var(--danger);
+    background:#fdebea;
+    color:#b33127;
 }
-
-/* =========================
-   DASHBOARD
-========================= */
-
-.dashboard{
-    display:none;
-    padding:45px 0 80px;
-}
-
-.dashboard.show{
-    display:block;
-}
-
-.dashboard-header{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:25px;
-    padding:28px;
-    margin-bottom:25px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-}
-
-.dashboard-header p{
-    color:var(--muted);
-}
-
-.badge-role{
-    display:inline-block;
-    background:var(--primary-light);
-    color:var(--primary);
-    border-radius:20px;
-    padding:6px 10px;
-    font-size:12px;
-    font-weight:bold;
-    margin-top:8px;
-}
-
-.dashboard-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.dashboard-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:25px;
-}
-
-.dashboard-card .icon{
-    font-size:32px;
-    margin-bottom:12px;
-}
-
-.dashboard-card p{
-    color:var(--muted);
-    font-size:14px;
-    margin:8px 0 20px;
-}
-
-/* =========================
-   REGISTERS
-========================= */
-
-.registry{
-    display:none;
-    padding:35px 0 80px;
-}
-
-.registry.show{
-    display:block;
-}
-
-.registry-box{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:25px;
-    padding:30px;
-}
-
-.registry-box > p{
-    color:var(--muted);
-    margin:8px 0 25px;
-}
-
-.registry-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:16px;
-}
-
-.registry-card{
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:22px;
-}
-
-.registry-card .icon{
-    font-size:32px;
-    margin-bottom:10px;
-}
-
-.registry-card p{
-    color:var(--muted);
-    font-size:14px;
-}
-
-/* =========================
-   CTA
-========================= */
-
-.cta{
-    padding:75px 0;
-}
-
-.cta-box{
-    background:var(--primary);
-    color:white;
-    border-radius:30px;
-    padding:48px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:30px;
-}
-
-.cta-box h2{
-    font-size:34px;
-    line-height:1.2;
-}
-
-/* =========================
-   FOOTER
-========================= */
 
 footer{
+    text-align:center;
+    padding:35px 20px;
     background:white;
-    border-top:1px solid var(--border);
-    padding:40px 0;
+    color:#687c7a;
+    margin-top:50px;
 }
 
-.footer-content{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
+@media(max-width:750px){
 
-.footer-brand{
-    color:var(--primary);
-    font-weight:800;
-}
-
-.footer-text{
-    color:var(--muted);
-    font-size:13px;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:900px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .hero-grid{
-        grid-template-columns:1fr;
-    }
-
-    .features{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .dashboard-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-}
-
-@media(max-width:600px){
-
-    .navbar{
-        min-height:66px;
-    }
-
-    .logo-image{
-        height:44px;
-        max-width:165px;
-    }
-
-    .nav-buttons .btn-secondary{
-        display:none;
-    }
-
-    .hero{
-        padding:50px 0;
-    }
-
-    .hero h1{
-        font-size:45px;
-    }
-
-    .hero-description{
-        font-size:16px;
-    }
-
-    .hero-actions{
-        flex-direction:column;
-    }
-
-    .hero-actions .btn{
-        width:100%;
-    }
-
-    .features,
-    .audience,
-    .health-items,
-    .dashboard-grid,
+    .cards,
+    .dashboard-cards,
     .registry-grid{
         grid-template-columns:1fr;
     }
 
-    .section{
-        padding:55px 0;
+    .hero h1{
+        font-size:42px;
     }
 
-    .section-heading h2{
-        font-size:29px;
+    nav .secondary{
+        display:none;
     }
-
-    .cta-box{
-        padding:32px;
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .cta-box h2{
-        font-size:28px;
-    }
-
-    .footer-content{
-        flex-direction:column;
-        text-align:center;
-    }
-
 }
-
 </style>
-
 </head>
 
 <body>
 
-
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
+    <div class="nav">
 
-<div class="container navbar">
+        <div>
+            <img
+                src="./fichier_00000000f0208210920f9ffed57695df.png"
+                class="logo"
+                alt="Toppatoo"
+                onerror="this.style.display='none';document.getElementById('logoText').style.display='block';"
+            >
 
-<a href="#accueil" class="logo">
+            <div id="logoText"
+                 class="logo-text"
+                 style="display:none;">
+                TOPPATOO
+            </div>
+        </div>
 
-<img
-src="./fichier_00000000f0208210920f9ffed57695df.png"
-alt="Logo Toppatoo"
-class="logo-image"
-onerror="
-this.style.display='none';
-document.getElementById('logoFallback').style.display='inline-block';
-">
+        <nav>
+            <button class="secondary" onclick="openLogin()">
+                Se connecter
+            </button>
 
-<span
-id="logoFallback"
-class="logo-fallback"
-style="display:none;">
-TOPPATOO
-</span>
+            <button class="primary" onclick="openRegister()">
+                Créer un compte
+            </button>
+        </nav>
 
-</a>
-
-
-<nav class="nav-links">
-
-<a href="#accueil">
-Accueil
-</a>
-
-<a href="#fonctionnalites">
-Fonctionnalités
-</a>
-
-<a href="#utilisateurs">
-Utilisateurs
-</a>
-
-<a href="#ia">
-Toppatoo IA
-</a>
-
-</nav>
-
-
-<div class="nav-buttons">
-
-<button
-class="btn btn-secondary"
-onclick="openLogin()">
-
-Se connecter
-
-</button>
-
-<button
-class="btn btn-primary"
-onclick="openRegister()">
-
-Créer un compte
-
-</button>
-
-</div>
-
-</div>
-
+    </div>
 </header>
 
 
-<!-- =========================
-     MAIN
-========================= -->
+<!-- ACCUEIL -->
 
-<main>
+<main id="home">
 
+<section class="hero">
 
-<!-- HERO -->
+    <h1>
+        Votre santé,
+        <span>plus simple.</span>
+    </h1>
 
-<section
-class="hero"
-id="accueil">
+    <p>
+        Toppatoo — Sama Wergu Yaram.
+        Une plateforme numérique conçue pour faciliter
+        le suivi de santé des patients et des professionnels.
+    </p>
 
-<div class="container hero-grid">
+    <div class="actions">
 
+        <button class="primary"
+                onclick="openRegister()">
+            Créer un compte
+        </button>
 
-<div>
+        <button class="secondary"
+                onclick="openLogin()">
+            Se connecter
+        </button>
 
-<div class="badge">
-🩺 Sama Wergu Yaram
-</div>
-
-<h1>
-
-Votre santé,<br>
-
-<span>
-plus simple.
-</span>
-
-</h1>
-
-<p class="hero-description">
-
-Toppatoo est une plateforme numérique de santé
-conçue pour rapprocher les patients et les
-professionnels et simplifier le suivi.
-
-</p>
-
-
-<div class="hero-actions">
-
-<button
-class="btn btn-primary"
-onclick="openRegister('professional')">
-
-👨‍⚕️ Je suis professionnel
-
-</button>
-
-
-<button
-class="btn btn-secondary"
-onclick="openRegister('patient')">
-
-👤 Je suis patient
-
-</button>
-
-</div>
-
-</div>
-
-
-<div class="health-card">
-
-<div class="health-card-header">
-
-<strong>
-Mon espace santé
-</strong>
-
-<div class="active">
-● Actif
-</div>
-
-</div>
-
-
-<div class="profile">
-
-<div class="avatar">
-👤
-</div>
-
-<div>
-
-<strong>
-Bienvenue sur Toppatoo
-</strong>
-
-<small>
-Sama Wergu Yaram
-</small>
-
-</div>
-
-</div>
-
-
-<div class="health-items">
-
-<div class="health-item">
-
-<div>
-📅
-</div>
-
-<strong>
-Rendez-vous
-</strong>
-
-<small>
-Organiser son suivi
-</small>
-
-</div>
-
-
-<div class="health-item">
-
-<div>
-📁
-</div>
-
-<strong>
-Dossier
-</strong>
-
-<small>
-Suivi de santé
-</small>
-
-</div>
-
-
-<div class="health-item">
-
-<div>
-💉
-</div>
-
-<strong>
-Vaccination
-</strong>
-
-<small>
-Suivi des enfants
-</small>
-
-</div>
-
-
-<div class="health-item">
-
-<div>
-🤖
-</div>
-
-<strong>
-Toppatoo IA
-</strong>
-
-<small>
-Assistant intelligent
-</small>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- FEATURES -->
+<section class="section">
 
-<section
-class="section"
-id="fonctionnalites">
+    <div class="title">
 
-<div class="container">
+        <h2>
+            Les espaces Toppatoo
+        </h2>
 
-<div class="section-heading">
+        <p>
+            Une organisation simple du parcours de santé.
+        </p>
 
-<div class="tag">
-Une expérience simple
-</div>
-
-<h2>
-Tout ce dont vous avez besoin,
-au même endroit.
-</h2>
-
-<p>
-Toppatoo est pensé pour rendre le parcours
-de santé plus clair et plus accessible.
-</p>
-
-</div>
+    </div>
 
 
-<div class="features">
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="icon">👶</div>
+
+            <h3>
+                Registre Enfants
+            </h3>
+
+            <p>
+                Registre destiné aux enfants
+                de 0 à 5 ans avec suivi de
+                l'état vaccinal.
+            </p>
+
+        </div>
 
 
-<div class="feature">
+        <div class="card">
 
-<div class="feature-icon">
-📁
-</div>
+            <div class="icon">🩺</div>
 
-<h3>
-Dossier de santé
-</h3>
+            <h3>
+                Consultation générale
+            </h3>
 
-<p>
-Centraliser les informations importantes
-du parcours de santé.
-</p>
+            <p>
+                Registre destiné au suivi
+                des consultations générales
+                des patients.
+            </p>
 
-</div>
-
-
-<div class="feature">
-
-<div class="feature-icon">
-📅
-</div>
-
-<h3>
-Rendez-vous
-</h3>
-
-<p>
-Organiser et suivre facilement les rendez-vous.
-</p>
-
-</div>
+        </div>
 
 
-<div class="feature">
+        <div class="card">
 
-<div class="feature-icon">
-👶
-</div>
+            <div class="icon">🤖</div>
 
-<h3>
-Registre Enfants
-</h3>
+            <h3>
+                Toppatoo IA
+            </h3>
 
-<p>
-Suivi des enfants de 0 à 5 ans
-avec état vaccinal.
-</p>
+            <p>
+                Un assistant intelligent destiné
+                à accompagner les professionnels
+                dans leur travail.
+            </p>
 
-</div>
+        </div>
 
-
-<div class="feature">
-
-<div class="feature-icon">
-🩺
-</div>
-
-<h3>
-Consultation générale
-</h3>
-
-<p>
-Organiser et suivre les consultations générales.
-</p>
-
-</div>
-
-</div>
-
-</div>
+    </div>
 
 </section>
-
-
-<!-- UTILISATEURS -->
-
-<section
-class="section"
-id="utilisateurs">
-
-<div class="container">
-
-<div class="section-heading">
-
-<div class="tag">
-Pour tout le monde
-</div>
-
-<h2>
-Une plateforme pensée pour
-patients et professionnels.
-</h2>
-
-</div>
-
-
-<div class="audience">
-
-
-<div class="audience-card professional">
-
-<div class="audience-icon">
-👨‍⚕️
-</div>
-
-<h3>
-Pour les professionnels
-</h3>
-
-<p>
-
-Un espace pour organiser les patients,
-consultations, rendez-vous et suivi
-dans une expérience simple.
-
-</p>
-
-<button
-class="btn btn-light"
-onclick="openRegister('professional')">
-
-Créer mon compte professionnel
-
-</button>
-
-</div>
-
-
-<div class="audience-card">
-
-<div class="audience-icon">
-👤
-</div>
-
-<h3>
-Pour les patients
-</h3>
-
-<p>
-
-Un espace personnel pour suivre
-les rendez-vous et les informations
-de santé accessibles.
-
-</p>
-
-<button
-class="btn btn-primary"
-onclick="openRegister('patient')">
-
-Créer mon compte patient
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- IA -->
-
-<section
-class="section"
-id="ia">
-
-<div class="container">
-
-<div class="health-card">
-
-<div class="tag">
-Toppatoo IA
-</div>
-
-<h2 style="
-font-size:35px;
-margin:10px 0 12px;
-">
-
-L'intelligence artificielle
-au service du professionnel.
-
-</h2>
-
-<p style="color:var(--muted);">
-
-Toppatoo IA est conçue comme un assistant
-destiné à aider les professionnels à organiser
-et analyser les informations disponibles,
-sans remplacer leur jugement clinique.
-
-</p>
-
-<br>
-
-<button
-class="btn btn-primary"
-onclick="
-alert(
-'Toppatoo IA sera activée dans une prochaine étape.'
-);
-">
-
-Découvrir Toppatoo IA
-
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- CTA -->
-
-<section class="cta">
-
-<div class="container">
-
-<div class="cta-box">
-
-<div>
-
-<h2>
-Bienvenue dans une nouvelle
-expérience de santé.
-</h2>
-
-<p>
-Toppatoo — Sama Wergu Yaram.
-</p>
-
-</div>
-
-<button
-class="btn btn-light"
-onclick="openRegister()">
-
-Commencer
-
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     DASHBOARD
-========================= -->
-
-<section
-id="dashboard"
-class="dashboard">
-
-<div class="container">
-
-
-<div class="dashboard-header">
-
-<div>
-
-<h2 id="welcomeUser">
-Bienvenue
-</h2>
-
-<p id="userEmail">
-</p>
-
-<span
-id="userRole"
-class="badge-role">
-Compte Toppatoo
-</span>
-
-</div>
-
-
-<button
-class="btn btn-secondary"
-onclick="logout()">
-
-Se déconnecter
-
-</button>
-
-</div>
-
-
-<div class="dashboard-grid">
-
-
-<div class="dashboard-card">
-
-<div class="icon">
-👶
-</div>
-
-<h3>
-Registre Enfants
-</h3>
-
-<p>
-Enfants de 0 à 5 ans
-avec état vaccinal.
-</p>
-
-<button
-class="btn btn-primary"
-onclick="openChildrenRegistry()">
-
-Ouvrir
-
-</button>
-
-</div>
-
-
-<div class="dashboard-card">
-
-<div class="icon">
-🩺
-</div>
-
-<h3>
-Consultation générale
-</h3>
-
-<p>
-Gestion des consultations générales.
-</p>
-
-<button
-class="btn btn-primary"
-onclick="openConsultationRegistry()">
-
-Ouvrir
-
-</button>
-
-</div>
-
-
-<div class="dashboard-card">
-
-<div class="icon">
-📅
-</div>
-
-<h3>
-Rendez-vous
-</h3>
-
-<p>
-Organisation des rendez-vous.
-</p>
-
-<button
-class="btn btn-primary"
-onclick="
-alert(
-'Le module Rendez-vous sera activé dans la prochaine étape.'
-);
-">
-
-Ouvrir
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     REGISTRE ENFANTS
-========================= -->
-
-<section
-id="childrenRegistry"
-class="registry">
-
-<div class="container">
-
-<div class="registry-box">
-
-<div class="tag">
-Registre Enfants
-</div>
-
-<h2>
-👶 Enfants de 0 à 5 ans
-</h2>
-
-<p>
-
-Registre destiné au suivi des enfants
-âgés de 0 à 5 ans, notamment leur état vaccinal.
-
-</p>
-
-
-<div class="registry-grid">
-
-
-<div class="registry-card">
-
-<div class="icon">
-💉
-</div>
-
-<h3>
-État vaccinal
-</h3>
-
-<p>
-Suivi des vaccins reçus
-et des vaccins à jour.
-</p>
-
-</div>
-
-
-<div class="registry-card">
-
-<div class="icon">
-📋
-</div>
-
-<h3>
-Informations enfant
-</h3>
-
-<p>
-Informations nécessaires
-au suivi de l'enfant.
-</p>
-
-</div>
-
-
-<div class="registry-card">
-
-<div class="icon">
-🩺
-</div>
-
-<h3>
-Consultations
-</h3>
-
-<p>
-Historique des consultations
-de l'enfant.
-</p>
-
-</div>
-
-
-<div class="registry-card">
-
-<div class="icon">
-📅
-</div>
-
-<h3>
-Prochain suivi
-</h3>
-
-<p>
-Planification du prochain rendez-vous.
-</p>
-
-</div>
-
-</div>
-
-
-<br>
-
-<button
-class="btn btn-secondary"
-onclick="backDashboard()">
-
-← Retour au tableau de bord
-
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     CONSULTATION GENERALE
-========================= -->
-
-<section
-id="consultationRegistry"
-class="registry">
-
-<div class="container">
-
-<div class="registry-box">
-
-<div class="tag">
-Consultation générale
-</div>
-
-<h2>
-🩺 Registre de consultation générale
-</h2>
-
-<p>
-
-Espace destiné à organiser
-et suivre les consultations générales.
-
-</p>
-
-
-<div class="registry-grid">
-
-
-<div class="registry-card">
-
-<div class="icon">
-👤
-</div>
-
-<h3>
-Patients
-</h3>
-
-<p>
-Accéder aux patients enregistrés.
-</p>
-
-</div>
-
-
-<div class="registry-card">
-
-<div class="icon">
-🩺
-</div>
-
-<h3>
-Consultations
-</h3>
-
-<p>
-Enregistrer et consulter les consultations.
-</p>
-
-</div>
-
-
-<div class="registry-card">
-
-<div class="icon">
-📋
-</div>
-
-<h3>
-Suivi
-</h3>
-
-<p>
-Suivre l'évolution du parcours du patient.
-</p>
-
-</div>
-
-
-<div class="registry-card">
-
-<div class="icon">
-📅
-</div>
-
-<h3>
-Rendez-vous
-</h3>
-
-<p>
-Organiser les prochains rendez-vous.
-</p>
-
-</div>
-
-</div>
-
-
-<br>
-
-<button
-class="btn btn-secondary"
-onclick="backDashboard()">
-
-← Retour au tableau de bord
-
-</button>
-
-</div>
-
-</div>
-
-</section>
-
 
 </main>
 
 
-<!-- FOOTER -->
+<!-- TABLEAU DE BORD -->
+
+<section id="dashboard"
+         class="dashboard">
+
+    <div class="dashboard-box">
+
+        <div class="welcome">
+
+            <h2 id="welcome">
+                Bienvenue
+            </h2>
+
+            <p id="email">
+            </p>
+
+            <button class="secondary"
+                    onclick="logout()">
+                Se déconnecter
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-cards">
+
+            <div class="card">
+
+                <div class="icon">👶</div>
+
+                <h3>
+                    Registre Enfants
+                </h3>
+
+                <p>
+                    Enfants de 0 à 5 ans
+                    et état vaccinal.
+                </p>
+
+                <br>
+
+                <button class="primary"
+                        onclick="showChildren()">
+                    Ouvrir
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">🩺</div>
+
+                <h3>
+                    Consultation générale
+                </h3>
+
+                <p>
+                    Registre des consultations
+                    générales.
+                </p>
+
+                <br>
+
+                <button class="primary"
+                        onclick="showConsultations()">
+                    Ouvrir
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">📅</div>
+
+                <h3>
+                    Rendez-vous
+                </h3>
+
+                <p>
+                    Gestion des rendez-vous.
+                </p>
+
+                <br>
+
+                <button class="primary"
+                        onclick="alert('Module Rendez-vous à venir.')">
+                    Ouvrir
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REGISTRE ENFANTS -->
+
+<section id="children"
+         class="registry">
+
+    <div class="registry-box">
+
+        <h2>
+            👶 Registre Enfants
+        </h2>
+
+        <p>
+            Registre des enfants âgés de
+            0 à 5 ans avec suivi de leur
+            état vaccinal.
+        </p>
+
+
+        <div class="registry-grid">
+
+            <div class="registry-item">
+
+                <h3>
+                    👤 Informations enfant
+                </h3>
+
+                <p>
+                    Identité, date de naissance
+                    et informations nécessaires
+                    au suivi.
+                </p>
+
+            </div>
+
+
+            <div class="registry-item">
+
+                <h3>
+                    💉 État vaccinal
+                </h3>
+
+                <p>
+                    Vaccins reçus, vaccins à jour
+                    et prochaines vaccinations.
+                </p>
+
+            </div>
+
+
+            <div class="registry-item">
+
+                <h3>
+                    🩺 Consultations
+                </h3>
+
+                <p>
+                    Historique des consultations
+                    de l'enfant.
+                </p>
+
+            </div>
+
+
+            <div class="registry-item">
+
+                <h3>
+                    📅 Suivi
+                </h3>
+
+                <p>
+                    Prochain contrôle et
+                    suivi de l'enfant.
+                </p>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <button class="secondary"
+                onclick="backDashboard()">
+            ← Retour
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- CONSULTATION GENERALE -->
+
+<section id="consultations"
+         class="registry">
+
+    <div class="registry-box">
+
+        <h2>
+            🩺 Registre de consultation générale
+        </h2>
+
+        <p>
+            Espace destiné au suivi
+            des consultations générales.
+        </p>
+
+
+        <div class="registry-grid">
+
+            <div class="registry-item">
+
+                <h3>
+                    👤 Patients
+                </h3>
+
+                <p>
+                    Gestion des patients.
+                </p>
+
+            </div>
+
+
+            <div class="registry-item">
+
+                <h3>
+                    🩺 Consultations
+                </h3>
+
+                <p>
+                    Enregistrement des consultations.
+                </p>
+
+            </div>
+
+
+            <div class="registry-item">
+
+                <h3>
+                    📋 Suivi
+                </h3>
+
+                <p>
+                    Suivi du parcours de santé.
+                </p>
+
+            </div>
+
+
+            <div class="registry-item">
+
+                <h3>
+                    📅 Rendez-vous
+                </h3>
+
+                <p>
+                    Organisation du prochain suivi.
+                </p>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <button class="secondary"
+                onclick="backDashboard()">
+            ← Retour
+        </button>
+
+    </div>
+
+</section>
+
 
 <footer>
-
-<div class="container footer-content">
-
-<div class="footer-brand">
-TOPPATOO — Sama Wergu Yaram
-</div>
-
-<div class="footer-text">
-© 2026 Toppatoo. Tous droits réservés.
-</div>
-
-</div>
-
+    TOPPATOO — Sama Wergu Yaram<br>
+    © 2026 Toppatoo
 </footer>
 
 
-<!-- =========================
-     MODAL
-========================= -->
+<!-- MODALE -->
 
-<div
-class="modal"
-id="modal">
+<div id="modal"
+     class="modal">
 
-<div class="modal-box">
+    <div class="modal-box">
 
-<button
-class="modal-close"
-onclick="closeModal()">
+        <button class="close"
+                onclick="closeModal()">
+            ×
+        </button>
 
-×
+        <div id="modalContent"></div>
 
-</button>
-
-<div id="modalContent">
-</div>
-
-</div>
+    </div>
 
 </div>
 
 
 <script>
 
-/* =====================================================
-   CONFIGURATION SUPABASE
-===================================================== */
+/* ==========================================
+   SUPABASE
+========================================== */
 
 const SUPABASE_URL =
 "https://dgehholykcfyfwgpbbto.supabase.co";
 
-const SUPABASE_PUBLISHABLE_KEY =
-"sb_publishable_f1ucxryKg1O2JjwIovX69g_oip3hsip";
+/*
+ IMPORTANT :
+ Remplace cette valeur par ta clé Publishable
+ Supabase si nécessaire.
+*/
+
+const SUPABASE_KEY =
+"TA_CLE_PUBLISHABLE_SUPABASE";
 
 
 const supabaseClient =
 window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
+    SUPABASE_KEY
 );
 
 
-/* =====================================================
-   MODAL
-===================================================== */
+/* ==========================================
+   MODALE
+========================================== */
 
 function openModal(){
-
     document
-    .getElementById("modal")
-    .classList
-    .add("show");
-
+        .getElementById("modal")
+        .classList
+        .add("active");
 }
 
 
 function closeModal(){
-
     document
-    .getElementById("modal")
-    .classList
-    .remove("show");
-
+        .getElementById("modal")
+        .classList
+        .remove("active");
 }
 
 
-/* =====================================================
+/* ==========================================
    INSCRIPTION
-===================================================== */
+========================================== */
 
-function openRegister(
-    selectedRole="patient"
-){
+function openRegister(){
 
     openModal();
 
+    document.getElementById("modalContent").innerHTML = `
 
-    document
-    .getElementById("modalContent")
-    .innerHTML = `
+        <h2>
+            Créer un compte
+        </h2>
 
-    <h2>
-    📝 Créer un compte
-    </h2>
+        <p>
+            Créez votre compte Toppatoo.
+        </p>
 
-    <p>
-    Bienvenue sur Toppatoo.
-    </p>
+        <div id="registerMessage"
+             class="message">
+        </div>
 
+        <div class="form-group">
 
-    <div
-    id="registerMessage"
-    class="message">
-    </div>
+            <label>
+                Nom complet
+            </label>
 
+            <input
+                id="registerName"
+                type="text"
+                placeholder="Ex : Bamba Diop">
 
-    <div class="form-group">
-
-        <label>
-        Nom complet *
-        </label>
-
-        <input
-        type="text"
-        id="registerName"
-        placeholder="Nom et prénom">
-
-    </div>
+        </div>
 
 
-    <div class="form-group">
+        <div class="form-group">
 
-        <label>
-        Email *
-        </label>
+            <label>
+                Email
+            </label>
 
-        <input
-        type="email"
-        id="registerEmail"
-        placeholder="votre@email.com">
+            <input
+                id="registerEmail"
+                type="email"
+                placeholder="votre@email.com">
 
-    </div>
-
-
-    <div class="form-group">
-
-        <label>
-        Téléphone
-        </label>
-
-        <input
-        type="tel"
-        id="registerPhone"
-        placeholder="+221 ...">
-
-    </div>
+        </div>
 
 
-    <div class="form-group">
+        <div class="form-group">
 
-        <label>
-        Mot de passe *
-        </label>
+            <label>
+                Mot de passe
+            </label>
 
-        <input
-        type="password"
-        id="registerPassword"
-        placeholder="Minimum 6 caractères">
+            <input
+                id="registerPassword"
+                type="password"
+                placeholder="Minimum 6 caractères">
 
-    </div>
-
-
-    <div class="form-group">
-
-        <label>
-        Type de compte
-        </label>
-
-        <select id="registerRole">
-
-            <option
-            value="patient"
-            ${selectedRole==="patient"
-            ? "selected"
-            : ""}>
-
-            👤 Patient
-
-            </option>
+        </div>
 
 
-            <option
-            value="professional"
-            ${selectedRole==="professional"
-            ? "selected"
-            : ""}>
+        <div class="form-group">
 
-            👨‍⚕️ Professionnel de santé
+            <label>
+                Type de compte
+            </label>
 
-            </option>
+            <select id="registerRole">
 
-        </select>
+                <option value="patient">
+                    Patient
+                </option>
 
-    </div>
+                <option value="professional">
+                    Professionnel de santé
+                </option>
+
+            </select>
+
+        </div>
 
 
-    <button
-    class="btn btn-primary"
-    style="width:100%"
-    onclick="createAccount()">
+        <button
+            class="primary"
+            style="width:100%"
+            onclick="register()">
 
-    Créer mon compte
+            Créer mon compte
 
-    </button>
-
+        </button>
     `;
-
 }
 
 
-/* =====================================================
-   CREATION COMPTE
-===================================================== */
+/* ==========================================
+   REGISTER SUPABASE
+========================================== */
 
-async function createAccount(){
+async function register(){
 
     const name =
-    document
-    .getElementById("registerName")
-    .value
-    .trim();
-
+        document
+        .getElementById("registerName")
+        .value
+        .trim();
 
     const email =
-    document
-    .getElementById("registerEmail")
-    .value
-    .trim();
-
-
-    const phone =
-    document
-    .getElementById("registerPhone")
-    .value
-    .trim();
-
-
-    const password =
-    document
-    .getElementById("registerPassword")
-    .value;
-
-
-    const role =
-    document
-    .getElementById("registerRole")
-    .value;
-
-
-    const message =
-    document
-    .getElementById("registerMessage");
-
-
-    if(
-        !name ||
-        !email ||
-        !password
-    ){
-
-        message.className =
-        "message error";
-
-        message.innerText =
-        "Veuillez remplir tous les champs obligatoires.";
-
-        return;
-
-    }
-
-
-    if(password.length < 6){
-
-        message.className =
-        "message error";
-
-        message.innerText =
-        "Le mot de passe doit contenir au moins 6 caractères.";
-
-        return;
-
-    }
-
-
-    message.className =
-    "message success";
-
-    message.innerText =
-    "Création du compte en cours...";
-
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient.auth.signUp({
-
-            email:email,
-
-            password:password,
-
-            options:{
-
-                data:{
-
-                    full_name:name,
-
-                    phone:phone,
-
-                    role:role
-
-                },
-
-                emailRedirectTo:
-                window.location.origin
-
-            }
-
-        });
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        if(data.session){
-
-            message.innerText =
-            "✅ Compte Toppatoo créé avec succès !";
-
-            setTimeout(
-                loadUser,
-                700
-            );
-
-        }
-
-        else{
-
-            message.innerText =
-            "✅ Compte Toppatoo créé avec succès ! Vérifiez votre e-mail pour confirmer votre compte.";
-
-        }
-
-    }
-
-    catch(error){
-
-        console.error(
-            "Erreur inscription:",
-            error
-        );
-
-        message.className =
-        "message error";
-
-        message.innerText =
-        "❌ "+error.message;
-
-    }
-
-}
-
-
-/* =====================================================
-   CONNEXION
-===================================================== */
-
-function openLogin(){
-
-    openModal();
-
-
-    document
-    .getElementById("modalContent")
-    .innerHTML = `
-
-    <h2>
-    🔐 Se connecter
-    </h2>
-
-    <p>
-    Accédez à votre espace Toppatoo.
-    </p>
-
-
-    <div
-    id="loginMessage"
-    class="message">
-    </div>
-
-
-    <div class="form-group">
-
-        <label>
-        Email
-        </label>
-
-        <input
-        type="email"
-        id="loginEmail"
-        placeholder="votre@email.com">
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label>
-        Mot de passe
-        </label>
-
-        <input
-        type="password"
-        id="loginPassword"
-        placeholder="Votre mot de passe">
-
-    </div>
-
-
-    <button
-    class="btn btn-primary"
-    style="width:100%"
-    onclick="login()">
-
-    Se connecter
-
-    </button>
-
-    `;
-
-}
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-async function login(){
-
-    const email =
-    document
-    .getElementById("loginEmail")
-    .value
-    .trim();
-
-
-    const password =
-    document
-    .getElementById("loginPassword")
-    .value;
-
-
-    const message =
-    document
-    .getElementById("loginMessage");
-
-
-    if(
-        !email ||
-        !password
-    ){
-
-        message.className =
-        "message error";
-
-        message.innerText =
-        "Veuillez entrer votre email et votre mot de passe.";
-
-        return;
-
-    }
-
-
-    message.className =
-    "message success";
-
-    message.innerText =
-    "Connexion en cours...";
-
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient.auth.signInWithPassword({
-
-            email:email,
-
-            password:password
-
-        });
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        message.innerText =
-        "✅ Connexion réussie.";
-
-
-        setTimeout(
-            loadUser,
-            500
-        );
-
-    }
-
-    catch(error){
-
-        console.error(
-            "Erreur connexion:",
-            error
-        );
-
-        message.className =
-        "message error";
-
-        message.innerText =
-        "❌ "+error.message;
-
-    }
-
-}
-
-
-/* =====================================================
-   UTILISATEUR CONNECTE
-===================================================== */
-
-async function loadUser(){
-
-    const {
-        data:{
-            user
-        }
-    } =
-    await supabaseClient.auth.getUser();
-
-
-    if(!user){
-
-        return;
-
-    }
-
-
-    closeModal();
-
-
-    const name =
-    user.user_metadata?.full_name
-    ||
-    "Utilisateur";
-
-
-    const role =
-    user.user_metadata?.role
-    ||
-    "patient";
-
-
-    document
-    .getElementById("welcomeUser")
-    .innerText =
-    "Bienvenue "+name;
-
-
-    document
-    .getElementById("userEmail")
-    .innerText =
-    user.email;
-
-
-    document
-    .getElementById("userRole")
-    .innerText =
-    role === "professional"
-    ?
-    "👨‍⚕️ Professionnel de santé"
-    :
-    "👤 Patient";
-
-
-    document
-    .getElementById("dashboard")
-    .classList
-    .add("show");
-
-
-    document
-    .getElementById("childrenRegistry")
-    .classList
-    .remove("show");
-
-
-    document
-    .getElementById("consultationRegistry")
-    .classList
-    .remove("show");
-
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-}
-
-
-/* =====================================================
-   DECONNEXION
-===================================================== */
-
-async function logout(){
-
-    const {
-        error
-    } =
-    await supabaseClient.auth.signOut();
-
-
-    if(error){
-
-        alert(error.message);
-
-        return;
-
-    }
-
-
-    document
-    .getElementById("dashboard")
-    .classList
-    .remove("show");
-
-
-    document
-    .getElementById("childrenRegistry")
-    .classList
-    .remove("show");
-
-
-    document
-    .getElementById("consultationRegistry")
-    .classList
-    .remove("show");
-
-
-    alert(
-        "Vous êtes déconnecté de Toppatoo."
-    );
-
-}
-
-
-/* =====================================================
-   REGISTRE ENFANTS
-===================================================== */
-
-function openChildrenRegistry(){
-
-    document
-    .getElementById("dashboard")
-    .classList
-    .remove("show");
-
-
-    document
-    .getElementById("consultationRegistry")
-    .classList
-    .remove("show");
-
-
-    document
-    .getElementById("childrenRegistry")
-    .classList
-    .add("show");
-
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-}
-
-
-/* =====================================================
-   CONSULTATION GENERALE
-===================================================== */
-
-function openConsultationRegistry(){
-
-    document
-    .getElementById("dashboard")
-    .classList
-    .remove("show");
-
-
-    document
-    .getElementById("childrenRegistry")
-    .classList
-    .remove("show");
-
-
-    document
-    .getElementById("consultationRegistry")
-    .classList
-    .add("show");
-
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-}
-
-
-/* =====================================================
-   RETOUR DASHBOARD
-===================================================== */
-
-function backDashboard(){
-
-    document
-    .getElementById("childrenRegistry")
-    .classList
-    .remove("show");
-
-
-    document
-    .getElementById("consultationRegistry")
-    .classList
-    .remove("show");
-
-
-    document
-    .getElementById("dashboard")
-    .classList
-    .add("show");
-
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-}
-
-
-/* =====================================================
-   AUTH STATE
-===================================================== */
-
-supabaseClient.auth.onAuthStateChange(
-
-    function(event,session){
-
-        if(session){
-
-            setTimeout(
-                loadUser,
-                0
-            );
-
-        }
-
-    }
-
-);
-
-
-/* =====================================================
-   DEMARRAGE
-===================================================== */
-
-window.addEventListener(
-
-    "load",
-
-    function(){
-
-        loadUser();
-
-    }
-
-);
-
-
-/* =====================================================
-   FERMER MODAL
-===================================================== */
-
-document
-.getElementById("modal")
-.addEventListener(
-
-    "click",
-
-    function(event){
-
-        if(
-            event.target === this
-        ){
-
-            closeModal();
-
-        }
-
-    }
-
-);
-
-</script>
-
-</body>
-    </html>
+        document
