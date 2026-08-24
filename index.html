@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Toppatoo — Sama Wergu Yaram</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <meta name="description"
-content="Toppatoo — plateforme numérique de santé">
+content="Toppatoo — Sama Wergu Yaram">
+
+<title>Toppatoo — Sama Wergu Yaram</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -28,9 +31,13 @@ content="Toppatoo — plateforme numérique de santé">
     --background:#f7fbfa;
     --white:#ffffff;
     --border:#e2eeec;
-    --danger:#c0392b;
     --success:#278154;
+    --danger:#c0392b;
     --shadow:0 18px 50px rgba(8,127,120,.10);
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -50,7 +57,9 @@ button{
     margin:auto;
 }
 
-/* NAVBAR */
+/* =========================
+   HEADER
+========================= */
 
 header{
     position:sticky;
@@ -142,7 +151,9 @@ header{
     color:var(--primary);
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
     padding:85px 0 75px;
@@ -157,6 +168,8 @@ header{
 
 .badge{
     display:inline-flex;
+    align-items:center;
+    gap:8px;
     background:var(--primary-light);
     color:var(--primary);
     padding:8px 14px;
@@ -190,7 +203,9 @@ header{
     gap:12px;
 }
 
-/* HEALTH CARD */
+/* =========================
+   HEALTH CARD
+========================= */
 
 .health-card{
     background:white;
@@ -209,7 +224,7 @@ header{
 
 .active{
     background:#e7f8ef;
-    color:#278154;
+    color:var(--success);
     padding:7px 11px;
     border-radius:30px;
     font-size:12px;
@@ -257,7 +272,17 @@ header{
     padding:17px;
 }
 
-/* SECTIONS */
+.health-item strong{
+    display:block;
+}
+
+.health-item small{
+    color:var(--muted);
+}
+
+/* =========================
+   SECTIONS
+========================= */
 
 .section{
     padding:80px 0;
@@ -271,6 +296,7 @@ header{
 
 .section-heading h2{
     font-size:38px;
+    line-height:1.15;
     margin:10px 0 14px;
 }
 
@@ -286,7 +312,9 @@ header{
     letter-spacing:1px;
 }
 
-/* FEATURES */
+/* =========================
+   FEATURES
+========================= */
 
 .features{
     display:grid;
@@ -299,6 +327,12 @@ header{
     border:1px solid var(--border);
     border-radius:23px;
     padding:25px;
+    transition:.25s ease;
+}
+
+.feature:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow);
 }
 
 .feature-icon{
@@ -312,12 +346,59 @@ header{
     margin-bottom:19px;
 }
 
+.feature h3{
+    margin-bottom:8px;
+}
+
 .feature p{
     color:var(--muted);
     font-size:14px;
 }
 
-/* MODAL */
+/* =========================
+   AUDIENCE
+========================= */
+
+.audience{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.audience-card{
+    border-radius:28px;
+    padding:35px;
+    background:white;
+    border:1px solid var(--border);
+}
+
+.audience-card.professional{
+    background:var(--primary);
+    color:white;
+}
+
+.audience-icon{
+    font-size:35px;
+    margin-bottom:18px;
+}
+
+.audience-card h3{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.audience-card p{
+    margin-bottom:22px;
+    color:var(--muted);
+}
+
+.professional p{
+    color:rgba(255,255,255,.78);
+}
+
+/* =========================
+   MODAL
+========================= */
 
 .modal{
     display:none;
@@ -391,11 +472,11 @@ header{
 }
 
 .message{
+    display:none;
     padding:13px;
     border-radius:12px;
     margin:15px 0;
     font-size:14px;
-    display:none;
 }
 
 .message.success{
@@ -410,7 +491,9 @@ header{
     color:var(--danger);
 }
 
-/* DASHBOARD */
+/* =========================
+   DASHBOARD
+========================= */
 
 .dashboard{
     display:none;
@@ -433,12 +516,19 @@ header{
     gap:20px;
 }
 
-.dashboard-header h2{
-    margin-bottom:5px;
-}
-
 .dashboard-header p{
     color:var(--muted);
+}
+
+.badge-role{
+    display:inline-block;
+    background:var(--primary-light);
+    color:var(--primary);
+    border-radius:20px;
+    padding:6px 10px;
+    font-size:12px;
+    font-weight:bold;
+    margin-top:8px;
 }
 
 .dashboard-grid{
@@ -465,21 +555,13 @@ header{
     margin:8px 0 20px;
 }
 
-.badge-role{
-    display:inline-block;
-    background:var(--primary-light);
-    color:var(--primary);
-    border-radius:20px;
-    padding:6px 10px;
-    font-size:12px;
-    font-weight:bold;
-}
-
-/* REGISTRE */
+/* =========================
+   REGISTERS
+========================= */
 
 .registry{
     display:none;
-    padding:30px 0 80px;
+    padding:35px 0 80px;
 }
 
 .registry.show{
@@ -493,13 +575,9 @@ header{
     padding:30px;
 }
 
-.registry-box h2{
-    margin-bottom:8px;
-}
-
 .registry-box > p{
     color:var(--muted);
-    margin-bottom:25px;
+    margin:8px 0 25px;
 }
 
 .registry-grid{
@@ -512,11 +590,11 @@ header{
     border:1px solid var(--border);
     border-radius:20px;
     padding:22px;
-    background:#fff;
 }
 
-.registry-card h3{
-    margin-bottom:7px;
+.registry-card .icon{
+    font-size:32px;
+    margin-bottom:10px;
 }
 
 .registry-card p{
@@ -524,7 +602,9 @@ header{
     font-size:14px;
 }
 
-/* CTA */
+/* =========================
+   CTA
+========================= */
 
 .cta{
     padding:75px 0;
@@ -543,9 +623,12 @@ header{
 
 .cta-box h2{
     font-size:34px;
+    line-height:1.2;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
     background:white;
@@ -557,6 +640,7 @@ footer{
     display:flex;
     align-items:center;
     justify-content:space-between;
+    gap:20px;
 }
 
 .footer-brand{
@@ -569,7 +653,9 @@ footer{
     font-size:13px;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:900px){
 
@@ -588,9 +674,14 @@ footer{
     .dashboard-grid{
         grid-template-columns:1fr 1fr;
     }
+
 }
 
 @media(max-width:600px){
+
+    .navbar{
+        min-height:66px;
+    }
 
     .logo-image{
         height:44px;
@@ -609,6 +700,10 @@ footer{
         font-size:45px;
     }
 
+    .hero-description{
+        font-size:16px;
+    }
+
     .hero-actions{
         flex-direction:column;
     }
@@ -618,13 +713,19 @@ footer{
     }
 
     .features,
-    .registry-grid,
-    .dashboard-grid{
+    .audience,
+    .health-items,
+    .dashboard-grid,
+    .registry-grid{
         grid-template-columns:1fr;
     }
 
     .section{
         padding:55px 0;
+    }
+
+    .section-heading h2{
+        font-size:29px;
     }
 
     .cta-box{
@@ -633,17 +734,27 @@ footer{
         align-items:flex-start;
     }
 
+    .cta-box h2{
+        font-size:28px;
+    }
+
     .footer-content{
         flex-direction:column;
         text-align:center;
-        gap:10px;
     }
+
 }
 
 </style>
+
 </head>
 
 <body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
@@ -655,10 +766,13 @@ footer{
 src="./fichier_00000000f0208210920f9ffed57695df.png"
 alt="Logo Toppatoo"
 class="logo-image"
-onerror="this.style.display='none';document.getElementById('logoFallback').style.display='inline-block';"
->
+onerror="
+this.style.display='none';
+document.getElementById('logoFallback').style.display='inline-block';
+">
 
-<span id="logoFallback"
+<span
+id="logoFallback"
 class="logo-fallback"
 style="display:none;">
 TOPPATOO
@@ -666,25 +780,44 @@ TOPPATOO
 
 </a>
 
+
 <nav class="nav-links">
-<a href="#accueil">Accueil</a>
-<a href="#fonctionnalites">Fonctionnalités</a>
-<a href="#utilisateurs">Utilisateurs</a>
-<a href="#ia">Toppatoo IA</a>
+
+<a href="#accueil">
+Accueil
+</a>
+
+<a href="#fonctionnalites">
+Fonctionnalités
+</a>
+
+<a href="#utilisateurs">
+Utilisateurs
+</a>
+
+<a href="#ia">
+Toppatoo IA
+</a>
+
 </nav>
+
 
 <div class="nav-buttons">
 
 <button
 class="btn btn-secondary"
 onclick="openLogin()">
+
 Se connecter
+
 </button>
 
 <button
 class="btn btn-primary"
 onclick="openRegister()">
+
 Créer un compte
+
 </button>
 
 </div>
@@ -694,11 +827,21 @@ Créer un compte
 </header>
 
 
+<!-- =========================
+     MAIN
+========================= -->
+
 <main>
 
-<section class="hero" id="accueil">
+
+<!-- HERO -->
+
+<section
+class="hero"
+id="accueil">
 
 <div class="container hero-grid">
+
 
 <div>
 
@@ -707,8 +850,13 @@ Créer un compte
 </div>
 
 <h1>
+
 Votre santé,<br>
-<span>plus simple.</span>
+
+<span>
+plus simple.
+</span>
+
 </h1>
 
 <p class="hero-description">
@@ -719,6 +867,7 @@ professionnels et simplifier le suivi.
 
 </p>
 
+
 <div class="hero-actions">
 
 <button
@@ -728,6 +877,7 @@ onclick="openRegister('professional')">
 👨‍⚕️ Je suis professionnel
 
 </button>
+
 
 <button
 class="btn btn-secondary"
@@ -756,6 +906,7 @@ Mon espace santé
 
 </div>
 
+
 <div class="profile">
 
 <div class="avatar">
@@ -776,30 +927,74 @@ Sama Wergu Yaram
 
 </div>
 
+
 <div class="health-items">
 
 <div class="health-item">
+
+<div>
 📅
-<strong>Rendez-vous</strong>
-<small>Organiser son suivi</small>
 </div>
 
+<strong>
+Rendez-vous
+</strong>
+
+<small>
+Organiser son suivi
+</small>
+
+</div>
+
+
 <div class="health-item">
+
+<div>
 📁
-<strong>Dossier</strong>
-<small>Suivi de santé</small>
 </div>
 
+<strong>
+Dossier
+</strong>
+
+<small>
+Suivi de santé
+</small>
+
+</div>
+
+
 <div class="health-item">
+
+<div>
 💉
-<strong>Vaccination</strong>
-<small>Suivi des enfants</small>
 </div>
 
+<strong>
+Vaccination
+</strong>
+
+<small>
+Suivi des enfants
+</small>
+
+</div>
+
+
 <div class="health-item">
+
+<div>
 🤖
-<strong>Toppatoo IA</strong>
-<small>Assistant intelligent</small>
+</div>
+
+<strong>
+Toppatoo IA
+</strong>
+
+<small>
+Assistant intelligent
+</small>
+
 </div>
 
 </div>
@@ -811,7 +1006,11 @@ Sama Wergu Yaram
 </section>
 
 
-<section class="section" id="fonctionnalites">
+<!-- FEATURES -->
+
+<section
+class="section"
+id="fonctionnalites">
 
 <div class="container">
 
@@ -833,74 +1032,48 @@ de santé plus clair et plus accessible.
 
 </div>
 
+
 <div class="features">
 
+
 <div class="feature">
-<div class="feature-icon">📁</div>
-<h3>Dossier de santé</h3>
+
+<div class="feature-icon">
+📁
+</div>
+
+<h3>
+Dossier de santé
+</h3>
+
 <p>
 Centraliser les informations importantes
 du parcours de santé.
 </p>
+
 </div>
 
+
 <div class="feature">
-<div class="feature-icon">📅</div>
-<h3>Rendez-vous</h3>
+
+<div class="feature-icon">
+📅
+</div>
+
+<h3>
+Rendez-vous
+</h3>
+
 <p>
 Organiser et suivre facilement les rendez-vous.
 </p>
+
 </div>
+
 
 <div class="feature">
-<div class="feature-icon">👶</div>
-<h3>Registre Enfants</h3>
-<p>
-Suivi des enfants de 0 à 5 ans et de leur état vaccinal.
-</p>
-</div>
 
-<div class="feature">
-<div class="feature-icon">🩺</div>
-<h3>Consultation générale</h3>
-<p>
-Organiser et suivre les consultations générales.
-</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section class="section">
-
-<div class="container">
-
-<div class="section-heading">
-
-<div class="tag">
-Professionnels de santé
-</div>
-
-<h2>
-Deux registres essentiels
-</h2>
-
-<p>
-Une organisation adaptée au fonctionnement
-de votre structure de santé.
-</p>
-
-</div>
-
-<div class="registry-grid">
-
-<div class="registry-card">
-
-<div style="font-size:35px;">
+<div class="feature-icon">
 👶
 </div>
 
@@ -909,26 +1082,25 @@ Registre Enfants
 </h3>
 
 <p>
-Enfants de <strong>0 à 5 ans</strong>,
-avec suivi de l'état vaccinal,
-consultations et informations essentielles.
+Suivi des enfants de 0 à 5 ans
+avec état vaccinal.
 </p>
 
 </div>
 
-<div class="registry-card">
 
-<div style="font-size:35px;">
+<div class="feature">
+
+<div class="feature-icon">
 🩺
 </div>
 
 <h3>
-Registre de consultation générale
+Consultation générale
 </h3>
 
 <p>
-Enregistrement et suivi des consultations
-générales des patients.
+Organiser et suivre les consultations générales.
 </p>
 
 </div>
@@ -940,7 +1112,100 @@ générales des patients.
 </section>
 
 
-<section class="section" id="ia">
+<!-- UTILISATEURS -->
+
+<section
+class="section"
+id="utilisateurs">
+
+<div class="container">
+
+<div class="section-heading">
+
+<div class="tag">
+Pour tout le monde
+</div>
+
+<h2>
+Une plateforme pensée pour
+patients et professionnels.
+</h2>
+
+</div>
+
+
+<div class="audience">
+
+
+<div class="audience-card professional">
+
+<div class="audience-icon">
+👨‍⚕️
+</div>
+
+<h3>
+Pour les professionnels
+</h3>
+
+<p>
+
+Un espace pour organiser les patients,
+consultations, rendez-vous et suivi
+dans une expérience simple.
+
+</p>
+
+<button
+class="btn btn-light"
+onclick="openRegister('professional')">
+
+Créer mon compte professionnel
+
+</button>
+
+</div>
+
+
+<div class="audience-card">
+
+<div class="audience-icon">
+👤
+</div>
+
+<h3>
+Pour les patients
+</h3>
+
+<p>
+
+Un espace personnel pour suivre
+les rendez-vous et les informations
+de santé accessibles.
+
+</p>
+
+<button
+class="btn btn-primary"
+onclick="openRegister('patient')">
+
+Créer mon compte patient
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- IA -->
+
+<section
+class="section"
+id="ia">
 
 <div class="container">
 
@@ -950,7 +1215,10 @@ générales des patients.
 Toppatoo IA
 </div>
 
-<h2 style="font-size:35px;margin:10px 0;">
+<h2 style="
+font-size:35px;
+margin:10px 0 12px;
+">
 
 L'intelligence artificielle
 au service du professionnel.
@@ -970,9 +1238,11 @@ sans remplacer leur jugement clinique.
 
 <button
 class="btn btn-primary"
-onclick="showMessage(
-'Toppatoo IA sera connectée à son véritable service IA dans la prochaine étape.'
-)">
+onclick="
+alert(
+'Toppatoo IA sera activée dans une prochaine étape.'
+);
+">
 
 Découvrir Toppatoo IA
 
@@ -984,6 +1254,8 @@ Découvrir Toppatoo IA
 
 </section>
 
+
+<!-- CTA -->
 
 <section class="cta">
 
@@ -1019,13 +1291,16 @@ Commencer
 </section>
 
 
-<!-- DASHBOARD -->
+<!-- =========================
+     DASHBOARD
+========================= -->
 
 <section
 id="dashboard"
 class="dashboard">
 
 <div class="container">
+
 
 <div class="dashboard-header">
 
@@ -1046,6 +1321,7 @@ Compte Toppatoo
 
 </div>
 
+
 <button
 class="btn btn-secondary"
 onclick="logout()">
@@ -1059,6 +1335,7 @@ Se déconnecter
 
 <div class="dashboard-grid">
 
+
 <div class="dashboard-card">
 
 <div class="icon">
@@ -1070,7 +1347,8 @@ Registre Enfants
 </h3>
 
 <p>
-Enfants de 0 à 5 ans avec état vaccinal.
+Enfants de 0 à 5 ans
+avec état vaccinal.
 </p>
 
 <button
@@ -1125,9 +1403,11 @@ Organisation des rendez-vous.
 
 <button
 class="btn btn-primary"
-onclick="showMessage(
+onclick="
+alert(
 'Le module Rendez-vous sera activé dans la prochaine étape.'
-)">
+);
+">
 
 Ouvrir
 
@@ -1142,7 +1422,9 @@ Ouvrir
 </section>
 
 
-<!-- REGISTRE ENFANTS -->
+<!-- =========================
+     REGISTRE ENFANTS
+========================= -->
 
 <section
 id="childrenRegistry"
@@ -1161,52 +1443,78 @@ Registre Enfants
 </h2>
 
 <p>
-Ce registre est destiné au suivi des enfants
+
+Registre destiné au suivi des enfants
 âgés de 0 à 5 ans, notamment leur état vaccinal.
+
 </p>
+
 
 <div class="registry-grid">
 
+
 <div class="registry-card">
 
+<div class="icon">
+💉
+</div>
+
 <h3>
-💉 État vaccinal
+État vaccinal
 </h3>
 
 <p>
-Suivi des vaccins reçus et des vaccins à jour.
+Suivi des vaccins reçus
+et des vaccins à jour.
 </p>
 
 </div>
 
+
 <div class="registry-card">
 
+<div class="icon">
+📋
+</div>
+
 <h3>
-📋 Informations enfant
+Informations enfant
 </h3>
 
 <p>
-Informations nécessaires au suivi de l'enfant.
+Informations nécessaires
+au suivi de l'enfant.
 </p>
 
 </div>
 
+
 <div class="registry-card">
 
+<div class="icon">
+🩺
+</div>
+
 <h3>
-🩺 Consultations
+Consultations
 </h3>
 
 <p>
-Historique des consultations de l'enfant.
+Historique des consultations
+de l'enfant.
 </p>
 
 </div>
 
+
 <div class="registry-card">
 
+<div class="icon">
+📅
+</div>
+
 <h3>
-📅 Prochain suivi
+Prochain suivi
 </h3>
 
 <p>
@@ -1216,6 +1524,7 @@ Planification du prochain rendez-vous.
 </div>
 
 </div>
+
 
 <br>
 
@@ -1234,7 +1543,9 @@ onclick="backDashboard()">
 </section>
 
 
-<!-- REGISTRE CONSULTATION -->
+<!-- =========================
+     CONSULTATION GENERALE
+========================= -->
 
 <section
 id="consultationRegistry"
@@ -1253,16 +1564,24 @@ Consultation générale
 </h2>
 
 <p>
-Espace destiné à organiser et suivre
-les consultations générales.
+
+Espace destiné à organiser
+et suivre les consultations générales.
+
 </p>
+
 
 <div class="registry-grid">
 
+
 <div class="registry-card">
 
+<div class="icon">
+👤
+</div>
+
 <h3>
-👤 Patients
+Patients
 </h3>
 
 <p>
@@ -1271,10 +1590,15 @@ Accéder aux patients enregistrés.
 
 </div>
 
+
 <div class="registry-card">
 
+<div class="icon">
+🩺
+</div>
+
 <h3>
-🩺 Consultations
+Consultations
 </h3>
 
 <p>
@@ -1283,10 +1607,15 @@ Enregistrer et consulter les consultations.
 
 </div>
 
+
 <div class="registry-card">
 
+<div class="icon">
+📋
+</div>
+
 <h3>
-📋 Suivi
+Suivi
 </h3>
 
 <p>
@@ -1295,10 +1624,15 @@ Suivre l'évolution du parcours du patient.
 
 </div>
 
+
 <div class="registry-card">
 
+<div class="icon">
+📅
+</div>
+
 <h3>
-📅 Rendez-vous
+Rendez-vous
 </h3>
 
 <p>
@@ -1308,6 +1642,7 @@ Organiser les prochains rendez-vous.
 </div>
 
 </div>
+
 
 <br>
 
@@ -1325,8 +1660,11 @@ onclick="backDashboard()">
 
 </section>
 
+
 </main>
 
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -1345,7 +1683,9 @@ TOPPATOO — Sama Wergu Yaram
 </footer>
 
 
-<!-- MODALE -->
+<!-- =========================
+     MODAL
+========================= -->
 
 <div
 class="modal"
@@ -1361,7 +1701,8 @@ onclick="closeModal()">
 
 </button>
 
-<div id="modalContent"></div>
+<div id="modalContent">
+</div>
 
 </div>
 
@@ -1371,19 +1712,20 @@ onclick="closeModal()">
 <script>
 
 /* =====================================================
-   SUPABASE
+   CONFIGURATION SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
 "https://dgehholykcfyfwgpbbto.supabase.co";
 
-const SUPABASE_ANON_KEY =
+const SUPABASE_PUBLISHABLE_KEY =
 "sb_publishable_f1ucxryKg1O2JjwIovX69g_oip3hsip";
+
 
 const supabaseClient =
 window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_ANON_KEY
+    SUPABASE_PUBLISHABLE_KEY
 );
 
 
@@ -1400,6 +1742,7 @@ function openModal(){
 
 }
 
+
 function closeModal(){
 
     document
@@ -1411,110 +1754,133 @@ function closeModal(){
 
 
 /* =====================================================
-   REGISTER
+   INSCRIPTION
 ===================================================== */
 
-function openRegister(role="patient"){
+function openRegister(
+    selectedRole="patient"
+){
 
     openModal();
 
-    document.getElementById("modalContent").innerHTML = `
 
-        <h2>📝 Créer un compte Toppatoo</h2>
+    document
+    .getElementById("modalContent")
+    .innerHTML = `
 
-        <p>
-        Créez votre compte pour accéder à votre espace.
-        </p>
+    <h2>
+    📝 Créer un compte
+    </h2>
 
-        <div id="registerMessage"
-        class="message"></div>
+    <p>
+    Bienvenue sur Toppatoo.
+    </p>
 
-        <div class="form-group">
 
-            <label>Nom complet</label>
+    <div
+    id="registerMessage"
+    class="message">
+    </div>
 
-            <input
-            id="registerName"
-            type="text"
-            placeholder="Nom et prénom">
 
-        </div>
+    <div class="form-group">
 
-        <div class="form-group">
+        <label>
+        Nom complet *
+        </label>
 
-            <label>Email</label>
+        <input
+        type="text"
+        id="registerName"
+        placeholder="Nom et prénom">
 
-            <input
-            id="registerEmail"
-            type="email"
-            placeholder="votre@email.com">
+    </div>
 
-        </div>
 
-        <div class="form-group">
+    <div class="form-group">
 
-            <label>Téléphone</label>
+        <label>
+        Email *
+        </label>
 
-            <input
-            id="registerPhone"
-            type="tel"
-            placeholder="+221 ...">
+        <input
+        type="email"
+        id="registerEmail"
+        placeholder="votre@email.com">
 
-        </div>
+    </div>
 
-        <div class="form-group">
 
-            <label>Mot de passe</label>
+    <div class="form-group">
 
-            <input
-            id="registerPassword"
-            type="password"
-            placeholder="Minimum 6 caractères">
+        <label>
+        Téléphone
+        </label>
 
-        </div>
+        <input
+        type="tel"
+        id="registerPhone"
+        placeholder="+221 ...">
 
-        <div class="form-group">
+    </div>
 
-            <label>Type de compte</label>
 
-            <select id="registerRole">
+    <div class="form-group">
 
-                <option
-                value="patient"
-                ${role==="patient" ? "selected" : ""}>
+        <label>
+        Mot de passe *
+        </label>
 
-                👤 Patient
+        <input
+        type="password"
+        id="registerPassword"
+        placeholder="Minimum 6 caractères">
 
-                </option>
+    </div>
 
-                <option
-                value="professional"
-                ${role==="professional" ? "selected" : ""}>
 
-                👨‍⚕️ Professionnel de santé
+    <div class="form-group">
 
-                </option>
+        <label>
+        Type de compte
+        </label>
 
-            </select>
+        <select id="registerRole">
 
-        </div>
+            <option
+            value="patient"
+            ${selectedRole==="patient"
+            ? "selected"
+            : ""}>
 
-        <button
-        class="btn btn-primary"
-        style="width:100%"
-        onclick="createAccount()">
+            👤 Patient
 
-        Créer mon compte
+            </option>
 
-        </button>
 
-        <p
-        style="margin-top:15px;font-size:12px;">
+            <option
+            value="professional"
+            ${selectedRole==="professional"
+            ? "selected"
+            : ""}>
 
-        Un e-mail de confirmation peut être envoyé
-        par Supabase après l'inscription.
+            👨‍⚕️ Professionnel de santé
 
-        </p>
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <button
+    class="btn btn-primary"
+    style="width:100%"
+    onclick="createAccount()">
+
+    Créer mon compte
+
+    </button>
 
     `;
 
@@ -1522,7 +1888,7 @@ function openRegister(role="patient"){
 
 
 /* =====================================================
-   CREATE ACCOUNT
+   CREATION COMPTE
 ===================================================== */
 
 async function createAccount(){
@@ -1533,11 +1899,13 @@ async function createAccount(){
     .value
     .trim();
 
+
     const email =
     document
     .getElementById("registerEmail")
     .value
     .trim();
+
 
     const phone =
     document
@@ -1545,27 +1913,35 @@ async function createAccount(){
     .value
     .trim();
 
+
     const password =
     document
     .getElementById("registerPassword")
     .value;
+
 
     const role =
     document
     .getElementById("registerRole")
     .value;
 
+
     const message =
     document
     .getElementById("registerMessage");
 
 
-    if(!name || !email || !password){
+    if(
+        !name ||
+        !email ||
+        !password
+    ){
 
-        message.className="message error";
+        message.className =
+        "message error";
 
-        message.innerText=
-        "Veuillez remplir les champs obligatoires.";
+        message.innerText =
+        "Veuillez remplir tous les champs obligatoires.";
 
         return;
 
@@ -1574,9 +1950,10 @@ async function createAccount(){
 
     if(password.length < 6){
 
-        message.className="message error";
+        message.className =
+        "message error";
 
-        message.innerText=
+        message.innerText =
         "Le mot de passe doit contenir au moins 6 caractères.";
 
         return;
@@ -1584,10 +1961,11 @@ async function createAccount(){
     }
 
 
-    message.className="message success";
+    message.className =
+    "message success";
 
-    message.innerText=
-    "Création de votre compte...";
+    message.innerText =
+    "Création du compte en cours...";
 
 
     try{
@@ -1612,7 +1990,10 @@ async function createAccount(){
 
                     role:role
 
-                }
+                },
+
+                emailRedirectTo:
+                window.location.origin
 
             }
 
@@ -1626,22 +2007,22 @@ async function createAccount(){
         }
 
 
-        message.className="message success";
-
         if(data.session){
 
-            message.innerText=
+            message.innerText =
             "✅ Compte Toppatoo créé avec succès !";
 
             setTimeout(
                 loadUser,
-                1000
+                700
             );
 
-        }else{
+        }
 
-            message.innerText=
-            "✅ Compte Toppatoo créé avec succès ! Vérifiez votre e-mail si une confirmation est demandée.";
+        else{
+
+            message.innerText =
+            "✅ Compte Toppatoo créé avec succès ! Vérifiez votre e-mail pour confirmer votre compte.";
 
         }
 
@@ -1649,11 +2030,15 @@ async function createAccount(){
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "Erreur inscription:",
+            error
+        );
 
-        message.className="message error";
+        message.className =
+        "message error";
 
-        message.innerText=
+        message.innerText =
         "❌ "+error.message;
 
     }
@@ -1662,54 +2047,69 @@ async function createAccount(){
 
 
 /* =====================================================
-   LOGIN
+   CONNEXION
 ===================================================== */
 
 function openLogin(){
 
     openModal();
 
-    document.getElementById("modalContent").innerHTML = `
 
-        <h2>🔐 Se connecter</h2>
+    document
+    .getElementById("modalContent")
+    .innerHTML = `
 
-        <p>
-        Accédez à votre espace Toppatoo.
-        </p>
+    <h2>
+    🔐 Se connecter
+    </h2>
 
-        <div id="loginMessage"
-        class="message"></div>
+    <p>
+    Accédez à votre espace Toppatoo.
+    </p>
 
-        <div class="form-group">
 
-            <label>Email</label>
+    <div
+    id="loginMessage"
+    class="message">
+    </div>
 
-            <input
-            id="loginEmail"
-            type="email"
-            placeholder="votre@email.com">
 
-        </div>
+    <div class="form-group">
 
-        <div class="form-group">
+        <label>
+        Email
+        </label>
 
-            <label>Mot de passe</label>
+        <input
+        type="email"
+        id="loginEmail"
+        placeholder="votre@email.com">
 
-            <input
-            id="loginPassword"
-            type="password"
-            placeholder="Votre mot de passe">
+    </div>
 
-        </div>
 
-        <button
-        class="btn btn-primary"
-        style="width:100%"
-        onclick="login()">
+    <div class="form-group">
 
-        Se connecter
+        <label>
+        Mot de passe
+        </label>
 
-        </button>
+        <input
+        type="password"
+        id="loginPassword"
+        placeholder="Votre mot de passe">
+
+    </div>
+
+
+    <button
+    class="btn btn-primary"
+    style="width:100%"
+    onclick="login()">
+
+    Se connecter
+
+    </button>
 
     `;
 
@@ -1717,7 +2117,7 @@ function openLogin(){
 
 
 /* =====================================================
-   LOGIN ACTION
+   LOGIN
 ===================================================== */
 
 async function login(){
@@ -1727,6 +2127,7 @@ async function login(){
     .getElementById("loginEmail")
     .value
     .trim();
+
 
     const password =
     document
@@ -1739,11 +2140,15 @@ async function login(){
     .getElementById("loginMessage");
 
 
-    if(!email || !password){
+    if(
+        !email ||
+        !password
+    ){
 
-        message.className="message error";
+        message.className =
+        "message error";
 
-        message.innerText=
+        message.innerText =
         "Veuillez entrer votre email et votre mot de passe.";
 
         return;
@@ -1751,10 +2156,11 @@ async function login(){
     }
 
 
-    message.className="message success";
+    message.className =
+    "message success";
 
-    message.innerText=
-    "Connexion...";
+    message.innerText =
+    "Connexion en cours...";
 
 
     try{
@@ -1779,8 +2185,9 @@ async function login(){
         }
 
 
-        message.innerText=
+        message.innerText =
         "✅ Connexion réussie.";
+
 
         setTimeout(
             loadUser,
@@ -1791,11 +2198,15 @@ async function login(){
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "Erreur connexion:",
+            error
+        );
 
-        message.className="message error";
+        message.className =
+        "message error";
 
-        message.innerText=
+        message.innerText =
         "❌ "+error.message;
 
     }
@@ -1804,7 +2215,7 @@ async function login(){
 
 
 /* =====================================================
-   LOAD USER
+   UTILISATEUR CONNECTE
 ===================================================== */
 
 async function loadUser(){
@@ -1841,22 +2252,24 @@ async function loadUser(){
 
     document
     .getElementById("welcomeUser")
-    .innerText=
+    .innerText =
     "Bienvenue "+name;
 
 
     document
     .getElementById("userEmail")
-    .innerText=
+    .innerText =
     user.email;
 
 
     document
     .getElementById("userRole")
-    .innerText=
+    .innerText =
     role === "professional"
-    ? "👨‍⚕️ Professionnel de santé"
-    : "👤 Patient";
+    ?
+    "👨‍⚕️ Professionnel de santé"
+    :
+    "👤 Patient";
 
 
     document
@@ -1865,16 +2278,31 @@ async function loadUser(){
     .add("show");
 
 
+    document
+    .getElementById("childrenRegistry")
+    .classList
+    .remove("show");
+
+
+    document
+    .getElementById("consultationRegistry")
+    .classList
+    .remove("show");
+
+
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
 
 }
 
 
 /* =====================================================
-   LOGOUT
+   DECONNEXION
 ===================================================== */
 
 async function logout(){
@@ -1944,8 +2372,11 @@ function openChildrenRegistry(){
 
 
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
 
 }
@@ -1976,15 +2407,18 @@ function openConsultationRegistry(){
 
 
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
 
 }
 
 
 /* =====================================================
-   BACK DASHBOARD
+   RETOUR DASHBOARD
 ===================================================== */
 
 function backDashboard(){
@@ -2008,20 +2442,12 @@ function backDashboard(){
 
 
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
-
-}
-
-
-/* =====================================================
-   MESSAGE
-===================================================== */
-
-function showMessage(text){
-
-    alert(text);
 
 }
 
@@ -2031,6 +2457,7 @@ function showMessage(text){
 ===================================================== */
 
 supabaseClient.auth.onAuthStateChange(
+
     function(event,session){
 
         if(session){
@@ -2043,43 +2470,52 @@ supabaseClient.auth.onAuthStateChange(
         }
 
     }
+
 );
 
 
 /* =====================================================
-   CHECK SESSION ON START
+   DEMARRAGE
 ===================================================== */
 
 window.addEventListener(
+
     "load",
+
     function(){
 
         loadUser();
 
     }
+
 );
 
 
 /* =====================================================
-   CLOSE MODAL OUTSIDE
+   FERMER MODAL
 ===================================================== */
 
 document
 .getElementById("modal")
 .addEventListener(
+
     "click",
+
     function(event){
 
-        if(event.target === this){
+        if(
+            event.target === this
+        ){
 
             closeModal();
 
         }
 
     }
+
 );
 
 </script>
 
 </body>
-                       </html>
+    </html>
