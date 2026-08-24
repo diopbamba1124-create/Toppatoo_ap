@@ -1,5 +1,3 @@
-Code HTML complet — Toppatoo
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -81,31 +79,29 @@ header{
 .logo-image{
     height:52px;
     width:auto;
-    max-width:190px;
+    max-width:210px;
     object-fit:contain;
     display:block;
 }
 
-/* Texte de secours */
-
 .logo-fallback{
     display:none;
+    align-items:center;
+    gap:9px;
     color:var(--primary);
-    font-size:20px;
-    font-weight:800;
-    line-height:1.1;
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:-.6px;
     white-space:nowrap;
 }
 
 .logo-fallback span{
-    display:block;
-    color:var(--muted);
-    font-size:10px;
+    color:var(--text);
+    font-size:12px;
     font-weight:600;
-    margin-top:2px;
+    display:block;
+    margin-top:-2px;
 }
-
-/* NAVIGATION */
 
 .nav-links{
     display:flex;
@@ -657,7 +653,7 @@ footer{
     }
 
     .logo{
-        min-width:0;
+        min-width:auto;
     }
 
     .logo-image{
@@ -667,6 +663,10 @@ footer{
 
     .logo-fallback{
         font-size:17px;
+    }
+
+    .logo-fallback span{
+        font-size:9px;
     }
 
     .nav-buttons .btn-secondary{
@@ -738,62 +738,62 @@ footer{
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
 
 <div class="container navbar">
 
 <a href="#accueil" class="logo">
 
-    <!-- UN SEUL LOGO TOPPATOO -->
-    <img
-        src="file_00000000f0208210920f9ffed57695df.png"
-        alt="Logo Toppatoo — Sama Wergu Yaram"
-        class="logo-image"
-        onerror="showLogoFallback(this)"
-    >
+<!--
+    LOGO UNIQUE
+    IMPORTANT :
+    Le fichier image doit être placé dans le même dossier
+    que ce fichier index.html.
+-->
 
-    <!-- TEXTE DE SECOURS SI LE LOGO NE SE CHARGE PAS -->
-    <div class="logo-fallback">
+<img
+    id="toppatooLogo"
+    src="file_00000000f0208210920f9ffed57695df.png"
+    alt="Logo Toppatoo — Sama Wergu Yaram"
+    class="logo-image"
+>
+
+<!-- TEXTE DE SECOURS -->
+<div id="logoFallback" class="logo-fallback">
+    🩺
+    <div>
         TOPPATOO
         <span>Sama Wergu Yaram</span>
     </div>
+</div>
 
 </a>
 
 <nav class="nav-links">
-    <a href="#accueil">Accueil</a>
-    <a href="#fonctionnalites">Fonctionnalités</a>
-    <a href="#utilisateurs">Utilisateurs</a>
-    <a href="#ia">Toppatoo IA</a>
+<a href="#accueil">Accueil</a>
+<a href="#fonctionnalites">Fonctionnalités</a>
+<a href="#utilisateurs">Utilisateurs</a>
+<a href="#ia">Toppatoo IA</a>
 </nav>
 
 <div class="nav-buttons">
 
-    <button
-        class="btn btn-secondary"
-        onclick="openModal('login')">
-        Se connecter
-    </button>
+<button
+    class="btn btn-secondary"
+    onclick="openModal('login')">
+    Se connecter
+</button>
 
-    <button
-        class="btn btn-primary"
-        onclick="openModal('register')">
-        Créer un compte
-    </button>
-
-</div>
+<button
+    class="btn btn-primary"
+    onclick="openModal('register')">
+    Créer un compte
+</button>
 
 </div>
 
+</div>
 </header>
-
-<!-- =========================
-     CONTENU PRINCIPAL
-========================= -->
 
 <main>
 
@@ -963,7 +963,9 @@ de santé plus clair et plus accessible.
 
 <div class="feature-icon">📁</div>
 
-<h3>Dossier de santé</h3>
+<h3>
+Dossier de santé
+</h3>
 
 <p>
 Centraliser les informations importantes
@@ -976,7 +978,9 @@ du parcours de santé.
 
 <div class="feature-icon">📅</div>
 
-<h3>Rendez-vous</h3>
+<h3>
+Rendez-vous
+</h3>
 
 <p>
 Organiser et suivre facilement
@@ -989,7 +993,9 @@ les rendez-vous.
 
 <div class="feature-icon">🩺</div>
 
-<h3>Suivi professionnel</h3>
+<h3>
+Suivi professionnel
+</h3>
 
 <p>
 Faciliter le suivi entre professionnels
@@ -1002,7 +1008,9 @@ et patients.
 
 <div class="feature-icon">🔔</div>
 
-<h3>Notifications</h3>
+<h3>
+Notifications
+</h3>
 
 <p>
 Recevoir les informations importantes
@@ -1191,9 +1199,7 @@ TOPPATOO — Sama Wergu Yaram
 
 </footer>
 
-<!-- =========================
-     MODALE
-========================= -->
+<!-- MODALE -->
 
 <div class="modal" id="modal">
 
@@ -1213,26 +1219,77 @@ TOPPATOO — Sama Wergu Yaram
 
 <script>
 
-/* =========================
-   LOGO DE SECOURS
-========================= */
+/* ==========================================
+   VERIFICATION DU LOGO
+========================================== */
 
-function showLogoFallback(image){
+(function(){
 
-    image.style.display = "none";
+    const logo =
+        document.getElementById("toppatooLogo");
 
-    var fallback =
-        image.parentElement.querySelector(".logo-fallback");
+    const fallback =
+        document.getElementById("logoFallback");
 
-    if(fallback){
-        fallback.style.display = "block";
+    function showFallback(){
+
+        logo.style.display = "none";
+        fallback.style.display = "flex";
+
     }
-}
+
+    function showLogo(){
+
+        logo.style.display = "block";
+        fallback.style.display = "none";
+
+    }
+
+    logo.addEventListener("load", function(){
+
+        if(this.naturalWidth > 0){
+
+            showLogo();
+
+        }else{
+
+            showFallback();
+
+        }
+
+    });
+
+    logo.addEventListener("error", function(){
+
+        showFallback();
+
+    });
+
+    /*
+       Vérification immédiate au cas où
+       l'image est déjà chargée.
+    */
+
+    if(logo.complete){
+
+        if(logo.naturalWidth > 0){
+
+            showLogo();
+
+        }else{
+
+            showFallback();
+
+        }
+
+    }
+
+})();
 
 
-/* =========================
+/* ==========================================
    MODALES
-========================= */
+========================================== */
 
 function openModal(type){
 
@@ -1250,12 +1307,14 @@ function openModal(type){
             <h2>📝 Créer un compte</h2>
 
             <p>
-                Bienvenue sur Toppatoo.
+            Bienvenue sur Toppatoo.
             </p>
 
             <div class="form-group">
 
-                <label>Nom complet</label>
+                <label>
+                Nom complet
+                </label>
 
                 <input
                     type="text"
@@ -1267,7 +1326,9 @@ function openModal(type){
 
             <div class="form-group">
 
-                <label>Téléphone</label>
+                <label>
+                Téléphone
+                </label>
 
                 <input
                     type="tel"
@@ -1279,7 +1340,9 @@ function openModal(type){
 
             <div class="form-group">
 
-                <label>Email</label>
+                <label>
+                Email
+                </label>
 
                 <input
                     type="email"
@@ -1291,7 +1354,9 @@ function openModal(type){
 
             <div class="form-group">
 
-                <label>Mot de passe</label>
+                <label>
+                Mot de passe
+                </label>
 
                 <input
                     type="password"
@@ -1303,16 +1368,18 @@ function openModal(type){
 
             <div class="form-group">
 
-                <label>Type de compte</label>
+                <label>
+                Type de compte
+                </label>
 
                 <select id="role">
 
                     <option value="patient">
-                        👤 Patient
+                    👤 Patient
                     </option>
 
                     <option value="professional">
-                        👨‍⚕️ Professionnel
+                    👨‍⚕️ Professionnel
                     </option>
 
                 </select>
@@ -1329,8 +1396,8 @@ function openModal(type){
 
             </div>
         `;
-    }
 
+    }
 
     else if(type === "login"){
 
@@ -1339,12 +1406,14 @@ function openModal(type){
             <h2>🔐 Se connecter</h2>
 
             <p>
-                Accédez à votre espace Toppatoo.
+            Accédez à votre espace Toppatoo.
             </p>
 
             <div class="form-group">
 
-                <label>Email</label>
+                <label>
+                Email
+                </label>
 
                 <input
                     type="email"
@@ -1356,7 +1425,9 @@ function openModal(type){
 
             <div class="form-group">
 
-                <label>Mot de passe</label>
+                <label>
+                Mot de passe
+                </label>
 
                 <input
                     type="password"
@@ -1376,8 +1447,8 @@ function openModal(type){
 
             </div>
         `;
-    }
 
+    }
 
     else if(type === "patient"){
 
@@ -1386,7 +1457,7 @@ function openModal(type){
             <h2>👤 Espace Patient</h2>
 
             <p>
-                Votre espace personnel Toppatoo.
+            Votre espace personnel Toppatoo.
             </p>
 
             <div class="health-item">
@@ -1395,7 +1466,7 @@ function openModal(type){
                 <strong>Mon dossier</strong>
 
                 <small>
-                    Votre suivi de santé
+                Votre suivi de santé
                 </small>
 
             </div>
@@ -1408,7 +1479,7 @@ function openModal(type){
                 <strong>Mes rendez-vous</strong>
 
                 <small>
-                    Organiser votre suivi
+                Organiser votre suivi
                 </small>
 
             </div>
@@ -1421,7 +1492,7 @@ function openModal(type){
                 <strong>Mes traitements</strong>
 
                 <small>
-                    Informations utiles
+                Informations utiles
                 </small>
 
             </div>
@@ -1436,8 +1507,8 @@ function openModal(type){
 
             </div>
         `;
-    }
 
+    }
 
     else if(type === "professional"){
 
@@ -1446,7 +1517,7 @@ function openModal(type){
             <h2>👨‍⚕️ Espace Professionnel</h2>
 
             <p>
-                Votre espace professionnel Toppatoo.
+            Votre espace professionnel Toppatoo.
             </p>
 
             <div class="health-item">
@@ -1455,7 +1526,7 @@ function openModal(type){
                 <strong>Patients</strong>
 
                 <small>
-                    Gestion des patients
+                Gestion des patients
                 </small>
 
             </div>
@@ -1468,7 +1539,7 @@ function openModal(type){
                 <strong>Registre Enfants</strong>
 
                 <small>
-                    Patients de moins de 18 ans
+                Patients de moins de 18 ans
                 </small>
 
             </div>
@@ -1481,7 +1552,7 @@ function openModal(type){
                 <strong>Registre Adultes</strong>
 
                 <small>
-                    Patients de 18 ans et plus
+                Patients de 18 ans et plus
                 </small>
 
             </div>
@@ -1494,7 +1565,7 @@ function openModal(type){
                 <strong>Rendez-vous</strong>
 
                 <small>
-                    Organisation du suivi
+                Organisation du suivi
                 </small>
 
             </div>
@@ -1509,24 +1580,26 @@ function openModal(type){
 
             </div>
         `;
-    }
 
+    }
 
     else if(type === "ai"){
 
         content.innerHTML = `
 
-            <h2>🤖 Toppatoo IA</h2>
+            <h2>
+            🤖 Toppatoo IA
+            </h2>
 
             <p>
-                Assistant destiné à accompagner
-                les professionnels de santé.
+            Assistant destiné à accompagner
+            les professionnels de santé.
             </p>
 
             <div class="form-group">
 
                 <label>
-                    Votre demande
+                Votre demande
                 </label>
 
                 <input
@@ -1552,15 +1625,16 @@ function openModal(type){
                 le jugement clinique d'un professionnel.
             </p>
         `;
+
     }
 
     modal.classList.add("show");
 }
 
 
-/* =========================
+/* ==========================================
    FERMER MODALE
-========================= */
+========================================== */
 
 function closeModal(){
 
@@ -1568,12 +1642,13 @@ function closeModal(){
         .getElementById("modal")
         .classList
         .remove("show");
+
 }
 
 
-/* =========================
-   CREATION DE COMPTE
-========================= */
+/* ==========================================
+   CREATION COMPTE
+========================================== */
 
 function createAccount(){
 
@@ -1607,9 +1682,9 @@ function createAccount(){
 }
 
 
-/* =========================
+/* ==========================================
    CONNEXION
-========================= */
+========================================== */
 
 function login(){
 
@@ -1635,9 +1710,9 @@ function login(){
 }
 
 
-/* =========================
+/* ==========================================
    TOPPATOO IA
-========================= */
+========================================== */
 
 function askAI(){
 
@@ -1662,10 +1737,9 @@ function askAI(){
 }
 
 
-/* =========================
-   FERMETURE EN CLIQUANT
-   À L'EXTÉRIEUR
-========================= */
+/* ==========================================
+   FERMETURE EN CLIQUANT À L'EXTERIEUR
+========================================== */
 
 document
     .getElementById("modal")
@@ -1682,9 +1756,25 @@ document
         }
     );
 
+
+/* ==========================================
+   TOUCHE ESCAPE
+========================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeModal();
+
+        }
+
+    }
+);
+
 </script>
 
 </body>
-</html>
-
-Important : mets "index.html" et "file_00000000f0208210920f9ffed57695df.png" dans le même dossier avant de redéployer sur Netlify. Avec ce code, si le PNG est introuvable, le texte TOPPATOO — Sama Wergu Yaram prendra automatiquement sa place.
+    </html>
