@@ -3,22 +3,546 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Toppatoo — Sama Wergu Yaram, votre plateforme numérique de santé.">
     <title>Toppatoo — Sama Wergu Yaram</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6fbfa;
+            color: #173b3a;
+            line-height: 1.5;
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer;
+            border: none;
+        }
+
+        .container {
+            width: min(1120px, 92%);
+            margin: auto;
+        }
+
+        /* NAVIGATION */
+        header {
+            background: rgba(255,255,255,0.96);
+            border-bottom: 1px solid #e4eeee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 22px;
+            color: #087f78;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: #0aa79d;
+            color: white;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .btn-outline {
+            background: white;
+            color: #087f78;
+            border: 1px solid #b9d9d6;
+        }
+
+        .btn-primary {
+            background: #087f78;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* HERO */
+        .hero {
+            padding: 70px 0 55px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 55px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 13px;
+            background: #e2f5f2;
+            color: #087f78;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(42px, 6vw, 68px);
+            line-height: 1.03;
+            letter-spacing: -2px;
+            margin-bottom: 22px;
+        }
+
+        h1 span {
+            color: #087f78;
+        }
+
+        .hero-text {
+            max-width: 590px;
+            font-size: 18px;
+            color: #5b7372;
+            margin-bottom: 28px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .hero-card {
+            background: white;
+            border: 1px solid #e1eeee;
+            border-radius: 28px;
+            padding: 24px;
+            box-shadow: 0 20px 60px rgba(18, 72, 70, 0.10);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .status {
+            background: #e5f7ee;
+            color: #19724e;
+            padding: 7px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .patient-card {
+            background: #f4faf9;
+            padding: 18px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+
+        .patient-card strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .patient-info {
+            color: #6b7f7e;
+            font-size: 14px;
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .mini-card {
+            padding: 15px;
+            border: 1px solid #e4eeee;
+            border-radius: 17px;
+            background: white;
+        }
+
+        .mini-card strong {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+
+        .mini-card small {
+            color: #718281;
+        }
+
+        /* SERVICES */
+        .section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 40px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #657a79;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .feature {
+            background: white;
+            padding: 25px;
+            border-radius: 22px;
+            border: 1px solid #e4eeee;
+            transition: 0.2s;
+        }
+
+        .feature:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(18,72,70,0.08);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            background: #e4f5f3;
+            display: grid;
+            place-items: center;
+            font-size: 23px;
+            margin-bottom: 18px;
+        }
+
+        .feature h3 {
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #718281;
+            font-size: 14px;
+        }
+
+        /* CTA */
+        .cta {
+            background: #087f78;
+            color: white;
+            border-radius: 30px;
+            padding: 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .cta p {
+            opacity: 0.85;
+            margin-top: 8px;
+        }
+
+        .cta .btn {
+            background: white;
+            color: #087f78;
+            white-space: nowrap;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 35px 0;
+            text-align: center;
+            color: #78908e;
+            font-size: 14px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 850px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .nav {
+                min-height: 64px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .logo-icon {
+                width: 37px;
+                height: 37px;
+            }
+
+            .nav-actions .btn-outline {
+                display: none;
+            }
+
+            .hero {
+                padding: 45px 0 35px;
+            }
+
+            h1 {
+                font-size: 43px;
+            }
+
+            .hero-text {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .section-title h2 {
+                font-size: 29px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>TOPPATOO</h1>
+<header>
+    <div class="container nav">
+        <div class="logo">
+            <div class="logo-icon">T</div>
+            TOPPATOO
+        </div>
 
-    <h2>Sama Wergu Yaram</h2>
+        <div class="nav-actions">
+            <button class="btn btn-outline" onclick="alert('La connexion sera activée prochainement.')">
+                Se connecter
+            </button>
 
-    <p>Bienvenue sur Toppatoo</p>
+            <button class="btn btn-primary" onclick="alert('La création de compte sera activée prochainement.')">
+                Créer un compte
+            </button>
+        </div>
+    </div>
+</header>
 
-    <p>Votre plateforme numérique de santé.</p>
+<main>
 
-    <button>Se connecter</button>
+    <section class="hero">
+        <div class="container hero-grid">
 
-    <button>Créer un compte</button>
+            <div>
+                <div class="badge">🩺 Sama Wergu Yaram</div>
+
+                <h1>
+                    Votre santé,<br>
+                    <span>plus simple.</span>
+                </h1>
+
+                <p class="hero-text">
+                    Toppatoo rapproche les patients et les professionnels
+                    de santé dans une expérience numérique simple,
+                    moderne et accessible.
+                </p>
+
+                <div class="hero-buttons">
+                    <button class="btn btn-primary"
+                            onclick="alert('Espace professionnel — bientôt disponible.')">
+                        👨‍⚕️ Espace professionnel
+                    </button>
+
+                    <button class="btn btn-outline"
+                            onclick="alert('Espace patient — bientôt disponible.')">
+                        👤 Espace patient
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-card">
+
+                <div class="card-top">
+                    <strong>Mon espace santé</strong>
+                    <span class="status">● Actif</span>
+                </div>
+
+                <div class="patient-card">
+                    <strong>Bienvenue sur Toppatoo 👋</strong>
+                    <span class="patient-info">
+                        Gérez simplement votre parcours de santé.
+                    </span>
+                </div>
+
+                <div class="mini-grid">
+                    <div class="mini-card">
+                        <strong>📅</strong>
+                        <small>Rendez-vous</small>
+                    </div>
+
+                    <div class="mini-card">
+                        <strong>📋</strong>
+                        <small>Mon suivi</small>
+                    </div>
+
+                    <div class="mini-card">
+                        <strong>💊</strong>
+                        <small>Traitements</small>
+                    </div>
+
+                    <div class="mini-card">
+                        <strong>🤖</strong>
+                        <small>Toppatoo IA</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Tout votre parcours de santé au même endroit</h2>
+                <p>
+                    Une expérience pensée pour être simple,
+                    claire et agréable à utiliser.
+                </p>
+            </div>
+
+            <div class="features">
+
+                <div class="feature">
+                    <div class="feature-icon">📁</div>
+                    <h3>Dossier de santé</h3>
+                    <p>
+                        Retrouvez les informations importantes
+                        de votre parcours de santé.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📅</div>
+                    <h3>Rendez-vous</h3>
+                    <p>
+                        Organisez et suivez facilement
+                        vos rendez-vous de santé.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">👨‍⚕️</div>
+                    <h3>Professionnels</h3>
+                    <p>
+                        Facilitez le suivi entre patients
+                        et professionnels de santé.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Toppatoo IA</h3>
+                    <p>
+                        Un assistant intelligent destiné
+                        à accompagner les professionnels.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="cta">
+                <div>
+                    <h2>Bienvenue dans une nouvelle expérience de santé.</h2>
+                    <p>
+                        Toppatoo — Sama Wergu Yaram.
+                    </p>
+                </div>
+
+                <button class="btn"
+                        onclick="alert('Inscription bientôt disponible.')">
+                    Commencer
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    © 2026 Toppatoo — Sama Wergu Yaram
+</footer>
 
 </body>
-</html>
+    </html>
