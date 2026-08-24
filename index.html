@@ -67,15 +67,14 @@ header{
     gap:20px;
 }
 
-/* LOGO */
-
 .logo{
     display:flex;
     align-items:center;
     text-decoration:none;
-    min-width:190px;
+    min-width:150px;
 }
 
+/* LOGO */
 .logo-image{
     height:52px;
     width:auto;
@@ -84,23 +83,13 @@ header{
     display:block;
 }
 
+/* TEXTE DE SECOURS */
 .logo-fallback{
     display:none;
-    align-items:center;
-    gap:9px;
     color:var(--primary);
-    font-size:21px;
+    font-size:24px;
     font-weight:900;
-    letter-spacing:-.6px;
-    white-space:nowrap;
-}
-
-.logo-fallback span{
-    color:var(--text);
-    font-size:12px;
-    font-weight:600;
-    display:block;
-    margin-top:-2px;
+    letter-spacing:-1px;
 }
 
 .nav-links{
@@ -652,21 +641,13 @@ footer{
         min-height:66px;
     }
 
-    .logo{
-        min-width:auto;
-    }
-
     .logo-image{
         height:44px;
         max-width:165px;
     }
 
     .logo-fallback{
-        font-size:17px;
-    }
-
-    .logo-fallback span{
-        font-size:9px;
+        font-size:21px;
     }
 
     .nav-buttons .btn-secondary{
@@ -739,33 +720,20 @@ footer{
 <body>
 
 <header>
-
 <div class="container navbar">
 
 <a href="#accueil" class="logo">
 
-<!--
-    LOGO UNIQUE
-    IMPORTANT :
-    Le fichier image doit être placé dans le même dossier
-    que ce fichier index.html.
--->
-
 <img
-    id="toppatooLogo"
-    src="file_00000000f0208210920f9ffed57695df.png"
+    src="./fichier_00000000f0208210920f9ffed57695df.png"
     alt="Logo Toppatoo — Sama Wergu Yaram"
     class="logo-image"
+    onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='inline-block';"
 >
 
-<!-- TEXTE DE SECOURS -->
-<div id="logoFallback" class="logo-fallback">
-    🩺
-    <div>
-        TOPPATOO
-        <span>Sama Wergu Yaram</span>
-    </div>
-</div>
+<span id="logoFallback" class="logo-fallback">
+TOPPATOO
+</span>
 
 </a>
 
@@ -778,16 +746,12 @@ footer{
 
 <div class="nav-buttons">
 
-<button
-    class="btn btn-secondary"
-    onclick="openModal('login')">
-    Se connecter
+<button class="btn btn-secondary" onclick="openModal('login')">
+Se connecter
 </button>
 
-<button
-    class="btn btn-primary"
-    onclick="openModal('register')">
-    Créer un compte
+<button class="btn btn-primary" onclick="openModal('register')">
+Créer un compte
 </button>
 
 </div>
@@ -796,8 +760,6 @@ footer{
 </header>
 
 <main>
-
-<!-- HERO -->
 
 <section class="hero" id="accueil">
 
@@ -822,16 +784,14 @@ simplifier le suivi et améliorer l'expérience de santé.
 
 <div class="hero-actions">
 
-<button
-    class="btn btn-primary"
-    onclick="openModal('professional')">
-    👨‍⚕️ Je suis professionnel
+<button class="btn btn-primary"
+onclick="openModal('professional')">
+👨‍⚕️ Je suis professionnel
 </button>
 
-<button
-    class="btn btn-secondary"
-    onclick="openModal('patient')">
-    👤 Je suis patient
+<button class="btn btn-secondary"
+onclick="openModal('patient')">
+👤 Je suis patient
 </button>
 
 </div>
@@ -899,8 +859,6 @@ Mon espace santé
 
 </section>
 
-<!-- TRUST -->
-
 <section class="trust">
 
 <div class="container">
@@ -933,8 +891,6 @@ Mon espace santé
 
 </section>
 
-<!-- FONCTIONNALITES -->
-
 <section class="section" id="fonctionnalites">
 
 <div class="container">
@@ -960,63 +916,39 @@ de santé plus clair et plus accessible.
 <div class="features">
 
 <div class="feature">
-
 <div class="feature-icon">📁</div>
-
-<h3>
-Dossier de santé
-</h3>
-
+<h3>Dossier de santé</h3>
 <p>
 Centraliser les informations importantes
 du parcours de santé.
 </p>
-
 </div>
 
 <div class="feature">
-
 <div class="feature-icon">📅</div>
-
-<h3>
-Rendez-vous
-</h3>
-
+<h3>Rendez-vous</h3>
 <p>
 Organiser et suivre facilement
 les rendez-vous.
 </p>
-
 </div>
 
 <div class="feature">
-
 <div class="feature-icon">🩺</div>
-
-<h3>
-Suivi professionnel
-</h3>
-
+<h3>Suivi professionnel</h3>
 <p>
 Faciliter le suivi entre professionnels
 et patients.
 </p>
-
 </div>
 
 <div class="feature">
-
 <div class="feature-icon">🔔</div>
-
-<h3>
-Notifications
-</h3>
-
+<h3>Notifications</h3>
 <p>
 Recevoir les informations importantes
 au bon moment.
 </p>
-
 </div>
 
 </div>
@@ -1024,8 +956,6 @@ au bon moment.
 </div>
 
 </section>
-
-<!-- UTILISATEURS -->
 
 <section class="section" id="utilisateurs">
 
@@ -1062,10 +992,9 @@ consultations, rendez-vous et suivi
 dans une expérience simple.
 </p>
 
-<button
-    class="btn btn-light"
-    onclick="openModal('professional')">
-    Découvrir l'espace
+<button class="btn btn-light"
+onclick="openModal('professional')">
+Découvrir l'espace
 </button>
 
 </div>
@@ -1086,10 +1015,9 @@ les rendez-vous et les informations
 de santé qui leur sont accessibles.
 </p>
 
-<button
-    class="btn btn-primary"
-    onclick="openModal('patient')">
-    Découvrir l'espace
+<button class="btn btn-primary"
+onclick="openModal('patient')">
+Découvrir l'espace
 </button>
 
 </div>
@@ -1099,8 +1027,6 @@ de santé qui leur sont accessibles.
 </div>
 
 </section>
-
-<!-- TOPPATOO IA -->
 
 <section class="section ai-section" id="ia">
 
@@ -1114,10 +1040,9 @@ de santé qui leur sont accessibles.
 
 <div>
 
-<div
-    class="tag"
-    style="color:#087f78;font-weight:800;">
-    Toppatoo IA
+<div class="tag"
+style="color:#087f78;font-weight:800;">
+Toppatoo IA
 </div>
 
 <h2>
@@ -1132,10 +1057,9 @@ et analyser les informations disponibles,
 sans remplacer leur jugement clinique.
 </p>
 
-<button
-    class="btn btn-primary"
-    onclick="openModal('ai')">
-    Découvrir Toppatoo IA
+<button class="btn btn-primary"
+onclick="openModal('ai')">
+Découvrir Toppatoo IA
 </button>
 
 </div>
@@ -1145,8 +1069,6 @@ sans remplacer leur jugement clinique.
 </div>
 
 </section>
-
-<!-- CTA -->
 
 <section class="cta">
 
@@ -1167,10 +1089,9 @@ Toppatoo — Sama Wergu Yaram.
 
 </div>
 
-<button
-    class="btn btn-light"
-    onclick="openModal('register')">
-    Commencer
+<button class="btn btn-light"
+onclick="openModal('register')">
+Commencer
 </button>
 
 </div>
@@ -1180,8 +1101,6 @@ Toppatoo — Sama Wergu Yaram.
 </section>
 
 </main>
-
-<!-- FOOTER -->
 
 <footer>
 
@@ -1199,16 +1118,13 @@ TOPPATOO — Sama Wergu Yaram
 
 </footer>
 
-<!-- MODALE -->
-
 <div class="modal" id="modal">
 
 <div class="modal-box">
 
-<button
-    class="modal-close"
-    onclick="closeModal()">
-    ×
+<button class="modal-close"
+onclick="closeModal()">
+×
 </button>
 
 <div id="modalContent"></div>
@@ -1219,86 +1135,10 @@ TOPPATOO — Sama Wergu Yaram
 
 <script>
 
-/* ==========================================
-   VERIFICATION DU LOGO
-========================================== */
-
-(function(){
-
-    const logo =
-        document.getElementById("toppatooLogo");
-
-    const fallback =
-        document.getElementById("logoFallback");
-
-    function showFallback(){
-
-        logo.style.display = "none";
-        fallback.style.display = "flex";
-
-    }
-
-    function showLogo(){
-
-        logo.style.display = "block";
-        fallback.style.display = "none";
-
-    }
-
-    logo.addEventListener("load", function(){
-
-        if(this.naturalWidth > 0){
-
-            showLogo();
-
-        }else{
-
-            showFallback();
-
-        }
-
-    });
-
-    logo.addEventListener("error", function(){
-
-        showFallback();
-
-    });
-
-    /*
-       Vérification immédiate au cas où
-       l'image est déjà chargée.
-    */
-
-    if(logo.complete){
-
-        if(logo.naturalWidth > 0){
-
-            showLogo();
-
-        }else{
-
-            showFallback();
-
-        }
-
-    }
-
-})();
-
-
-/* ==========================================
-   MODALES
-========================================== */
-
 function openModal(type){
 
-    var modal =
-        document.getElementById("modal");
-
-    var content =
-        document.getElementById("modalContent");
-
+    var modal = document.getElementById("modal");
+    var content = document.getElementById("modalContent");
 
     if(type === "register"){
 
@@ -1311,75 +1151,52 @@ function openModal(type){
             </p>
 
             <div class="form-group">
-
-                <label>
-                Nom complet
-                </label>
-
+                <label>Nom complet</label>
                 <input
                     type="text"
                     id="name"
                     placeholder="Nom et prénom"
                 >
-
             </div>
 
             <div class="form-group">
-
-                <label>
-                Téléphone
-                </label>
-
+                <label>Téléphone</label>
                 <input
                     type="tel"
                     id="phone"
                     placeholder="+221 ..."
                 >
-
             </div>
 
             <div class="form-group">
-
-                <label>
-                Email
-                </label>
-
+                <label>Email</label>
                 <input
                     type="email"
                     id="email"
                     placeholder="votre@email.com"
                 >
-
             </div>
 
             <div class="form-group">
-
-                <label>
-                Mot de passe
-                </label>
-
+                <label>Mot de passe</label>
                 <input
                     type="password"
                     id="password"
                     placeholder="Votre mot de passe"
                 >
-
             </div>
 
             <div class="form-group">
-
-                <label>
-                Type de compte
-                </label>
+                <label>Type de compte</label>
 
                 <select id="role">
 
                     <option value="patient">
-                    👤 Patient
+                        👤 Patient
                     </option>
 
                     <option value="professional">
-                    👨‍⚕️ Professionnel
+                        👨‍⚕️ Professionnel
                     </option>
 
                 </select>
@@ -1390,7 +1207,8 @@ function openModal(type){
 
                 <button
                     class="btn btn-primary"
-                    onclick="createAccount()">
+                    onclick="createAccount()"
+                >
                     Créer mon compte
                 </button>
 
@@ -1411,9 +1229,7 @@ function openModal(type){
 
             <div class="form-group">
 
-                <label>
-                Email
-                </label>
+                <label>Email</label>
 
                 <input
                     type="email"
@@ -1425,9 +1241,7 @@ function openModal(type){
 
             <div class="form-group">
 
-                <label>
-                Mot de passe
-                </label>
+                <label>Mot de passe</label>
 
                 <input
                     type="password"
@@ -1441,7 +1255,8 @@ function openModal(type){
 
                 <button
                     class="btn btn-primary"
-                    onclick="login()">
+                    onclick="login()"
+                >
                     Se connecter
                 </button>
 
@@ -1461,47 +1276,33 @@ function openModal(type){
             </p>
 
             <div class="health-item">
-
                 📁
                 <strong>Mon dossier</strong>
-
-                <small>
-                Votre suivi de santé
-                </small>
-
+                <small>Votre suivi de santé</small>
             </div>
 
             <br>
 
             <div class="health-item">
-
                 📅
                 <strong>Mes rendez-vous</strong>
-
-                <small>
-                Organiser votre suivi
-                </small>
-
+                <small>Organiser votre suivi</small>
             </div>
 
             <br>
 
             <div class="health-item">
-
                 💊
                 <strong>Mes traitements</strong>
-
-                <small>
-                Informations utiles
-                </small>
-
+                <small>Informations utiles</small>
             </div>
 
             <div class="modal-actions">
 
                 <button
                     class="btn btn-primary"
-                    onclick="closeModal()">
+                    onclick="closeModal()"
+                >
                     Continuer
                 </button>
 
@@ -1521,60 +1322,41 @@ function openModal(type){
             </p>
 
             <div class="health-item">
-
                 👥
                 <strong>Patients</strong>
-
-                <small>
-                Gestion des patients
-                </small>
-
+                <small>Gestion des patients</small>
             </div>
 
             <br>
 
             <div class="health-item">
-
                 👶
                 <strong>Registre Enfants</strong>
-
-                <small>
-                Patients de moins de 18 ans
-                </small>
-
+                <small>Patients de moins de 18 ans</small>
             </div>
 
             <br>
 
             <div class="health-item">
-
                 🧑
                 <strong>Registre Adultes</strong>
-
-                <small>
-                Patients de 18 ans et plus
-                </small>
-
+                <small>Patients de 18 ans et plus</small>
             </div>
 
             <br>
 
             <div class="health-item">
-
                 📅
                 <strong>Rendez-vous</strong>
-
-                <small>
-                Organisation du suivi
-                </small>
-
+                <small>Organisation du suivi</small>
             </div>
 
             <div class="modal-actions">
 
                 <button
                     class="btn btn-primary"
-                    onclick="closeModal()">
+                    onclick="closeModal()"
+                >
                     Continuer
                 </button>
 
@@ -1587,9 +1369,7 @@ function openModal(type){
 
         content.innerHTML = `
 
-            <h2>
-            🤖 Toppatoo IA
-            </h2>
+            <h2>🤖 Toppatoo IA</h2>
 
             <p>
             Assistant destiné à accompagner
@@ -1614,7 +1394,8 @@ function openModal(type){
 
                 <button
                     class="btn btn-primary"
-                    onclick="askAI()">
+                    onclick="askAI()"
+                >
                     Utiliser Toppatoo IA
                 </button>
 
@@ -1625,16 +1406,11 @@ function openModal(type){
                 le jugement clinique d'un professionnel.
             </p>
         `;
-
     }
 
     modal.classList.add("show");
 }
 
-
-/* ==========================================
-   FERMER MODALE
-========================================== */
 
 function closeModal(){
 
@@ -1646,23 +1422,13 @@ function closeModal(){
 }
 
 
-/* ==========================================
-   CREATION COMPTE
-========================================== */
-
 function createAccount(){
 
     var name =
-        document
-        .getElementById("name")
-        .value
-        .trim();
+        document.getElementById("name").value.trim();
 
     var email =
-        document
-        .getElementById("email")
-        .value
-        .trim();
+        document.getElementById("email").value.trim();
 
     if(name === "" || email === ""){
 
@@ -1681,10 +1447,6 @@ function createAccount(){
     );
 }
 
-
-/* ==========================================
-   CONNEXION
-========================================== */
 
 function login(){
 
@@ -1710,10 +1472,6 @@ function login(){
 }
 
 
-/* ==========================================
-   TOPPATOO IA
-========================================== */
-
 function askAI(){
 
     var question =
@@ -1737,10 +1495,6 @@ function askAI(){
 }
 
 
-/* ==========================================
-   FERMETURE EN CLIQUANT À L'EXTERIEUR
-========================================== */
-
 document
     .getElementById("modal")
     .addEventListener(
@@ -1755,24 +1509,6 @@ document
 
         }
     );
-
-
-/* ==========================================
-   TOUCHE ESCAPE
-========================================== */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "Escape"){
-
-            closeModal();
-
-        }
-
-    }
-);
 
 </script>
 
