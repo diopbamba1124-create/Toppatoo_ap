@@ -6,9 +6,6 @@
 <meta name="description" content="Toppatoo — Sama Wergu Yaram">
 <title>Toppatoo — Sama Wergu Yaram</title>
 
-<!-- SUPABASE -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
 *{
     margin:0;
@@ -25,8 +22,6 @@
     --background:#f7fbfa;
     --white:#ffffff;
     --border:#e2eeec;
-    --danger:#c0392b;
-    --success:#278154;
     --shadow:0 18px 50px rgba(8,127,120,.10);
 }
 
@@ -50,10 +45,6 @@ button{
     width:min(1120px,92%);
     margin:auto;
 }
-
-/* =========================
-   NAVIGATION
-========================= */
 
 header{
     position:sticky;
@@ -129,12 +120,6 @@ header{
     transform:translateY(-2px);
 }
 
-.btn:disabled{
-    opacity:.6;
-    cursor:not-allowed;
-    transform:none;
-}
-
 .btn-primary{
     background:var(--primary);
     color:white;
@@ -154,10 +139,6 @@ header{
     background:white;
     color:var(--primary);
 }
-
-/* =========================
-   HERO
-========================= */
 
 .hero{
     padding:85px 0 75px;
@@ -210,10 +191,6 @@ header{
 .hero-actions .btn{
     padding:14px 20px;
 }
-
-/* =========================
-   HEALTH CARD
-========================= */
 
 .health-card{
     background:white;
@@ -298,10 +275,6 @@ header{
     color:var(--muted);
 }
 
-/* =========================
-   TRUST
-========================= */
-
 .trust{
     padding:18px 0 65px;
 }
@@ -327,10 +300,6 @@ header{
     color:var(--muted);
     font-size:13px;
 }
-
-/* =========================
-   SECTIONS
-========================= */
 
 .section{
     padding:80px 0;
@@ -359,10 +328,6 @@ header{
 .section-heading p{
     color:var(--muted);
 }
-
-/* =========================
-   FEATURES
-========================= */
 
 .features{
     display:grid;
@@ -403,10 +368,6 @@ header{
     font-size:14px;
 }
 
-/* =========================
-   AUDIENCE
-========================= */
-
 .audience{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -444,10 +405,6 @@ header{
     color:rgba(255,255,255,.78);
 }
 
-/* =========================
-   IA
-========================= */
-
 .ai-section{
     background:#eef8f6;
 }
@@ -483,10 +440,6 @@ header{
     margin-bottom:20px;
 }
 
-/* =========================
-   CTA
-========================= */
-
 .cta{
     padding:75px 0;
 }
@@ -512,10 +465,6 @@ header{
     opacity:.82;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
 footer{
     background:white;
     border-top:1px solid var(--border);
@@ -538,10 +487,6 @@ footer{
     color:var(--muted);
     font-size:13px;
 }
-
-/* =========================
-   MODALE
-========================= */
 
 .modal{
     display:none;
@@ -625,7 +570,7 @@ footer{
 }
 
 .message{
-    padding:12px 14px;
+    padding:13px;
     border-radius:12px;
     margin-bottom:15px;
     font-size:14px;
@@ -634,21 +579,17 @@ footer{
 
 .message.error{
     display:block;
-    background:#fff0ee;
-    color:var(--danger);
-    border:1px solid #f3c7c1;
+    background:#fff0f0;
+    color:#a12626;
+    border:1px solid #f2cccc;
 }
 
 .message.success{
     display:block;
-    background:#eaf8ef;
-    color:var(--success);
-    border:1px solid #c5e8d1;
+    background:#eaf8f1;
+    color:#23734b;
+    border:1px solid #c9ead8;
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
 
 @media(max-width:900px){
 
@@ -756,10 +697,10 @@ footer{
 <a href="#accueil" class="logo">
 
 <img
-    src="./fichier_00000000f0208210920f9ffed57695df.png"
-    alt="Logo Toppatoo — Sama Wergu Yaram"
-    class="logo-image"
-    onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='inline-block';"
+src="./fichier_00000000f0208210920f9ffed57695df.png"
+alt="Logo Toppatoo"
+class="logo-image"
+onerror="this.style.display='none';document.getElementById('logoFallback').style.display='inline-block';"
 >
 
 <span id="logoFallback" class="logo-fallback">
@@ -949,37 +890,25 @@ de santé plus clair et plus accessible.
 <div class="feature">
 <div class="feature-icon">📁</div>
 <h3>Dossier de santé</h3>
-<p>
-Centraliser les informations importantes
-du parcours de santé.
-</p>
+<p>Centraliser les informations importantes du parcours de santé.</p>
 </div>
 
 <div class="feature">
 <div class="feature-icon">📅</div>
 <h3>Rendez-vous</h3>
-<p>
-Organiser et suivre facilement
-les rendez-vous.
-</p>
+<p>Organiser et suivre facilement les rendez-vous.</p>
 </div>
 
 <div class="feature">
 <div class="feature-icon">🩺</div>
 <h3>Suivi professionnel</h3>
-<p>
-Faciliter le suivi entre professionnels
-et patients.
-</p>
+<p>Faciliter le suivi entre professionnels et patients.</p>
 </div>
 
 <div class="feature">
 <div class="feature-icon">🔔</div>
 <h3>Notifications</h3>
-<p>
-Recevoir les informations importantes
-au bon moment.
-</p>
+<p>Recevoir les informations importantes au bon moment.</p>
 </div>
 
 </div>
@@ -999,8 +928,7 @@ Pour tout le monde
 </div>
 
 <h2>
-Une plateforme pensée pour
-patients et professionnels.
+Une plateforme pensée pour patients et professionnels.
 </h2>
 
 </div>
@@ -1009,13 +937,9 @@ patients et professionnels.
 
 <div class="audience-card professional">
 
-<div class="audience-icon">
-👨‍⚕️
-</div>
+<div class="audience-icon">👨‍⚕️</div>
 
-<h3>
-Pour les professionnels
-</h3>
+<h3>Pour les professionnels</h3>
 
 <p>
 Un espace pour organiser les patients,
@@ -1032,18 +956,13 @@ Découvrir l'espace
 
 <div class="audience-card patient">
 
-<div class="audience-icon">
-👤
-</div>
+<div class="audience-icon">👤</div>
 
-<h3>
-Pour les patients
-</h3>
+<h3>Pour les patients</h3>
 
 <p>
-Un espace personnel pour suivre
-les rendez-vous et les informations
-de santé qui leur sont accessibles.
+Un espace personnel pour suivre les rendez-vous
+et les informations de santé qui leur sont accessibles.
 </p>
 
 <button class="btn btn-primary"
@@ -1077,8 +996,7 @@ Toppatoo IA
 </div>
 
 <h2>
-L'intelligence artificielle
-au service du professionnel.
+L'intelligence artificielle au service du professionnel.
 </h2>
 
 <p>
@@ -1110,8 +1028,7 @@ Découvrir Toppatoo IA
 <div>
 
 <h2>
-Bienvenue dans une nouvelle
-expérience de santé.
+Bienvenue dans une nouvelle expérience de santé.
 </h2>
 
 <p>
@@ -1153,8 +1070,7 @@ TOPPATOO — Sama Wergu Yaram
 
 <div class="modal-box">
 
-<button class="modal-close"
-onclick="closeModal()">
+<button class="modal-close" onclick="closeModal()">
 ×
 </button>
 
@@ -1164,6 +1080,9 @@ onclick="closeModal()">
 
 </div>
 
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 
 /* =========================================================
@@ -1171,16 +1090,16 @@ onclick="closeModal()">
 ========================================================= */
 
 const SUPABASE_URL =
-    "https://dgehholykcfyfwgpbbto.supabase.co";
+"https://dgehholykcfyfwgpbbto.supabase.co";
 
 const SUPABASE_ANON_KEY =
-    "sb_publishable_f1ucxryKg1O2JjwIovX69g_oip3hsip";
+"sb_publishable_f1ucxryKg1O2JjwIovX69g_oip3hsip";
 
 const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-    );
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
 
 
 /* =========================================================
@@ -1189,10 +1108,10 @@ const supabaseClient =
 
 function openModal(type){
 
-    var modal =
+    const modal =
         document.getElementById("modal");
 
-    var content =
+    const content =
         document.getElementById("modalContent");
 
 
@@ -1216,9 +1135,7 @@ function openModal(type){
 
             <div class="form-group">
 
-                <label>
-                Nom complet
-                </label>
+                <label>Nom complet</label>
 
                 <input
                     type="text"
@@ -1229,12 +1146,9 @@ function openModal(type){
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                Téléphone
-                </label>
+                <label>Téléphone</label>
 
                 <input
                     type="tel"
@@ -1245,12 +1159,9 @@ function openModal(type){
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                Email
-                </label>
+                <label>Email</label>
 
                 <input
                     type="email"
@@ -1261,12 +1172,9 @@ function openModal(type){
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                Mot de passe
-                </label>
+                <label>Mot de passe</label>
 
                 <input
                     type="password"
@@ -1277,12 +1185,9 @@ function openModal(type){
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                Type de compte
-                </label>
+                <label>Type de compte</label>
 
                 <select id="role">
 
@@ -1298,7 +1203,6 @@ function openModal(type){
 
             </div>
 
-
             <div class="modal-actions">
 
                 <button
@@ -1310,7 +1214,9 @@ function openModal(type){
                 </button>
 
             </div>
+
         `;
+
     }
 
 
@@ -1334,9 +1240,7 @@ function openModal(type){
 
             <div class="form-group">
 
-                <label>
-                Email
-                </label>
+                <label>Email</label>
 
                 <input
                     type="email"
@@ -1347,12 +1251,9 @@ function openModal(type){
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                Mot de passe
-                </label>
+                <label>Mot de passe</label>
 
                 <input
                     type="password"
@@ -1362,7 +1263,6 @@ function openModal(type){
                 >
 
             </div>
-
 
             <div class="modal-actions">
 
@@ -1375,7 +1275,9 @@ function openModal(type){
                 </button>
 
             </div>
+
         `;
+
     }
 
 
@@ -1425,7 +1327,9 @@ function openModal(type){
                 </button>
 
             </div>
+
         `;
+
     }
 
 
@@ -1483,7 +1387,9 @@ function openModal(type){
                 </button>
 
             </div>
+
         `;
+
     }
 
 
@@ -1531,16 +1437,17 @@ function openModal(type){
                 ⚠️ Toppatoo IA ne remplace pas
                 le jugement clinique d'un professionnel.
             </p>
-        `;
-    }
 
+        `;
+
+    }
 
     modal.classList.add("show");
 }
 
 
 /* =========================================================
-   FERMER LA MODALE
+   FERMER MODALE
 ========================================================= */
 
 function closeModal(){
@@ -1554,7 +1461,7 @@ function closeModal(){
 
 
 /* =========================================================
-   AFFICHER UN MESSAGE
+   AFFICHER MESSAGE
 ========================================================= */
 
 function showMessage(elementId, message, type){
@@ -1570,6 +1477,7 @@ function showMessage(elementId, message, type){
 
     element.className =
         "message " + type;
+
 }
 
 
@@ -1608,49 +1516,40 @@ async function createAccount(){
         .value;
 
     const button =
-        document.getElementById("registerButton");
+        document
+        .getElementById("registerButton");
 
-
-    /* VALIDATIONS */
 
     if(name === ""){
-
         showMessage(
             "registerMessage",
             "Veuillez entrer votre nom complet.",
             "error"
         );
-
         return;
     }
-
 
     if(email === ""){
-
         showMessage(
             "registerMessage",
-            "Veuillez entrer votre adresse email.",
+            "Veuillez entrer votre adresse e-mail.",
             "error"
         );
-
         return;
     }
 
-
     if(password.length < 6){
-
         showMessage(
             "registerMessage",
             "Le mot de passe doit contenir au moins 6 caractères.",
             "error"
         );
-
         return;
     }
 
 
     button.disabled = true;
-    button.textContent = "Création du compte...";
+    button.textContent = "Création en cours...";
 
 
     try{
@@ -1684,19 +1583,15 @@ async function createAccount(){
         if(error){
 
             throw error;
+
         }
 
 
-        /*
-         * Si Supabase demande une confirmation
-         * par email, data.session sera null.
-         */
-
-        if(data.session){
+        if(data.user){
 
             showMessage(
                 "registerMessage",
-                "✅ Compte créé avec succès ! Vous êtes maintenant connecté à Toppatoo.",
+                "✅ Compte Toppatoo créé avec succès ! Vérifiez votre e-mail si une confirmation est demandée.",
                 "success"
             );
 
@@ -1704,74 +1599,56 @@ async function createAccount(){
                 "Compte créé ✓";
 
 
-            setTimeout(function(){
+            /*
+             * Si la confirmation e-mail est désactivée,
+             * Supabase crée directement la session.
+             */
 
-                closeModal();
+            if(data.session){
 
-            }, 1800);
+                setTimeout(function(){
 
-        }else{
+                    closeModal();
 
-            showMessage(
-                "registerMessage",
-                "✅ Compte créé ! Vérifiez votre email pour confirmer votre inscription.",
-                "success"
-            );
+                    if(role === "professional"){
 
-            button.textContent =
-                "Compte créé ✓";
+                        openModal("professional");
+
+                    }else{
+
+                        openModal("patient");
+
+                    }
+
+                },1200);
+
+            }
+
         }
-
 
     }catch(error){
 
         console.error(
-            "Erreur création compte :",
+            "Erreur Supabase:",
             error
         );
 
-
-        let message =
-            "Impossible de créer le compte.";
-
-
-        if(
-            error.message &&
-            error.message.toLowerCase()
-            .includes("already registered")
-        ){
-
-            message =
-                "Cette adresse email possède déjà un compte.";
-
-        }else if(
-            error.message &&
-            error.message.toLowerCase()
-            .includes("password")
-        ){
-
-            message =
-                "Le mot de passe n'est pas suffisamment sécurisé.";
-
-        }else if(error.message){
-
-            message =
-                error.message;
-        }
-
-
         showMessage(
             "registerMessage",
-            "❌ " + message,
+            "❌ " + (
+                error.message ||
+                "Impossible de créer le compte."
+            ),
             "error"
         );
-
 
         button.disabled = false;
 
         button.textContent =
             "Créer mon compte";
+
     }
+
 }
 
 
@@ -1793,20 +1670,21 @@ async function login(){
         .value;
 
     const button =
-        document.getElementById("loginButton");
+        document
+        .getElementById("loginButton");
 
 
     if(email === ""){
 
         showMessage(
             "loginMessage",
-            "Veuillez entrer votre email.",
+            "Veuillez entrer votre e-mail.",
             "error"
         );
 
         return;
-    }
 
+    }
 
     if(password === ""){
 
@@ -1817,6 +1695,7 @@ async function login(){
         );
 
         return;
+
     }
 
 
@@ -1829,71 +1708,74 @@ async function login(){
         const {
             data,
             error
-        } = await supabaseClient.auth
-            .signInWithPassword({
+        } =
+        await supabaseClient.auth.signInWithPassword({
 
-                email: email,
+            email: email,
 
-                password: password
+            password: password
 
-            });
+        });
 
 
         if(error){
 
             throw error;
+
         }
 
 
         showMessage(
             "loginMessage",
-            "✅ Connexion réussie. Bienvenue sur Toppatoo !",
+            "✅ Connexion réussie !",
             "success"
         );
 
 
-        button.textContent =
-            "Connecté ✓";
-
-
-        setTimeout(function(){
+        setTimeout(async function(){
 
             closeModal();
 
-        }, 1500);
+            const role =
+                data.user?.user_metadata?.role;
+
+
+            if(role === "professional"){
+
+                openModal("professional");
+
+            }else{
+
+                openModal("patient");
+
+            }
+
+        },800);
 
 
     }catch(error){
 
         console.error(
-            "Erreur connexion :",
+            "Erreur connexion:",
             error
         );
 
-
-        let message =
-            "Email ou mot de passe incorrect.";
-
-
-        if(error.message){
-
-            message =
-                error.message;
-        }
-
-
         showMessage(
             "loginMessage",
-            "❌ " + message,
+            "❌ " + (
+                error.message ||
+                "E-mail ou mot de passe incorrect."
+            ),
             "error"
         );
-
 
         button.disabled = false;
 
         button.textContent =
             "Se connecter";
+
     }
+
 }
 
 
@@ -1917,12 +1799,14 @@ function askAI(){
         );
 
         return;
+
     }
 
 
     alert(
-        "La connexion à Toppatoo IA sera ajoutée dans l'étape suivante."
+        "Toppatoo IA sera connectée à un véritable assistant IA dans une prochaine étape."
     );
+
 }
 
 
@@ -1950,30 +1834,27 @@ document
    VERIFICATION DE LA SESSION
 ========================================================= */
 
-async function checkSession(){
+async function checkCurrentSession(){
 
     const {
         data
-    } = await supabaseClient.auth.getSession();
+    } =
+    await supabaseClient.auth.getSession();
 
 
-    if(data && data.session){
+    if(data.session){
 
         console.log(
             "Utilisateur connecté :",
             data.session.user.email
         );
 
-    }else{
-
-        console.log(
-            "Aucun utilisateur connecté."
-        );
     }
+
 }
 
 
-checkSession();
+checkCurrentSession();
 
 </script>
 
