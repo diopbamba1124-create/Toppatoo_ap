@@ -3,329 +3,710 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="description" content="Toppatoo — Sama Wergu Yaram">
 <title>Toppatoo — Sama Wergu Yaram</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+--primary:#087f78;
+--primary-dark:#05645f;
+--primary-light:#e8f7f5;
+--text:#173b3a;
+--muted:#6c817f;
+--background:#f7fbfa;
+--white:#fff;
+--border:#e2eeec;
+--shadow:0 18px 50px rgba(8,127,120,.10);
 }
 
+html{scroll-behavior:smooth}
+
 body{
-    font-family:Arial,sans-serif;
-    background:#f5faf9;
-    color:#173b3a;
+font-family:Arial,Helvetica,sans-serif;
+background:var(--background);
+color:var(--text);
+line-height:1.6
+}
+
+button{font-family:inherit;cursor:pointer}
+
+.container{
+width:min(1120px,92%);
+margin:auto
 }
 
 header{
-    background:white;
-    border-bottom:1px solid #e5eeee;
-    position:sticky;
-    top:0;
-    z-index:10;
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(255,255,255,.96);
+backdrop-filter:blur(12px);
+border-bottom:1px solid var(--border)
 }
 
-.nav{
-    max-width:1100px;
-    margin:auto;
-    padding:14px 20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
+.navbar{
+min-height:74px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px
 }
 
 .logo{
-    height:50px;
-    max-width:190px;
-    object-fit:contain;
+display:flex;
+align-items:center;
+text-decoration:none;
+min-width:150px
 }
 
-.logo-text{
-    color:#087f78;
-    font-size:24px;
-    font-weight:900;
+.logo-image{
+height:52px;
+width:auto;
+max-width:210px;
+object-fit:contain;
+display:block
 }
 
-nav{
-    display:flex;
-    gap:10px;
+.logo-fallback{
+display:none;
+color:var(--primary);
+font-size:24px;
+font-weight:900;
+letter-spacing:-1px
 }
 
-button{
-    border:0;
-    border-radius:10px;
-    padding:12px 18px;
-    font-weight:bold;
-    cursor:pointer;
+.nav-links{
+display:flex;
+gap:28px
 }
 
-.primary{
-    background:#087f78;
-    color:white;
+.nav-links a{
+text-decoration:none;
+color:#496361;
+font-size:14px;
+font-weight:600
 }
 
-.secondary{
-    background:white;
-    color:#087f78;
-    border:1px solid #cbdedc;
+.nav-links a:hover{color:var(--primary)}
+
+.nav-buttons{
+display:flex;
+gap:10px
 }
 
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:0 20px;
+.btn{
+border:0;
+border-radius:13px;
+padding:12px 18px;
+font-weight:700;
+font-size:14px;
+transition:.2s ease
+}
+
+.btn:hover{transform:translateY(-2px)}
+
+.btn-primary{
+background:var(--primary);
+color:white
+}
+
+.btn-primary:hover{background:var(--primary-dark)}
+
+.btn-secondary{
+background:white;
+color:var(--primary);
+border:1px solid #c8dfdc
+}
+
+.btn-light{
+background:white;
+color:var(--primary)
 }
 
 .hero{
-    padding:80px 20px;
-    text-align:center;
+padding:85px 0 75px
+}
+
+.hero-grid{
+display:grid;
+grid-template-columns:1.05fr .95fr;
+align-items:center;
+gap:65px
+}
+
+.badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+background:var(--primary-light);
+color:var(--primary);
+padding:8px 14px;
+border-radius:30px;
+font-size:13px;
+font-weight:700;
+margin-bottom:22px
 }
 
 .hero h1{
-    font-size:55px;
-    margin-bottom:20px;
+font-size:clamp(44px,6vw,70px);
+line-height:1.03;
+letter-spacing:-2.5px;
+margin-bottom:23px
 }
 
-.hero h1 span{
-    color:#087f78;
+.hero h1 span{color:var(--primary)}
+
+.hero-description{
+color:var(--muted);
+font-size:18px;
+max-width:600px;
+margin-bottom:30px
 }
 
-.hero p{
-    max-width:650px;
-    margin:0 auto 30px;
-    color:#687c7a;
-    font-size:18px;
+.hero-actions{
+display:flex;
+flex-wrap:wrap;
+gap:12px
 }
 
-.actions{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    flex-wrap:wrap;
+.hero-actions .btn{padding:14px 20px}
+
+.health-card{
+background:white;
+border:1px solid var(--border);
+border-radius:30px;
+padding:24px;
+box-shadow:var(--shadow)
 }
 
-.section{
-    padding:60px 20px;
+.health-card-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:22px
 }
 
-.title{
-    text-align:center;
-    margin-bottom:35px;
+.health-card-title{font-weight:800}
+
+.active{
+background:#e7f8ef;
+color:#278154;
+padding:7px 11px;
+border-radius:30px;
+font-size:12px;
+font-weight:700
 }
 
-.title h2{
-    font-size:35px;
-    margin-bottom:10px;
+.profile{
+display:flex;
+align-items:center;
+gap:14px;
+background:var(--primary-light);
+padding:18px;
+border-radius:20px;
+margin-bottom:15px
 }
 
-.title p{
-    color:#687c7a;
+.avatar{
+width:52px;
+height:52px;
+border-radius:17px;
+display:grid;
+place-items:center;
+background:white;
+font-size:24px
 }
 
-.cards{
-    max-width:1100px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+.profile strong{display:block}
+.profile small{color:var(--muted)}
+
+.health-items{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px
 }
 
-.card{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    border:1px solid #e1eceb;
-    box-shadow:0 10px 30px rgba(0,0,0,.05);
+.health-item{
+background:white;
+border:1px solid var(--border);
+border-radius:18px;
+padding:17px
 }
 
-.card .icon{
-    font-size:35px;
-    margin-bottom:15px;
+.health-icon{
+font-size:22px;
+margin-bottom:8px
 }
 
-.card h3{
-    margin-bottom:10px;
+.health-item strong{
+display:block;
+font-size:15px
 }
 
-.card p{
-    color:#687c7a;
-    line-height:1.5;
+.health-item small{color:var(--muted)}
+
+.section{padding:80px 0}
+
+.section-heading{
+text-align:center;
+max-width:700px;
+margin:0 auto 45px
 }
 
-.dashboard{
-    display:none;
-    padding:50px 20px;
+.section-heading .tag{
+color:var(--primary);
+font-weight:800;
+font-size:13px;
+text-transform:uppercase;
+letter-spacing:1px
 }
 
-.dashboard-box{
-    max-width:1100px;
-    margin:auto;
+.section-heading h2{
+font-size:38px;
+line-height:1.15;
+margin:10px 0 14px
 }
 
-.welcome{
-    background:white;
-    border-radius:20px;
-    padding:25px;
-    margin-bottom:20px;
-    border:1px solid #e1eceb;
+.section-heading p{color:var(--muted)}
+
+.features{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:17px
 }
 
-.welcome p{
-    color:#687c7a;
-    margin:5px 0 15px;
+.feature{
+background:white;
+border:1px solid var(--border);
+border-radius:23px;
+padding:25px
 }
 
-.dashboard-cards{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+.feature-icon{
+width:52px;
+height:52px;
+border-radius:16px;
+display:grid;
+place-items:center;
+background:var(--primary-light);
+font-size:24px;
+margin-bottom:19px
 }
 
-.registry{
-    display:none;
-    padding:50px 20px;
+.feature h3{margin-bottom:8px}
+.feature p{color:var(--muted);font-size:14px}
+
+.audience{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px
 }
 
-.registry-box{
-    max-width:900px;
-    margin:auto;
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    border:1px solid #e1eceb;
+.audience-card{
+border-radius:28px;
+padding:35px;
+background:white;
+border:1px solid var(--border)
 }
 
-.registry-box p{
-    color:#687c7a;
-    margin:10px 0 25px;
+.audience-card.professional{
+background:var(--primary);
+color:white
 }
 
-.registry-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+.audience-icon{
+font-size:35px;
+margin-bottom:18px
 }
 
-.registry-item{
-    border:1px solid #e1eceb;
-    padding:20px;
-    border-radius:15px;
+.audience-card h3{
+font-size:25px;
+margin-bottom:10px
 }
 
-.registry-item h3{
-    margin-bottom:8px;
+.audience-card p{
+margin-bottom:22px;
+color:var(--muted)
 }
 
-.registry-item p{
-    margin:0;
+.professional p{color:rgba(255,255,255,.78)}
+
+.ai-section{background:#eef8f6}
+
+.ai-card{
+display:grid;
+grid-template-columns:.8fr 1.2fr;
+align-items:center;
+gap:45px;
+background:white;
+border:1px solid var(--border);
+border-radius:30px;
+padding:42px;
+box-shadow:var(--shadow)
 }
 
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    z-index:100;
+.ai-symbol{
+min-height:230px;
+border-radius:25px;
+background:var(--primary-light);
+display:grid;
+place-items:center;
+font-size:80px
 }
 
-.modal.active{
-    display:flex;
+.ai-card h2{
+font-size:35px;
+margin-bottom:12px
 }
 
-.modal-box{
-    width:100%;
-    max-width:450px;
-    background:white;
-    border-radius:20px;
-    padding:30px;
-    position:relative;
+.ai-card p{
+color:var(--muted);
+margin-bottom:20px
 }
 
-.close{
-    position:absolute;
-    right:15px;
-    top:10px;
-    background:none;
-    font-size:25px;
+.cta{padding:75px 0}
+
+.cta-box{
+background:var(--primary);
+color:white;
+border-radius:30px;
+padding:48px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:30px
 }
 
-.modal-box h2{
-    margin-bottom:8px;
+.cta-box h2{
+font-size:34px;
+line-height:1.2
 }
 
-.modal-box > p{
-    color:#687c7a;
-    margin-bottom:20px;
-}
-
-.form-group{
-    margin-bottom:15px;
-}
-
-.form-group label{
-    display:block;
-    margin-bottom:6px;
-    font-weight:bold;
-}
-
-input,select{
-    width:100%;
-    padding:13px;
-    border:1px solid #d7e5e3;
-    border-radius:10px;
-    font-size:15px;
-}
-
-.message{
-    padding:12px;
-    border-radius:10px;
-    margin-bottom:15px;
-    display:none;
-}
-
-.success{
-    display:block;
-    background:#e8f7ef;
-    color:#21764b;
-}
-
-.error{
-    display:block;
-    background:#fdebea;
-    color:#b33127;
+.cta-box p{
+margin-top:8px;
+opacity:.82
 }
 
 footer{
-    text-align:center;
-    padding:35px 20px;
-    background:white;
-    color:#687c7a;
-    margin-top:50px;
+background:white;
+border-top:1px solid var(--border);
+padding:40px 0
 }
 
-@media(max-width:750px){
+.footer-content{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px
+}
 
-    .cards,
-    .dashboard-cards,
-    .registry-grid{
-        grid-template-columns:1fr;
-    }
+.footer-brand{
+color:var(--primary);
+font-weight:800
+}
 
-    .hero h1{
-        font-size:42px;
-    }
+.footer-text{
+color:var(--muted);
+font-size:13px
+}
 
-    nav .secondary{
-        display:none;
-    }
+.modal{
+display:none;
+position:fixed;
+inset:0;
+z-index:2000;
+background:rgba(23,59,58,.45);
+padding:20px;
+align-items:center;
+justify-content:center
+}
+
+.modal.show{display:flex}
+
+.modal-box{
+width:min(620px,100%);
+max-height:92vh;
+overflow-y:auto;
+background:white;
+border-radius:25px;
+padding:30px;
+box-shadow:0 25px 80px rgba(0,0,0,.18);
+position:relative
+}
+
+.modal-close{
+position:absolute;
+top:15px;
+right:18px;
+border:0;
+background:transparent;
+font-size:25px;
+color:var(--muted)
+}
+
+.modal-box h2{margin-bottom:8px}
+
+.modal-box>p{
+color:var(--muted);
+margin-bottom:20px
+}
+
+.form-group{margin-bottom:16px}
+
+.form-group label{
+display:block;
+font-size:14px;
+font-weight:700;
+margin-bottom:6px
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+width:100%;
+padding:13px;
+border:1px solid var(--border);
+border-radius:12px;
+font-size:15px;
+outline:none;
+font-family:inherit
+}
+
+.form-group textarea{
+min-height:90px;
+resize:vertical
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+border-color:var(--primary)
+}
+
+.modal-actions{
+display:flex;
+gap:10px;
+margin-top:20px
+}
+
+.modal-actions .btn{flex:1}
+
+.dashboard{
+display:none;
+padding:45px 0 80px
+}
+
+.dashboard.show{display:block}
+
+.dashboard-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+margin-bottom:25px
+}
+
+.dashboard-header h2{font-size:32px}
+
+.dashboard-header p{color:var(--muted)}
+
+.dashboard-grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:16px;
+margin-bottom:25px
+}
+
+.dashboard-card{
+background:white;
+border:1px solid var(--border);
+border-radius:22px;
+padding:23px;
+cursor:pointer;
+transition:.2s
+}
+
+.dashboard-card:hover{
+transform:translateY(-3px);
+box-shadow:var(--shadow)
+}
+
+.dashboard-card .big{
+font-size:30px;
+margin-bottom:10px
+}
+
+.dashboard-card h3{margin-bottom:5px}
+
+.dashboard-card p{
+color:var(--muted);
+font-size:13px
+}
+
+.list-box{
+background:white;
+border:1px solid var(--border);
+border-radius:24px;
+padding:25px
+}
+
+.list-box h3{margin-bottom:18px}
+
+.patient-row{
+border:1px solid var(--border);
+border-radius:15px;
+padding:15px;
+margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px
+}
+
+.patient-row small{
+display:block;
+color:var(--muted)
+}
+
+.empty{
+text-align:center;
+padding:30px;
+color:var(--muted)
+}
+
+.status{
+display:inline-block;
+padding:6px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:700
+}
+
+.status.green{
+background:#e7f8ef;
+color:#278154
+}
+
+.status.orange{
+background:#fff3df;
+color:#a56800
+}
+
+.status.red{
+background:#ffe8e8;
+color:#b52d2d
+}
+
+.search-box{
+display:flex;
+gap:10px;
+margin-bottom:20px
+}
+
+.search-box input{
+flex:1;
+padding:13px;
+border:1px solid var(--border);
+border-radius:12px;
+font-size:15px
+}
+
+.patient-code{
+font-family:monospace;
+font-weight:bold;
+color:var(--primary)
+}
+
+.patient-details{
+background:var(--primary-light);
+border-radius:18px;
+padding:18px;
+margin-top:15px
+}
+
+@media(max-width:1100px){
+.dashboard-grid{
+grid-template-columns:repeat(3,1fr)
+}
+}
+
+@media(max-width:900px){
+
+.nav-links{display:none}
+
+.hero-grid,
+.ai-card{
+grid-template-columns:1fr
+}
+
+.features{grid-template-columns:1fr 1fr}
+
+.dashboard-grid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:600px){
+
+.navbar{min-height:66px}
+
+.logo-image{
+height:44px;
+max-width:165px
+}
+
+.logo-fallback{font-size:21px}
+
+.nav-buttons .btn-secondary{display:none}
+
+.hero{padding:50px 0}
+
+.hero h1{font-size:45px}
+
+.hero-description{font-size:16px}
+
+.hero-actions{flex-direction:column}
+
+.hero-actions .btn{width:100%}
+
+.features,
+.audience,
+.health-items,
+.dashboard-grid{
+grid-template-columns:1fr
+}
+
+.section{padding:55px 0}
+
+.section-heading h2,
+.ai-card h2{font-size:29px}
+
+.ai-card,
+.audience-card{padding:27px}
+
+.cta-box{
+padding:32px;
+flex-direction:column;
+align-items:flex-start
+}
+
+.cta-box h2{font-size:28px}
+
+.footer-content{
+flex-direction:column;
+text-align:center
+}
+
+.dashboard-header{
+flex-direction:column;
+align-items:flex-start
+}
+
+.search-box{
+flex-direction:column
+}
 }
 </style>
 </head>
@@ -333,598 +714,2272 @@ footer{
 <body>
 
 <header>
-    <div class="nav">
+<div class="container navbar">
 
-        <div>
-            <img
-                src="./fichier_00000000f0208210920f9ffed57695df.png"
-                class="logo"
-                alt="Toppatoo"
-                onerror="this.style.display='none';document.getElementById('logoText').style.display='block';"
-            >
+<a href="#accueil" class="logo">
 
-            <div id="logoText"
-                 class="logo-text"
-                 style="display:none;">
-                TOPPATOO
-            </div>
-        </div>
+<img
+src="./fichier_00000000f0208210920f9ffed57695df.png"
+alt="Logo Toppatoo"
+class="logo-image"
+onerror="this.style.display='none';document.getElementById('logoFallback').style.display='inline-block';"
+>
 
-        <nav>
-            <button class="secondary" onclick="openLogin()">
-                Se connecter
-            </button>
+<span id="logoFallback" class="logo-fallback">
+TOPPATOO
+</span>
 
-            <button class="primary" onclick="openRegister()">
-                Créer un compte
-            </button>
-        </nav>
+</a>
 
-    </div>
+<nav class="nav-links">
+<a href="#accueil">Accueil</a>
+<a href="#fonctionnalites">Fonctionnalités</a>
+<a href="#utilisateurs">Utilisateurs</a>
+<a href="#ia">Toppatoo IA</a>
+</nav>
+
+<div class="nav-buttons">
+
+<button class="btn btn-secondary"
+onclick="openModal('login')">
+Se connecter
+</button>
+
+<button class="btn btn-primary"
+onclick="openModal('register')">
+Créer un compte
+</button>
+
+</div>
+
+</div>
 </header>
 
 
-<!-- ACCUEIL -->
+<main id="mainContent">
 
-<main id="home">
+<section class="hero" id="accueil">
 
-<section class="hero">
+<div class="container hero-grid">
 
-    <h1>
-        Votre santé,
-        <span>plus simple.</span>
-    </h1>
+<div>
 
-    <p>
-        Toppatoo — Sama Wergu Yaram.
-        Une plateforme numérique conçue pour faciliter
-        le suivi de santé des patients et des professionnels.
-    </p>
+<div class="badge">🩺 Sama Wergu Yaram</div>
 
-    <div class="actions">
+<h1>
+Votre santé,<br>
+<span>plus simple.</span>
+</h1>
 
-        <button class="primary"
-                onclick="openRegister()">
-            Créer un compte
-        </button>
+<p class="hero-description">
+Toppatoo est une plateforme numérique de santé conçue
+pour rapprocher les patients et les professionnels,
+simplifier le suivi et améliorer l'expérience de santé.
+</p>
 
-        <button class="secondary"
-                onclick="openLogin()">
-            Se connecter
-        </button>
+<div class="hero-actions">
 
-    </div>
+<button class="btn btn-primary"
+onclick="openModal('professional')">
+👨‍⚕️ Je suis professionnel
+</button>
 
+<button class="btn btn-secondary"
+onclick="openModal('patient')">
+👤 Je suis patient
+</button>
+
+</div>
+
+</div>
+
+<div class="health-card">
+
+<div class="health-card-header">
+<div class="health-card-title">Mon espace santé</div>
+<div class="active">● Actif</div>
+</div>
+
+<div class="profile">
+
+<div class="avatar">👤</div>
+
+<div>
+<strong id="welcomeName">
+Bienvenue sur Toppatoo
+</strong>
+<small>Sama Wergu Yaram</small>
+</div>
+
+</div>
+
+<div class="health-items">
+
+<div class="health-item">
+<div class="health-icon">📅</div>
+<strong>Rendez-vous</strong>
+<small>Organiser son suivi</small>
+</div>
+
+<div class="health-item">
+<div class="health-icon">📁</div>
+<strong>Dossier</strong>
+<small>Suivi de santé</small>
+</div>
+
+<div class="health-item">
+<div class="health-icon">💊</div>
+<strong>Traitements</strong>
+<small>Informations utiles</small>
+</div>
+
+<div class="health-item">
+<div class="health-icon">🤖</div>
+<strong>Toppatoo IA</strong>
+<small>Assistant intelligent</small>
+</div>
+
+</div>
+</div>
+
+</div>
 </section>
 
 
-<section class="section">
+<section class="section" id="fonctionnalites">
 
-    <div class="title">
+<div class="container">
 
-        <h2>
-            Les espaces Toppatoo
-        </h2>
+<div class="section-heading">
 
-        <p>
-            Une organisation simple du parcours de santé.
-        </p>
+<div class="tag">Une expérience simple</div>
 
-    </div>
+<h2>
+Tout ce dont vous avez besoin,
+au même endroit.
+</h2>
+
+<p>
+Toppatoo est pensé pour rendre le parcours
+de santé plus clair et plus accessible.
+</p>
+
+</div>
+
+<div class="features">
+
+<div class="feature">
+<div class="feature-icon">👥</div>
+<h3>Patients</h3>
+<p>Créer et retrouver facilement les dossiers patients.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">📁</div>
+<h3>Dossier de santé</h3>
+<p>Centraliser les informations importantes du parcours de santé.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">📅</div>
+<h3>Rendez-vous</h3>
+<p>Organiser et suivre facilement les rendez-vous.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🔔</div>
+<h3>Notifications</h3>
+<p>Recevoir les informations importantes au bon moment.</p>
+</div>
+
+</div>
+</div>
+</section>
 
 
-    <div class="cards">
+<section class="section" id="utilisateurs">
 
-        <div class="card">
+<div class="container">
 
-            <div class="icon">👶</div>
+<div class="section-heading">
 
-            <h3>
-                Registre Enfants
-            </h3>
+<div class="tag">Pour tout le monde</div>
 
-            <p>
-                Registre destiné aux enfants
-                de 0 à 5 ans avec suivi de
-                l'état vaccinal.
-            </p>
+<h2>
+Une plateforme pensée pour
+patients et professionnels.
+</h2>
 
-        </div>
+</div>
+
+<div class="audience">
+
+<div class="audience-card professional">
+
+<div class="audience-icon">👨‍⚕️</div>
+
+<h3>Pour les professionnels</h3>
+
+<p>
+Gérer les patients, le registre enfants,
+les consultations générales et les rendez-vous.
+</p>
+
+<button class="btn btn-light"
+onclick="openModal('professional')">
+Accéder à l'espace
+</button>
+
+</div>
+
+<div class="audience-card">
+
+<div class="audience-icon">👤</div>
+
+<h3>Pour les patients</h3>
+
+<p>
+Un espace personnel pour suivre les informations
+de santé qui leur sont accessibles.
+</p>
+
+<button class="btn btn-primary"
+onclick="openModal('patient')">
+Découvrir l'espace
+</button>
+
+</div>
+
+</div>
+</div>
+</section>
 
 
-        <div class="card">
+<section class="section ai-section" id="ia">
 
-            <div class="icon">🩺</div>
+<div class="container">
 
-            <h3>
-                Consultation générale
-            </h3>
+<div class="ai-card">
 
-            <p>
-                Registre destiné au suivi
-                des consultations générales
-                des patients.
-            </p>
+<div class="ai-symbol">🤖</div>
 
-        </div>
+<div>
+
+<div class="tag"
+style="color:#087f78;font-weight:800;">
+Toppatoo IA
+</div>
+
+<h2>
+L'intelligence artificielle
+au service du professionnel.
+</h2>
+
+<p>
+Toppatoo IA sera conçue comme un assistant destiné
+à aider les professionnels à organiser et analyser
+les informations disponibles, sans remplacer leur jugement clinique.
+</p>
+
+<button class="btn btn-primary"
+onclick="openModal('ai')">
+Découvrir Toppatoo IA
+</button>
+
+</div>
+
+</div>
+</div>
+</section>
 
 
-        <div class="card">
+<section class="cta">
 
-            <div class="icon">🤖</div>
+<div class="container">
 
-            <h3>
-                Toppatoo IA
-            </h3>
+<div class="cta-box">
 
-            <p>
-                Un assistant intelligent destiné
-                à accompagner les professionnels
-                dans leur travail.
-            </p>
+<div>
 
-        </div>
+<h2>
+Bienvenue dans une nouvelle
+expérience de santé.
+</h2>
 
-    </div>
+<p>Toppatoo — Sama Wergu Yaram.</p>
 
+</div>
+
+<button class="btn btn-light"
+onclick="openModal('register')">
+Commencer
+</button>
+
+</div>
+</div>
+</section>
+
+
+<section class="dashboard" id="dashboard">
+
+<div class="container">
+
+<div class="dashboard-header">
+
+<div>
+<h2>👨‍⚕️ Espace Professionnel</h2>
+<p id="dashboardUser">
+Bienvenue sur votre espace Toppatoo.
+</p>
+</div>
+
+<button class="btn btn-secondary"
+onclick="logout()">
+Se déconnecter
+</button>
+
+</div>
+
+
+<div class="dashboard-grid">
+
+<div class="dashboard-card"
+onclick="openModal('patientForm')">
+
+<div class="big">👥</div>
+
+<h3>Patients</h3>
+
+<p>
+Ajouter et rechercher des patients.
+</p>
+
+</div>
+
+
+<div class="dashboard-card"
+onclick="openModal('child')">
+
+<div class="big">👶</div>
+
+<h3>Registre Enfants</h3>
+
+<p>
+Enfants de 0 à 5 ans et suivi vaccinal.
+</p>
+
+</div>
+
+
+<div class="dashboard-card"
+onclick="openModal('consultation')">
+
+<div class="big">🩺</div>
+
+<h3>Consultation générale</h3>
+
+<p>
+Créer et enregistrer une consultation.
+</p>
+
+</div>
+
+
+<div class="dashboard-card"
+onclick="loadPatients()">
+
+<div class="big">📋</div>
+
+<h3>Liste patients</h3>
+
+<p>
+Voir les patients enregistrés.
+</p>
+
+</div>
+
+
+<div class="dashboard-card"
+onclick="loadConsultations()">
+
+<div class="big">📄</div>
+
+<h3>Consultations</h3>
+
+<p>
+Voir les consultations enregistrées.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="list-box"
+id="dataList">
+
+<div class="empty">
+Sélectionnez un module pour afficher les données.
+</div>
+
+</div>
+
+</div>
 </section>
 
 </main>
 
 
-<!-- TABLEAU DE BORD -->
-
-<section id="dashboard"
-         class="dashboard">
-
-    <div class="dashboard-box">
-
-        <div class="welcome">
-
-            <h2 id="welcome">
-                Bienvenue
-            </h2>
-
-            <p id="email">
-            </p>
-
-            <button class="secondary"
-                    onclick="logout()">
-                Se déconnecter
-            </button>
-
-        </div>
-
-
-        <div class="dashboard-cards">
-
-            <div class="card">
-
-                <div class="icon">👶</div>
-
-                <h3>
-                    Registre Enfants
-                </h3>
-
-                <p>
-                    Enfants de 0 à 5 ans
-                    et état vaccinal.
-                </p>
-
-                <br>
-
-                <button class="primary"
-                        onclick="showChildren()">
-                    Ouvrir
-                </button>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">🩺</div>
-
-                <h3>
-                    Consultation générale
-                </h3>
-
-                <p>
-                    Registre des consultations
-                    générales.
-                </p>
-
-                <br>
-
-                <button class="primary"
-                        onclick="showConsultations()">
-                    Ouvrir
-                </button>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">📅</div>
-
-                <h3>
-                    Rendez-vous
-                </h3>
-
-                <p>
-                    Gestion des rendez-vous.
-                </p>
-
-                <br>
-
-                <button class="primary"
-                        onclick="alert('Module Rendez-vous à venir.')">
-                    Ouvrir
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- REGISTRE ENFANTS -->
-
-<section id="children"
-         class="registry">
-
-    <div class="registry-box">
-
-        <h2>
-            👶 Registre Enfants
-        </h2>
-
-        <p>
-            Registre des enfants âgés de
-            0 à 5 ans avec suivi de leur
-            état vaccinal.
-        </p>
-
-
-        <div class="registry-grid">
-
-            <div class="registry-item">
-
-                <h3>
-                    👤 Informations enfant
-                </h3>
-
-                <p>
-                    Identité, date de naissance
-                    et informations nécessaires
-                    au suivi.
-                </p>
-
-            </div>
-
-
-            <div class="registry-item">
-
-                <h3>
-                    💉 État vaccinal
-                </h3>
-
-                <p>
-                    Vaccins reçus, vaccins à jour
-                    et prochaines vaccinations.
-                </p>
-
-            </div>
-
-
-            <div class="registry-item">
-
-                <h3>
-                    🩺 Consultations
-                </h3>
-
-                <p>
-                    Historique des consultations
-                    de l'enfant.
-                </p>
-
-            </div>
-
-
-            <div class="registry-item">
-
-                <h3>
-                    📅 Suivi
-                </h3>
-
-                <p>
-                    Prochain contrôle et
-                    suivi de l'enfant.
-                </p>
-
-            </div>
-
-        </div>
-
-        <br>
-
-        <button class="secondary"
-                onclick="backDashboard()">
-            ← Retour
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- CONSULTATION GENERALE -->
-
-<section id="consultations"
-         class="registry">
-
-    <div class="registry-box">
-
-        <h2>
-            🩺 Registre de consultation générale
-        </h2>
-
-        <p>
-            Espace destiné au suivi
-            des consultations générales.
-        </p>
-
-
-        <div class="registry-grid">
-
-            <div class="registry-item">
-
-                <h3>
-                    👤 Patients
-                </h3>
-
-                <p>
-                    Gestion des patients.
-                </p>
-
-            </div>
-
-
-            <div class="registry-item">
-
-                <h3>
-                    🩺 Consultations
-                </h3>
-
-                <p>
-                    Enregistrement des consultations.
-                </p>
-
-            </div>
-
-
-            <div class="registry-item">
-
-                <h3>
-                    📋 Suivi
-                </h3>
-
-                <p>
-                    Suivi du parcours de santé.
-                </p>
-
-            </div>
-
-
-            <div class="registry-item">
-
-                <h3>
-                    📅 Rendez-vous
-                </h3>
-
-                <p>
-                    Organisation du prochain suivi.
-                </p>
-
-            </div>
-
-        </div>
-
-        <br>
-
-        <button class="secondary"
-                onclick="backDashboard()">
-            ← Retour
-        </button>
-
-    </div>
-
-</section>
-
-
 <footer>
-    TOPPATOO — Sama Wergu Yaram<br>
-    © 2026 Toppatoo
+
+<div class="container footer-content">
+
+<div class="footer-brand">
+TOPPATOO — Sama Wergu Yaram
+</div>
+
+<div class="footer-text">
+© 2026 Toppatoo. Tous droits réservés.
+</div>
+
+</div>
+
 </footer>
 
 
-<!-- MODALE -->
+<div class="modal" id="modal">
 
-<div id="modal"
-     class="modal">
+<div class="modal-box">
 
-    <div class="modal-box">
+<button class="modal-close"
+onclick="closeModal()">
+×
+</button>
 
-        <button class="close"
-                onclick="closeModal()">
-            ×
-        </button>
+<div id="modalContent"></div>
 
-        <div id="modalContent"></div>
-
-    </div>
-
+</div>
 </div>
 
 
 <script>
 
-/* ==========================================
+/* =====================================================
    SUPABASE
-========================================== */
+===================================================== */
 
 const SUPABASE_URL =
 "https://dgehholykcfyfwgpbbto.supabase.co";
 
-/*
- IMPORTANT :
- Remplace cette valeur par ta clé Publishable
- Supabase si nécessaire.
-*/
-
-const SUPABASE_KEY =
-"TA_CLE_PUBLISHABLE_SUPABASE";
-
+const SUPABASE_ANON_KEY =
+"sb_publishable_f1ucxryKg1O2JjwIovX69g_oip3hsip";
 
 const supabaseClient =
 window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_ANON_KEY
 );
 
 
-/* ==========================================
+/* =====================================================
    MODALE
-========================================== */
+===================================================== */
 
-function openModal(){
-    document
-        .getElementById("modal")
-        .classList
-        .add("active");
+function openModal(type){
+
+const modal =
+document.getElementById("modal");
+
+const content =
+document.getElementById("modalContent");
+
+
+/* ================= INSCRIPTION ================= */
+
+if(type==="register"){
+
+content.innerHTML=`
+
+<h2>📝 Créer un compte</h2>
+
+<p>Créez votre compte Toppatoo.</p>
+
+<div class="form-group">
+<label>Nom complet</label>
+<input id="name"
+type="text"
+placeholder="Nom et prénom">
+</div>
+
+<div class="form-group">
+<label>Téléphone</label>
+<input id="phone"
+type="tel"
+placeholder="+221 ...">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input id="email"
+type="email"
+placeholder="votre@email.com">
+</div>
+
+<div class="form-group">
+<label>Mot de passe</label>
+<input id="password"
+type="password"
+placeholder="Minimum 6 caractères">
+</div>
+
+<div class="form-group">
+
+<label>Type de compte</label>
+
+<select id="role">
+
+<option value="patient">
+👤 Patient
+</option>
+
+<option value="professional">
+👨‍⚕️ Professionnel
+</option>
+
+</select>
+
+</div>
+
+<div class="modal-actions">
+
+<button class="btn btn-primary"
+onclick="createAccount()">
+Créer mon compte
+</button>
+
+</div>
+
+`;
+
 }
 
+
+/* ================= CONNEXION ================= */
+
+else if(type==="login"){
+
+content.innerHTML=`
+
+<h2>🔐 Se connecter</h2>
+
+<p>Accédez à votre espace Toppatoo.</p>
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input id="loginEmail"
+type="email"
+placeholder="votre@email.com">
+
+</div>
+
+<div class="form-group">
+
+<label>Mot de passe</label>
+
+<input id="loginPassword"
+type="password"
+placeholder="Votre mot de passe">
+
+</div>
+
+<div class="modal-actions">
+
+<button class="btn btn-primary"
+onclick="login()">
+Se connecter
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* ================= PROFESSIONNEL ================= */
+
+else if(type==="professional"){
+
+content.innerHTML=`
+
+<h2>👨‍⚕️ Espace Professionnel</h2>
+
+<p>
+Connectez-vous pour accéder à votre tableau de bord professionnel.
+</p>
+
+<button class="btn btn-primary"
+onclick="openModal('login')">
+Se connecter
+</button>
+
+`;
+
+}
+
+
+/* ================= PATIENT ================= */
+
+else if(type==="patient"){
+
+content.innerHTML=`
+
+<h2>👤 Espace Patient</h2>
+
+<p>
+L'espace patient Toppatoo sera activé dans la prochaine étape.
+</p>
+
+<div class="health-item">
+📁
+<strong>Mon dossier</strong>
+<small>Votre suivi de santé</small>
+</div>
+
+<br>
+
+<div class="health-item">
+📅
+<strong>Mes rendez-vous</strong>
+<small>Organiser votre suivi</small>
+</div>
+
+`;
+
+}
+
+
+/* ================= IA ================= */
+
+else if(type==="ai"){
+
+content.innerHTML=`
+
+<h2>🤖 Toppatoo IA</h2>
+
+<p>
+Assistant destiné à accompagner les professionnels de santé.
+</p>
+
+<div class="form-group">
+
+<label>Votre demande</label>
+
+<textarea id="question"
+placeholder="Écrivez votre demande..."></textarea>
+
+</div>
+
+<button class="btn btn-primary"
+onclick="askAI()">
+Utiliser Toppatoo IA
+</button>
+
+`;
+
+}
+
+
+/* ================= AJOUT PATIENT ================= */
+
+else if(type==="patientForm"){
+
+content.innerHTML=`
+
+<h2>👥 Ajouter un patient</h2>
+
+<p>
+Créer un nouveau dossier patient.
+</p>
+
+<div class="form-group">
+<label>Prénom *</label>
+<input id="patientFirstName"
+type="text"
+placeholder="Prénom">
+</div>
+
+<div class="form-group">
+<label>Nom *</label>
+<input id="patientLastName"
+type="text"
+placeholder="Nom">
+</div>
+
+<div class="form-group">
+<label>Date de naissance</label>
+<input id="patientBirth"
+type="date">
+</div>
+
+<div class="form-group">
+<label>Sexe</label>
+
+<select id="patientGender">
+
+<option value="F">
+Féminin
+</option>
+
+<option value="M">
+Masculin
+</option>
+
+<option value="Autre">
+Autre
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+<label>Téléphone</label>
+<input id="patientPhone"
+type="tel"
+placeholder="+221 ...">
+</div>
+
+<div class="form-group">
+<label>Adresse</label>
+<input id="patientAddress"
+type="text">
+</div>
+
+<div class="form-group">
+<label>Contact d'urgence</label>
+<input id="emergencyName"
+type="text"
+placeholder="Nom du contact">
+</div>
+
+<div class="form-group">
+<label>Téléphone urgence</label>
+<input id="emergencyPhone"
+type="tel"
+placeholder="+221 ...">
+</div>
+
+<div class="form-group">
+<label>Numéro de dossier médical</label>
+<input id="medicalRecord"
+type="text"
+placeholder="Facultatif">
+</div>
+
+<div class="form-group">
+
+<label>État vaccinal</label>
+
+<select id="patientVaccination">
+
+<option value="Non renseigné">
+Non renseigné
+</option>
+
+<option value="À jour">
+À jour
+</option>
+
+<option value="En retard">
+En retard
+</option>
+
+<option value="Incomplet">
+Incomplet
+</option>
+
+</select>
+
+</div>
+
+<div class="modal-actions">
+
+<button class="btn btn-primary"
+onclick="savePatient()">
+💾 Enregistrer le patient
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* ================= ENFANT ================= */
+
+else if(type==="child"){
+
+content.innerHTML=`
+
+<h2>👶 Ajouter un enfant</h2>
+
+<p>
+Registre Enfants — 0 à 5 ans
+</p>
+
+<div class="form-group">
+<label>Nom *</label>
+<input id="childNom" type="text">
+</div>
+
+<div class="form-group">
+<label>Prénom *</label>
+<input id="childPrenom" type="text">
+</div>
+
+<div class="form-group">
+<label>Date de naissance *</label>
+<input id="childDate" type="date">
+</div>
+
+<div class="form-group">
+
+<label>Sexe</label>
+
+<select id="childSexe">
+
+<option value="F">Féminin</option>
+<option value="M">Masculin</option>
+<option value="Autre">Autre</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+<label>Nom du parent / tuteur</label>
+<input id="parentName" type="text">
+</div>
+
+<div class="form-group">
+<label>Téléphone du parent</label>
+<input id="parentPhone" type="tel">
+</div>
+
+<div class="form-group">
+<label>Adresse</label>
+<input id="childAddress" type="text">
+</div>
+
+<div class="form-group">
+<label>Poids (kg)</label>
+<input id="childWeight" type="number" step="0.01">
+</div>
+
+<div class="form-group">
+<label>Taille (cm)</label>
+<input id="childHeight" type="number" step="0.1">
+</div>
+
+<div class="form-group">
+
+<label>État vaccinal</label>
+
+<select id="vaccineStatus">
+
+<option value="Non renseigné">
+Non renseigné
+</option>
+
+<option value="À jour">
+À jour
+</option>
+
+<option value="En retard">
+En retard
+</option>
+
+<option value="Incomplet">
+Incomplet
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Notes vaccination</label>
+
+<textarea id="vaccineNotes"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Antécédents</label>
+
+<textarea id="childHistory"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Observations</label>
+
+<textarea id="childObservations"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Prochain rendez-vous</label>
+
+<input id="childAppointment"
+type="date">
+
+</div>
+
+<div class="modal-actions">
+
+<button class="btn btn-primary"
+onclick="saveChild()">
+💾 Enregistrer l'enfant
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* ================= CONSULTATION ================= */
+
+else if(type==="consultation"){
+
+content.innerHTML=`
+
+<h2>🩺 Consultation générale</h2>
+
+<p>Nouvelle consultation</p>
+
+<div class="form-group">
+<label>Nom du patient *</label>
+<input id="patientNom" type="text">
+</div>
+
+<div class="form-group">
+<label>Prénom du patient *</label>
+<input id="patientPrenom" type="text">
+</div>
+
+<div class="form-group">
+<label>Date de naissance</label>
+<input id="patientDate" type="date">
+</div>
+
+<div class="form-group">
+<label>Sexe</label>
+
+<select id="patientSexe">
+
+<option value="F">Féminin</option>
+<option value="M">Masculin</option>
+<option value="Autre">Autre</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+<label>Téléphone</label>
+<input id="patientPhone" type="tel">
+</div>
+
+<div class="form-group">
+<label>Motif de consultation</label>
+<textarea id="consultMotif"></textarea>
+</div>
+
+<div class="form-group">
+<label>Antécédents</label>
+<textarea id="consultHistory"></textarea>
+</div>
+
+<div class="form-group">
+<label>Tension artérielle</label>
+<input id="bp" type="text"
+placeholder="Ex: 120/80 mmHg">
+</div>
+
+<div class="form-group">
+<label>Température</label>
+<input id="temperature"
+type="number"
+step="0.1">
+</div>
+
+<div class="form-group">
+<label>Poids (kg)</label>
+<input id="consultWeight"
+type="number"
+step="0.1">
+</div>
+
+<div class="form-group">
+<label>Taille (cm)</label>
+<input id="consultHeight"
+type="number"
+step="0.1">
+</div>
+
+<div class="form-group">
+<label>Fréquence cardiaque</label>
+<input id="heartRate"
+type="number">
+</div>
+
+<div class="form-group">
+<label>Saturation oxygène (%)</label>
+<input id="oxygen"
+type="number"
+step="0.1">
+</div>
+
+<div class="form-group">
+<label>Examen clinique</label>
+<textarea id="clinicalExam"></textarea>
+</div>
+
+<div class="form-group">
+<label>Diagnostic / hypothèse</label>
+<textarea id="diagnosis"></textarea>
+</div>
+
+<div class="form-group">
+<label>Soins réalisés</label>
+<textarea id="care"></textarea>
+</div>
+
+<div class="form-group">
+<label>Traitement / prescription</label>
+<textarea id="treatment"></textarea>
+</div>
+
+<div class="form-group">
+<label>Conseils</label>
+<textarea id="advice"></textarea>
+</div>
+
+<div class="form-group">
+<label>Orientation</label>
+<textarea id="orientation"></textarea>
+</div>
+
+<div class="form-group">
+<label>Prochain rendez-vous</label>
+<input id="nextAppointment"
+type="date">
+</div>
+
+<div class="form-group">
+<label>Observations</label>
+<textarea id="consultObservations"></textarea>
+</div>
+
+<div class="modal-actions">
+
+<button class="btn btn-primary"
+onclick="saveConsultation()">
+💾 Enregistrer la consultation
+</button>
+
+</div>
+
+`;
+
+}
+
+document
+.getElementById("modal")
+.classList.add("show");
+
+}
+
+
+/* =====================================================
+   FERMER MODALE
+===================================================== */
 
 function closeModal(){
-    document
-        .getElementById("modal")
-        .classList
-        .remove("active");
+
+document
+.getElementById("modal")
+.classList.remove("show");
+
 }
 
 
-/* ==========================================
-   INSCRIPTION
-========================================== */
+/* =====================================================
+   CRÉATION COMPTE
+===================================================== */
 
-function openRegister(){
+async function createAccount(){
 
-    openModal();
+const name =
+document.getElementById("name").value.trim();
 
-    document.getElementById("modalContent").innerHTML = `
+const phone =
+document.getElementById("phone").value.trim();
 
-        <h2>
-            Créer un compte
-        </h2>
+const email =
+document.getElementById("email").value.trim();
 
-        <p>
-            Créez votre compte Toppatoo.
-        </p>
+const password =
+document.getElementById("password").value;
 
-        <div id="registerMessage"
-             class="message">
-        </div>
+const role =
+document.getElementById("role").value;
 
-        <div class="form-group">
+if(!name || !email || !password){
 
-            <label>
-                Nom complet
-            </label>
+alert(
+"Veuillez remplir le nom, l'e-mail et le mot de passe."
+);
 
-            <input
-                id="registerName"
-                type="text"
-                placeholder="Ex : Bamba Diop">
+return;
+}
 
-        </div>
+if(password.length<6){
 
+alert(
+"Le mot de passe doit contenir au moins 6 caractères."
+);
 
-        <div class="form-group">
+return;
+}
 
-            <label>
-                Email
-            </label>
+const {data,error} =
+await supabaseClient.auth.signUp({
 
-            <input
-                id="registerEmail"
-                type="email"
-                placeholder="votre@email.com">
+email:email,
 
-        </div>
+password:password,
 
+options:{
+data:{
+full_name:name,
+phone:phone,
+role:role
+}
+}
 
-        <div class="form-group">
+});
 
-            <label>
-                Mot de passe
-            </label>
+if(error){
 
-            <input
-                id="registerPassword"
-                type="password"
-                placeholder="Minimum 6 caractères">
+alert(
+"Erreur : "+error.message
+);
 
-        </div>
+return;
+}
 
+alert(
+"✅ Compte Toppatoo créé avec succès !\n\n"+
+"Vérifiez votre e-mail si une confirmation est demandée."
+);
 
-        <div class="form-group">
+closeModal();
 
-            <label>
-                Type de compte
-            </label>
-
-            <select id="registerRole">
-
-                <option value="patient">
-                    Patient
-                </option>
-
-                <option value="professional">
-                    Professionnel de santé
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <button
-            class="primary"
-            style="width:100%"
-            onclick="register()">
-
-            Créer mon compte
-
-        </button>
-    `;
 }
 
 
-/* ==========================================
-   REGISTER SUPABASE
-========================================== */
+/* =====================================================
+   CONNEXION
+===================================================== */
 
-async function register(){
+async function login(){
 
-    const name =
-        document
-        .getElementById("registerName")
-        .value
-        .trim();
+const email =
+document.getElementById("loginEmail").value.trim();
 
-    const email =
-        document
+const password =
+document.getElementById("loginPassword").value;
+
+if(!email || !password){
+
+alert(
+"Veuillez entrer votre e-mail et votre mot de passe."
+);
+
+return;
+}
+
+const {data,error} =
+await supabaseClient.auth.signInWithPassword({
+
+email:email,
+password:password
+
+});
+
+if(error){
+
+alert(
+"Erreur de connexion : "+error.message
+);
+
+return;
+}
+
+closeModal();
+
+await showDashboard(data.user);
+
+}
+
+
+/* =====================================================
+   TABLEAU DE BORD
+===================================================== */
+
+async function showDashboard(user){
+
+document
+.getElementById("dashboard")
+.classList.add("show");
+
+const name =
+user.user_metadata?.full_name ||
+user.email ||
+"Utilisateur";
+
+document
+.getElementById("dashboardUser")
+.textContent =
+"Bienvenue "+name;
+
+document
+.getElementById("welcomeName")
+.textContent =
+"Bienvenue "+name;
+
+document
+.getElementById("dashboard")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* =====================================================
+   GÉNÉRER CODE PATIENT
+===================================================== */
+
+function generatePatientCode(){
+
+const random =
+Math.random()
+.toString(36)
+.substring(2,8)
+.toUpperCase();
+
+return "TOP-"+random;
+
+}
+
+
+/* =====================================================
+   ENREGISTRER PATIENT
+===================================================== */
+
+async function savePatient(){
+
+const userResult =
+await supabaseClient.auth.getUser();
+
+if(!userResult.data.user){
+
+alert(
+"Votre session a expiré. Reconnectez-vous."
+);
+
+return;
+}
+
+const user =
+userResult.data.user;
+
+const firstName =
+document
+.getElementById("patientFirstName")
+.value
+.trim();
+
+const lastName =
+document
+.getElementById("patientLastName")
+.value
+.trim();
+
+if(!firstName || !lastName){
+
+alert(
+"Le prénom et le nom sont obligatoires."
+);
+
+return;
+}
+
+const patientCode =
+generatePatientCode();
+
+const payload={
+
+user_id:user.id,
+
+first_name:firstName,
+
+last_name:lastName,
+
+date_of_birth:
+document
+.getElementById("patientBirth")
+.value || null,
+
+gender:
+document
+.getElementById("patientGender")
+.value,
+
+phone:
+document
+.getElementById("patientPhone")
+.value
+.trim(),
+
+address:
+document
+.getElementById("patientAddress")
+.value
+.trim(),
+
+emergency_contact_name:
+document
+.getElementById("emergencyName")
+.value
+.trim(),
+
+emergency_contact_phone:
+document
+.getElementById("emergencyPhone")
+.value
+.trim(),
+
+medical_record_number:
+document
+.getElementById("medicalRecord")
+.value
+.trim(),
+
+created_by:user.id,
+
+patient_code:patientCode,
+
+vaccination_status:
+document
+.getElementById("patientVaccination")
+.value
+
+};
+
+
+const {data,error} =
+await supabaseClient
+.from("patients")
+.insert(payload)
+.select()
+.single();
+
+
+if(error){
+
+alert(
+"Erreur lors de l'enregistrement du patient :\n\n"+
+error.message
+);
+
+return;
+}
+
+alert(
+"✅ Patient enregistré avec succès !\n\n"+
+"Code patient : "+data.patient_code
+);
+
+closeModal();
+
+loadPatients();
+
+}
+
+
+/* =====================================================
+   LISTE PATIENTS
+===================================================== */
+
+async function loadPatients(){
+
+const list =
+document.getElementById("dataList");
+
+list.innerHTML=
+"<div class='empty'>Chargement des patients...</div>";
+
+const {data,error} =
+await supabaseClient
+.from("patients")
+.select("*")
+.order("created_at",{ascending:false});
+
+
+if(error){
+
+list.innerHTML=
+"<div class='empty'>"+
+escapeHtml(error.message)+
+"</div>";
+
+return;
+}
+
+
+let patients=data || [];
+
+
+list.innerHTML=`
+
+<h3>👥 Patients</h3>
+
+<div class="search-box">
+
+<input
+id="patientSearch"
+type="text"
+placeholder="Rechercher par nom, prénom ou code patient..."
+oninput="filterPatients()">
+
+<button
+class="btn btn-primary"
+onclick="openModal('patientForm')">
+
++ Ajouter
+
+</button>
+
+</div>
+
+<div id="patientsList"></div>
+
+`;
+
+
+window.allToppatooPatients =
+patients;
+
+renderPatients(patients);
+
+}
+
+
+/* =====================================================
+   AFFICHER PATIENTS
+===================================================== */
+
+function renderPatients(patients){
+
+const container =
+document.getElementById("patientsList");
+
+if(!container){
+return;
+}
+
+if(!patients.length){
+
+container.innerHTML=
+"<div class='empty'>"+
+"Aucun patient trouvé."+
+"</div>";
+
+return;
+}
+
+
+container.innerHTML =
+patients.map(patient=>`
+
+<div class="patient-row">
+
+<div>
+
+<strong>
+${escapeHtml(patient.first_name || "")}
+${escapeHtml(patient.last_name || "")}
+</strong>
+
+<small class="patient-code">
+Code : ${escapeHtml(patient.patient_code || "—")}
+</small>
+
+<small>
+Né(e) le :
+${escapeHtml(patient.date_of_birth || "Non renseigné")}
+</small>
+
+<small>
+Téléphone :
+${escapeHtml(patient.phone || "Non renseigné")}
+</small>
+
+</div>
+
+<button
+class="btn btn-secondary"
+onclick="viewPatient('${patient.id}')">
+
+Voir
+
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =====================================================
+   RECHERCHE PATIENTS
+===================================================== */
+
+function filterPatients(){
+
+const input =
+document
+.getElementById("patientSearch");
+
+if(!input){
+return;
+}
+
+const search =
+input.value
+.toLowerCase()
+.trim();
+
+const filtered =
+(window.allToppatooPatients || [])
+.filter(patient=>{
+
+const text=`
+
+${patient.first_name || ""}
+${patient.last_name || ""}
+${patient.patient_code || ""}
+${patient.phone || ""}
+
+`.toLowerCase();
+
+return text.includes(search);
+
+});
+
+renderPatients(filtered);
+
+}
+
+
+/* =====================================================
+   FICHE PATIENT
+===================================================== */
+
+async function viewPatient(id){
+
+const patient =
+(window.allToppatooPatients || [])
+.find(item=>item.id===id);
+
+if(!patient){
+
+alert("Patient introuvable.");
+
+return;
+}
+
+openModal("patientDetails");
+
+const content =
+document.getElementById("modalContent");
+
+content.innerHTML=`
+
+<h2>👤 Fiche patient</h2>
+
+<p>
+Informations du dossier patient.
+</p>
+
+<div class="patient-details">
+
+<p>
+<strong>Code patient :</strong><br>
+<span class="patient-code">
+${escapeHtml(patient.patient_code || "—")}
+</span>
+</p>
+
+<br>
+
+<p>
+<strong>Nom :</strong>
+${escapeHtml(patient.first_name || "")}
+${escapeHtml(patient.last_name || "")}
+</p>
+
+<p>
+<strong>Date de naissance :</strong>
+${escapeHtml(patient.date_of_birth || "Non renseignée")}
+</p>
+
+<p>
+<strong>Sexe :</strong>
+${escapeHtml(patient.gender || "Non renseigné")}
+</p>
+
+<p>
+<strong>Téléphone :</strong>
+${escapeHtml(patient.phone || "Non renseigné")}
+</p>
+
+<p>
+<strong>Adresse :</strong>
+${escapeHtml(patient.address || "Non renseignée")}
+</p>
+
+<p>
+<strong>Contact d'urgence :</strong>
+${escapeHtml(patient.emergency_contact_name || "Non renseigné")}
+</p>
+
+<p>
+<strong>Téléphone urgence :</strong>
+${escapeHtml(patient.emergency_contact_phone || "Non renseigné")}
+</p>
+
+<p>
+<strong>Dossier médical :</strong>
+${escapeHtml(patient.medical_record_number || "Non renseigné")}
+</p>
+
+<p>
+<strong>État vaccinal :</strong>
+${escapeHtml(patient.vaccination_status || "Non renseigné")}
+</p>
+
+</div>
+
+<br>
+
+<button
+class="btn btn-secondary"
+onclick="closeModal();loadPatients();">
+
+← Retour aux patients
+
+</button>
+
+`;
+
+}
+
+
+/* =====================================================
+   REGISTRE ENFANTS
+===================================================== */
+
+async function saveChild(){
+
+const userResult =
+await supabaseClient.auth.getUser();
+
+if(!userResult.data.user){
+
+alert(
+"Votre session a expiré."
+);
+
+return;
+}
+
+const user =
+userResult.data.user;
+
+const nom =
+document.getElementById("childNom").value.trim();
+
+const prenom =
+document.getElementById("childPrenom").value.trim();
+
+const date =
+document.getElementById("childDate").value;
+
+if(!nom || !prenom || !date){
+
+alert(
+"Nom, prénom et date de naissance sont obligatoires."
+);
+
+return;
+}
+
+
+const birth =
+new Date(date);
+
+const today =
+new Date();
+
+let age =
+today.getFullYear() -
+birth.getFullYear();
+
+const month =
+today.getMonth() -
+birth.getMonth();
+
+if(
+month<0 ||
+(
+month===0 &&
+today.getDate()<birth.getDate()
+)
+){
+
+age--;
+
+}
+
+if(age<0 || age>5){
+
+alert(
+"Cet enfant doit avoir entre 0 et 5 ans."
+);
+
+return;
+}
+
+
+const payload={
+
+professionnel_id:user.id,
+
+nom:nom,
+
+prenom:prenom,
+
+date_naissance:date,
+
+sexe:
+document.getElementById("childSexe").value,
+
+nom_parent:
+document.getElementById("parentName").value.trim(),
+
+telephone_parent:
+document.getElementById("parentPhone").value.trim(),
+
+adresse:
+document.getElementById("childAddress").value.trim(),
+
+poids:
+document.getElementById("childWeight").value || null,
+
+taille:
+document.getElementById("childHeight").value || null,
+
+etat_vaccinal:
+document.getElementById("vaccineStatus").value,
+
+notes_vaccination:
+document.getElementById("vaccineNotes").value.trim(),
+
+antecedents:
+document.getElementById("childHistory").value.trim(),
+
+observations:
+document.getElementById("childObservations").value.trim(),
+
+prochain_rendez_vous:
+document.getElementById("childAppointment").value || null
+
+};
+
+
+const {error} =
+await supabaseClient
+.from("registre_enfants")
+.insert(payload);
+
+
+if(error){
+
+alert(
+"Erreur : "+error.message
+);
+
+return;
+}
+
+alert(
+"✅ Enfant enregistré avec succès."
+);
+
+closeModal();
+
+loadChildren();
+
+}
+
+
+/* =====================================================
+   AFFICHER ENFANTS
+===================================================== */
+
+async function loadChildren(){
+
+const list =
+document.getElementById("dataList");
+
+list.innerHTML=
+"<div class='empty'>Chargement...</div>";
+
+const {data,error} =
+await supabaseClient
+.from("registre_enfants")
+.select("*")
+.order("created_at",{ascending:false});
+
+
+if(error){
+
+list.innerHTML=
+"<div class='empty'>"+
+escapeHtml(error.message)+
+"</div>";
+
+return;
+}
+
+
+if(!data.length){
+
+list.innerHTML=
+"<div class='empty'>"+
+"Aucun enfant enregistré."+
+"</div>";
+
+return;
+}
+
+
+list.innerHTML=`
+
+<h3>👶 Registre Enfants — 0 à 5 ans</h3>
+
+${data.map(child=>`
+
+<div class="patient-row">
+
+<div>
+
+<strong>
+${escapeHtml(child.prenom || "")}
+${escapeHtml(child.nom || "")}
+</strong>
+
+<small>
+Né(e) le :
+${escapeHtml(child.date_naissance || "")}
+</small>
+
+<small>
+Parent :
+${escapeHtml(child.nom_parent || "Non renseigné")}
+</small>
+
+</div>
+
+<div>
+
+<span class="status ${
+child.etat_vaccinal==="À jour"
+?"green":
+child.etat_vaccinal==="En retard"
+?"orange":
+child.etat_vaccinal==="Incomplet"
+?"red":
+"orange"
+}">
+
+${escapeHtml(child.etat_vaccinal || "Non renseigné")}
+
+</span>
+
+</div>
+
+</div>
+
+`).join("")}
+
+`;
+
+}
+
+
+/* =====================================================
+   CONSULTATIONS
+===================================================== */
+
+async function saveConsultation(){
+
+const userResult =
+await supabaseClient.auth.getUser();
+
+if(!userResult.data.user){
+
+alert(
+"Votre session a expiré."
+);
+
+return;
+}
+
+const user =
+userResult.data.user;
+
+const nom =
+document.getElementById("patientNom").value.trim();
+
+const prenom =
+document.getElementById("patientPrenom").value.trim();
+
+if(!nom || !prenom){
+
+alert(
+"Le nom et le prénom sont obligatoires."
+);
+
+return;
+}
+
+
+const payload={
+
+professionnel_id:user.id,
+
+nom_patient:nom,
+
+prenom_patient:prenom,
+
+date_naissance:
+document.getElementById("patientDate").value || null,
+
+sexe:
+document.getElementById("patientSexe").value,
+
+telephone:
+document.getElementById("patientPhone").value.trim(),
+
+motif_consultation:
+document.getElementById("consultMotif").value.trim(),
+
+antecedents:
+document.getElementById("consultHistory").value.trim(),
+
+tension_arterielle:
+document.getElementById("bp").value.trim(),
+
+temperature:
+document.getElementById("temperature").value || null,
+
+poids:
+document.getElementById("consultWeight").value || null,
+
+taille:
+document.getElementById("consultHeight").value || null,
+
+frequence_cardiaque:
+document.getElementById("heartRate").value || null,
+
+saturation_oxygene:
+document.getElementById("oxygen").value || null,
+
+examen_clinique:
+document.getElementById("clinicalExam").value.trim(),
+
+diagnostic:
+document.getElementById("diagnosis").value.trim(),
+
+soins_realises:
+document.getElementById("care").value.trim(),
+
+traitement:
+document.getElementById("treatment").value.trim(),
+
+conseils:
+document.getElementById("advice").value.trim(),
+
+orientation:
+document.getElementById("orientation").value.trim(),
+
+prochain_rendez_vous:
+document.getElementById("nextAppointment").value || null,
+
+observations:
+document.getElementById("consultObservations").value.trim()
+
+};
+
+
+const {error} =
+await supabaseClient
+.from("consultations_generales")
+.insert(payload);
+
+
+if(error){
+
+alert(
+"Erreur : "+error.message
+);
+
+return;
+}
+
+alert(
+"✅ Consultation enregistrée avec succès."
+);
+
+closeModal();
+
+loadConsultations();
+
+}
+
+
+async function loadConsultations(){
+
+const list =
+document.getElementById("dataList");
+
+list.innerHTML=
+"<div class='empty'>Chargement...</div>";
+
+const {data,error} =
+await supabaseClient
+.from("consultations_generales")
+.select("*")
+.order("date_consultation",{ascending:false});
+
+
+if(error){
+
+list.innerHTML=
+"<div class='empty'>"+
+escapeHtml(error.message)+
+"</div>";
+
+return;
+}
+
+
+if(!data.length){
+
+list.innerHTML=
+"<div class='empty'>"+
+"Aucune consultation enregistrée."+
+"</div>";
+
+return;
+}
+
+
+list.innerHTML=`
+
+<h3>🩺 Consultations générales</h3>
+
+${data.map(item=>`
+
+<div class="patient-row">
+
+<div>
+
+<strong>
+${escapeHtml(item.prenom_patient || "")}
+${escapeHtml(item.nom_patient || "")}
+</strong>
+
+<small>
+Motif :
+${escapeHtml(item.motif_consultation || "Non renseigné")}
+</small>
+
+<small>
+Date :
+${escapeHtml(
+item.date_consultation
+?
+new Date(item.date_consultation)
+.toLocaleString("fr-FR")
+:
+"Non renseignée"
+)}
+</small>
+
+</div>
+
+<div>🩺</div>
+
+</div>
+
+`).join("")}
+
+`;
+
+}
+
+
+/* =====================================================
+   DÉCONNEXION
+===================================================== */
+
+async function logout(){
+
+await supabaseClient.auth.signOut();
+
+document
+.getElementById("dashboard")
+.classList.remove("show");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* =====================================================
+   IA
+===================================================== */
+
+function askAI(){
+
+const question =
+document.getElementById("question")
+.value
+.trim();
+
+if(!question){
+
+alert(
+"Écrivez votre demande."
+);
+
+return;
+}
+
+alert(
+"🤖 Toppatoo IA\n\n"+
+"Le module IA sera connecté dans une prochaine étape."
+);
+
+}
+
+
+/* =====================================================
+   SÉCURITÉ HTML
+===================================================== */
+
+function escapeHtml(value){
+
+if(
+value===null ||
+value===undefined
+){
+
+return "";
+
+}
+
+return String(value)
+
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   FERMETURE MODALE
+===================================================== */
+
+document
+.getElementById("modal")
+.addEventListener(
+"click",
+function(event){
+
+if(event.target===this){
+
+closeModal();
+
+}
+
+});
+
+
+/* =====================================================
+   SESSION
+===================================================== */
+
+(async function(){
+
+const {data} =
+await supabaseClient.auth.getSession();
+
+if(data.session){
+
+await showDashboard(
+data.session.user
+);
+
+}
+
+})();
+
+</script>
+
+</body>
+    </html>
