@@ -3,257 +3,828 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Toppatoo — Sama Wergu Yaram">
 <title>Toppatoo — Sama Wergu Yaram</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box
+}
+
+:root{
+    --primary:#087f78;
+    --primary-dark:#05645f;
+    --primary-light:#e8f7f5;
+    --text:#173b3a;
+    --muted:#6c817f;
+    --background:#f7fbfa;
+    --white:#fff;
+    --border:#e2eeec;
+    --shadow:0 18px 50px rgba(8,127,120,.10);
+}
+
+html{
+    scroll-behavior:smooth
+}
 
 body{
-font-family:Arial,sans-serif;
-background:#f6fbfa;
-color:#173b3a;
-}
-
-header{
-background:white;
-border-bottom:1px solid #e1ecea;
-padding:15px 5%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:10;
-}
-
-.logo{
-font-size:25px;
-font-weight:900;
-color:#087f78;
-}
-
-.container{
-width:min(1100px,92%);
-margin:auto;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--background);
+    color:var(--text);
+    line-height:1.6
 }
 
 button{
-border:0;
-border-radius:12px;
-padding:12px 18px;
-font-weight:bold;
-cursor:pointer;
+    font-family:inherit;
+    cursor:pointer
 }
 
-.primary{
-background:#087f78;
-color:white;
-}
-
-.secondary{
-background:white;
-color:#087f78;
-border:1px solid #cce1de;
-}
-
-.hero{
-padding:70px 0;
-}
-
-.hero h1{
-font-size:55px;
-line-height:1.05;
-margin-bottom:20px;
-}
-
-.hero h1 span{
-color:#087f78;
-}
-
-.hero p{
-color:#667b79;
-font-size:18px;
-max-width:650px;
-margin-bottom:25px;
-}
-
-.actions{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-}
-
-.dashboard{
-display:none;
-padding:45px 0;
-}
-
-.dashboard.show{
-display:block;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px;
-margin:25px 0;
-}
-
-.card{
-background:white;
-border:1px solid #e1ecea;
-border-radius:20px;
-padding:25px;
-cursor:pointer;
-}
-
-.card:hover{
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-.card .icon{
-font-size:32px;
-margin-bottom:12px;
-}
-
-.card p{
-color:#6c817f;
-font-size:14px;
-margin-top:7px;
-}
-
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.45);
-align-items:center;
-justify-content:center;
-padding:20px;
-z-index:100;
-}
-
-.modal.show{
-display:flex;
-}
-
-.modal-box{
-background:white;
-width:min(650px,100%);
-max-height:90vh;
-overflow:auto;
-border-radius:22px;
-padding:28px;
-position:relative;
-}
-
-.close{
-position:absolute;
-right:15px;
-top:10px;
-font-size:25px;
-background:none;
-}
-
-.form-group{
-margin-bottom:15px;
-}
-
-label{
-display:block;
-font-weight:bold;
-font-size:14px;
-margin-bottom:6px;
-}
-
-input,select,textarea{
-width:100%;
-padding:12px;
-border:1px solid #dce9e7;
-border-radius:10px;
-font-size:15px;
-}
-
-textarea{
-min-height:90px;
-resize:vertical;
-}
-
-.form-actions{
-display:flex;
-gap:10px;
-margin-top:20px;
-}
-
-.form-actions button{
-flex:1;
-}
-
-.list{
-background:white;
-border:1px solid #e1ecea;
-border-radius:20px;
-padding:25px;
-margin-top:20px;
-}
-
-.patient{
-border:1px solid #e1ecea;
-border-radius:14px;
-padding:15px;
-margin-bottom:10px;
-}
-
-.patient strong{
-display:block;
-}
-
-.patient small{
-display:block;
-color:#6c817f;
-margin-top:4px;
-}
-
-.badge{
-display:inline-block;
-padding:5px 9px;
-border-radius:20px;
-font-size:12px;
-font-weight:bold;
-background:#e8f7f5;
-color:#087f78;
-}
-
-.error{
-color:#b52d2d;
-background:#ffecec;
-padding:12px;
-border-radius:10px;
-margin-top:12px;
-}
-
-.success{
-color:#21764c;
-background:#e9f8ef;
-padding:12px;
-border-radius:10px;
-margin-top:12px;
-}
-
-@media(max-width:700px){
-.hero h1{
-font-size:42px;
-}
-
-.cards{
-grid-template-columns:1fr;
+.container{
+    width:min(1120px,92%);
+    margin:auto
 }
 
 header{
-padding:12px 4%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border)
 }
+
+.navbar{
+    min-height:74px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+    min-width:150px
+}
+
+.logo-image{
+    height:52px;
+    width:auto;
+    max-width:210px;
+    object-fit:contain;
+    display:block
+}
+
+.logo-fallback{
+    display:none;
+    color:var(--primary);
+    font-size:24px;
+    font-weight:900
+}
+
+.nav-links{
+    display:flex;
+    gap:28px
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#496361;
+    font-size:14px;
+    font-weight:600
+}
+
+.nav-links a:hover{
+    color:var(--primary)
+}
+
+.nav-buttons{
+    display:flex;
+    gap:10px
+}
+
+.btn{
+    border:0;
+    border-radius:13px;
+    padding:12px 18px;
+    font-weight:700;
+    font-size:14px;
+    transition:.2s ease
+}
+
+.btn:hover{
+    transform:translateY(-2px)
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:white
+}
+
+.btn-primary:hover{
+    background:var(--primary-dark)
+}
+
+.btn-secondary{
+    background:white;
+    color:var(--primary);
+    border:1px solid #c8dfdc
+}
+
+.btn-light{
+    background:white;
+    color:var(--primary)
+}
+
+.hero{
+    padding:85px 0 75px
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    align-items:center;
+    gap:65px
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--primary-light);
+    color:var(--primary);
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:22px
+}
+
+.hero h1{
+    font-size:clamp(44px,6vw,70px);
+    line-height:1.03;
+    letter-spacing:-2.5px;
+    margin-bottom:23px
+}
+
+.hero h1 span{
+    color:var(--primary)
+}
+
+.hero-description{
+    color:var(--muted);
+    font-size:18px;
+    max-width:600px;
+    margin-bottom:30px
+}
+
+.hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px
+}
+
+.hero-actions .btn{
+    padding:14px 20px
+}
+
+.health-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:30px;
+    padding:24px;
+    box-shadow:var(--shadow)
+}
+
+.health-card-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:22px
+}
+
+.health-card-title{
+    font-weight:800
+}
+
+.active{
+    background:#e7f8ef;
+    color:#278154;
+    padding:7px 11px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:var(--primary-light);
+    padding:18px;
+    border-radius:20px;
+    margin-bottom:15px
+}
+
+.avatar{
+    width:52px;
+    height:52px;
+    border-radius:17px;
+    display:grid;
+    place-items:center;
+    background:white;
+    font-size:24px
+}
+
+.profile strong{
+    display:block
+}
+
+.profile small{
+    color:var(--muted)
+}
+
+.health-items{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px
+}
+
+.health-item{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:17px
+}
+
+.health-icon{
+    font-size:22px;
+    margin-bottom:8px
+}
+
+.health-item strong{
+    display:block;
+    font-size:15px
+}
+
+.health-item small{
+    color:var(--muted)
+}
+
+.section{
+    padding:80px 0
+}
+
+.section-heading{
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 45px
+}
+
+.section-heading .tag{
+    color:var(--primary);
+    font-weight:800;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:1px
+}
+
+.section-heading h2{
+    font-size:38px;
+    line-height:1.15;
+    margin:10px 0 14px
+}
+
+.section-heading p{
+    color:var(--muted)
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:17px
+}
+
+.feature{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:23px;
+    padding:25px
+}
+
+.feature-icon{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    display:grid;
+    place-items:center;
+    background:var(--primary-light);
+    font-size:24px;
+    margin-bottom:19px
+}
+
+.feature h3{
+    margin-bottom:8px
+}
+
+.feature p{
+    color:var(--muted);
+    font-size:14px
+}
+
+.audience{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px
+}
+
+.audience-card{
+    border-radius:28px;
+    padding:35px;
+    background:white;
+    border:1px solid var(--border)
+}
+
+.audience-card.professional{
+    background:var(--primary);
+    color:white
+}
+
+.audience-icon{
+    font-size:35px;
+    margin-bottom:18px
+}
+
+.audience-card h3{
+    font-size:25px;
+    margin-bottom:10px
+}
+
+.audience-card p{
+    margin-bottom:22px;
+    color:var(--muted)
+}
+
+.professional p{
+    color:rgba(255,255,255,.78)
+}
+
+.ai-section{
+    background:#eef8f6
+}
+
+.ai-card{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    align-items:center;
+    gap:45px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:30px;
+    padding:42px;
+    box-shadow:var(--shadow)
+}
+
+.ai-symbol{
+    min-height:230px;
+    border-radius:25px;
+    background:var(--primary-light);
+    display:grid;
+    place-items:center;
+    font-size:80px
+}
+
+.ai-card h2{
+    font-size:35px;
+    margin-bottom:12px
+}
+
+.ai-card p{
+    color:var(--muted);
+    margin-bottom:20px
+}
+
+.cta{
+    padding:75px 0
+}
+
+.cta-box{
+    background:var(--primary);
+    color:white;
+    border-radius:30px;
+    padding:48px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px
+}
+
+.cta-box h2{
+    font-size:34px;
+    line-height:1.2
+}
+
+.cta-box p{
+    margin-top:8px;
+    opacity:.82
+}
+
+footer{
+    background:white;
+    border-top:1px solid var(--border);
+    padding:40px 0
+}
+
+.footer-content{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px
+}
+
+.footer-brand{
+    color:var(--primary);
+    font-weight:800
+}
+
+.footer-text{
+    color:var(--muted);
+    font-size:13px
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    background:rgba(23,59,58,.45);
+    padding:20px;
+    align-items:center;
+    justify-content:center
+}
+
+.modal.show{
+    display:flex
+}
+
+.modal-box{
+    width:min(620px,100%);
+    max-height:92vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 25px 80px rgba(0,0,0,.18);
+    position:relative
+}
+
+.modal-close{
+    position:absolute;
+    top:15px;
+    right:18px;
+    border:0;
+    background:transparent;
+    font-size:25px;
+    color:var(--muted)
+}
+
+.modal-box h2{
+    margin-bottom:8px
+}
+
+.modal-box>p{
+    color:var(--muted);
+    margin-bottom:20px
+}
+
+.form-group{
+    margin-bottom:16px
+}
+
+.form-group label{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:6px
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+    font-family:inherit
+}
+
+.form-group textarea{
+    min-height:90px;
+    resize:vertical
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--primary)
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    margin-top:20px
+}
+
+.modal-actions .btn{
+    flex:1
+}
+
+.dashboard{
+    display:none;
+    padding:45px 0 80px
+}
+
+.dashboard.show{
+    display:block
+}
+
+.dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    margin-bottom:25px
+}
+
+.dashboard-header h2{
+    font-size:32px
+}
+
+.dashboard-header p{
+    color:var(--muted)
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:16px;
+    margin-bottom:25px
+}
+
+.dashboard-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:23px;
+    cursor:pointer;
+    transition:.2s
+}
+
+.dashboard-card:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow)
+}
+
+.dashboard-card .big{
+    font-size:30px;
+    margin-bottom:10px
+}
+
+.dashboard-card h3{
+    margin-bottom:5px
+}
+
+.dashboard-card p{
+    color:var(--muted);
+    font-size:13px
+}
+
+.list-box{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:25px
+}
+
+.list-box h3{
+    margin-bottom:18px
+}
+
+.patient-row{
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px
+}
+
+.patient-row small{
+    display:block;
+    color:var(--muted)
+}
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:var(--muted)
+}
+
+.status{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:700
+}
+
+.status.green{
+    background:#e7f8ef;
+    color:#278154
+}
+
+.status.orange{
+    background:#fff3df;
+    color:#a56800
+}
+
+.status.red{
+    background:#ffe8e8;
+    color:#b52d2d
+}
+
+.search-box{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px
+}
+
+.search-box input{
+    flex:1;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    font-size:15px
+}
+
+.patient-code{
+    font-family:monospace;
+    font-weight:bold;
+    color:var(--primary)
+}
+
+.patient-details{
+    background:var(--primary-light);
+    border-radius:18px;
+    padding:18px;
+    margin-top:15px
+}
+
+.detail-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:15px
+}
+
+.detail-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:13px
+}
+
+.detail-card small{
+    display:block;
+    color:var(--muted);
+    margin-bottom:3px
+}
+
+@media(max-width:1100px){
+
+    .dashboard-grid{
+        grid-template-columns:repeat(3,1fr)
+    }
+}
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none
+    }
+
+    .hero-grid,
+    .ai-card{
+        grid-template-columns:1fr
+    }
+
+    .features{
+        grid-template-columns:1fr 1fr
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr 1fr
+    }
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        min-height:66px
+    }
+
+    .logo-image{
+        height:44px;
+        max-width:165px
+    }
+
+    .logo-fallback{
+        font-size:21px
+    }
+
+    .nav-buttons .btn-secondary{
+        display:none
+    }
+
+    .hero{
+        padding:50px 0
+    }
+
+    .hero h1{
+        font-size:45px
+    }
+
+    .hero-description{
+        font-size:16px
+    }
+
+    .hero-actions{
+        flex-direction:column
+    }
+
+    .hero-actions .btn{
+        width:100%
+    }
+
+    .features,
+    .audience,
+    .health-items,
+    .dashboard-grid,
+    .detail-grid{
+        grid-template-columns:1fr
+    }
+
+    .section{
+        padding:55px 0
+    }
+
+    .section-heading h2,
+    .ai-card h2{
+        font-size:29px
+    }
+
+    .ai-card,
+    .audience-card{
+        padding:27px
+    }
+
+    .cta-box{
+        padding:32px;
+        flex-direction:column;
+        align-items:flex-start
+    }
+
+    .cta-box h2{
+        font-size:28px
+    }
+
+    .footer-content{
+        flex-direction:column;
+        text-align:center
+    }
+
+    .dashboard-header{
+        flex-direction:column;
+        align-items:flex-start
+    }
+
+    .search-box{
+        flex-direction:column
+    }
+
+    .patient-row{
+        flex-direction:column;
+        align-items:flex-start
+    }
 }
 </style>
 </head>
@@ -261,25 +832,66 @@ padding:12px 4%;
 <body>
 
 <header>
-<div class="logo">TOPPATOO</div>
 
-<div id="headerButtons">
-<button class="secondary" onclick="openModal('login')">
+<div class="container navbar">
+
+<a href="#accueil" class="logo">
+
+<img
+src="./fichier_00000000f0208210920f9ffed57695df.png"
+alt="Logo Toppatoo"
+class="logo-image"
+onerror="this.style.display='none';document.getElementById('logoFallback').style.display='inline-block';"
+>
+
+<span id="logoFallback" class="logo-fallback">
+TOPPATOO
+</span>
+
+</a>
+
+<nav class="nav-links">
+
+<a href="#accueil">Accueil</a>
+<a href="#fonctionnalites">Fonctionnalités</a>
+<a href="#utilisateurs">Utilisateurs</a>
+<a href="#ia">Toppatoo IA</a>
+
+</nav>
+
+<div class="nav-buttons">
+
+<button
+class="btn btn-secondary"
+onclick="openModal('login')">
+
 Se connecter
+
 </button>
 
-<button class="primary" onclick="openModal('register')">
+<button
+class="btn btn-primary"
+onclick="openModal('register')">
+
 Créer un compte
+
 </button>
+
 </div>
+
+</div>
+
 </header>
 
 
-<main>
+<main id="mainContent">
 
-<section class="hero">
 
-<div class="container">
+<section class="hero" id="accueil">
+
+<div class="container hero-grid">
+
+<div>
 
 <div class="badge">
 🩺 Sama Wergu Yaram
@@ -290,21 +902,403 @@ Votre santé,<br>
 <span>plus simple.</span>
 </h1>
 
-<p>
-Toppatoo centralise les informations des patients
-et facilite leur suivi par les professionnels de santé.
+<p class="hero-description">
+
+Toppatoo est une plateforme numérique de santé
+conçue pour rapprocher les patients et les
+professionnels, simplifier le suivi et améliorer
+l'expérience de santé.
+
 </p>
 
-<div class="actions">
+<div class="hero-actions">
 
-<button class="primary"
-onclick="openModal('login')">
-👨‍⚕️ Espace professionnel
+<button
+class="btn btn-primary"
+onclick="openModal('professional')">
+
+👨‍⚕️ Je suis professionnel
+
 </button>
 
-<button class="secondary"
-onclick="openModal('patientLogin')">
-👤 Espace patient
+<button
+class="btn btn-secondary"
+onclick="openModal('patient')">
+
+👤 Je suis patient
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="health-card">
+
+<div class="health-card-header">
+
+<div class="health-card-title">
+Mon espace santé
+</div>
+
+<div class="active">
+● Actif
+</div>
+
+</div>
+
+
+<div class="profile">
+
+<div class="avatar">
+👤
+</div>
+
+<div>
+
+<strong id="welcomeName">
+Bienvenue sur Toppatoo
+</strong>
+
+<small>
+Sama Wergu Yaram
+</small>
+
+</div>
+
+</div>
+
+
+<div class="health-items">
+
+<div class="health-item">
+
+<div class="health-icon">
+📅
+</div>
+
+<strong>
+Rendez-vous
+</strong>
+
+<small>
+Organiser son suivi
+</small>
+
+</div>
+
+
+<div class="health-item">
+
+<div class="health-icon">
+📁
+</div>
+
+<strong>
+Dossier
+</strong>
+
+<small>
+Suivi de santé
+</small>
+
+</div>
+
+
+<div class="health-item">
+
+<div class="health-icon">
+💊
+</div>
+
+<strong>
+Traitements
+</strong>
+
+<small>
+Informations utiles
+</small>
+
+</div>
+
+
+<div class="health-item">
+
+<div class="health-icon">
+🤖
+</div>
+
+<strong>
+Toppatoo IA
+</strong>
+
+<small>
+Assistant intelligent
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="fonctionnalites">
+
+<div class="container">
+
+<div class="section-heading">
+
+<div class="tag">
+Une expérience simple
+</div>
+
+<h2>
+Tout ce dont vous avez besoin,
+au même endroit.
+</h2>
+
+<p>
+Toppatoo est pensé pour rendre le parcours
+de santé plus clair et plus accessible.
+</p>
+
+</div>
+
+
+<div class="features">
+
+<div class="feature">
+
+<div class="feature-icon">
+👥
+</div>
+
+<h3>
+Patients
+</h3>
+
+<p>
+Créer et retrouver facilement les dossiers patients.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">
+📁
+</div>
+
+<h3>
+Dossier de santé
+</h3>
+
+<p>
+Centraliser les informations importantes du parcours de santé.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">
+📅
+</div>
+
+<h3>
+Rendez-vous
+</h3>
+
+<p>
+Organiser et suivre facilement les rendez-vous.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">
+🔔
+</div>
+
+<h3>
+Notifications
+</h3>
+
+<p>
+Recevoir les informations importantes au bon moment.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="utilisateurs">
+
+<div class="container">
+
+<div class="section-heading">
+
+<div class="tag">
+Pour tout le monde
+</div>
+
+<h2>
+Une plateforme pensée pour
+patients et professionnels.
+</h2>
+
+</div>
+
+
+<div class="audience">
+
+<div class="audience-card professional">
+
+<div class="audience-icon">
+👨‍⚕️
+</div>
+
+<h3>
+Pour les professionnels
+</h3>
+
+<p>
+Gérer les patients, le registre enfants,
+les consultations générales et les rendez-vous.
+</p>
+
+<button
+class="btn btn-light"
+onclick="openModal('professional')">
+
+Accéder à l'espace
+
+</button>
+
+</div>
+
+
+<div class="audience-card">
+
+<div class="audience-icon">
+👤
+</div>
+
+<h3>
+Pour les patients
+</h3>
+
+<p>
+Un espace personnel pour suivre les informations
+de santé qui leur sont accessibles.
+</p>
+
+<button
+class="btn btn-primary"
+onclick="openModal('patient')">
+
+Découvrir l'espace
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section ai-section" id="ia">
+
+<div class="container">
+
+<div class="ai-card">
+
+<div class="ai-symbol">
+🤖
+</div>
+
+<div>
+
+<div
+class="tag"
+style="color:#087f78;font-weight:800;">
+
+Toppatoo IA
+
+</div>
+
+<h2>
+L'intelligence artificielle
+au service du professionnel.
+</h2>
+
+<p>
+Toppatoo IA sera conçue comme un assistant destiné
+à aider les professionnels à organiser et analyser
+les informations disponibles, sans remplacer leur
+jugement clinique.
+</p>
+
+<button
+class="btn btn-primary"
+onclick="openModal('ai')">
+
+Découvrir Toppatoo IA
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="cta">
+
+<div class="container">
+
+<div class="cta-box">
+
+<div>
+
+<h2>
+Bienvenue dans une nouvelle
+expérience de santé.
+</h2>
+
+<p>
+Toppatoo — Sama Wergu Yaram.
+</p>
+
+</div>
+
+<button
+class="btn btn-light"
+onclick="openModal('register')">
+
+Commencer
+
 </button>
 
 </div>
@@ -318,83 +1312,122 @@ onclick="openModal('patientLogin')">
 
 <div class="container">
 
-<h2 id="welcome">
-Bienvenue sur Toppatoo
+<div class="dashboard-header">
+
+<div>
+
+<h2>
+👨‍⚕️ Espace Professionnel
 </h2>
 
-<p style="color:#6c817f;margin-top:5px">
-Espace professionnel
+<p id="dashboardUser">
+Bienvenue sur votre espace Toppatoo.
 </p>
 
+</div>
 
-<div class="cards">
+<button
+class="btn btn-secondary"
+onclick="logout()">
 
-<div class="card"
-onclick="openModal('addPatient')">
+Se déconnecter
 
-<div class="icon">👤</div>
+</button>
 
-<h3>Nouveau patient</h3>
+</div>
+
+
+<div class="dashboard-grid">
+
+
+<div
+class="dashboard-card"
+onclick="openModal('patientForm')">
+
+<div class="big">
+👥
+</div>
+
+<h3>
+Patients
+</h3>
 
 <p>
-Créer un dossier patient.
+Ajouter et rechercher des patients.
 </p>
 
 </div>
 
 
-<div class="card"
-onclick="showChildren()">
+<div
+class="dashboard-card"
+onclick="openModal('child')">
 
-<div class="icon">👶</div>
+<div class="big">
+👶
+</div>
 
-<h3>Registre Enfants</h3>
+<h3>
+Registre Enfants
+</h3>
 
 <p>
-Patients âgés de 0 à 5 ans avec état vaccinal.
+Ajouter les informations pédiatriques
+d'un patient existant.
 </p>
 
 </div>
 
 
-<div class="card"
+<div
+class="dashboard-card"
 onclick="openModal('consultation')">
 
-<div class="icon">🩺</div>
-
-<h3>Consultation générale</h3>
-
-<p>
-Créer une consultation pour un patient.
-</p>
-
+<div class="big">
+🩺
 </div>
 
-</div>
-
-
-<div class="cards">
-
-<div class="card"
-onclick="showPatients()">
-
-<div class="icon">👥</div>
-
-<h3>Patients</h3>
+<h3>
+Consultation générale
+</h3>
 
 <p>
-Voir tous les patients enregistrés.
+Créer une consultation liée à un patient.
 </p>
 
 </div>
 
 
-<div class="card"
-onclick="showConsultations()">
+<div
+class="dashboard-card"
+onclick="loadPatients()">
 
-<div class="icon">📋</div>
+<div class="big">
+📋
+</div>
 
-<h3>Consultations</h3>
+<h3>
+Liste patients
+</h3>
+
+<p>
+Voir les patients enregistrés.
+</p>
+
+</div>
+
+
+<div
+class="dashboard-card"
+onclick="loadConsultations()">
+
+<div class="big">
+📄
+</div>
+
+<h3>
+Consultations
+</h3>
 
 <p>
 Voir les consultations enregistrées.
@@ -402,28 +1435,16 @@ Voir les consultations enregistrées.
 
 </div>
 
-
-<div class="card"
-onclick="logout()">
-
-<div class="icon">🚪</div>
-
-<h3>Déconnexion</h3>
-
-<p>
-Quitter votre espace.
-</p>
-
-</div>
-
 </div>
 
 
-<div class="list" id="dataList">
+<div
+class="list-box"
+id="dataList">
 
-<p style="color:#6c817f;text-align:center">
-Sélectionnez une fonctionnalité.
-</p>
+<div class="empty">
+Sélectionnez un module pour afficher les données.
+</div>
 
 </div>
 
@@ -434,11 +1455,34 @@ Sélectionnez une fonctionnalité.
 </main>
 
 
+<footer>
+
+<div class="container footer-content">
+
+<div class="footer-brand">
+TOPPATOO — Sama Wergu Yaram
+</div>
+
+<div class="footer-text">
+© 2026 Toppatoo. Tous droits réservés.
+</div>
+
+</div>
+
+</footer>
+
+
 <div class="modal" id="modal">
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal()">×</button>
+<button
+class="modal-close"
+onclick="closeModal()">
+
+×
+
+</button>
 
 <div id="modalContent"></div>
 
@@ -449,9 +1493,9 @@ Sélectionnez une fonctionnalité.
 
 <script>
 
-/* =========================
-   SUPABASE
-========================= */
+/* =====================================================
+SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
 "https://dgehholykcfyfwgpbbto.supabase.co";
@@ -466,1117 +1510,2716 @@ SUPABASE_ANON_KEY
 );
 
 
-/* =========================
-   MODALE
-========================= */
+/* =====================================================
+VARIABLES
+===================================================== */
+
+window.allToppatooPatients = [];
+
+
+/* =====================================================
+MODALE
+===================================================== */
 
 function openModal(type){
 
-const modal =
-document.getElementById("modal");
+    const modal =
+        document.getElementById("modal");
 
-const content =
-document.getElementById("modalContent");
+    const content =
+        document.getElementById("modalContent");
 
 
-/* CONNEXION */
+    /* ================= INSCRIPTION ================= */
 
-if(type==="login"){
+    if(type==="register"){
 
-content.innerHTML=`
+        content.innerHTML=`
 
-<h2>🔐 Connexion</h2>
+        <h2>📝 Créer un compte</h2>
 
-<p style="color:#6c817f;margin:8px 0 20px">
-Connectez-vous à votre compte Toppatoo.
-</p>
+        <p>
+        Créez votre compte Toppatoo.
+        </p>
 
-<div class="form-group">
-<label>Email</label>
-<input id="loginEmail" type="email">
-</div>
+        <div class="form-group">
 
-<div class="form-group">
-<label>Mot de passe</label>
-<input id="loginPassword" type="password">
-</div>
+            <label>
+            Nom complet
+            </label>
 
-<button class="primary"
-onclick="login()">
-Se connecter
-</button>
+            <input
+            id="name"
+            type="text"
+            placeholder="Nom et prénom">
 
-<div id="loginMessage"></div>
+        </div>
 
-`;
+
+        <div class="form-group">
+
+            <label>
+            Téléphone
+            </label>
+
+            <input
+            id="phone"
+            type="tel"
+            placeholder="+221 ...">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+            Email
+            </label>
+
+            <input
+            id="email"
+            type="email"
+            placeholder="votre@email.com">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+            Mot de passe
+            </label>
+
+            <input
+            id="password"
+            type="password"
+            placeholder="Minimum 6 caractères">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+            Type de compte
+            </label>
+
+            <select id="role">
+
+                <option value="patient">
+                👤 Patient
+                </option>
+
+                <option value="professional">
+                👨‍⚕️ Professionnel
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+            class="btn btn-primary"
+            onclick="createAccount()">
+
+            Créer mon compte
+
+            </button>
+
+        </div>
+
+        `;
+
+    }
+
+
+    /* ================= CONNEXION ================= */
+
+    else if(type==="login"){
+
+        content.innerHTML=`
+
+        <h2>🔐 Se connecter</h2>
+
+        <p>
+        Accédez à votre espace Toppatoo.
+        </p>
+
+        <div class="form-group">
+
+            <label>Email</label>
+
+            <input
+            id="loginEmail"
+            type="email"
+            placeholder="votre@email.com">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Mot de passe</label>
+
+            <input
+            id="loginPassword"
+            type="password"
+            placeholder="Votre mot de passe">
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+            class="btn btn-primary"
+            onclick="login()">
+
+            Se connecter
+
+            </button>
+
+        </div>
+
+        `;
+
+    }
+
+
+    /* ================= PROFESSIONNEL ================= */
+
+    else if(type==="professional"){
+
+        content.innerHTML=`
+
+        <h2>👨‍⚕️ Espace Professionnel</h2>
+
+        <p>
+        Connectez-vous pour accéder à votre tableau de bord professionnel.
+        </p>
+
+        <button
+        class="btn btn-primary"
+        onclick="openModal('login')">
+
+        Se connecter
+
+        </button>
+
+        `;
+
+    }
+
+
+    /* ================= PATIENT ================= */
+
+    else if(type==="patient"){
+
+        content.innerHTML=`
+
+        <h2>👤 Espace Patient</h2>
+
+        <p>
+        L'espace patient Toppatoo sera activé dans la prochaine étape.
+        </p>
+
+        <div class="health-item">
+
+        📁
+
+        <strong>
+        Mon dossier
+        </strong>
+
+        <small>
+        Votre suivi de santé
+        </small>
+
+        </div>
+
+        <br>
+
+        <div class="health-item">
+
+        📅
+
+        <strong>
+        Mes rendez-vous
+        </strong>
+
+        <small>
+        Organiser votre suivi
+        </small>
+
+        </div>
+
+        `;
+
+    }
+
+
+    /* ================= IA ================= */
+
+    else if(type==="ai"){
+
+        content.innerHTML=`
+
+        <h2>🤖 Toppatoo IA</h2>
+
+        <p>
+        Assistant destiné à accompagner les professionnels de santé.
+        </p>
+
+        <div class="form-group">
+
+        <label>
+        Votre demande
+        </label>
+
+        <textarea
+        id="question"
+        placeholder="Écrivez votre demande..."></textarea>
+
+        </div>
+
+        <button
+        class="btn btn-primary"
+        onclick="askAI()">
+
+        Utiliser Toppatoo IA
+
+        </button>
+
+        `;
+
+    }
+
+
+    /* ================= PATIENT ================= */
+
+    else if(type==="patientForm"){
+
+        content.innerHTML=`
+
+        <h2>👥 Ajouter un patient</h2>
+
+        <p>
+        Créer un nouveau dossier patient.
+        </p>
+
+
+        <div class="form-group">
+
+        <label>
+        Prénom *
+        </label>
+
+        <input
+        id="patientFirstName"
+        type="text"
+        placeholder="Prénom">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Nom *
+        </label>
+
+        <input
+        id="patientLastName"
+        type="text"
+        placeholder="Nom">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Date de naissance
+        </label>
+
+        <input
+        id="patientBirth"
+        type="date">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Sexe
+        </label>
+
+        <select id="patientGender">
+
+            <option value="F">
+            Féminin
+            </option>
+
+            <option value="M">
+            Masculin
+            </option>
+
+            <option value="Autre">
+            Autre
+            </option>
+
+        </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Téléphone
+        </label>
+
+        <input
+        id="patientPhone"
+        type="tel"
+        placeholder="+221 ...">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Adresse
+        </label>
+
+        <input
+        id="patientAddress"
+        type="text">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Contact d'urgence
+        </label>
+
+        <input
+        id="emergencyName"
+        type="text">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Téléphone urgence
+        </label>
+
+        <input
+        id="emergencyPhone"
+        type="tel">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Numéro de dossier médical
+        </label>
+
+        <input
+        id="medicalRecord"
+        type="text"
+        placeholder="Facultatif">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        État vaccinal
+        </label>
+
+        <select id="patientVaccination">
+
+            <option value="Non renseigné">
+            Non renseigné
+            </option>
+
+            <option value="À jour">
+            À jour
+            </option>
+
+            <option value="En retard">
+            En retard
+            </option>
+
+            <option value="Incomplet">
+            Incomplet
+            </option>
+
+        </select>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+        <button
+        class="btn btn-primary"
+        onclick="savePatient()">
+
+        💾 Enregistrer le patient
+
+        </button>
+
+        </div>
+
+        `;
+
+    }
+
+
+    /* ================= REGISTRE ENFANTS ================= */
+
+    else if(type==="child"){
+
+        content.innerHTML=`
+
+        <h2>👶 Registre Enfants</h2>
+
+        <p>
+        Sélectionnez le patient déjà enregistré.
+        </p>
+
+
+        <div class="form-group">
+
+        <label>
+        Patient *
+        </label>
+
+        <select id="childPatientId">
+
+        <option value="">
+        Chargement des patients...
+        </option>
+
+        </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Date de naissance *
+        </label>
+
+        <input
+        id="childDate"
+        type="date">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Sexe
+        </label>
+
+        <select id="childSexe">
+
+        <option value="F">
+        Féminin
+        </option>
+
+        <option value="M">
+        Masculin
+        </option>
+
+        <option value="Autre">
+        Autre
+        </option>
+
+        </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Nom du parent / tuteur
+        </label>
+
+        <input
+        id="parentName"
+        type="text">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Téléphone du parent
+        </label>
+
+        <input
+        id="parentPhone"
+        type="tel">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Adresse
+        </label>
+
+        <input
+        id="childAddress"
+        type="text">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Poids (kg)
+        </label>
+
+        <input
+        id="childWeight"
+        type="number"
+        step="0.01">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Taille (cm)
+        </label>
+
+        <input
+        id="childHeight"
+        type="number"
+        step="0.1">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        État vaccinal
+        </label>
+
+        <select id="vaccineStatus">
+
+        <option value="Non renseigné">
+        Non renseigné
+        </option>
+
+        <option value="À jour">
+        À jour
+        </option>
+
+        <option value="En retard">
+        En retard
+        </option>
+
+        <option value="Incomplet">
+        Incomplet
+        </option>
+
+        </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Notes vaccination
+        </label>
+
+        <textarea id="vaccineNotes"></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Antécédents
+        </label>
+
+        <textarea id="childHistory"></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Observations
+        </label>
+
+        <textarea id="childObservations"></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Prochain rendez-vous
+        </label>
+
+        <input
+        id="childAppointment"
+        type="date">
+
+        </div>
+
+
+        <div class="modal-actions">
+
+        <button
+        class="btn btn-primary"
+        onclick="saveChild()">
+
+        💾 Enregistrer
+
+        </button>
+
+        </div>
+
+        `;
+
+        modal.classList.add("show");
+
+        await loadPatientsForChild();
+
+        return;
+
+    }
+
+
+    /* ================= CONSULTATION ================= */
+
+    else if(type==="consultation"){
+
+        content.innerHTML=`
+
+        <h2>🩺 Consultation générale</h2>
+
+        <p>
+        Sélectionnez le patient concerné.
+        </p>
+
+
+        <div class="form-group">
+
+        <label>
+        Patient *
+        </label>
+
+        <select id="consultPatientId">
+
+        <option value="">
+        Chargement des patients...
+        </option>
+
+        </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Motif de consultation
+        </label>
+
+        <textarea id="consultMotif"></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Antécédents
+        </label>
+
+        <textarea id="consultHistory"></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Tension artérielle
+        </label>
+
+        <input
+        id="bp"
+        type="text"
+        placeholder="Ex : 120/80 mmHg">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Température
+        </label>
+
+        <input
+        id="temperature"
+        type="number"
+        step="0.1">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Poids (kg)
+        </label>
+
+        <input
+        id="consultWeight"
+        type="number"
+        step="0.1">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Taille (cm)
+        </label>
+
+        <input
+        id="consultHeight"
+        type="number"
+        step="0.1">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Fréquence cardiaque
+        </label>
+
+        <input
+        id="heartRate"
+        type="number">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Saturation oxygène (%)
+        </label>
+
+        <input
+        id="oxygen"
+        type="number"
+        step="0.1">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Examen clinique
+        </label>
+
+        <textarea id="clinicalExam"></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Diagnostic / hypothèse
+        </label>
+
+        <textarea id="diagnosis"></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Soins réalisés
+        </label>
+
+        <textarea id="care"></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Traitement / prescription
+        </label>
+
+        <textarea id="treatment"></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Conseils
+        </label>
+
+        <textarea id="advice"></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Orientation
+        </label>
+
+        <textarea id="orientation"></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Prochain rendez-vous
+        </label>
+
+        <input
+        id="nextAppointment"
+        type="date">
+
+        </div>
+
+
+        <div class="form-group">
+
+        <label>
+        Observations
+        </label>
+
+        <textarea id="consultObservations"></textarea>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+        <button
+        class="btn btn-primary"
+        onclick="saveConsultation()">
+
+        💾 Enregistrer la consultation
+
+        </button>
+
+        </div>
+
+        `;
+
+        modal.classList.add("show");
+
+        await loadPatientsForConsultation();
+
+        return;
+
+    }
+
+
+    modal.classList.add("show");
 
 }
 
 
-/* CREATION */
-
-if(type==="register"){
-
-content.innerHTML=`
-
-<h2>📝 Créer un compte</h2>
-
-<div class="form-group">
-<label>Nom complet</label>
-<input id="registerName">
-</div>
-
-<div class="form-group">
-<label>Téléphone</label>
-<input id="registerPhone">
-</div>
-
-<div class="form-group">
-<label>Email</label>
-<input id="registerEmail" type="email">
-</div>
-
-<div class="form-group">
-<label>Mot de passe</label>
-<input id="registerPassword" type="password">
-</div>
-
-<div class="form-group">
-<label>Type de compte</label>
-
-<select id="registerRole">
-
-<option value="professional">
-👨‍⚕️ Professionnel
-</option>
-
-<option value="patient">
-👤 Patient
-</option>
-
-</select>
-
-</div>
-
-<button class="primary"
-onclick="register()">
-Créer mon compte
-</button>
-
-<div id="registerMessage"></div>
-
-`;
-
-}
-
-
-/* AJOUT PATIENT */
-
-if(type==="addPatient"){
-
-content.innerHTML=`
-
-<h2>👤 Nouveau patient</h2>
-
-<p style="color:#6c817f;margin-bottom:20px">
-Tous les patients sont enregistrés dans la table patients.
-</p>
-
-<div class="form-group">
-<label>Prénom *</label>
-<input id="firstName">
-</div>
-
-<div class="form-group">
-<label>Nom *</label>
-<input id="lastName">
-</div>
-
-<div class="form-group">
-<label>Date de naissance *</label>
-<input id="dateBirth" type="date">
-</div>
-
-<div class="form-group">
-<label>Sexe</label>
-
-<select id="gender">
-
-<option value="">Non renseigné</option>
-<option value="M">Masculin</option>
-<option value="F">Féminin</option>
-<option value="Autre">Autre</option>
-
-</select>
-
-</div>
-
-<div class="form-group">
-<label>Téléphone</label>
-<input id="patientPhone">
-</div>
-
-<div class="form-group">
-<label>Adresse</label>
-<input id="patientAddress">
-</div>
-
-<div class="form-group">
-<label>Nom du contact d'urgence</label>
-<input id="emergencyName">
-</div>
-
-<div class="form-group">
-<label>Téléphone du contact d'urgence</label>
-<input id="emergencyPhone">
-</div>
-
-<div class="form-actions">
-
-<button class="secondary"
-onclick="closeModal()">
-Annuler
-</button>
-
-<button class="primary"
-onclick="savePatient()">
-💾 Enregistrer
-</button>
-
-</div>
-
-<div id="patientMessage"></div>
-
-`;
-
-}
-
-
-/* CONSULTATION */
-
-if(type==="consultation"){
-
-content.innerHTML=`
-
-<h2>🩺 Consultation générale</h2>
-
-<div class="form-group">
-
-<label>ID du patient *</label>
-
-<input id="consultPatientId"
-placeholder="ID du patient">
-
-</div>
-
-<div class="form-group">
-
-<label>Motif de consultation</label>
-
-<textarea id="consultReason"></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>Antécédents</label>
-
-<textarea id="consultHistory"></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>Tension artérielle</label>
-
-<input id="consultBP"
-placeholder="120/80">
-
-</div>
-
-<div class="form-group">
-
-<label>Température</label>
-
-<input id="consultTemperature"
-type="number"
-step="0.1">
-
-</div>
-
-<div class="form-group">
-
-<label>Examen clinique</label>
-
-<textarea id="consultExam"></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>Diagnostic / hypothèse</label>
-
-<textarea id="consultDiagnosis"></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>Traitement</label>
-
-<textarea id="consultTreatment"></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>Conseils</label>
-
-<textarea id="consultAdvice"></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>Orientation</label>
-
-<textarea id="consultOrientation"></textarea>
-
-</div>
-
-<button class="primary"
-onclick="saveConsultation()">
-💾 Enregistrer la consultation
-</button>
-
-<div id="consultMessage"></div>
-
-`;
-
-}
-
-modal.classList.add("show");
-
-}
-
+/* =====================================================
+FERMER MODALE
+===================================================== */
 
 function closeModal(){
 
-document
-.getElementById("modal")
-.classList.remove("show");
+    document
+        .getElementById("modal")
+        .classList.remove("show");
 
 }
 
 
-/* =========================
-   CREATION COMPTE
-========================= */
+/* =====================================================
+CRÉATION COMPTE
+===================================================== */
 
-async function register(){
+async function createAccount(){
 
-const name =
-document.getElementById("registerName").value.trim();
+    const name =
+        document.getElementById("name").value.trim();
 
-const phone =
-document.getElementById("registerPhone").value.trim();
+    const phone =
+        document.getElementById("phone").value.trim();
 
-const email =
-document.getElementById("registerEmail").value.trim();
+    const email =
+        document.getElementById("email").value.trim();
 
-const password =
-document.getElementById("registerPassword").value;
+    const password =
+        document.getElementById("password").value;
 
-const role =
-document.getElementById("registerRole").value;
+    const role =
+        document.getElementById("role").value;
 
-if(!name || !email || !password){
 
-showMessage(
-"registerMessage",
-"Veuillez remplir les champs obligatoires.",
-true
-);
+    if(!name || !email || !password){
 
-return;
+        alert(
+            "Veuillez remplir le nom, l'e-mail et le mot de passe."
+        );
+
+        return;
+    }
+
+
+    if(password.length < 6){
+
+        alert(
+            "Le mot de passe doit contenir au moins 6 caractères."
+        );
+
+        return;
+    }
+
+
+    const {data,error} =
+        await supabaseClient.auth.signUp({
+
+            email:email,
+
+            password:password,
+
+            options:{
+                data:{
+                    full_name:name,
+                    phone:phone,
+                    role:role
+                }
+            }
+
+        });
+
+
+    if(error){
+
+        alert(
+            "Erreur : " + error.message
+        );
+
+        return;
+    }
+
+
+    alert(
+        "✅ Compte Toppatoo créé avec succès !\n\n" +
+        "Vérifiez votre e-mail si une confirmation est demandée."
+    );
+
+
+    closeModal();
+
 }
 
-if(password.length < 6){
 
-showMessage(
-"registerMessage",
-"Le mot de passe doit contenir au moins 6 caractères.",
-true
-);
-
-return;
-}
-
-const {data,error} =
-await supabaseClient.auth.signUp({
-
-email,
-password,
-
-options:{
-data:{
-full_name:name,
-phone:phone,
-role:role
-}
-}
-
-});
-
-if(error){
-
-showMessage(
-"registerMessage",
-error.message,
-true
-);
-
-return;
-}
-
-showMessage(
-"registerMessage",
-"Compte créé avec succès. Vérifiez votre e-mail si nécessaire."
-);
-
-}
-
-
-/* =========================
-   CONNEXION
-========================= */
+/* =====================================================
+CONNEXION
+===================================================== */
 
 async function login(){
 
-const email =
-document.getElementById("loginEmail").value.trim();
+    const email =
+        document
+        .getElementById("loginEmail")
+        .value
+        .trim();
 
-const password =
-document.getElementById("loginPassword").value;
-
-if(!email || !password){
-
-showMessage(
-"loginMessage",
-"Veuillez remplir les deux champs.",
-true
-);
-
-return;
-}
-
-const {data,error} =
-await supabaseClient.auth.signInWithPassword({
-email,
-password
-});
-
-if(error){
-
-showMessage(
-"loginMessage",
-error.message,
-true
-);
-
-return;
-}
-
-closeModal();
-
-showDashboard(data.user);
-
-}
+    const password =
+        document
+        .getElementById("loginPassword")
+        .value;
 
 
-/* =========================
-   TABLEAU DE BORD
-========================= */
+    if(!email || !password){
 
-function showDashboard(user){
+        alert(
+            "Veuillez entrer votre e-mail et votre mot de passe."
+        );
 
-document
-.getElementById("dashboard")
-.classList.add("show");
+        return;
+    }
 
-const name =
-user.user_metadata?.full_name ||
-user.email;
 
-document
-.getElementById("welcome")
-textContent =
-"Bienvenue "+name;
+    const {data,error} =
+        await supabaseClient.auth.signInWithPassword({
 
-document
-.getElementById("headerButtons")
-.innerHTML = `
+            email:email,
+            password:password
 
-<button class="secondary"
-onclick="logout()">
-Se déconnecter
-</button>
+        });
 
-`;
 
-document
-.getElementById("dashboard")
-.scrollIntoView({
-behavior:"smooth"
-});
+    if(error){
+
+        alert(
+            "Erreur de connexion : " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    closeModal();
+
+    await showDashboard(data.user);
 
 }
 
 
-/* =========================
-   AJOUT PATIENT
-========================= */
+/* =====================================================
+TABLEAU DE BORD
+===================================================== */
+
+async function showDashboard(user){
+
+    document
+        .getElementById("dashboard")
+        .classList.add("show");
+
+
+    const name =
+        user.user_metadata?.full_name ||
+        user.email ||
+        "Utilisateur";
+
+
+    document
+        .getElementById("dashboardUser")
+        .textContent =
+        "Bienvenue " + name;
+
+
+    document
+        .getElementById("welcomeName")
+        .textContent =
+        "Bienvenue " + name;
+
+
+    document
+        .getElementById("dashboard")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =====================================================
+GÉNÉRER CODE PATIENT
+===================================================== */
+
+function generatePatientCode(){
+
+    const random =
+        Math.random()
+        .toString(36)
+        .substring(2,8)
+        .toUpperCase();
+
+    return "TOP-" + random;
+
+}
+
+
+/* =====================================================
+ENREGISTRER PATIENT
+===================================================== */
 
 async function savePatient(){
 
-const userResult =
-await supabaseClient.auth.getUser();
-
-if(!userResult.data.user){
-
-showMessage(
-"patientMessage",
-"Vous devez être connecté.",
-true
-);
-
-return;
-}
-
-const user =
-userResult.data.user;
-
-const firstName =
-document.getElementById("firstName").value.trim();
-
-const lastName =
-document.getElementById("lastName").value.trim();
-
-const dateBirth =
-document.getElementById("dateBirth").value;
-
-if(!firstName ||
-!lastName ||
-!dateBirth){
-
-showMessage(
-"patientMessage",
-"Prénom, nom et date de naissance sont obligatoires.",
-true
-);
-
-return;
-}
+    const userResult =
+        await supabaseClient.auth.getUser();
 
 
-/*
-   IMPORTANT :
-   On utilise uniquement les colonnes
-   confirmées dans ta table patients.
-*/
+    if(!userResult.data.user){
 
-const patient = {
+        alert(
+            "Votre session a expiré. Reconnectez-vous."
+        );
 
-user_id:null,
-
-first_name:firstName,
-
-last_name:lastName,
-
-date_of_birth:dateBirth,
-
-gender:
-document.getElementById("gender").value || null,
-
-phone:
-document.getElementById("patientPhone").value.trim() || null,
-
-address:
-document.getElementById("patientAddress").value.trim() || null,
-
-emergency_contact_name:
-document.getElementById("emergencyName").value.trim() || null,
-
-emergency_contact_phone:
-document.getElementById("emergencyPhone").value.trim() || null,
-
-created_by:user.id
-
-};
+        return;
+    }
 
 
-const {data,error} =
-await supabaseClient
-.from("patients")
-.insert(patient)
-.select()
-.single();
+    const user =
+        userResult.data.user;
 
 
-if(error){
-
-showMessage(
-"patientMessage",
-"Erreur : "+error.message,
-true
-);
-
-return;
-}
+    const firstName =
+        document
+        .getElementById("patientFirstName")
+        .value
+        .trim();
 
 
-showMessage(
-"patientMessage",
-"Patient enregistré avec succès."
-);
-
-setTimeout(()=>{
-
-closeModal();
-
-showPatients();
-
-},800);
-
-}
+    const lastName =
+        document
+        .getElementById("patientLastName")
+        .value
+        .trim();
 
 
-/* =========================
-   TOUS LES PATIENTS
-========================= */
+    if(!firstName || !lastName){
 
-async function showPatients(){
+        alert(
+            "Le prénom et le nom sont obligatoires."
+        );
 
-const list =
-document.getElementById("dataList");
-
-list.innerHTML =
-"<p>Chargement...</p>";
-
-const {data,error} =
-await supabaseClient
-.from("patients")
-.select("*")
-.order("created_at",{ascending:false});
-
-if(error){
-
-list.innerHTML =
-`<div class="error">
-Erreur : ${escapeHtml(error.message)}
-</div>`;
-
-return;
-}
-
-if(!data || data.length===0){
-
-list.innerHTML =
-"<p>Aucun patient enregistré.</p>";
-
-return;
-}
+        return;
+    }
 
 
-list.innerHTML = `
+    const patientCode =
+        generatePatientCode();
 
-<h3>👥 Tous les patients</h3>
 
-<br>
+    const payload = {
 
-${data.map(patient=>`
+        user_id:user.id,
 
-<div class="patient">
+        first_name:firstName,
 
-<strong>
-${escapeHtml(patient.first_name || "")}
-${escapeHtml(patient.last_name || "")}
-</strong>
+        last_name:lastName,
 
-<small>
-ID : ${escapeHtml(patient.id)}
-</small>
+        date_of_birth:
+            document
+            .getElementById("patientBirth")
+            .value || null,
 
-<small>
-Date de naissance :
-${escapeHtml(patient.date_of_birth || "Non renseignée")}
-</small>
+        gender:
+            document
+            .getElementById("patientGender")
+            .value,
 
-<small>
-Téléphone :
-${escapeHtml(patient.phone || "Non renseigné")}
-</small>
+        phone:
+            document
+            .getElementById("patientPhone")
+            .value
+            .trim(),
 
-</div>
+        address:
+            document
+            .getElementById("patientAddress")
+            .value
+            .trim(),
 
-`).join("")}
+        emergency_contact_name:
+            document
+            .getElementById("emergencyName")
+            .value
+            .trim(),
 
-`;
+        emergency_contact_phone:
+            document
+            .getElementById("emergencyPhone")
+            .value
+            .trim(),
+
+        medical_record_number:
+            document
+            .getElementById("medicalRecord")
+            .value
+            .trim(),
+
+        created_by:user.id,
+
+        patient_code:patientCode,
+
+        vaccination_status:
+            document
+            .getElementById("patientVaccination")
+            .value
+
+    };
+
+
+    const {data,error} =
+        await supabaseClient
+        .from("patients")
+        .insert(payload)
+        .select()
+        .single();
+
+
+    if(error){
+
+        alert(
+            "Erreur lors de l'enregistrement du patient :\n\n" +
+            error.message
+        );
+
+        return;
+    }
+
+
+    alert(
+        "✅ Patient enregistré avec succès !\n\n" +
+        "Code patient : " +
+        data.patient_code
+    );
+
+
+    closeModal();
+
+    loadPatients();
 
 }
 
 
-/* =========================
-   REGISTRE ENFANTS
-========================= */
+/* =====================================================
+CHARGER PATIENTS POUR ENFANT
+===================================================== */
 
-async function showChildren(){
+async function loadPatientsForChild(){
 
-const list =
-document.getElementById("dataList");
-
-list.innerHTML =
-"<p>Chargement du registre enfants...</p>";
-
-const {data,error} =
-await supabaseClient
-.from("patients")
-.select("*")
-.not("date_of_birth","is",null)
-.order("date_of_birth",{ascending:false});
+    const select =
+        document.getElementById("childPatientId");
 
 
-if(error){
-
-list.innerHTML =
-`<div class="error">
-Erreur : ${escapeHtml(error.message)}
-</div>`;
-
-return;
-}
+    if(!select){
+        return;
+    }
 
 
-const children =
-(data || []).filter(patient => {
-
-return isAgeBetween0And5(
-patient.date_of_birth
-);
-
-});
-
-
-if(children.length===0){
-
-list.innerHTML = `
-
-<h3>👶 Registre Enfants</h3>
-
-<br>
-
-<p>
-Aucun patient âgé de 0 à 5 ans.
-</p>
-
-`;
-
-return;
-}
+    const {data,error} =
+        await supabaseClient
+        .from("patients")
+        .select(
+            "id,first_name,last_name,date_of_birth,patient_code"
+        )
+        .order(
+            "last_name",
+            {ascending:true}
+        );
 
 
-list.innerHTML = `
+    if(error){
 
-<h3>👶 Registre Enfants — 0 à 5 ans</h3>
+        select.innerHTML =
+            `<option value="">
+            Erreur de chargement
+            </option>`;
 
-<br>
+        alert(
+            "Impossible de charger les patients :\n\n" +
+            error.message
+        );
 
-${children.map(child=>`
-
-<div class="patient">
-
-<strong>
-${escapeHtml(child.first_name || "")}
-${escapeHtml(child.last_name || "")}
-</strong>
-
-<small>
-Né(e) le :
-${escapeHtml(child.date_of_birth)}
-</small>
-
-<small>
-Sexe :
-${escapeHtml(child.gender || "Non renseigné")}
-</small>
-
-<span class="badge">
-💉 État vaccinal :
-${escapeHtml(child.vaccination_status || "Non renseigné")}
-</span>
-
-</div>
-
-`).join("")}
-
-`;
-
-}
+        return;
+    }
 
 
-/* =========================
-   AGE 0 À 5 ANS
-========================= */
+    select.innerHTML =
+        `<option value="">
+        Sélectionner un patient
+        </option>`;
 
-function isAgeBetween0And5(dateString){
 
-const birth =
-new Date(dateString);
+    (data || []).forEach(patient=>{
 
-const today =
-new Date();
+        const option =
+            document.createElement("option");
 
-let age =
-today.getFullYear() -
-birth.getFullYear();
 
-const month =
-today.getMonth() -
-birth.getMonth();
+        option.value =
+            patient.id;
 
-if(
-month < 0 ||
-(
-month === 0 &&
-today.getDate() < birth.getDate()
-)
-){
 
-age--;
+        option.textContent =
+            `${patient.first_name || ""} ` +
+            `${patient.last_name || ""} — ` +
+            `${patient.patient_code || "Sans code"}`;
 
-}
 
-return age >= 0 && age <= 5;
+        option.dataset.birth =
+            patient.date_of_birth || "";
+
+
+        select.appendChild(option);
+
+    });
+
+
+    select.addEventListener(
+        "change",
+        function(){
+
+            const option =
+                this.options[
+                    this.selectedIndex
+                ];
+
+
+            const birth =
+                option.dataset.birth;
+
+
+            const birthInput =
+                document.getElementById(
+                    "childDate"
+                );
+
+
+            if(birthInput && birth){
+
+                birthInput.value =
+                    birth;
+
+            }
+
+        }
+    );
 
 }
 
 
-/* =========================
-   CONSULTATION
-========================= */
+/* =====================================================
+ENREGISTRER REGISTRE ENFANT
+===================================================== */
+
+async function saveChild(){
+
+    const userResult =
+        await supabaseClient.auth.getUser();
+
+
+    if(!userResult.data.user){
+
+        alert(
+            "Votre session a expiré. Reconnectez-vous."
+        );
+
+        return;
+    }
+
+
+    const user =
+        userResult.data.user;
+
+
+    const patientId =
+        document
+        .getElementById("childPatientId")
+        .value;
+
+
+    if(!patientId){
+
+        alert(
+            "Veuillez sélectionner un patient."
+        );
+
+        return;
+    }
+
+
+    const date =
+        document
+        .getElementById("childDate")
+        .value;
+
+
+    if(!date){
+
+        alert(
+            "La date de naissance est obligatoire."
+        );
+
+        return;
+    }
+
+
+    const birth =
+        new Date(date);
+
+    const today =
+        new Date();
+
+
+    let age =
+        today.getFullYear() -
+        birth.getFullYear();
+
+
+    const month =
+        today.getMonth() -
+        birth.getMonth();
+
+
+    if(
+        month < 0 ||
+        (
+            month === 0 &&
+            today.getDate() < birth.getDate()
+        )
+    ){
+
+        age--;
+
+    }
+
+
+    if(age < 0 || age > 5){
+
+        alert(
+            "Le patient sélectionné doit avoir entre 0 et 5 ans."
+        );
+
+        return;
+    }
+
+
+    const payload = {
+
+        patient_id:patientId,
+
+        professionnel_id:user.id,
+
+        date_naissance:date,
+
+        sexe:
+            document
+            .getElementById("childSexe")
+            .value,
+
+        nom_parent:
+            document
+            .getElementById("parentName")
+            .value
+            .trim(),
+
+        telephone_parent:
+            document
+            .getElementById("parentPhone")
+            .value
+            .trim(),
+
+        adresse:
+            document
+            .getElementById("childAddress")
+            .value
+            .trim(),
+
+        poids:
+            document
+            .getElementById("childWeight")
+            .value ||
+            null,
+
+        taille:
+            document
+            .getElementById("childHeight")
+            .value ||
+            null,
+
+        etat_vaccinal:
+            document
+            .getElementById("vaccineStatus")
+            .value,
+
+        notes_vaccination:
+            document
+            .getElementById("vaccineNotes")
+            .value
+            .trim(),
+
+        antecedents:
+            document
+            .getElementById("childHistory")
+            .value
+            .trim(),
+
+        observations:
+            document
+            .getElementById("childObservations")
+            .value
+            .trim(),
+
+        prochain_rendez_vous:
+            document
+            .getElementById("childAppointment")
+            .value ||
+            null
+
+    };
+
+
+    const {error} =
+        await supabaseClient
+        .from("registre_enfants")
+        .insert(payload);
+
+
+    if(error){
+
+        alert(
+            "Erreur lors de l'enregistrement du registre enfant :\n\n" +
+            error.message
+        );
+
+        return;
+    }
+
+
+    alert(
+        "✅ Patient ajouté au Registre Enfants."
+    );
+
+
+    closeModal();
+
+    loadChildren();
+
+}
+
+
+/* =====================================================
+CHARGER ENFANTS
+===================================================== */
+
+async function loadChildren(){
+
+    const list =
+        document.getElementById("dataList");
+
+
+    list.innerHTML =
+        "<div class='empty'>Chargement...</div>";
+
+
+    const {data,error} =
+        await supabaseClient
+        .from("registre_enfants")
+        .select(`
+            *,
+            patients(
+                first_name,
+                last_name,
+                patient_code
+            )
+        `)
+        .order(
+            "created_at",
+            {ascending:false}
+        );
+
+
+    if(error){
+
+        list.innerHTML =
+            "<div class='empty'>" +
+            escapeHtml(error.message) +
+            "</div>";
+
+        return;
+    }
+
+
+    if(!data || !data.length){
+
+        list.innerHTML =
+            "<div class='empty'>" +
+            "Aucun enfant enregistré." +
+            "</div>";
+
+        return;
+    }
+
+
+    list.innerHTML = `
+
+    <h3>
+    👶 Registre Enfants — 0 à 5 ans
+    </h3>
+
+    ${data.map(child=>{
+
+        const patient =
+            child.patients || {};
+
+
+        return `
+
+        <div class="patient-row">
+
+        <div>
+
+        <strong>
+
+        ${escapeHtml(
+            patient.first_name || ""
+        )}
+
+        ${escapeHtml(
+            patient.last_name || ""
+        )}
+
+        </strong>
+
+        <small class="patient-code">
+
+        ${escapeHtml(
+            patient.patient_code || "—"
+        )}
+
+        </small>
+
+        <small>
+
+        Né(e) le :
+        ${escapeHtml(
+            child.date_naissance || ""
+        )}
+
+        </small>
+
+        <small>
+
+        Parent :
+        ${escapeHtml(
+            child.nom_parent ||
+            "Non renseigné"
+        )}
+
+        </small>
+
+        </div>
+
+
+        <span class="status ${
+            child.etat_vaccinal === "À jour"
+            ? "green"
+            : child.etat_vaccinal === "En retard"
+            ? "orange"
+            : child.etat_vaccinal === "Incomplet"
+            ? "red"
+            : "orange"
+        }">
+
+        ${escapeHtml(
+            child.etat_vaccinal ||
+            "Non renseigné"
+        )}
+
+        </span>
+
+        </div>
+
+        `;
+
+    }).join("")}
+
+    `;
+
+}
+
+
+/* =====================================================
+LISTE PATIENTS
+===================================================== */
+
+async function loadPatients(){
+
+    const list =
+        document.getElementById("dataList");
+
+
+    list.innerHTML =
+        "<div class='empty'>Chargement des patients...</div>";
+
+
+    const {data,error} =
+        await supabaseClient
+        .from("patients")
+        .select("*")
+        .order(
+            "created_at",
+            {ascending:false}
+        );
+
+
+    if(error){
+
+        list.innerHTML =
+            "<div class='empty'>" +
+            escapeHtml(error.message) +
+            "</div>";
+
+        return;
+    }
+
+
+    window.allToppatooPatients =
+        data || [];
+
+
+    list.innerHTML = `
+
+    <h3>
+    👥 Patients
+    </h3>
+
+
+    <div class="search-box">
+
+        <input
+        id="patientSearch"
+        type="text"
+        placeholder="Rechercher par nom, prénom ou code patient..."
+        oninput="filterPatients()">
+
+
+        <button
+        class="btn btn-primary"
+        onclick="openModal('patientForm')">
+
+        + Ajouter
+
+        </button>
+
+    </div>
+
+
+    <div id="patientsList"></div>
+
+    `;
+
+
+    renderPatients(
+        window.allToppatooPatients
+    );
+
+}
+
+
+/* =====================================================
+AFFICHER PATIENTS
+===================================================== */
+
+function renderPatients(patients){
+
+    const container =
+        document.getElementById(
+            "patientsList"
+        );
+
+
+    if(!container){
+        return;
+    }
+
+
+    if(!patients.length){
+
+        container.innerHTML =
+            "<div class='empty'>" +
+            "Aucun patient trouvé." +
+            "</div>";
+
+        return;
+    }
+
+
+    container.innerHTML =
+        patients.map(patient=>`
+
+        <div class="patient-row">
+
+        <div>
+
+        <strong>
+
+        ${escapeHtml(
+            patient.first_name || ""
+        )}
+
+        ${escapeHtml(
+            patient.last_name || ""
+        )}
+
+        </strong>
+
+
+        <small class="patient-code">
+
+        Code :
+        ${escapeHtml(
+            patient.patient_code || "—"
+        )}
+
+        </small>
+
+
+        <small>
+
+        Né(e) le :
+        ${escapeHtml(
+            patient.date_of_birth ||
+            "Non renseigné"
+        )}
+
+        </small>
+
+
+        <small>
+
+        Téléphone :
+        ${escapeHtml(
+            patient.phone ||
+            "Non renseigné"
+        )}
+
+        </small>
+
+        </div>
+
+
+        <button
+        class="btn btn-secondary"
+        onclick="viewPatient('${patient.id}')">
+
+        Voir
+
+        </button>
+
+        </div>
+
+        `).join("");
+
+}
+
+
+/* =====================================================
+RECHERCHE PATIENTS
+===================================================== */
+
+function filterPatients(){
+
+    const input =
+        document.getElementById(
+            "patientSearch"
+        );
+
+
+    if(!input){
+        return;
+    }
+
+
+    const search =
+        input.value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+        (window.allToppatooPatients || [])
+        .filter(patient=>{
+
+            const text = `
+
+            ${patient.first_name || ""}
+            ${patient.last_name || ""}
+            ${patient.patient_code || ""}
+            ${patient.phone || ""}
+
+            `.toLowerCase();
+
+
+            return text.includes(search);
+
+        });
+
+
+    renderPatients(filtered);
+
+}
+
+
+/* =====================================================
+FICHE PATIENT
+===================================================== */
+
+async function viewPatient(id){
+
+    const patient =
+        (window.allToppatooPatients || [])
+        .find(item=>item.id===id);
+
+
+    if(!patient){
+
+        alert(
+            "Patient introuvable."
+        );
+
+        return;
+    }
+
+
+    const modal =
+        document.getElementById("modal");
+
+
+    const content =
+        document.getElementById(
+            "modalContent"
+        );
+
+
+    content.innerHTML = `
+
+    <h2>
+    👤 Fiche patient
+    </h2>
+
+    <p>
+    Dossier complet du patient.
+    </p>
+
+
+    <div class="patient-details">
+
+        <p>
+
+        <strong>
+        Code patient :
+        </strong>
+
+        <br>
+
+        <span class="patient-code">
+
+        ${escapeHtml(
+            patient.patient_code || "—"
+        )}
+
+        </span>
+
+        </p>
+
+
+        <div class="detail-grid">
+
+        <div class="detail-card">
+
+        <small>
+        Nom complet
+        </small>
+
+        <strong>
+
+        ${escapeHtml(
+            patient.first_name || ""
+        )}
+
+        ${escapeHtml(
+            patient.last_name || ""
+        )}
+
+        </strong>
+
+        </div>
+
+
+        <div class="detail-card">
+
+        <small>
+        Date de naissance
+        </small>
+
+        ${escapeHtml(
+            patient.date_of_birth ||
+            "Non renseignée"
+        )}
+
+        </div>
+
+
+        <div class="detail-card">
+
+        <small>
+        Sexe
+        </small>
+
+        ${escapeHtml(
+            patient.gender ||
+            "Non renseigné"
+        )}
+
+        </div>
+
+
+        <div class="detail-card">
+
+        <small>
+        Téléphone
+        </small>
+
+        ${escapeHtml(
+            patient.phone ||
+            "Non renseigné"
+        )}
+
+        </div>
+
+
+        <div class="detail-card">
+
+        <small>
+        Adresse
+        </small>
+
+        ${escapeHtml(
+            patient.address ||
+            "Non renseignée"
+        )}
+
+        </div>
+
+
+        <div class="detail-card">
+
+        <small>
+        État vaccinal
+        </small>
+
+        ${escapeHtml(
+            patient.vaccination_status ||
+            "Non renseigné"
+        )}
+
+        </div>
+
+
+        <div class="detail-card">
+
+        <small>
+        Contact urgence
+        </small>
+
+        ${escapeHtml(
+            patient.emergency_contact_name ||
+            "Non renseigné"
+        )}
+
+        </div>
+
+
+        <div class="detail-card">
+
+        <small>
+        Téléphone urgence
+        </small>
+
+        ${escapeHtml(
+            patient.emergency_contact_phone ||
+            "Non renseigné"
+        )}
+
+        </div>
+
+        </div>
+
+    </div>
+
+
+    <br>
+
+
+    <button
+    class="btn btn-secondary"
+    onclick="closeModal();loadPatients();">
+
+    ← Retour aux patients
+
+    </button>
+
+    `;
+
+
+    modal.classList.add("show");
+
+}
+
+
+/* =====================================================
+CHARGER PATIENTS POUR CONSULTATION
+===================================================== */
+
+async function loadPatientsForConsultation(){
+
+    const select =
+        document.getElementById(
+            "consultPatientId"
+        );
+
+
+    if(!select){
+        return;
+    }
+
+
+    const {data,error} =
+        await supabaseClient
+        .from("patients")
+        .select(
+            "id,first_name,last_name,patient_code,date_of_birth"
+        )
+        .order(
+            "last_name",
+            {ascending:true}
+        );
+
+
+    if(error){
+
+        select.innerHTML =
+            `<option value="">
+            Erreur de chargement
+            </option>`;
+
+
+        alert(
+            "Impossible de charger les patients :\n\n" +
+            error.message
+        );
+
+        return;
+    }
+
+
+    select.innerHTML =
+        `<option value="">
+        Sélectionner un patient
+        </option>`;
+
+
+    (data || []).forEach(patient=>{
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+
+        option.value =
+            patient.id;
+
+
+        option.textContent =
+            `${patient.first_name || ""} ` +
+            `${patient.last_name || ""} — ` +
+            `${patient.patient_code || "Sans code"}`;
+
+
+        select.appendChild(option);
+
+    });
+
+}
+
+
+/* =====================================================
+ENREGISTRER CONSULTATION
+===================================================== */
 
 async function saveConsultation(){
 
-const userResult =
-await supabaseClient.auth.getUser();
+    const userResult =
+        await supabaseClient.auth.getUser();
 
-if(!userResult.data.user){
 
-showMessage(
-"consultMessage",
-"Vous devez être connecté.",
-true
-);
+    if(!userResult.data.user){
 
-return;
-}
+        alert(
+            "Votre session a expiré. Reconnectez-vous."
+        );
 
-const patientId =
-document
-.getElementById("consultPatientId")
-.value.trim();
+        return;
+    }
 
-if(!patientId){
 
-showMessage(
-"consultMessage",
-"L'ID du patient est obligatoire.",
-true
-);
+    const user =
+        userResult.data.user;
 
-return;
-}
+
+    const patientId =
+        document
+        .getElementById("consultPatientId")
+        .value;
+
+
+    if(!patientId){
+
+        alert(
+            "Veuillez sélectionner un patient."
+        );
+
+        return;
+    }
+
+
+    const payload = {
+
+        patient_id:patientId,
+
+        professionnel_id:user.id,
 
+        motif_consultation:
+            document
+            .getElementById("consultMotif")
+            .value
+            .trim(),
 
-/*
-   Ici on vérifie d'abord que le patient existe.
-*/
+        antecedents:
+            document
+            .getElementById("consultHistory")
+            .value
+            .trim(),
 
-const {data:patient,error:patientError} =
-await supabaseClient
-.from("patients")
-.select("id")
-.eq("id",patientId)
-.single();
+        tension_arterielle:
+            document
+            .getElementById("bp")
+            .value
+            .trim(),
 
+        temperature:
+            document
+            .getElementById("temperature")
+            .value ||
+            null,
 
-if(patientError || !patient){
+        poids:
+            document
+            .getElementById("consultWeight")
+            .value ||
+            null,
 
-showMessage(
-"consultMessage",
-"Patient introuvable. Vérifiez son ID.",
-true
-);
+        taille:
+            document
+            .getElementById("consultHeight")
+            .value ||
+            null,
 
-return;
-}
+        frequence_cardiaque:
+            document
+            .getElementById("heartRate")
+            .value ||
+            null,
 
+        saturation_oxygene:
+            document
+            .getElementById("oxygen")
+            .value ||
+            null,
 
-/*
-   On utilise consultations_generales.
-   Les colonnes exactes de cette table devront
-   correspondre à celles présentes dans ton Supabase.
-*/
+        examen_clinique:
+            document
+            .getElementById("clinicalExam")
+            .value
+            .trim(),
 
-const consultation = {
+        diagnostic:
+            document
+            .getElementById("diagnosis")
+            .value
+            .trim(),
 
-patient_id:patientId,
+        soins_realises:
+            document
+            .getElementById("care")
+            .value
+            .trim(),
 
-motif_consultation:
-document.getElementById("consultReason").value.trim() || null,
+        traitement:
+            document
+            .getElementById("treatment")
+            .value
+            .trim(),
 
-antecedents:
-document.getElementById("consultHistory").value.trim() || null,
+        conseils:
+            document
+            .getElementById("advice")
+            .value
+            .trim(),
 
-tension_arterielle:
-document.getElementById("consultBP").value.trim() || null,
+        orientation:
+            document
+            .getElementById("orientation")
+            .value
+            .trim(),
 
-temperature:
-document.getElementById("consultTemperature").value || null,
+        prochain_rendez_vous:
+            document
+            .getElementById("nextAppointment")
+            .value ||
+            null,
 
-examen_clinique:
-document.getElementById("consultExam").value.trim() || null,
+        observations:
+            document
+            .getElementById("consultObservations")
+            .value
+            .trim()
 
-diagnostic:
-document.getElementById("consultDiagnosis").value.trim() || null,
+    };
 
-traitement:
-document.getElementById("consultTreatment").value.trim() || null,
 
-conseils:
-document.getElementById("consultAdvice").value.trim() || null,
+    const {error} =
+        await supabaseClient
+        .from("consultations_generales")
+        .insert(payload);
 
-orientation:
-document.getElementById("consultOrientation").value.trim() || null
 
-};
+    if(error){
 
+        alert(
+            "Erreur lors de l'enregistrement de la consultation :\n\n" +
+            error.message
+        );
 
-const {error} =
-await supabaseClient
-.from("consultations_generales")
-.insert(consultation);
+        return;
+    }
 
 
-if(error){
+    alert(
+        "✅ Consultation enregistrée avec succès."
+    );
 
-showMessage(
-"consultMessage",
-"Erreur : "+error.message,
-true
-);
 
-return;
-}
+    closeModal();
 
-
-showMessage(
-"consultMessage",
-"Consultation enregistrée avec succès."
-);
-
-}
-
-
-/* =========================
-   CONSULTATIONS
-========================= */
-
-async function showConsultations(){
-
-const list =
-document.getElementById("dataList");
-
-list.innerHTML =
-"<p>Chargement...</p>";
-
-const {data,error} =
-await supabaseClient
-.from("consultations_generales")
-.select("*")
-.order("created_at",{ascending:false});
-
-
-if(error){
-
-list.innerHTML =
-`<div class="error">
-Erreur : ${escapeHtml(error.message)}
-</div>`;
-
-return;
-}
-
-
-if(!data || data.length===0){
-
-list.innerHTML =
-"<p>Aucune consultation enregistrée.</p>";
-
-return;
-}
-
-
-list.innerHTML = `
-
-<h3>🩺 Consultations générales</h3>
-
-<br>
-
-${data.map(item=>`
-
-<div class="patient">
-
-<strong>
-Consultation
-</strong>
-
-<small>
-Patient ID :
-${escapeHtml(item.patient_id || "Non renseigné")}
-</small>
-
-<small>
-Motif :
-${escapeHtml(item.motif_consultation || "Non renseigné")}
-</small>
-
-<small>
-Diagnostic :
-${escapeHtml(item.diagnostic || "Non renseigné")}
-</small>
-
-</div>
-
-`).join("")}
-
-`;
+    loadConsultations();
 
 }
 
 
-/* =========================
-   DECONNEXION
-========================= */
+/* =====================================================
+LISTE CONSULTATIONS
+===================================================== */
+
+async function loadConsultations(){
+
+    const list =
+        document.getElementById(
+            "dataList"
+        );
+
+
+    list.innerHTML =
+        "<div class='empty'>Chargement...</div>";
+
+
+    const {data,error} =
+        await supabaseClient
+        .from("consultations_generales")
+        .select(`
+            *,
+            patients(
+                first_name,
+                last_name,
+                patient_code
+            )
+        `)
+        .order(
+            "date_consultation",
+            {ascending:false}
+        );
+
+
+    if(error){
+
+        list.innerHTML =
+            "<div class='empty'>" +
+            escapeHtml(error.message) +
+            "</div>";
+
+        return;
+    }
+
+
+    if(!data || !data.length){
+
+        list.innerHTML =
+            "<div class='empty'>" +
+            "Aucune consultation enregistrée." +
+            "</div>";
+
+        return;
+    }
+
+
+    list.innerHTML = `
+
+    <h3>
+    🩺 Consultations générales
+    </h3>
+
+
+    ${data.map(item=>{
+
+        const patient =
+            item.patients || {};
+
+
+        return `
+
+        <div class="patient-row">
+
+        <div>
+
+        <strong>
+
+        ${escapeHtml(
+            patient.first_name || ""
+        )}
+
+        ${escapeHtml(
+            patient.last_name || ""
+        )}
+
+        </strong>
+
+
+        <small class="patient-code">
+
+        ${escapeHtml(
+            patient.patient_code || "—"
+        )}
+
+        </small>
+
+
+        <small>
+
+        Motif :
+        ${escapeHtml(
+            item.motif_consultation ||
+            "Non renseigné"
+        )}
+
+        </small>
+
+
+        <small>
+
+        Date :
+        ${escapeHtml(
+            item.date_consultation
+            ?
+            new Date(
+                item.date_consultation
+            ).toLocaleString("fr-FR")
+            :
+            "Non renseignée"
+        )}
+
+        </small>
+
+        </div>
+
+
+        <div>
+        🩺
+        </div>
+
+        </div>
+
+        `;
+
+    }).join("")}
+
+    `;
+
+}
+
+
+/* =====================================================
+DÉCONNEXION
+===================================================== */
 
 async function logout(){
 
-await supabaseClient.auth.signOut();
+    await supabaseClient.auth.signOut();
 
-document
-.getElementById("dashboard")
-.classList.remove("show");
 
-document
-.getElementById("headerButtons")
-.innerHTML = `
+    document
+        .getElementById("dashboard")
+        .classList.remove("show");
 
-<button class="secondary"
-onclick="openModal('login')">
-Se connecter
-</button>
 
-<button class="primary"
-onclick="openModal('register')">
-Créer un compte
-</button>
+    document
+        .getElementById("dataList")
+        .innerHTML =
+        `<div class="empty">
+        Sélectionnez un module pour afficher les données.
+        </div>`;
 
-`;
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
 
-/* =========================
-   MESSAGE
-========================= */
+/* =====================================================
+IA
+===================================================== */
 
-function showMessage(id,message,isError=false){
+function askAI(){
 
-const element =
-document.getElementById(id);
+    const question =
+        document
+        .getElementById("question")
+        .value
+        .trim();
 
-if(!element) return;
 
-element.className =
-isError ? "error" : "success";
+    if(!question){
 
-element.textContent =
-message;
+        alert(
+            "Écrivez votre demande."
+        );
+
+        return;
+    }
+
+
+    alert(
+        "🤖 Toppatoo IA\n\n" +
+        "Le module IA sera connecté dans une prochaine étape."
+    );
 
 }
 
 
-/* =========================
-   SECURITE AFFICHAGE
-========================= */
+/* =====================================================
+SÉCURITÉ HTML
+===================================================== */
 
 function escapeHtml(value){
 
-if(value===null ||
-value===undefined){
+    if(
+        value === null ||
+        value === undefined
+    ){
 
-return "";
+        return "";
+
+    }
+
+
+    return String(value)
+
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
-return String(value)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
 
-}
-
-
-/* =========================
-   FERMETURE MODALE
-========================= */
+/* =====================================================
+FERMETURE MODALE
+===================================================== */
 
 document
 .getElementById("modal")
-.addEventListener("click",function(e){
+.addEventListener(
+    "click",
+    function(event){
 
-if(e.target===this){
+        if(event.target === this){
 
-closeModal();
+            closeModal();
 
-}
+        }
 
-});
+    }
+);
 
 
-/* =========================
-   SESSION EXISTANTE
-========================= */
+/* =====================================================
+SESSION
+===================================================== */
 
 (async function(){
 
-const {data} =
-await supabaseClient.auth.getSession();
+    const {data} =
+        await supabaseClient
+        .auth
+        .getSession();
 
-if(data.session){
 
-showDashboard(
-data.session.user
-);
+    if(data.session){
 
-}
+        await showDashboard(
+            data.session.user
+        );
+
+    }
 
 })();
 
