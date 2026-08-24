@@ -25,9 +25,7 @@
     --shadow:0 18px 50px rgba(8,127,120,.10);
 }
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth;}
 
 body{
     font-family:Arial,Helvetica,sans-serif;
@@ -46,11 +44,13 @@ button{
     margin:auto;
 }
 
+/* NAVIGATION */
+
 header{
     position:sticky;
     top:0;
     z-index:1000;
-    background:rgba(255,255,255,.95);
+    background:rgba(255,255,255,.94);
     backdrop-filter:blur(12px);
     border-bottom:1px solid var(--border);
 }
@@ -139,6 +139,8 @@ header{
     color:var(--primary);
 }
 
+/* HERO */
+
 .hero{
     padding:85px 0 75px;
 }
@@ -152,6 +154,8 @@ header{
 
 .badge{
     display:inline-flex;
+    align-items:center;
+    gap:8px;
     background:var(--primary-light);
     color:var(--primary);
     padding:8px 14px;
@@ -188,6 +192,8 @@ header{
 .hero-actions .btn{
     padding:14px 20px;
 }
+
+/* HEALTH CARD */
 
 .health-card{
     background:white;
@@ -272,6 +278,8 @@ header{
     color:var(--muted);
 }
 
+/* TRUST */
+
 .trust{
     padding:18px 0 65px;
 }
@@ -297,6 +305,8 @@ header{
     color:var(--muted);
     font-size:13px;
 }
+
+/* SECTIONS */
 
 .section{
     padding:80px 0;
@@ -325,6 +335,8 @@ header{
 .section-heading p{
     color:var(--muted);
 }
+
+/* FEATURES */
 
 .features{
     display:grid;
@@ -365,6 +377,8 @@ header{
     font-size:14px;
 }
 
+/* AUDIENCE */
+
 .audience{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -402,6 +416,8 @@ header{
     color:rgba(255,255,255,.78);
 }
 
+/* AI */
+
 .ai-section{
     background:#eef8f6;
 }
@@ -420,4 +436,906 @@ header{
 
 .ai-symbol{
     min-height:230px;
-    border-radius:25
+    border-radius:25px;
+    background:var(--primary-light);
+    display:grid;
+    place-items:center;
+    font-size:80px;
+}
+
+.ai-card h2{
+    font-size:35px;
+    margin-bottom:12px;
+}
+
+.ai-card p{
+    color:var(--muted);
+    margin-bottom:20px;
+}
+
+/* CTA */
+
+.cta{
+    padding:75px 0;
+}
+
+.cta-box{
+    background:var(--primary);
+    color:white;
+    border-radius:30px;
+    padding:48px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.cta-box h2{
+    font-size:34px;
+    line-height:1.2;
+}
+
+.cta-box p{
+    margin-top:8px;
+    opacity:.82;
+}
+
+/* FOOTER */
+
+footer{
+    background:white;
+    border-top:1px solid var(--border);
+    padding:40px 0;
+}
+
+.footer-content{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.footer-brand{
+    color:var(--primary);
+    font-weight:800;
+}
+
+.footer-text{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    background:rgba(23,59,58,.45);
+    padding:20px;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(500px,100%);
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 25px 80px rgba(0,0,0,.18);
+    position:relative;
+}
+
+.modal-close{
+    position:absolute;
+    top:15px;
+    right:18px;
+    border:0;
+    background:transparent;
+    font-size:25px;
+    color:var(--muted);
+}
+
+.modal-box h2{
+    margin-bottom:8px;
+}
+
+.modal-box p{
+    color:var(--muted);
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:16px;
+}
+
+.form-group label{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:var(--primary);
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.modal-actions .btn{
+    flex:1;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero-grid,
+    .ai-card{
+        grid-template-columns:1fr;
+    }
+
+    .features{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        min-height:66px;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .logo-mark{
+        width:38px;
+        height:38px;
+    }
+
+    .nav-buttons .btn-secondary{
+        display:none;
+    }
+
+    .hero{
+        padding:50px 0;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .hero-description{
+        font-size:16px;
+    }
+
+    .hero-actions{
+        flex-direction:column;
+    }
+
+    .hero-actions .btn{
+        width:100%;
+    }
+
+    .features,
+    .audience,
+    .health-items{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:55px 0;
+    }
+
+    .section-heading h2,
+    .ai-card h2{
+        font-size:29px;
+    }
+
+    .ai-card,
+    .audience-card{
+        padding:27px;
+    }
+
+    .cta-box{
+        padding:32px;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .cta-box h2{
+        font-size:28px;
+    }
+
+    .trust-content{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+
+    .footer-content{
+        flex-direction:column;
+        text-align:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container navbar">
+
+<a href="#accueil" class="logo">
+<div class="logo-mark">T</div>
+TOPPATOO
+</a>
+
+<nav class="nav-links">
+<a href="#accueil">Accueil</a>
+<a href="#fonctionnalites">Fonctionnalités</a>
+<a href="#utilisateurs">Utilisateurs</a>
+<a href="#ia">Toppatoo IA</a>
+</nav>
+
+<div class="nav-buttons">
+
+<button class="btn btn-secondary" onclick="openModal('login')">
+Se connecter
+</button>
+
+<button class="btn btn-primary" onclick="openModal('register')">
+Créer un compte
+</button>
+
+</div>
+</div>
+</header>
+
+<main>
+
+<section class="hero" id="accueil">
+<div class="container hero-grid">
+
+<div>
+
+<div class="badge">
+🩺 Sama Wergu Yaram
+</div>
+
+<h1>
+Votre santé,<br>
+<span>plus simple.</span>
+</h1>
+
+<p class="hero-description">
+Toppatoo est une plateforme numérique de santé conçue
+pour rapprocher les patients et les professionnels,
+simplifier le suivi et améliorer l'expérience de santé.
+</p>
+
+<div class="hero-actions">
+
+<button class="btn btn-primary" onclick="openModal('professional')">
+👨‍⚕️ Je suis professionnel
+</button>
+
+<button class="btn btn-secondary" onclick="openModal('patient')">
+👤 Je suis patient
+</button>
+
+</div>
+
+</div>
+
+<div class="health-card">
+
+<div class="health-card-header">
+
+<div class="health-card-title">
+Mon espace santé
+</div>
+
+<div class="active">
+● Actif
+</div>
+
+</div>
+
+<div class="profile">
+
+<div class="avatar">
+👤
+</div>
+
+<div>
+<strong>Bienvenue sur Toppatoo</strong>
+<small>Sama Wergu Yaram</small>
+</div>
+
+</div>
+
+<div class="health-items">
+
+<div class="health-item">
+<div class="health-icon">📅</div>
+<strong>Rendez-vous</strong>
+<small>Organiser son suivi</small>
+</div>
+
+<div class="health-item">
+<div class="health-icon">📁</div>
+<strong>Dossier</strong>
+<small>Suivi de santé</small>
+</div>
+
+<div class="health-item">
+<div class="health-icon">💊</div>
+<strong>Traitements</strong>
+<small>Informations utiles</small>
+</div>
+
+<div class="health-item">
+<div class="health-icon">🤖</div>
+<strong>Toppatoo IA</strong>
+<small>Assistant intelligent</small>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="trust">
+
+<div class="container">
+
+<div class="trust-content">
+
+<div class="trust-item">
+<strong>👨‍⚕️</strong>
+<span>Professionnels</span>
+</div>
+
+<div class="trust-item">
+<strong>👤</strong>
+<span>Patients</span>
+</div>
+
+<div class="trust-item">
+<strong>📱</strong>
+<span>Mobile</span>
+</div>
+
+<div class="trust-item">
+<strong>🔒</strong>
+<span>Confidentialité</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="fonctionnalites">
+
+<div class="container">
+
+<div class="section-heading">
+
+<div class="tag">
+Une expérience simple
+</div>
+
+<h2>
+Tout ce dont vous avez besoin,
+au même endroit.
+</h2>
+
+<p>
+Toppatoo est pensé pour rendre le parcours
+de santé plus clair et plus accessible.
+</p>
+
+</div>
+
+<div class="features">
+
+<div class="feature">
+<div class="feature-icon">📁</div>
+<h3>Dossier de santé</h3>
+<p>
+Centraliser les informations importantes
+du parcours de santé.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">📅</div>
+<h3>Rendez-vous</h3>
+<p>
+Organiser et suivre facilement
+les rendez-vous.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🩺</div>
+<h3>Suivi professionnel</h3>
+<p>
+Faciliter le suivi entre professionnels
+et patients.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🔔</div>
+<h3>Notifications</h3>
+<p>
+Recevoir les informations importantes
+au bon moment.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="utilisateurs">
+
+<div class="container">
+
+<div class="section-heading">
+
+<div class="tag">
+Pour tout le monde
+</div>
+
+<h2>
+Une plateforme pensée pour
+patients et professionnels.
+</h2>
+
+</div>
+
+<div class="audience">
+
+<div class="audience-card professional">
+
+<div class="audience-icon">👨‍⚕️</div>
+
+<h3>Pour les professionnels</h3>
+
+<p>
+Un espace pour organiser les patients,
+consultations, rendez-vous et suivi
+dans une expérience simple.
+</p>
+
+<button class="btn btn-light" onclick="openModal('professional')">
+Découvrir l'espace
+</button>
+
+</div>
+
+<div class="audience-card patient">
+
+<div class="audience-icon">👤</div>
+
+<h3>Pour les patients</h3>
+
+<p>
+Un espace personnel pour suivre
+les rendez-vous et les informations
+de santé qui leur sont accessibles.
+</p>
+
+<button class="btn btn-primary" onclick="openModal('patient')">
+Découvrir l'espace
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section ai-section" id="ia">
+
+<div class="container">
+
+<div class="ai-card">
+
+<div class="ai-symbol">
+🤖
+</div>
+
+<div>
+
+<div class="tag" style="color:#087f78;font-weight:800;">
+Toppatoo IA
+</div>
+
+<h2>
+L'intelligence artificielle
+au service du professionnel.
+</h2>
+
+<p>
+Toppatoo IA sera conçue comme un assistant
+destiné à aider les professionnels à organiser
+et analyser les informations disponibles,
+sans remplacer leur jugement clinique.
+</p>
+
+<button class="btn btn-primary" onclick="openModal('ai')">
+Découvrir Toppatoo IA
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="cta">
+
+<div class="container">
+
+<div class="cta-box">
+
+<div>
+
+<h2>
+Bienvenue dans une nouvelle
+expérience de santé.
+</h2>
+
+<p>
+Toppatoo — Sama Wergu Yaram.
+</p>
+
+</div>
+
+<button class="btn btn-light" onclick="openModal('register')">
+Commencer
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+<div class="container footer-content">
+
+<div class="footer-brand">
+TOPPATOO — Sama Wergu Yaram
+</div>
+
+<div class="footer-text">
+© 2026 Toppatoo. Tous droits réservés.
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- MODALE -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<button class="modal-close" onclick="closeModal()">
+×
+</button>
+
+<div id="modalContent"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+function openModal(type){
+
+    var modal = document.getElementById("modal");
+    var content = document.getElementById("modalContent");
+
+    if(type === "register"){
+
+        content.innerHTML = `
+            <h2>📝 Créer un compte</h2>
+            <p>Bienvenue sur Toppatoo.</p>
+
+            <div class="form-group">
+                <label>Nom complet</label>
+                <input type="text" id="name" placeholder="Nom et prénom">
+            </div>
+
+            <div class="form-group">
+                <label>Téléphone</label>
+                <input type="tel" id="phone" placeholder="+221 ...">
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="votre@email.com">
+            </div>
+
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input type="password" id="password" placeholder="Votre mot de passe">
+            </div>
+
+            <div class="form-group">
+                <label>Type de compte</label>
+                <select id="role">
+                    <option value="patient">👤 Patient</option>
+                    <option value="professional">👨‍⚕️ Professionnel</option>
+                </select>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="createAccount()">
+                    Créer mon compte
+                </button>
+            </div>
+        `;
+
+    }
+
+    else if(type === "login"){
+
+        content.innerHTML = `
+            <h2>🔐 Se connecter</h2>
+            <p>Accédez à votre espace Toppatoo.</p>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="votre@email.com">
+            </div>
+
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input type="password" id="loginPassword" placeholder="Votre mot de passe">
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="login()">
+                    Se connecter
+                </button>
+            </div>
+        `;
+
+    }
+
+    else if(type === "patient"){
+
+        content.innerHTML = `
+            <h2>👤 Espace Patient</h2>
+            <p>Votre espace personnel Toppatoo.</p>
+
+            <div class="health-item">
+                📁 <strong>Mon dossier</strong>
+                <small>Votre suivi de santé</small>
+            </div>
+
+            <br>
+
+            <div class="health-item">
+                📅 <strong>Mes rendez-vous</strong>
+                <small>Organiser votre suivi</small>
+            </div>
+
+            <br>
+
+            <div class="health-item">
+                💊 <strong>Mes traitements</strong>
+                <small>Informations utiles</small>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="closeModal()">
+                    Continuer
+                </button>
+            </div>
+        `;
+
+    }
+
+    else if(type === "professional"){
+
+        content.innerHTML = `
+            <h2>👨‍⚕️ Espace Professionnel</h2>
+            <p>Votre espace professionnel Toppatoo.</p>
+
+            <div class="health-item">
+                👥 <strong>Patients</strong>
+                <small>Gestion des patients</small>
+            </div>
+
+            <br>
+
+            <div class="health-item">
+                👶 <strong>Registre Enfants</strong>
+                <small>Patients de moins de 18 ans</small>
+            </div>
+
+            <br>
+
+            <div class="health-item">
+                🧑 <strong>Registre Adultes</strong>
+                <small>Patients de 18 ans et plus</small>
+            </div>
+
+            <br>
+
+            <div class="health-item">
+                📅 <strong>Rendez-vous</strong>
+                <small>Organisation du suivi</small>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="closeModal()">
+                    Continuer
+                </button>
+            </div>
+        `;
+
+    }
+
+    else if(type === "ai"){
+
+        content.innerHTML = `
+            <h2>🤖 Toppatoo IA</h2>
+
+            <p>
+                Assistant destiné à accompagner
+                les professionnels de santé.
+            </p>
+
+            <div class="form-group">
+                <label>Votre demande</label>
+                <input type="text" id="question"
+                placeholder="Écrivez votre demande...">
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="askAI()">
+                    Utiliser Toppatoo IA
+                </button>
+            </div>
+
+            <p style="margin-top:15px;font-size:13px;">
+                ⚠️ Toppatoo IA ne remplace pas le jugement
+                clinique d'un professionnel.
+            </p>
+        `;
+    }
+
+    modal.classList.add("show");
+}
+
+
+function closeModal(){
+
+    document.getElementById("modal").classList.remove("show");
+
+}
+
+
+function createAccount(){
+
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+
+    if(name === "" || email === ""){
+
+        alert("Veuillez remplir votre nom et votre email.");
+
+        return;
+    }
+
+    alert(
+        "Bienvenue " + name +
+        " !\n\nVotre compte Toppatoo est prêt pour la prochaine étape."
+    );
+
+}
+
+
+function login(){
+
+    var email = document.getElementById("loginEmail").value;
+
+    if(email === ""){
+
+        alert("Veuillez entrer votre email.");
+
+        return;
+    }
+
+    alert(
+        "Connexion en préparation.\n\n" +
+        "La connexion sécurisée sera reliée à Supabase ensuite."
+    );
+
+}
+
+
+function askAI(){
+
+    var question = document.getElementById("question").value;
+
+    if(question === ""){
+
+        alert("Écrivez votre demande.");
+
+        return;
+    }
+
+    alert(
+        "Toppatoo IA sera connectée à un véritable assistant IA dans une prochaine étape."
+    );
+
+}
+
+
+/* Fermer la fenêtre en cliquant à l'extérieur */
+
+document.getElementById("modal").addEventListener("click",function(event){
+
+    if(event.target === this){
+
+        closeModal();
+
+    }
+
+});
+
+</script>
+
+</body>
+    </html>
