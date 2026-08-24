@@ -66,23 +66,15 @@ header{
 .logo{
     display:flex;
     align-items:center;
-    gap:10px;
-    font-weight:800;
-    font-size:21px;
-    color:var(--primary);
     text-decoration:none;
 }
 
-.logo-mark{
-    width:43px;
-    height:43px;
-    border-radius:14px;
-    display:grid;
-    place-items:center;
-    color:white;
-    background:var(--primary);
-    font-size:20px;
-    font-weight:900;
+.logo-image{
+    height:52px;
+    width:auto;
+    max-width:190px;
+    object-fit:contain;
+    display:block;
 }
 
 .nav-links{
@@ -610,13 +602,9 @@ footer{
         min-height:66px;
     }
 
-    .logo{
-        font-size:18px;
-    }
-
-    .logo-mark{
-        width:38px;
-        height:38px;
+    .logo-image{
+        height:44px;
+        max-width:165px;
     }
 
     .nav-buttons .btn-secondary{
@@ -692,8 +680,9 @@ footer{
 <div class="container navbar">
 
 <a href="#accueil" class="logo">
-<div class="logo-mark">T</div>
-TOPPATOO
+<img src="toppatoo-logo-horizontal.png"
+     alt="Logo Toppatoo — Sama Wergu Yaram"
+     class="logo-image">
 </a>
 
 <nav class="nav-links">
@@ -756,15 +745,11 @@ simplifier le suivi et améliorer l'expérience de santé.
 <div class="health-card">
 
 <div class="health-card-header">
-
-<div class="health-card-title">
-Mon espace santé
-</div>
+<div class="health-card-title">Mon espace santé</div>
 
 <div class="active">
 ● Actif
 </div>
-
 </div>
 
 <div class="profile">
@@ -1058,7 +1043,6 @@ TOPPATOO — Sama Wergu Yaram
 
 </footer>
 
-
 <!-- MODALE -->
 
 <div class="modal" id="modal">
@@ -1074,7 +1058,6 @@ TOPPATOO — Sama Wergu Yaram
 </div>
 
 </div>
-
 
 <script>
 
@@ -1258,13 +1241,11 @@ function openModal(type){
     modal.classList.add("show");
 }
 
-
 function closeModal(){
 
     document.getElementById("modal").classList.remove("show");
 
 }
-
 
 function createAccount(){
 
@@ -1282,9 +1263,7 @@ function createAccount(){
         "Bienvenue " + name +
         " !\n\nVotre compte Toppatoo est prêt pour la prochaine étape."
     );
-
 }
-
 
 function login(){
 
@@ -1301,9 +1280,7 @@ function login(){
         "Connexion en préparation.\n\n" +
         "La connexion sécurisée sera reliée à Supabase ensuite."
     );
-
 }
-
 
 function askAI(){
 
@@ -1319,11 +1296,7 @@ function askAI(){
     alert(
         "Toppatoo IA sera connectée à un véritable assistant IA dans une prochaine étape."
     );
-
 }
-
-
-/* Fermer la fenêtre en cliquant à l'extérieur */
 
 document.getElementById("modal").addEventListener("click",function(event){
 
