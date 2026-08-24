@@ -7,705 +7,594 @@
 <title>Toppatoo — Sama Wergu Yaram</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 :root{
-    --primary:#087f78;
-    --primary-dark:#05645f;
-    --primary-light:#e8f7f5;
-    --text:#173b3a;
-    --muted:#6c817f;
-    --background:#f7fbfa;
-    --white:#ffffff;
-    --border:#e2eeec;
-    --shadow:0 18px 50px rgba(8,127,120,.10);
+--primary:#087f78;
+--primary-dark:#05645f;
+--primary-light:#e8f7f5;
+--text:#173b3a;
+--muted:#6c817f;
+--background:#f7fbfa;
+--white:#fff;
+--border:#e2eeec;
+--shadow:0 18px 50px rgba(8,127,120,.10)
 }
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--background);
-    color:var(--text);
-    line-height:1.6;
+font-family:Arial,Helvetica,sans-serif;
+background:var(--background);
+color:var(--text);
+line-height:1.6
 }
 
-button{
-    font-family:inherit;
-    cursor:pointer;
-}
+button{font-family:inherit;cursor:pointer}
 
-.container{
-    width:min(1120px,92%);
-    margin:auto;
-}
+.container{width:min(1120px,92%);margin:auto}
 
 header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:rgba(255,255,255,.96);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(255,255,255,.96);
+backdrop-filter:blur(12px);
+border-bottom:1px solid var(--border)
 }
 
 .navbar{
-    min-height:74px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
+min-height:74px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    text-decoration:none;
-    min-width:150px;
+display:flex;
+align-items:center;
+text-decoration:none;
+min-width:150px
 }
 
 .logo-image{
-    height:52px;
-    width:auto;
-    max-width:210px;
-    object-fit:contain;
-    display:block;
+height:52px;
+width:auto;
+max-width:210px;
+object-fit:contain;
+display:block
 }
 
 .logo-fallback{
-    display:none;
-    color:var(--primary);
-    font-size:24px;
-    font-weight:900;
-    letter-spacing:-1px;
+display:none;
+color:var(--primary);
+font-size:24px;
+font-weight:900;
+letter-spacing:-1px
 }
 
-.nav-links{
-    display:flex;
-    gap:28px;
-}
+.nav-links{display:flex;gap:28px}
 
 .nav-links a{
-    text-decoration:none;
-    color:#496361;
-    font-size:14px;
-    font-weight:600;
+text-decoration:none;
+color:#496361;
+font-size:14px;
+font-weight:600
 }
 
-.nav-links a:hover{
-    color:var(--primary);
-}
+.nav-links a:hover{color:var(--primary)}
 
-.nav-buttons{
-    display:flex;
-    gap:10px;
-}
+.nav-buttons{display:flex;gap:10px}
 
 .btn{
-    border:0;
-    border-radius:13px;
-    padding:12px 18px;
-    font-weight:700;
-    font-size:14px;
-    transition:.2s ease;
+border:0;
+border-radius:13px;
+padding:12px 18px;
+font-weight:700;
+font-size:14px;
+transition:.2s ease
 }
 
-.btn:hover{
-    transform:translateY(-2px);
-}
+.btn:hover{transform:translateY(-2px)}
 
-.btn-primary{
-    background:var(--primary);
-    color:white;
-}
-
-.btn-primary:hover{
-    background:var(--primary-dark);
-}
+.btn-primary{background:var(--primary);color:white}
+.btn-primary:hover{background:var(--primary-dark)}
 
 .btn-secondary{
-    background:white;
-    color:var(--primary);
-    border:1px solid #c8dfdc;
+background:white;
+color:var(--primary);
+border:1px solid #c8dfdc
 }
 
-.btn-light{
-    background:white;
-    color:var(--primary);
-}
+.btn-light{background:white;color:var(--primary)}
 
-.hero{
-    padding:85px 0 75px;
-}
+.hero{padding:85px 0 75px}
 
 .hero-grid{
-    display:grid;
-    grid-template-columns:1.05fr .95fr;
-    align-items:center;
-    gap:65px;
+display:grid;
+grid-template-columns:1.05fr .95fr;
+align-items:center;
+gap:65px
 }
 
 .badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:var(--primary-light);
-    color:var(--primary);
-    padding:8px 14px;
-    border-radius:30px;
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:22px;
+display:inline-flex;
+align-items:center;
+gap:8px;
+background:var(--primary-light);
+color:var(--primary);
+padding:8px 14px;
+border-radius:30px;
+font-size:13px;
+font-weight:700;
+margin-bottom:22px
 }
 
 .hero h1{
-    font-size:clamp(44px,6vw,70px);
-    line-height:1.03;
-    letter-spacing:-2.5px;
-    margin-bottom:23px;
+font-size:clamp(44px,6vw,70px);
+line-height:1.03;
+letter-spacing:-2.5px;
+margin-bottom:23px
 }
 
-.hero h1 span{
-    color:var(--primary);
-}
+.hero h1 span{color:var(--primary)}
 
 .hero-description{
-    color:var(--muted);
-    font-size:18px;
-    max-width:600px;
-    margin-bottom:30px;
+color:var(--muted);
+font-size:18px;
+max-width:600px;
+margin-bottom:30px
 }
 
-.hero-actions{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-}
-
-.hero-actions .btn{
-    padding:14px 20px;
-}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-actions .btn{padding:14px 20px}
 
 .health-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:30px;
-    padding:24px;
-    box-shadow:var(--shadow);
+background:white;
+border:1px solid var(--border);
+border-radius:30px;
+padding:24px;
+box-shadow:var(--shadow)
 }
 
 .health-card-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:22px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:22px
 }
 
-.health-card-title{
-    font-weight:800;
-}
+.health-card-title{font-weight:800}
 
 .active{
-    background:#e7f8ef;
-    color:#278154;
-    padding:7px 11px;
-    border-radius:30px;
-    font-size:12px;
-    font-weight:700;
+background:#e7f8ef;
+color:#278154;
+padding:7px 11px;
+border-radius:30px;
+font-size:12px;
+font-weight:700
 }
 
 .profile{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    background:var(--primary-light);
-    padding:18px;
-    border-radius:20px;
-    margin-bottom:15px;
+display:flex;
+align-items:center;
+gap:14px;
+background:var(--primary-light);
+padding:18px;
+border-radius:20px;
+margin-bottom:15px
 }
 
 .avatar{
-    width:52px;
-    height:52px;
-    border-radius:17px;
-    display:grid;
-    place-items:center;
-    background:white;
-    font-size:24px;
+width:52px;
+height:52px;
+border-radius:17px;
+display:grid;
+place-items:center;
+background:white;
+font-size:24px
 }
 
-.profile strong{
-    display:block;
-}
-
-.profile small{
-    color:var(--muted);
-}
+.profile strong{display:block}
+.profile small{color:var(--muted)}
 
 .health-items{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px
 }
 
 .health-item{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:17px;
+background:white;
+border:1px solid var(--border);
+border-radius:18px;
+padding:17px
 }
 
-.health-icon{
-    font-size:22px;
-    margin-bottom:8px;
-}
+.health-icon{font-size:22px;margin-bottom:8px}
+.health-item strong{display:block;font-size:15px}
+.health-item small{color:var(--muted)}
 
-.health-item strong{
-    display:block;
-    font-size:15px;
-}
-
-.health-item small{
-    color:var(--muted);
-}
-
-.trust{
-    padding:18px 0 65px;
-}
+.trust{padding:18px 0 65px}
 
 .trust-content{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:22px;
-    display:flex;
-    justify-content:space-around;
-    text-align:center;
-    gap:20px;
+background:white;
+border:1px solid var(--border);
+border-radius:22px;
+padding:22px;
+display:flex;
+justify-content:space-around;
+text-align:center;
+gap:20px
 }
 
 .trust-item strong{
-    display:block;
-    color:var(--primary);
-    font-size:22px;
+display:block;
+color:var(--primary);
+font-size:22px
 }
 
-.trust-item span{
-    color:var(--muted);
-    font-size:13px;
-}
+.trust-item span{color:var(--muted);font-size:13px}
 
-.section{
-    padding:80px 0;
-}
+.section{padding:80px 0}
 
 .section-heading{
-    text-align:center;
-    max-width:700px;
-    margin:0 auto 45px;
+text-align:center;
+max-width:700px;
+margin:0 auto 45px
 }
 
 .section-heading .tag{
-    color:var(--primary);
-    font-weight:800;
-    font-size:13px;
-    text-transform:uppercase;
-    letter-spacing:1px;
+color:var(--primary);
+font-weight:800;
+font-size:13px;
+text-transform:uppercase;
+letter-spacing:1px
 }
 
 .section-heading h2{
-    font-size:38px;
-    line-height:1.15;
-    margin:10px 0 14px;
+font-size:38px;
+line-height:1.15;
+margin:10px 0 14px
 }
 
-.section-heading p{
-    color:var(--muted);
-}
+.section-heading p{color:var(--muted)}
 
 .features{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:17px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:17px
 }
 
 .feature{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:23px;
-    padding:25px;
-    transition:.25s ease;
+background:white;
+border:1px solid var(--border);
+border-radius:23px;
+padding:25px;
+transition:.25s ease
 }
 
 .feature:hover{
-    transform:translateY(-5px);
-    box-shadow:var(--shadow);
+transform:translateY(-5px);
+box-shadow:var(--shadow)
 }
 
 .feature-icon{
-    width:52px;
-    height:52px;
-    border-radius:16px;
-    display:grid;
-    place-items:center;
-    background:var(--primary-light);
-    font-size:24px;
-    margin-bottom:19px;
+width:52px;
+height:52px;
+border-radius:16px;
+display:grid;
+place-items:center;
+background:var(--primary-light);
+font-size:24px;
+margin-bottom:19px
 }
 
-.feature h3{
-    margin-bottom:8px;
-}
-
-.feature p{
-    color:var(--muted);
-    font-size:14px;
-}
+.feature h3{margin-bottom:8px}
+.feature p{color:var(--muted);font-size:14px}
 
 .audience{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px
 }
 
 .audience-card{
-    border-radius:28px;
-    padding:35px;
-    background:white;
-    border:1px solid var(--border);
+border-radius:28px;
+padding:35px;
+background:white;
+border:1px solid var(--border)
 }
 
 .audience-card.professional{
-    background:var(--primary);
-    color:white;
+background:var(--primary);
+color:white
 }
 
-.audience-icon{
-    font-size:35px;
-    margin-bottom:18px;
-}
+.audience-icon{font-size:35px;margin-bottom:18px}
 
 .audience-card h3{
-    font-size:25px;
-    margin-bottom:10px;
+font-size:25px;
+margin-bottom:10px
 }
 
 .audience-card p{
-    margin-bottom:22px;
-    color:var(--muted);
+margin-bottom:22px;
+color:var(--muted)
 }
 
-.professional p{
-    color:rgba(255,255,255,.78);
-}
+.professional p{color:rgba(255,255,255,.78)}
 
-.ai-section{
-    background:#eef8f6;
-}
+.ai-section{background:#eef8f6}
 
 .ai-card{
-    display:grid;
-    grid-template-columns:.8fr 1.2fr;
-    align-items:center;
-    gap:45px;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:30px;
-    padding:42px;
-    box-shadow:var(--shadow);
+display:grid;
+grid-template-columns:.8fr 1.2fr;
+align-items:center;
+gap:45px;
+background:white;
+border:1px solid var(--border);
+border-radius:30px;
+padding:42px;
+box-shadow:var(--shadow)
 }
 
 .ai-symbol{
-    min-height:230px;
-    border-radius:25px;
-    background:var(--primary-light);
-    display:grid;
-    place-items:center;
-    font-size:80px;
+min-height:230px;
+border-radius:25px;
+background:var(--primary-light);
+display:grid;
+place-items:center;
+font-size:80px
 }
 
 .ai-card h2{
-    font-size:35px;
-    margin-bottom:12px;
+font-size:35px;
+margin-bottom:12px
 }
 
 .ai-card p{
-    color:var(--muted);
-    margin-bottom:20px;
+color:var(--muted);
+margin-bottom:20px
 }
 
-.cta{
-    padding:75px 0;
-}
+.cta{padding:75px 0}
 
 .cta-box{
-    background:var(--primary);
-    color:white;
-    border-radius:30px;
-    padding:48px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:30px;
+background:var(--primary);
+color:white;
+border-radius:30px;
+padding:48px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:30px
 }
 
 .cta-box h2{
-    font-size:34px;
-    line-height:1.2;
+font-size:34px;
+line-height:1.2
 }
 
-.cta-box p{
-    margin-top:8px;
-    opacity:.82;
-}
+.cta-box p{margin-top:8px;opacity:.82}
 
 footer{
-    background:white;
-    border-top:1px solid var(--border);
-    padding:40px 0;
+background:white;
+border-top:1px solid var(--border);
+padding:40px 0
 }
 
 .footer-content{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px
 }
 
-.footer-brand{
-    color:var(--primary);
-    font-weight:800;
-}
-
-.footer-text{
-    color:var(--muted);
-    font-size:13px;
-}
+.footer-brand{color:var(--primary);font-weight:800}
+.footer-text{color:var(--muted);font-size:13px}
 
 .modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:2000;
-    background:rgba(23,59,58,.45);
-    padding:20px;
-    align-items:center;
-    justify-content:center;
+display:none;
+position:fixed;
+inset:0;
+z-index:2000;
+background:rgba(23,59,58,.45);
+padding:20px;
+align-items:center;
+justify-content:center
 }
 
-.modal.show{
-    display:flex;
-}
+.modal.show{display:flex}
 
 .modal-box{
-    width:min(500px,100%);
-    max-height:90vh;
-    overflow-y:auto;
-    background:white;
-    border-radius:25px;
-    padding:30px;
-    box-shadow:0 25px 80px rgba(0,0,0,.18);
-    position:relative;
+width:min(500px,100%);
+max-height:90vh;
+overflow-y:auto;
+background:white;
+border-radius:25px;
+padding:30px;
+box-shadow:0 25px 80px rgba(0,0,0,.18);
+position:relative
 }
 
 .modal-close{
-    position:absolute;
-    top:15px;
-    right:18px;
-    border:0;
-    background:transparent;
-    font-size:25px;
-    color:var(--muted);
+position:absolute;
+top:15px;
+right:18px;
+border:0;
+background:transparent;
+font-size:25px;
+color:var(--muted)
 }
 
-.modal-box h2{
-    margin-bottom:8px;
-}
+.modal-box h2{margin-bottom:8px}
+.modal-box p{color:var(--muted);margin-bottom:20px}
 
-.modal-box p{
-    color:var(--muted);
-    margin-bottom:20px;
-}
-
-.form-group{
-    margin-bottom:16px;
-}
+.form-group{margin-bottom:16px}
 
 .form-group label{
-    display:block;
-    font-size:14px;
-    font-weight:700;
-    margin-bottom:6px;
+display:block;
+font-size:14px;
+font-weight:700;
+margin-bottom:6px
 }
 
 .form-group input,
 .form-group select{
-    width:100%;
-    padding:13px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    font-size:15px;
-    outline:none;
+width:100%;
+padding:13px;
+border:1px solid var(--border);
+border-radius:12px;
+font-size:15px;
+outline:none
 }
 
 .form-group input:focus,
-.form-group select:focus{
-    border-color:var(--primary);
-}
+.form-group select:focus{border-color:var(--primary)}
 
 .modal-actions{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
+display:flex;
+gap:10px;
+margin-top:20px
 }
 
-.modal-actions .btn{
-    flex:1;
-}
+.modal-actions .btn{flex:1}
 
 .message{
-    padding:13px;
-    border-radius:12px;
-    margin-bottom:15px;
-    font-size:14px;
-    display:none;
-}
-
-.message.error{
-    display:block;
-    background:#fff0f0;
-    color:#a12626;
-    border:1px solid #f2cccc;
+padding:13px;
+border-radius:12px;
+margin-top:15px;
+font-size:14px;
+display:none
 }
 
 .message.success{
-    display:block;
-    background:#eaf8f1;
-    color:#23734b;
-    border:1px solid #c9ead8;
+display:block;
+background:#e8f7f0;
+color:#176b4c
+}
+
+.message.error{
+display:block;
+background:#fff0f0;
+color:#a33
+}
+
+.dashboard{
+display:none;
+padding:70px 0;
+min-height:70vh
+}
+
+.dashboard-card{
+background:white;
+border:1px solid var(--border);
+border-radius:28px;
+padding:35px;
+box-shadow:var(--shadow)
+}
+
+.dashboard-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-top:25px
+}
+
+.dashboard-item{
+border:1px solid var(--border);
+border-radius:18px;
+padding:22px;
+background:#fff
+}
+
+.dashboard-item strong{
+display:block;
+margin-bottom:5px
+}
+
+.dashboard-item span{
+font-size:13px;
+color:var(--muted)
+}
+
+.user-email{
+color:var(--primary);
+font-weight:700
 }
 
 @media(max-width:900px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .hero-grid,
-    .ai-card{
-        grid-template-columns:1fr;
-    }
-
-    .features{
-        grid-template-columns:1fr 1fr;
-    }
+.nav-links{display:none}
+.hero-grid,.ai-card{grid-template-columns:1fr}
+.features{grid-template-columns:1fr 1fr}
 }
 
 @media(max-width:600px){
+.navbar{min-height:66px}
 
-    .navbar{
-        min-height:66px;
-    }
+.logo-image{
+height:44px;
+max-width:165px
+}
 
-    .logo-image{
-        height:44px;
-        max-width:165px;
-    }
+.logo-fallback{font-size:21px}
 
-    .logo-fallback{
-        font-size:21px;
-    }
+.nav-buttons .btn-secondary{display:none}
 
-    .nav-buttons .btn-secondary{
-        display:none;
-    }
+.hero{padding:50px 0}
+.hero h1{font-size:45px}
+.hero-description{font-size:16px}
+.hero-actions{flex-direction:column}
+.hero-actions .btn{width:100%}
 
-    .hero{
-        padding:50px 0;
-    }
+.features,.audience,.health-items,.dashboard-grid{
+grid-template-columns:1fr
+}
 
-    .hero h1{
-        font-size:45px;
-    }
+.section{padding:55px 0}
 
-    .hero-description{
-        font-size:16px;
-    }
+.section-heading h2,.ai-card h2{font-size:29px}
 
-    .hero-actions{
-        flex-direction:column;
-    }
+.ai-card,.audience-card{padding:27px}
 
-    .hero-actions .btn{
-        width:100%;
-    }
+.cta-box{
+padding:32px;
+flex-direction:column;
+align-items:flex-start
+}
 
-    .features,
-    .audience,
-    .health-items{
-        grid-template-columns:1fr;
-    }
+.cta-box h2{font-size:28px}
 
-    .section{
-        padding:55px 0;
-    }
+.trust-content{
+display:grid;
+grid-template-columns:1fr 1fr
+}
 
-    .section-heading h2,
-    .ai-card h2{
-        font-size:29px;
-    }
-
-    .ai-card,
-    .audience-card{
-        padding:27px;
-    }
-
-    .cta-box{
-        padding:32px;
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .cta-box h2{
-        font-size:28px;
-    }
-
-    .trust-content{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-    }
-
-    .footer-content{
-        flex-direction:column;
-        text-align:center;
-    }
+.footer-content{
+flex-direction:column;
+text-align:center
+}
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<header id="siteHeader">
 <div class="container navbar">
 
 <a href="#accueil" class="logo">
 
 <img
 src="./fichier_00000000f0208210920f9ffed57695df.png"
-alt="Logo Toppatoo"
+alt="Logo Toppatoo — Sama Wergu Yaram"
 class="logo-image"
 onerror="this.style.display='none';document.getElementById('logoFallback').style.display='inline-block';"
 >
 
-<span id="logoFallback" class="logo-fallback">
-TOPPATOO
-</span>
+<span id="logoFallback" class="logo-fallback">TOPPATOO</span>
 
 </a>
 
@@ -731,17 +620,14 @@ Créer un compte
 </div>
 </header>
 
-<main>
+<main id="landingPage">
 
 <section class="hero" id="accueil">
-
 <div class="container hero-grid">
 
 <div>
 
-<div class="badge">
-🩺 Sama Wergu Yaram
-</div>
+<div class="badge">🩺 Sama Wergu Yaram</div>
 
 <h1>
 Votre santé,<br>
@@ -773,22 +659,13 @@ onclick="openModal('patient')">
 <div class="health-card">
 
 <div class="health-card-header">
-
-<div class="health-card-title">
-Mon espace santé
-</div>
-
-<div class="active">
-● Actif
-</div>
-
+<div class="health-card-title">Mon espace santé</div>
+<div class="active">● Actif</div>
 </div>
 
 <div class="profile">
 
-<div class="avatar">
-👤
-</div>
+<div class="avatar">👤</div>
 
 <div>
 <strong>Bienvenue sur Toppatoo</strong>
@@ -826,9 +703,7 @@ Mon espace santé
 </div>
 
 </div>
-
 </div>
-
 </section>
 
 <section class="trust">
@@ -858,9 +733,7 @@ Mon espace santé
 </div>
 
 </div>
-
 </div>
-
 </section>
 
 <section class="section" id="fonctionnalites">
@@ -869,9 +742,7 @@ Mon espace santé
 
 <div class="section-heading">
 
-<div class="tag">
-Une expérience simple
-</div>
+<div class="tag">Une expérience simple</div>
 
 <h2>
 Tout ce dont vous avez besoin,
@@ -912,9 +783,7 @@ de santé plus clair et plus accessible.
 </div>
 
 </div>
-
 </div>
-
 </section>
 
 <section class="section" id="utilisateurs">
@@ -923,12 +792,11 @@ de santé plus clair et plus accessible.
 
 <div class="section-heading">
 
-<div class="tag">
-Pour tout le monde
-</div>
+<div class="tag">Pour tout le monde</div>
 
 <h2>
-Une plateforme pensée pour patients et professionnels.
+Une plateforme pensée pour
+patients et professionnels.
 </h2>
 
 </div>
@@ -961,8 +829,9 @@ Découvrir l'espace
 <h3>Pour les patients</h3>
 
 <p>
-Un espace personnel pour suivre les rendez-vous
-et les informations de santé qui leur sont accessibles.
+Un espace personnel pour suivre
+les rendez-vous et les informations
+de santé qui leur sont accessibles.
 </p>
 
 <button class="btn btn-primary"
@@ -973,9 +842,7 @@ Découvrir l'espace
 </div>
 
 </div>
-
 </div>
-
 </section>
 
 <section class="section ai-section" id="ia">
@@ -984,19 +851,17 @@ Découvrir l'espace
 
 <div class="ai-card">
 
-<div class="ai-symbol">
-🤖
-</div>
+<div class="ai-symbol">🤖</div>
 
 <div>
 
-<div class="tag"
-style="color:#087f78;font-weight:800;">
+<div class="tag" style="color:#087f78;font-weight:800;">
 Toppatoo IA
 </div>
 
 <h2>
-L'intelligence artificielle au service du professionnel.
+L'intelligence artificielle
+au service du professionnel.
 </h2>
 
 <p>
@@ -1012,11 +877,8 @@ Découvrir Toppatoo IA
 </button>
 
 </div>
-
 </div>
-
 </div>
-
 </section>
 
 <section class="cta">
@@ -1028,12 +890,11 @@ Découvrir Toppatoo IA
 <div>
 
 <h2>
-Bienvenue dans une nouvelle expérience de santé.
+Bienvenue dans une nouvelle
+expérience de santé.
 </h2>
 
-<p>
-Toppatoo — Sama Wergu Yaram.
-</p>
+<p>Toppatoo — Sama Wergu Yaram.</p>
 
 </div>
 
@@ -1043,12 +904,43 @@ Commencer
 </button>
 
 </div>
+</div>
+</section>
+
+</main>
+
+<!-- ESPACE UTILISATEUR -->
+
+<section class="dashboard" id="dashboard">
+
+<div class="container">
+
+<div class="dashboard-card">
+
+<div class="badge">🩺 Espace Toppatoo</div>
+
+<h1 id="dashboardTitle">Bienvenue</h1>
+
+<p>
+Compte connecté :
+<span class="user-email" id="dashboardEmail"></span>
+</p>
+
+<div class="dashboard-grid" id="dashboardContent"></div>
+
+<div class="modal-actions">
+
+<button class="btn btn-primary" onclick="logout()">
+🚪 Se déconnecter
+</button>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
-
-</main>
 
 <footer>
 
@@ -1066,21 +958,21 @@ TOPPATOO — Sama Wergu Yaram
 
 </footer>
 
+<!-- MODALE -->
+
 <div class="modal" id="modal">
 
 <div class="modal-box">
 
-<button class="modal-close" onclick="closeModal()">
-×
-</button>
+<button class="modal-close" onclick="closeModal()">×</button>
 
 <div id="modalContent"></div>
 
 </div>
-
 </div>
 
 <!-- SUPABASE -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -1092,769 +984,648 @@ TOPPATOO — Sama Wergu Yaram
 const SUPABASE_URL =
 "https://dgehholykcfyfwgpbbto.supabase.co";
 
-const SUPABASE_ANON_KEY =
+const SUPABASE_KEY =
 "sb_publishable_f1ucxryKg1O2JjwIovX69g_oip3hsip";
 
 const supabaseClient =
 supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
 /* =========================================================
-   MODALE
+   MODALES
 ========================================================= */
 
 function openModal(type){
 
-    const modal =
-        document.getElementById("modal");
+const modal =
+document.getElementById("modal");
 
-    const content =
-        document.getElementById("modalContent");
+const content =
+document.getElementById("modalContent");
 
+if(type === "register"){
 
-    /* =========================
-       CREATION DE COMPTE
-    ========================= */
+content.innerHTML = `
 
-    if(type === "register"){
+<h2>📝 Créer un compte</h2>
 
-        content.innerHTML = `
+<p>
+Créez votre compte Toppatoo.
+</p>
 
-            <h2>📝 Créer un compte</h2>
+<div class="form-group">
+<label>Nom complet</label>
+<input id="name" type="text"
+placeholder="Nom et prénom">
+</div>
 
-            <p>
-            Créez votre compte Toppatoo.
-            </p>
+<div class="form-group">
+<label>Téléphone</label>
+<input id="phone" type="tel"
+placeholder="+221 ...">
+</div>
 
-            <div id="registerMessage"
-                 class="message">
-            </div>
+<div class="form-group">
+<label>Email</label>
+<input id="email" type="email"
+placeholder="votre@email.com">
+</div>
 
-            <div class="form-group">
+<div class="form-group">
+<label>Mot de passe</label>
+<input id="password" type="password"
+placeholder="Minimum 6 caractères">
+</div>
 
-                <label>Nom complet</label>
+<div class="form-group">
 
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Nom et prénom"
-                    autocomplete="name"
-                >
+<label>Type de compte</label>
 
-            </div>
+<select id="role">
 
-            <div class="form-group">
+<option value="patient">
+👤 Patient
+</option>
 
-                <label>Téléphone</label>
+<option value="professional">
+👨‍⚕️ Professionnel
+</option>
 
-                <input
-                    type="tel"
-                    id="phone"
-                    placeholder="+221 ..."
-                    autocomplete="tel"
-                >
+</select>
 
-            </div>
+</div>
 
-            <div class="form-group">
+<button class="btn btn-primary"
+style="width:100%"
+onclick="createAccount()">
 
-                <label>Email</label>
+Créer mon compte
 
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="votre@email.com"
-                    autocomplete="email"
-                >
+</button>
 
-            </div>
+<div id="formMessage" class="message"></div>
 
-            <div class="form-group">
+`;
 
-                <label>Mot de passe</label>
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Minimum 6 caractères"
-                    autocomplete="new-password"
-                >
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Type de compte</label>
-
-                <select id="role">
-
-                    <option value="patient">
-                        👤 Patient
-                    </option>
-
-                    <option value="professional">
-                        👨‍⚕️ Professionnel
-                    </option>
-
-                </select>
-
-            </div>
-
-            <div class="modal-actions">
-
-                <button
-                    id="registerButton"
-                    class="btn btn-primary"
-                    onclick="createAccount()"
-                >
-                    Créer mon compte
-                </button>
-
-            </div>
-
-        `;
-
-    }
-
-
-    /* =========================
-       CONNEXION
-    ========================= */
-
-    else if(type === "login"){
-
-        content.innerHTML = `
-
-            <h2>🔐 Se connecter</h2>
-
-            <p>
-            Accédez à votre espace Toppatoo.
-            </p>
-
-            <div id="loginMessage"
-                 class="message">
-            </div>
-
-            <div class="form-group">
-
-                <label>Email</label>
-
-                <input
-                    type="email"
-                    id="loginEmail"
-                    placeholder="votre@email.com"
-                    autocomplete="email"
-                >
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Mot de passe</label>
-
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="Votre mot de passe"
-                    autocomplete="current-password"
-                >
-
-            </div>
-
-            <div class="modal-actions">
-
-                <button
-                    id="loginButton"
-                    class="btn btn-primary"
-                    onclick="login()"
-                >
-                    Se connecter
-                </button>
-
-            </div>
-
-        `;
-
-    }
-
-
-    /* =========================
-       PATIENT
-    ========================= */
-
-    else if(type === "patient"){
-
-        content.innerHTML = `
-
-            <h2>👤 Espace Patient</h2>
-
-            <p>
-            Votre espace personnel Toppatoo.
-            </p>
-
-            <div class="health-item">
-                📁
-                <strong>Mon dossier</strong>
-                <small>Votre suivi de santé</small>
-            </div>
-
-            <br>
-
-            <div class="health-item">
-                📅
-                <strong>Mes rendez-vous</strong>
-                <small>Organiser votre suivi</small>
-            </div>
-
-            <br>
-
-            <div class="health-item">
-                💊
-                <strong>Mes traitements</strong>
-                <small>Informations utiles</small>
-            </div>
-
-            <div class="modal-actions">
-
-                <button
-                    class="btn btn-primary"
-                    onclick="closeModal()"
-                >
-                    Continuer
-                </button>
-
-            </div>
-
-        `;
-
-    }
-
-
-    /* =========================
-       PROFESSIONNEL
-    ========================= */
-
-    else if(type === "professional"){
-
-        content.innerHTML = `
-
-            <h2>👨‍⚕️ Espace Professionnel</h2>
-
-            <p>
-            Votre espace professionnel Toppatoo.
-            </p>
-
-            <div class="health-item">
-                👥
-                <strong>Patients</strong>
-                <small>Gestion des patients</small>
-            </div>
-
-            <br>
-
-            <div class="health-item">
-                👶
-                <strong>Registre Enfants</strong>
-                <small>Patients de moins de 18 ans</small>
-            </div>
-
-            <br>
-
-            <div class="health-item">
-                🧑
-                <strong>Registre Adultes</strong>
-                <small>Patients de 18 ans et plus</small>
-            </div>
-
-            <br>
-
-            <div class="health-item">
-                📅
-                <strong>Rendez-vous</strong>
-                <small>Organisation du suivi</small>
-            </div>
-
-            <div class="modal-actions">
-
-                <button
-                    class="btn btn-primary"
-                    onclick="closeModal()"
-                >
-                    Continuer
-                </button>
-
-            </div>
-
-        `;
-
-    }
-
-
-    /* =========================
-       IA
-    ========================= */
-
-    else if(type === "ai"){
-
-        content.innerHTML = `
-
-            <h2>🤖 Toppatoo IA</h2>
-
-            <p>
-            Assistant destiné à accompagner
-            les professionnels de santé.
-            </p>
-
-            <div class="form-group">
-
-                <label>
-                Votre demande
-                </label>
-
-                <input
-                    type="text"
-                    id="question"
-                    placeholder="Écrivez votre demande..."
-                >
-
-            </div>
-
-            <div class="modal-actions">
-
-                <button
-                    class="btn btn-primary"
-                    onclick="askAI()"
-                >
-                    Utiliser Toppatoo IA
-                </button>
-
-            </div>
-
-            <p style="margin-top:15px;font-size:13px;">
-                ⚠️ Toppatoo IA ne remplace pas
-                le jugement clinique d'un professionnel.
-            </p>
-
-        `;
-
-    }
-
-    modal.classList.add("show");
 }
 
+else if(type === "login"){
 
-/* =========================================================
-   FERMER MODALE
-========================================================= */
+content.innerHTML = `
+
+<h2>🔐 Se connecter</h2>
+
+<p>
+Accédez à votre espace Toppatoo.
+</p>
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input id="loginEmail"
+type="email"
+placeholder="votre@email.com">
+
+</div>
+
+<div class="form-group">
+
+<label>Mot de passe</label>
+
+<input id="loginPassword"
+type="password"
+placeholder="Votre mot de passe">
+
+</div>
+
+<button class="btn btn-primary"
+style="width:100%"
+onclick="login()">
+
+Se connecter
+
+</button>
+
+<div id="formMessage" class="message"></div>
+
+`;
+
+}
+
+else if(type === "patient"){
+
+content.innerHTML = `
+
+<h2>👤 Espace Patient</h2>
+
+<p>
+Connectez-vous ou créez votre compte pour accéder
+à votre espace patient.
+</p>
+
+<button class="btn btn-primary"
+style="width:100%;margin-top:10px"
+onclick="openModal('login')">
+
+Se connecter
+
+</button>
+
+<button class="btn btn-secondary"
+style="width:100%;margin-top:10px"
+onclick="openModal('register')">
+
+Créer un compte
+
+</button>
+
+`;
+
+}
+
+else if(type === "professional"){
+
+content.innerHTML = `
+
+<h2>👨‍⚕️ Espace Professionnel</h2>
+
+<p>
+Connectez-vous ou créez votre compte professionnel.
+</p>
+
+<button class="btn btn-primary"
+style="width:100%;margin-top:10px"
+onclick="openModal('login')">
+
+Se connecter
+
+</button>
+
+<button class="btn btn-secondary"
+style="width:100%;margin-top:10px"
+onclick="openModal('register')">
+
+Créer un compte
+
+</button>
+
+`;
+
+}
+
+else if(type === "ai"){
+
+content.innerHTML = `
+
+<h2>🤖 Toppatoo IA</h2>
+
+<p>
+Assistant destiné à accompagner les professionnels
+de santé.
+</p>
+
+<div class="form-group">
+
+<label>Votre demande</label>
+
+<input
+id="question"
+type="text"
+placeholder="Écrivez votre demande..."
+>
+
+</div>
+
+<button class="btn btn-primary"
+style="width:100%"
+onclick="askAI()">
+
+Utiliser Toppatoo IA
+
+</button>
+
+<p style="margin-top:15px;font-size:13px">
+⚠️ Toppatoo IA ne remplace pas le jugement clinique
+d'un professionnel.
+</p>
+
+`;
+
+}
+
+modal.classList.add("show");
+
+}
+
 
 function closeModal(){
 
-    document
-        .getElementById("modal")
-        .classList
-        .remove("show");
+document
+.getElementById("modal")
+.classList
+.remove("show");
 
 }
 
 
 /* =========================================================
-   AFFICHER MESSAGE
-========================================================= */
-
-function showMessage(elementId, message, type){
-
-    const element =
-        document.getElementById(elementId);
-
-    if(!element){
-        return;
-    }
-
-    element.textContent = message;
-
-    element.className =
-        "message " + type;
-
-}
-
-
-/* =========================================================
-   CREER LE COMPTE SUPABASE
+   CRÉATION DE COMPTE
 ========================================================= */
 
 async function createAccount(){
 
-    const name =
-        document
-        .getElementById("name")
-        .value
-        .trim();
+const name =
+document.getElementById("name").value.trim();
 
-    const phone =
-        document
-        .getElementById("phone")
-        .value
-        .trim();
+const phone =
+document.getElementById("phone").value.trim();
 
-    const email =
-        document
-        .getElementById("email")
-        .value
-        .trim();
+const email =
+document.getElementById("email").value.trim();
 
-    const password =
-        document
-        .getElementById("password")
-        .value;
+const password =
+document.getElementById("password").value;
 
-    const role =
-        document
-        .getElementById("role")
-        .value;
+const role =
+document.getElementById("role").value;
 
-    const button =
-        document
-        .getElementById("registerButton");
+const message =
+document.getElementById("formMessage");
 
 
-    if(name === ""){
-        showMessage(
-            "registerMessage",
-            "Veuillez entrer votre nom complet.",
-            "error"
-        );
-        return;
-    }
+if(!name || !email || !password){
 
-    if(email === ""){
-        showMessage(
-            "registerMessage",
-            "Veuillez entrer votre adresse e-mail.",
-            "error"
-        );
-        return;
-    }
+showMessage(
+message,
+"Veuillez remplir les champs obligatoires.",
+"error"
+);
 
-    if(password.length < 6){
-        showMessage(
-            "registerMessage",
-            "Le mot de passe doit contenir au moins 6 caractères.",
-            "error"
-        );
-        return;
-    }
+return;
 
+}
 
-    button.disabled = true;
-    button.textContent = "Création en cours...";
+if(password.length < 6){
 
+showMessage(
+message,
+"Le mot de passe doit contenir au moins 6 caractères.",
+"error"
+);
 
-    try{
+return;
 
-        const {
-            data,
-            error
-        } = await supabaseClient.auth.signUp({
+}
 
-            email: email,
+try{
 
-            password: password,
+const {data,error} =
+await supabaseClient.auth.signUp({
 
-            options: {
+email:email,
 
-                data: {
+password:password,
 
-                    full_name: name,
+options:{
+data:{
+full_name:name,
+phone:phone,
+role:role
+}
+}
 
-                    phone: phone,
+});
 
-                    role: role
+if(error){
 
-                }
+showMessage(
+message,
+error.message,
+"error"
+);
 
-            }
+return;
 
-        });
+}
 
+showMessage(
+message,
+"✅ Compte Toppatoo créé avec succès ! Vérifiez votre e-mail si une confirmation est demandée.",
+"success"
+);
 
-        if(error){
+}catch(error){
 
-            throw error;
+showMessage(
+message,
+"Une erreur est survenue : "+error.message,
+"error"
+);
 
-        }
-
-
-        if(data.user){
-
-            showMessage(
-                "registerMessage",
-                "✅ Compte Toppatoo créé avec succès ! Vérifiez votre e-mail si une confirmation est demandée.",
-                "success"
-            );
-
-            button.textContent =
-                "Compte créé ✓";
-
-
-            /*
-             * Si la confirmation e-mail est désactivée,
-             * Supabase crée directement la session.
-             */
-
-            if(data.session){
-
-                setTimeout(function(){
-
-                    closeModal();
-
-                    if(role === "professional"){
-
-                        openModal("professional");
-
-                    }else{
-
-                        openModal("patient");
-
-                    }
-
-                },1200);
-
-            }
-
-        }
-
-    }catch(error){
-
-        console.error(
-            "Erreur Supabase:",
-            error
-        );
-
-        showMessage(
-            "registerMessage",
-            "❌ " + (
-                error.message ||
-                "Impossible de créer le compte."
-            ),
-            "error"
-        );
-
-        button.disabled = false;
-
-        button.textContent =
-            "Créer mon compte";
-
-    }
+}
 
 }
 
 
 /* =========================================================
-   CONNEXION SUPABASE
+   CONNEXION
 ========================================================= */
 
 async function login(){
 
-    const email =
-        document
-        .getElementById("loginEmail")
-        .value
-        .trim();
+const email =
+document
+.getElementById("loginEmail")
+.value
+.trim();
 
-    const password =
-        document
-        .getElementById("loginPassword")
-        .value;
+const password =
+document
+.getElementById("loginPassword")
+.value;
 
-    const button =
-        document
-        .getElementById("loginButton");
-
-
-    if(email === ""){
-
-        showMessage(
-            "loginMessage",
-            "Veuillez entrer votre e-mail.",
-            "error"
-        );
-
-        return;
-
-    }
-
-    if(password === ""){
-
-        showMessage(
-            "loginMessage",
-            "Veuillez entrer votre mot de passe.",
-            "error"
-        );
-
-        return;
-
-    }
+const message =
+document.getElementById("formMessage");
 
 
-    button.disabled = true;
-    button.textContent = "Connexion...";
+if(!email || !password){
 
+showMessage(
+message,
+"Veuillez entrer votre e-mail et votre mot de passe.",
+"error"
+);
 
-    try{
+return;
 
-        const {
-            data,
-            error
-        } =
-        await supabaseClient.auth.signInWithPassword({
+}
 
-            email: email,
+try{
 
-            password: password
+const {data,error} =
+await supabaseClient.auth.signInWithPassword({
 
-        });
+email:email,
+password:password
 
+});
 
-        if(error){
+if(error){
 
-            throw error;
+showMessage(
+message,
+error.message,
+"error"
+);
 
-        }
+return;
 
+}
 
-        showMessage(
-            "loginMessage",
-            "✅ Connexion réussie !",
-            "success"
-        );
+closeModal();
 
+await showDashboard(data.user);
 
-        setTimeout(async function(){
+}catch(error){
 
-            closeModal();
+showMessage(
+message,
+"Erreur de connexion : "+error.message,
+"error"
+);
 
-            const role =
-                data.user?.user_metadata?.role;
-
-
-            if(role === "professional"){
-
-                openModal("professional");
-
-            }else{
-
-                openModal("patient");
-
-            }
-
-        },800);
-
-
-    }catch(error){
-
-        console.error(
-            "Erreur connexion:",
-            error
-        );
-
-        showMessage(
-            "loginMessage",
-            "❌ " + (
-                error.message ||
-                "E-mail ou mot de passe incorrect."
-            ),
-            "error"
-        );
-
-        button.disabled = false;
-
-        button.textContent =
-            "Se connecter";
-
-    }
+}
 
 }
 
 
 /* =========================================================
-   TOPPATOO IA
+   TABLEAU DE BORD
+========================================================= */
+
+async function showDashboard(user){
+
+document
+.getElementById("landingPage")
+.style.display="none";
+
+document
+.getElementById("siteHeader")
+.style.display="none";
+
+document
+.querySelector("footer")
+.style.display="none";
+
+document
+.getElementById("dashboard")
+.style.display="block";
+
+document
+.getElementById("dashboardEmail")
+.textContent =
+user.email || "";
+
+
+const metadata =
+user.user_metadata || {};
+
+const role =
+metadata.role || "patient";
+
+const name =
+metadata.full_name || "Utilisateur";
+
+
+document
+.getElementById("dashboardTitle")
+.textContent =
+"Bienvenue "+name+" 👋";
+
+
+const content =
+document.getElementById("dashboardContent");
+
+
+if(role === "professional"){
+
+content.innerHTML = `
+
+<div class="dashboard-item">
+<strong>👥 Patients</strong>
+<span>Gestion des patients</span>
+</div>
+
+<div class="dashboard-item">
+<strong>👶 Registre Enfants</strong>
+<span>Patients de moins de 18 ans</span>
+</div>
+
+<div class="dashboard-item">
+<strong>🧑 Registre Adultes</strong>
+<span>Patients de 18 ans et plus</span>
+</div>
+
+<div class="dashboard-item">
+<strong>📅 Rendez-vous</strong>
+<span>Organisation du suivi</span>
+</div>
+
+`;
+
+}else{
+
+content.innerHTML = `
+
+<div class="dashboard-item">
+<strong>📁 Mon dossier</strong>
+<span>Consulter les informations de santé accessibles</span>
+</div>
+
+<div class="dashboard-item">
+<strong>📅 Mes rendez-vous</strong>
+<span>Suivre mes rendez-vous</span>
+</div>
+
+<div class="dashboard-item">
+<strong>💊 Mes traitements</strong>
+<span>Informations utiles sur mes traitements</span>
+</div>
+
+<div class="dashboard-item">
+<strong>🔔 Notifications</strong>
+<span>Consulter mes informations importantes</span>
+</div>
+
+`;
+
+}
+
+}
+
+
+/* =========================================================
+   DÉCONNEXION
+========================================================= */
+
+async function logout(){
+
+await supabaseClient.auth.signOut();
+
+document
+.getElementById("dashboard")
+.style.display="none";
+
+document
+.getElementById("landingPage")
+.style.display="block";
+
+document
+.getElementById("siteHeader")
+.style.display="block";
+
+document
+.querySelector("footer")
+.style.display="block";
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================================================
+   SESSION EXISTANTE
+========================================================= */
+
+async function checkSession(){
+
+const {data} =
+await supabaseClient.auth.getSession();
+
+if(data.session){
+
+await showDashboard(
+data.session.user
+);
+
+}
+
+}
+
+
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+function showMessage(element,text,type){
+
+element.textContent=text;
+
+element.className=
+"message "+type;
+
+}
+
+
+/* =========================================================
+   IA
 ========================================================= */
 
 function askAI(){
 
-    const question =
-        document
-        .getElementById("question")
-        .value
-        .trim();
+const question =
+document
+.getElementById("question")
+.value
+.trim();
 
+if(!question){
 
-    if(question === ""){
+alert("Écrivez votre demande.");
 
-        alert(
-            "Écrivez votre demande."
-        );
+return;
 
-        return;
+}
 
-    }
-
-
-    alert(
-        "Toppatoo IA sera connectée à un véritable assistant IA dans une prochaine étape."
-    );
+alert(
+"Toppatoo IA sera connectée à un véritable assistant IA dans une prochaine étape."
+);
 
 }
 
 
 /* =========================================================
-   FERMETURE EN CLIQUANT À L'EXTÉRIEUR
+   FERMETURE MODALE
 ========================================================= */
 
 document
-    .getElementById("modal")
-    .addEventListener(
-        "click",
-        function(event){
+.getElementById("modal")
+.addEventListener(
+"click",
+function(event){
 
-            if(event.target === this){
+if(event.target === this){
 
-                closeModal();
-
-            }
-
-        }
-    );
-
-
-/* =========================================================
-   VERIFICATION DE LA SESSION
-========================================================= */
-
-async function checkCurrentSession(){
-
-    const {
-        data
-    } =
-    await supabaseClient.auth.getSession();
-
-
-    if(data.session){
-
-        console.log(
-            "Utilisateur connecté :",
-            data.session.user.email
-        );
-
-    }
+closeModal();
 
 }
 
+}
+);
 
-checkCurrentSession();
+
+/* =========================================================
+   LANCEMENT
+========================================================= */
+
+checkSession();
 
 </script>
 
