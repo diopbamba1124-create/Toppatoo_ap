@@ -9,666 +9,806 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
 :root{
---primary:#087f78;
---primary-dark:#05645f;
---primary-light:#e8f7f5;
---text:#173b3a;
---muted:#6c817f;
---background:#f7fbfa;
---white:#fff;
---border:#e2eeec;
---shadow:0 18px 50px rgba(8,127,120,.10);
+  --primary:#087f78;
+  --primary-dark:#05645f;
+  --primary-light:#e8f7f5;
+  --text:#173b3a;
+  --muted:#6c817f;
+  --background:#f7fbfa;
+  --white:#fff;
+  --border:#e2eeec;
+  --danger:#c62828;
+  --shadow:0 18px 50px rgba(8,127,120,.10);
 }
 
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+}
 
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:var(--background);
-color:var(--text);
-line-height:1.6
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--background);
+  color:var(--text);
+  line-height:1.6;
 }
 
-button{font-family:inherit;cursor:pointer}
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
 
 .container{
-width:min(1120px,92%);
-margin:auto
+  width:min(1120px,92%);
+  margin:auto;
 }
 
+/* HEADER */
+
 header{
-position:sticky;
-top:0;
-z-index:1000;
-background:rgba(255,255,255,.96);
-backdrop-filter:blur(12px);
-border-bottom:1px solid var(--border)
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
 }
 
 .navbar{
-min-height:74px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px
+  min-height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
 
 .logo{
-display:flex;
-align-items:center;
-text-decoration:none;
-min-width:150px
+  display:flex;
+  align-items:center;
+  text-decoration:none;
 }
 
 .logo-image{
-height:52px;
-width:auto;
-max-width:210px;
-object-fit:contain;
-display:block
+  height:52px;
+  width:auto;
+  max-width:210px;
+  object-fit:contain;
 }
 
 .logo-fallback{
-display:none;
-color:var(--primary);
-font-size:24px;
-font-weight:900;
-letter-spacing:-1px
+  color:var(--primary);
+  font-size:24px;
+  font-weight:900;
+  display:none;
 }
 
 .nav-links{
-display:flex;
-gap:28px
+  display:flex;
+  gap:28px;
 }
 
 .nav-links a{
-text-decoration:none;
-color:#496361;
-font-size:14px;
-font-weight:600
+  text-decoration:none;
+  color:#496361;
+  font-size:14px;
+  font-weight:600;
 }
 
-.nav-links a:hover{color:var(--primary)}
+.nav-links a:hover{
+  color:var(--primary);
+}
 
 .nav-buttons{
-display:flex;
-gap:10px
+  display:flex;
+  gap:10px;
 }
+
+/* BOUTONS */
 
 .btn{
-border:0;
-border-radius:13px;
-padding:12px 18px;
-font-weight:700;
-font-size:14px;
-transition:.2s ease
+  border:0;
+  border-radius:13px;
+  padding:12px 18px;
+  font-weight:700;
+  font-size:14px;
+  transition:.2s ease;
 }
 
-.btn:hover{transform:translateY(-2px)}
+.btn:hover{
+  transform:translateY(-2px);
+}
 
 .btn-primary{
-background:var(--primary);
-color:white
+  background:var(--primary);
+  color:white;
 }
 
-.btn-primary:hover{background:var(--primary-dark)}
+.btn-primary:hover{
+  background:var(--primary-dark);
+}
 
 .btn-secondary{
-background:white;
-color:var(--primary);
-border:1px solid #c8dfdc
+  background:white;
+  color:var(--primary);
+  border:1px solid #c8dfdc;
 }
 
 .btn-light{
-background:white;
-color:var(--primary)
+  background:white;
+  color:var(--primary);
 }
 
+/* HERO */
+
 .hero{
-padding:85px 0 75px
+  padding:85px 0 75px;
 }
 
 .hero-grid{
-display:grid;
-grid-template-columns:1.05fr .95fr;
-align-items:center;
-gap:65px
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  gap:65px;
 }
 
 .badge{
-display:inline-flex;
-align-items:center;
-gap:8px;
-background:var(--primary-light);
-color:var(--primary);
-padding:8px 14px;
-border-radius:30px;
-font-size:13px;
-font-weight:700;
-margin-bottom:22px
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--primary-light);
+  color:var(--primary);
+  padding:8px 14px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:22px;
 }
 
 .hero h1{
-font-size:clamp(44px,6vw,70px);
-line-height:1.03;
-letter-spacing:-2.5px;
-margin-bottom:23px
+  font-size:clamp(44px,6vw,70px);
+  line-height:1.03;
+  letter-spacing:-2.5px;
+  margin-bottom:23px;
 }
 
-.hero h1 span{color:var(--primary)}
+.hero h1 span{
+  color:var(--primary);
+}
 
 .hero-description{
-color:var(--muted);
-font-size:18px;
-max-width:600px;
-margin-bottom:30px
+  color:var(--muted);
+  font-size:18px;
+  max-width:600px;
+  margin-bottom:30px;
 }
 
 .hero-actions{
-display:flex;
-flex-wrap:wrap;
-gap:12px
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
 }
 
-.hero-actions .btn{padding:14px 20px}
+.hero-actions .btn{
+  padding:14px 20px;
+}
+
+/* CARTE SANTE */
 
 .health-card{
-background:white;
-border:1px solid var(--border);
-border-radius:30px;
-padding:24px;
-box-shadow:var(--shadow)
+  background:white;
+  border:1px solid var(--border);
+  border-radius:30px;
+  padding:24px;
+  box-shadow:var(--shadow);
 }
 
 .health-card-header{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:22px
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:22px;
 }
 
-.health-card-title{font-weight:800}
+.health-card-title{
+  font-weight:800;
+}
 
 .active{
-background:#e7f8ef;
-color:#278154;
-padding:7px 11px;
-border-radius:30px;
-font-size:12px;
-font-weight:700
+  background:#e7f8ef;
+  color:#278154;
+  padding:7px 11px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:700;
 }
 
 .profile{
-display:flex;
-align-items:center;
-gap:14px;
-background:var(--primary-light);
-padding:18px;
-border-radius:20px;
-margin-bottom:15px
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:var(--primary-light);
+  padding:18px;
+  border-radius:20px;
+  margin-bottom:15px;
 }
 
 .avatar{
-width:52px;
-height:52px;
-border-radius:17px;
-display:grid;
-place-items:center;
-background:white;
-font-size:24px
+  width:52px;
+  height:52px;
+  border-radius:17px;
+  display:grid;
+  place-items:center;
+  background:white;
+  font-size:24px;
 }
 
-.profile strong{display:block}
-.profile small{color:var(--muted)}
+.profile strong{
+  display:block;
+}
+
+.profile small{
+  color:var(--muted);
+}
 
 .health-items{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
 
 .health-item{
-background:white;
-border:1px solid var(--border);
-border-radius:18px;
-padding:17px
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:17px;
 }
 
 .health-icon{
-font-size:22px;
-margin-bottom:8px
+  font-size:22px;
+  margin-bottom:8px;
 }
 
 .health-item strong{
-display:block;
-font-size:15px
+  display:block;
+  font-size:15px;
 }
 
-.health-item small{color:var(--muted)}
+.health-item small{
+  color:var(--muted);
+}
 
-.section{padding:80px 0}
+/* SECTIONS */
+
+.section{
+  padding:80px 0;
+}
 
 .section-heading{
-text-align:center;
-max-width:700px;
-margin:0 auto 45px
+  text-align:center;
+  max-width:700px;
+  margin:0 auto 45px;
 }
 
 .section-heading .tag{
-color:var(--primary);
-font-weight:800;
-font-size:13px;
-text-transform:uppercase;
-letter-spacing:1px
+  color:var(--primary);
+  font-weight:800;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:1px;
 }
 
 .section-heading h2{
-font-size:38px;
-line-height:1.15;
-margin:10px 0 14px
+  font-size:38px;
+  line-height:1.15;
+  margin:10px 0 14px;
 }
 
-.section-heading p{color:var(--muted)}
+.section-heading p{
+  color:var(--muted);
+}
+
+/* FEATURES */
 
 .features{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:17px
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:17px;
 }
 
 .feature{
-background:white;
-border:1px solid var(--border);
-border-radius:23px;
-padding:25px
+  background:white;
+  border:1px solid var(--border);
+  border-radius:23px;
+  padding:25px;
 }
 
 .feature-icon{
-width:52px;
-height:52px;
-border-radius:16px;
-display:grid;
-place-items:center;
-background:var(--primary-light);
-font-size:24px;
-margin-bottom:19px
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:var(--primary-light);
+  font-size:24px;
+  margin-bottom:19px;
 }
 
-.feature h3{margin-bottom:8px}
-.feature p{color:var(--muted);font-size:14px}
+.feature h3{
+  margin-bottom:8px;
+}
+
+.feature p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* UTILISATEURS */
 
 .audience{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
 }
 
 .audience-card{
-border-radius:28px;
-padding:35px;
-background:white;
-border:1px solid var(--border)
+  border-radius:28px;
+  padding:35px;
+  background:white;
+  border:1px solid var(--border);
 }
 
 .audience-card.professional{
-background:var(--primary);
-color:white
+  background:var(--primary);
+  color:white;
 }
 
 .audience-icon{
-font-size:35px;
-margin-bottom:18px
+  font-size:35px;
+  margin-bottom:18px;
 }
 
 .audience-card h3{
-font-size:25px;
-margin-bottom:10px
+  font-size:25px;
+  margin-bottom:10px;
 }
 
 .audience-card p{
-margin-bottom:22px;
-color:var(--muted)
+  margin-bottom:22px;
+  color:var(--muted);
 }
 
-.professional p{color:rgba(255,255,255,.78)}
+.professional p{
+  color:rgba(255,255,255,.78);
+}
 
-.ai-section{background:#eef8f6}
+/* IA */
+
+.ai-section{
+  background:#eef8f6;
+}
 
 .ai-card{
-display:grid;
-grid-template-columns:.8fr 1.2fr;
-align-items:center;
-gap:45px;
-background:white;
-border:1px solid var(--border);
-border-radius:30px;
-padding:42px;
-box-shadow:var(--shadow)
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  align-items:center;
+  gap:45px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:30px;
+  padding:42px;
+  box-shadow:var(--shadow);
 }
 
 .ai-symbol{
-min-height:230px;
-border-radius:25px;
-background:var(--primary-light);
-display:grid;
-place-items:center;
-font-size:80px
+  min-height:230px;
+  border-radius:25px;
+  background:var(--primary-light);
+  display:grid;
+  place-items:center;
+  font-size:80px;
 }
 
 .ai-card h2{
-font-size:35px;
-margin-bottom:12px
+  font-size:35px;
+  margin-bottom:12px;
 }
 
 .ai-card p{
-color:var(--muted);
-margin-bottom:20px
+  color:var(--muted);
+  margin-bottom:20px;
 }
 
-.cta{padding:75px 0}
+/* CTA */
+
+.cta{
+  padding:75px 0;
+}
 
 .cta-box{
-background:var(--primary);
-color:white;
-border-radius:30px;
-padding:48px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:30px
+  background:var(--primary);
+  color:white;
+  border-radius:30px;
+  padding:48px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
 }
 
 .cta-box h2{
-font-size:34px;
-line-height:1.2
+  font-size:34px;
+  line-height:1.2;
 }
 
 .cta-box p{
-margin-top:8px;
-opacity:.82
+  margin-top:8px;
+  opacity:.82;
 }
 
+/* FOOTER */
+
 footer{
-background:white;
-border-top:1px solid var(--border);
-padding:40px 0
+  background:white;
+  border-top:1px solid var(--border);
+  padding:40px 0;
 }
 
 .footer-content{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
 
 .footer-brand{
-color:var(--primary);
-font-weight:800
+  color:var(--primary);
+  font-weight:800;
 }
 
 .footer-text{
-color:var(--muted);
-font-size:13px
+  color:var(--muted);
+  font-size:13px;
 }
+
+/* MODALE */
 
 .modal{
-display:none;
-position:fixed;
-inset:0;
-z-index:2000;
-background:rgba(23,59,58,.45);
-padding:20px;
-align-items:center;
-justify-content:center
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  background:rgba(23,59,58,.45);
+  padding:20px;
+  align-items:center;
+  justify-content:center;
 }
 
-.modal.show{display:flex}
+.modal.show{
+  display:flex;
+}
 
 .modal-box{
-width:min(620px,100%);
-max-height:92vh;
-overflow-y:auto;
-background:white;
-border-radius:25px;
-padding:30px;
-box-shadow:0 25px 80px rgba(0,0,0,.18);
-position:relative
+  width:min(620px,100%);
+  max-height:92vh;
+  overflow-y:auto;
+  background:white;
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 25px 80px rgba(0,0,0,.18);
+  position:relative;
 }
 
 .modal-close{
-position:absolute;
-top:15px;
-right:18px;
-border:0;
-background:transparent;
-font-size:25px;
-color:var(--muted)
+  position:absolute;
+  top:15px;
+  right:18px;
+  border:0;
+  background:transparent;
+  font-size:25px;
+  color:var(--muted);
 }
 
-.modal-box h2{margin-bottom:8px}
+.modal-box h2{
+  margin-bottom:8px;
+}
 
 .modal-box>p{
-color:var(--muted);
-margin-bottom:20px
+  color:var(--muted);
+  margin-bottom:20px;
 }
 
-.form-group{margin-bottom:16px}
+.form-group{
+  margin-bottom:16px;
+}
 
 .form-group label{
-display:block;
-font-size:14px;
-font-weight:700;
-margin-bottom:6px
+  display:block;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:6px;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea{
-width:100%;
-padding:13px;
-border:1px solid var(--border);
-border-radius:12px;
-font-size:15px;
-outline:none;
-font-family:inherit
+  width:100%;
+  padding:13px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  font-size:15px;
+  outline:none;
+  font-family:inherit;
 }
 
 .form-group textarea{
-min-height:90px;
-resize:vertical
+  min-height:90px;
+  resize:vertical;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus{
-border-color:var(--primary)
+  border-color:var(--primary);
 }
 
 .modal-actions{
-display:flex;
-gap:10px;
-margin-top:20px
+  display:flex;
+  gap:10px;
+  margin-top:20px;
 }
 
-.modal-actions .btn{flex:1}
+.modal-actions .btn{
+  flex:1;
+}
+
+/* DASHBOARD */
 
 .dashboard{
-display:none;
-padding:45px 0 80px
+  display:none;
+  padding:45px 0 80px;
 }
 
-.dashboard.show{display:block}
+.dashboard.show{
+  display:block;
+}
 
 .dashboard-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px;
-margin-bottom:25px
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  margin-bottom:25px;
 }
 
-.dashboard-header h2{font-size:32px}
+.dashboard-header h2{
+  font-size:32px;
+}
 
-.dashboard-header p{color:var(--muted)}
+.dashboard-header p{
+  color:var(--muted);
+}
 
 .dashboard-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:16px;
-margin-bottom:25px
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:25px;
 }
 
 .dashboard-card{
-background:white;
-border:1px solid var(--border);
-border-radius:22px;
-padding:23px;
-cursor:pointer;
-transition:.2s
+  background:white;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:23px;
+  cursor:pointer;
+  transition:.2s;
 }
 
 .dashboard-card:hover{
-transform:translateY(-3px);
-box-shadow:var(--shadow)
+  transform:translateY(-3px);
+  box-shadow:var(--shadow);
 }
 
 .dashboard-card .big{
-font-size:30px;
-margin-bottom:10px
+  font-size:30px;
+  margin-bottom:10px;
 }
 
-.dashboard-card h3{margin-bottom:5px}
+.dashboard-card h3{
+  margin-bottom:5px;
+}
 
 .dashboard-card p{
-color:var(--muted);
-font-size:13px
+  color:var(--muted);
+  font-size:13px;
 }
 
 .list-box{
-background:white;
-border:1px solid var(--border);
-border-radius:24px;
-padding:25px
+  background:white;
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:25px;
 }
 
-.list-box h3{margin-bottom:18px}
+.list-box h3{
+  margin-bottom:18px;
+}
 
 .patient-row{
-border:1px solid var(--border);
-border-radius:15px;
-padding:15px;
-margin-bottom:10px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:15px
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
 }
 
 .patient-row small{
-display:block;
-color:var(--muted)
+  display:block;
+  color:var(--muted);
 }
 
 .empty{
-text-align:center;
-padding:30px;
-color:var(--muted)
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
 }
 
 .status{
-display:inline-block;
-padding:6px 10px;
-border-radius:20px;
-font-size:12px;
-font-weight:700
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
 }
 
 .status.green{
-background:#e7f8ef;
-color:#278154
+  background:#e7f8ef;
+  color:#278154;
 }
 
 .status.orange{
-background:#fff3df;
-color:#a56800
+  background:#fff3df;
+  color:#a56800;
 }
 
 .status.red{
-background:#ffe8e8;
-color:#b52d2d
+  background:#ffe8e8;
+  color:#b52d2d;
 }
+
+/* MESSAGE */
+
+.message{
+  padding:12px 14px;
+  border-radius:12px;
+  margin-bottom:15px;
+  font-size:14px;
+  display:none;
+}
+
+.message.success{
+  display:block;
+  background:#e7f8ef;
+  color:#23754d;
+}
+
+.message.error{
+  display:block;
+  background:#ffe8e8;
+  color:#a62626;
+}
+
+/* MOBILE */
 
 @media(max-width:900px){
-.nav-links{display:none}
 
-.hero-grid,
-.ai-card{
-grid-template-columns:1fr
-}
+  .nav-links{
+    display:none;
+  }
 
-.features{grid-template-columns:1fr 1fr}
+  .hero-grid,
+  .ai-card{
+    grid-template-columns:1fr;
+  }
 
-.dashboard-grid{grid-template-columns:1fr 1fr}
+  .features{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .dashboard-grid{
+    grid-template-columns:1fr 1fr;
+  }
 }
 
 @media(max-width:600px){
 
-.navbar{min-height:66px}
+  .navbar{
+    min-height:66px;
+  }
 
-.logo-image{
-height:44px;
-max-width:165px
-}
+  .logo-image{
+    height:44px;
+    max-width:165px;
+  }
 
-.logo-fallback{font-size:21px}
+  .nav-buttons .btn-secondary{
+    display:none;
+  }
 
-.nav-buttons .btn-secondary{display:none}
+  .hero{
+    padding:50px 0;
+  }
 
-.hero{padding:50px 0}
+  .hero h1{
+    font-size:45px;
+  }
 
-.hero h1{font-size:45px}
+  .hero-description{
+    font-size:16px;
+  }
 
-.hero-description{font-size:16px}
+  .hero-actions{
+    flex-direction:column;
+  }
 
-.hero-actions{flex-direction:column}
+  .hero-actions .btn{
+    width:100%;
+  }
 
-.hero-actions .btn{width:100%}
+  .features,
+  .audience,
+  .health-items,
+  .dashboard-grid{
+    grid-template-columns:1fr;
+  }
 
-.features,
-.audience,
-.health-items,
-.dashboard-grid{
-grid-template-columns:1fr
-}
+  .section{
+    padding:55px 0;
+  }
 
-.section{padding:55px 0}
+  .section-heading h2,
+  .ai-card h2{
+    font-size:29px;
+  }
 
-.section-heading h2,
-.ai-card h2{font-size:29px}
+  .ai-card,
+  .audience-card{
+    padding:27px;
+  }
 
-.ai-card,
-.audience-card{padding:27px}
+  .cta-box{
+    padding:32px;
+    flex-direction:column;
+    align-items:flex-start;
+  }
 
-.cta-box{
-padding:32px;
-flex-direction:column;
-align-items:flex-start
-}
+  .cta-box h2{
+    font-size:28px;
+  }
 
-.cta-box h2{font-size:28px}
+  .footer-content{
+    flex-direction:column;
+    text-align:center;
+  }
 
-.footer-content{
-flex-direction:column;
-text-align:center
-}
-
-.dashboard-header{
-flex-direction:column;
-align-items:flex-start
-}
+  .dashboard-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
 }
 </style>
 </head>
@@ -676,18 +816,21 @@ align-items:flex-start
 <body>
 
 <header>
+
 <div class="container navbar">
 
 <a href="#accueil" class="logo">
 
 <img
 src="./fichier_00000000f0208210920f9ffed57695df.png"
-alt="Logo Toppatoo — Sama Wergu Yaram"
+alt="Logo Toppatoo"
 class="logo-image"
 onerror="this.style.display='none';document.getElementById('logoFallback').style.display='inline-block';"
 >
 
-<span id="logoFallback" class="logo-fallback">TOPPATOO</span>
+<span id="logoFallback" class="logo-fallback">
+TOPPATOO
+</span>
 
 </a>
 
@@ -700,11 +843,15 @@ onerror="this.style.display='none';document.getElementById('logoFallback').style
 
 <div class="nav-buttons">
 
-<button class="btn btn-secondary" onclick="openModal('login')">
+<button
+class="btn btn-secondary"
+onclick="openModal('login')">
 Se connecter
 </button>
 
-<button class="btn btn-primary" onclick="openModal('register')">
+<button
+class="btn btn-primary"
+onclick="openModal('register')">
 Créer un compte
 </button>
 
@@ -712,6 +859,7 @@ Créer un compte
 
 </div>
 </header>
+
 
 <main>
 
@@ -721,7 +869,9 @@ Créer un compte
 
 <div>
 
-<div class="badge">🩺 Sama Wergu Yaram</div>
+<div class="badge">
+🩺 Sama Wergu Yaram
+</div>
 
 <h1>
 Votre santé,<br>
@@ -736,12 +886,14 @@ simplifier le suivi et améliorer l'expérience de santé.
 
 <div class="hero-actions">
 
-<button class="btn btn-primary"
+<button
+class="btn btn-primary"
 onclick="openModal('professional')">
 👨‍⚕️ Je suis professionnel
 </button>
 
-<button class="btn btn-secondary"
+<button
+class="btn btn-secondary"
 onclick="openModal('patient')">
 👤 Je suis patient
 </button>
@@ -750,20 +902,37 @@ onclick="openModal('patient')">
 
 </div>
 
+
 <div class="health-card">
 
 <div class="health-card-header">
-<div class="health-card-title">Mon espace santé</div>
-<div class="active">● Actif</div>
+
+<div class="health-card-title">
+Mon espace santé
+</div>
+
+<div class="active">
+● Actif
+</div>
+
 </div>
 
 <div class="profile">
 
-<div class="avatar">👤</div>
+<div class="avatar">
+👤
+</div>
 
 <div>
-<strong id="welcomeName">Bienvenue sur Toppatoo</strong>
-<small>Sama Wergu Yaram</small>
+
+<strong id="welcomeName">
+Bienvenue sur Toppatoo
+</strong>
+
+<small>
+Sama Wergu Yaram
+</small>
+
 </div>
 
 </div>
@@ -788,10 +957,19 @@ onclick="openModal('patient')">
 <small>Informations utiles</small>
 </div>
 
-<div class="health-item">
+<div
+class="health-item"
+onclick="openModal('ai')"
+style="cursor:pointer">
+
 <div class="health-icon">🤖</div>
+
 <strong>Toppatoo IA</strong>
-<small>Assistant intelligent</small>
+
+<small>
+Assistant intelligent
+</small>
+
 </div>
 
 </div>
@@ -808,7 +986,9 @@ onclick="openModal('patient')">
 
 <div class="section-heading">
 
-<div class="tag">Une expérience simple</div>
+<div class="tag">
+Une expérience simple
+</div>
 
 <h2>
 Tout ce dont vous avez besoin,
@@ -827,28 +1007,40 @@ de santé plus clair et plus accessible.
 <div class="feature">
 <div class="feature-icon">📁</div>
 <h3>Dossier de santé</h3>
-<p>Centraliser les informations importantes du parcours de santé.</p>
+<p>
+Centraliser les informations importantes
+du parcours de santé.
+</p>
 </div>
 
 <div class="feature">
 <div class="feature-icon">📅</div>
 <h3>Rendez-vous</h3>
-<p>Organiser et suivre facilement les rendez-vous.</p>
+<p>
+Organiser et suivre facilement les rendez-vous.
+</p>
 </div>
 
 <div class="feature">
 <div class="feature-icon">🩺</div>
 <h3>Suivi professionnel</h3>
-<p>Faciliter le suivi entre professionnels et patients.</p>
+<p>
+Faciliter le suivi entre professionnels
+et patients.
+</p>
 </div>
 
 <div class="feature">
 <div class="feature-icon">🔔</div>
 <h3>Notifications</h3>
-<p>Recevoir les informations importantes au bon moment.</p>
+<p>
+Recevoir les informations importantes
+au bon moment.
+</p>
 </div>
 
 </div>
+
 </div>
 </section>
 
@@ -859,7 +1051,9 @@ de santé plus clair et plus accessible.
 
 <div class="section-heading">
 
-<div class="tag">Pour tout le monde</div>
+<div class="tag">
+Pour tout le monde
+</div>
 
 <h2>
 Une plateforme pensée pour
@@ -872,34 +1066,45 @@ patients et professionnels.
 
 <div class="audience-card professional">
 
-<div class="audience-icon">👨‍⚕️</div>
+<div class="audience-icon">
+👨‍⚕️
+</div>
 
-<h3>Pour les professionnels</h3>
+<h3>
+Pour les professionnels
+</h3>
 
 <p>
 Gérer les patients, le registre enfants,
 les consultations générales et les rendez-vous.
 </p>
 
-<button class="btn btn-light"
+<button
+class="btn btn-light"
 onclick="openModal('professional')">
 Accéder à l'espace
 </button>
 
 </div>
 
+
 <div class="audience-card">
 
-<div class="audience-icon">👤</div>
+<div class="audience-icon">
+👤
+</div>
 
-<h3>Pour les patients</h3>
+<h3>
+Pour les patients
+</h3>
 
 <p>
 Un espace personnel pour suivre les informations
 de santé qui leur sont accessibles.
 </p>
 
-<button class="btn btn-primary"
+<button
+class="btn btn-primary"
 onclick="openModal('patient')">
 Découvrir l'espace
 </button>
@@ -907,6 +1112,7 @@ Découvrir l'espace
 </div>
 
 </div>
+
 </div>
 </section>
 
@@ -917,13 +1123,15 @@ Découvrir l'espace
 
 <div class="ai-card">
 
-<div class="ai-symbol">🤖</div>
+<div class="ai-symbol">
+🤖
+</div>
 
 <div>
 
-<div class="tag"
+<div
 style="color:#087f78;font-weight:800;">
-Toppatoo IA
+TOPPATOO IA
 </div>
 
 <h2>
@@ -932,12 +1140,14 @@ au service du professionnel.
 </h2>
 
 <p>
-Toppatoo IA sera conçue comme un assistant destiné
-à aider les professionnels à organiser et analyser
-les informations disponibles, sans remplacer leur jugement clinique.
+Toppatoo IA est conçue comme un assistant
+destiné à aider les professionnels à organiser
+et analyser les informations disponibles,
+sans remplacer leur jugement clinique.
 </p>
 
-<button class="btn btn-primary"
+<button
+class="btn btn-primary"
 onclick="openModal('ai')">
 Découvrir Toppatoo IA
 </button>
@@ -945,6 +1155,7 @@ Découvrir Toppatoo IA
 </div>
 
 </div>
+
 </div>
 </section>
 
@@ -962,94 +1173,146 @@ Bienvenue dans une nouvelle
 expérience de santé.
 </h2>
 
-<p>Toppatoo — Sama Wergu Yaram.</p>
+<p>
+Toppatoo — Sama Wergu Yaram.
+</p>
 
 </div>
 
-<button class="btn btn-light"
+<button
+class="btn btn-light"
 onclick="openModal('register')">
 Commencer
 </button>
 
 </div>
+
 </div>
 </section>
 
 
-<section class="dashboard" id="dashboard">
+<section
+class="dashboard"
+id="dashboard">
 
 <div class="container">
 
 <div class="dashboard-header">
 
 <div>
-<h2>👨‍⚕️ Espace Professionnel</h2>
-<p id="dashboardUser">Bienvenue sur votre espace Toppatoo.</p>
+
+<h2>
+👨‍⚕️ Espace Professionnel
+</h2>
+
+<p id="dashboardUser">
+Bienvenue sur votre espace Toppatoo.
+</p>
+
 </div>
 
-<button class="btn btn-secondary" onclick="logout()">
+<button
+class="btn btn-secondary"
+onclick="logout()">
 Se déconnecter
 </button>
 
 </div>
 
+
 <div class="dashboard-grid">
 
-<div class="dashboard-card"
+<div
+class="dashboard-card"
 onclick="openModal('child')">
 
-<div class="big">👶</div>
+<div class="big">
+👶
+</div>
 
-<h3>Registre Enfants</h3>
+<h3>
+Registre Enfants
+</h3>
 
-<p>Enfants de 0 à 5 ans et suivi vaccinal.</p>
+<p>
+Enregistrer un enfant de 0 à 5 ans.
+</p>
 
 </div>
 
-<div class="dashboard-card"
+
+<div
+class="dashboard-card"
 onclick="openModal('consultation')">
 
-<div class="big">🩺</div>
+<div class="big">
+🩺
+</div>
 
-<h3>Consultation générale</h3>
+<h3>
+Consultation générale
+</h3>
 
-<p>Créer et enregistrer une consultation.</p>
+<p>
+Créer et enregistrer une consultation.
+</p>
 
 </div>
 
-<div class="dashboard-card"
+
+<div
+class="dashboard-card"
 onclick="loadChildren()">
 
-<div class="big">👥</div>
+<div class="big">
+👥
+</div>
 
-<h3>Patients enfants</h3>
+<h3>
+Patients enfants
+</h3>
 
-<p>Voir les enfants enregistrés.</p>
+<p>
+Voir les enfants enregistrés.
+</p>
 
 </div>
 
-<div class="dashboard-card"
+
+<div
+class="dashboard-card"
 onclick="loadConsultations()">
 
-<div class="big">📋</div>
+<div class="big">
+📋
+</div>
 
-<h3>Consultations</h3>
+<h3>
+Consultations
+</h3>
 
-<p>Voir les consultations enregistrées.</p>
+<p>
+Voir les consultations enregistrées.
+</p>
 
 </div>
 
 </div>
 
-<div class="list-box" id="dataList">
+
+<div
+class="list-box"
+id="dataList">
 
 <div class="empty">
-Sélectionnez un registre pour afficher les données.
+Sélectionnez une fonctionnalité
+pour afficher les données.
 </div>
 
 </div>
 
 </div>
+
 </section>
 
 </main>
@@ -1072,22 +1335,31 @@ TOPPATOO — Sama Wergu Yaram
 </footer>
 
 
-<div class="modal" id="modal">
+<!-- MODALE -->
+
+<div
+class="modal"
+id="modal">
 
 <div class="modal-box">
 
-<button class="modal-close" onclick="closeModal()">×</button>
+<button
+class="modal-close"
+onclick="closeModal()">
+×
+</button>
 
 <div id="modalContent"></div>
 
 </div>
+
 </div>
 
 
 <script>
 
 /* =====================================================
-   SUPABASE
+   CONFIGURATION SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
@@ -1104,93 +1376,207 @@ SUPABASE_ANON_KEY
 
 
 /* =====================================================
+   OUTILS
+===================================================== */
+
+function escapeHtml(value){
+
+if(value === null || value === undefined){
+return "";
+}
+
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+}
+
+
+function closeModal(){
+
+document
+.getElementById("modal")
+.classList.remove("show");
+
+}
+
+
+function showMessage(message,type="error"){
+
+const old =
+document.getElementById("globalMessage");
+
+if(old){
+old.remove();
+}
+
+const div=document.createElement("div");
+
+div.id="globalMessage";
+div.className=
+"message "+type;
+
+div.textContent=message;
+
+const box=document.querySelector(".modal-box");
+
+if(box){
+box.insertBefore(div,box.firstChild);
+}
+
+setTimeout(()=>{
+if(div){
+div.remove();
+}
+},5000);
+}
+
+
+/* =====================================================
    MODALE
 ===================================================== */
 
 function openModal(type){
 
-const modal=document.getElementById("modal");
-const content=document.getElementById("modalContent");
+const modal =
+document.getElementById("modal");
+
+const content =
+document.getElementById("modalContent");
+
+
+/* CRÉATION COMPTE */
 
 if(type==="register"){
 
 content.innerHTML=`
 
 <h2>📝 Créer un compte</h2>
-<p>Créez votre compte Toppatoo.</p>
+
+<p>
+Créez votre compte Toppatoo.
+</p>
 
 <div class="form-group">
-<label>Nom complet</label>
-<input id="name" type="text" placeholder="Nom et prénom">
+<label>Nom complet *</label>
+<input
+id="name"
+type="text"
+placeholder="Nom et prénom">
 </div>
 
 <div class="form-group">
 <label>Téléphone</label>
-<input id="phone" type="tel" placeholder="+221 ...">
+<input
+id="phone"
+type="tel"
+placeholder="+221 ...">
 </div>
 
 <div class="form-group">
-<label>Email</label>
-<input id="email" type="email" placeholder="votre@email.com">
+<label>Email *</label>
+<input
+id="email"
+type="email"
+placeholder="votre@email.com">
 </div>
 
 <div class="form-group">
-<label>Mot de passe</label>
-<input id="password" type="password" placeholder="Minimum 6 caractères">
+<label>Mot de passe *</label>
+<input
+id="password"
+type="password"
+placeholder="Minimum 6 caractères">
 </div>
 
 <div class="form-group">
-<label>Type de compte</label>
+<label>Type de compte *</label>
 
 <select id="role">
-<option value="patient">👤 Patient</option>
-<option value="professional">👨‍⚕️ Professionnel</option>
+
+<option value="patient">
+👤 Patient
+</option>
+
+<option value="professional">
+👨‍⚕️ Professionnel
+</option>
+
 </select>
 
 </div>
 
 <div class="modal-actions">
 
-<button class="btn btn-primary"
+<button
+class="btn btn-primary"
 onclick="createAccount()">
+
 Créer mon compte
+
 </button>
 
 </div>
+
 `;
 
 }
+
+
+/* CONNEXION */
 
 else if(type==="login"){
 
 content.innerHTML=`
 
 <h2>🔐 Se connecter</h2>
-<p>Accédez à votre espace Toppatoo.</p>
+
+<p>
+Accédez à votre espace Toppatoo.
+</p>
 
 <div class="form-group">
+
 <label>Email</label>
-<input id="loginEmail" type="email"
+
+<input
+id="loginEmail"
+type="email"
 placeholder="votre@email.com">
+
 </div>
 
 <div class="form-group">
+
 <label>Mot de passe</label>
-<input id="loginPassword" type="password"
+
+<input
+id="loginPassword"
+type="password"
 placeholder="Votre mot de passe">
+
 </div>
 
 <div class="modal-actions">
 
-<button class="btn btn-primary"
+<button
+class="btn btn-primary"
 onclick="login()">
+
 Se connecter
+
 </button>
 
 </div>
+
 `;
 
 }
+
+
+/* PROFESSIONNEL */
 
 else if(type==="professional"){
 
@@ -1199,20 +1585,50 @@ content.innerHTML=`
 <h2>👨‍⚕️ Espace Professionnel</h2>
 
 <p>
-Connectez-vous pour accéder à votre tableau de bord professionnel.
+Connectez-vous pour accéder à votre tableau
+de bord professionnel.
 </p>
+
+<div class="health-item">
+
+<strong>
+Gestion des patients
+</strong>
+
+<small>
+Registre enfants et consultations.
+</small>
+
+</div>
+
+<br>
 
 <div class="modal-actions">
 
-<button class="btn btn-primary"
+<button
+class="btn btn-primary"
 onclick="openModal('login')">
+
 Se connecter
+
+</button>
+
+<button
+class="btn btn-secondary"
+onclick="openModal('register')">
+
+Créer un compte
+
 </button>
 
 </div>
+
 `;
 
 }
+
+
+/* PATIENT */
 
 else if(type==="patient"){
 
@@ -1221,13 +1637,16 @@ content.innerHTML=`
 <h2>👤 Espace Patient</h2>
 
 <p>
-L'espace patient Toppatoo est en cours de développement.
+Votre espace patient vous permettra de consulter
+les informations de santé qui vous sont accessibles.
 </p>
 
 <div class="health-item">
 📁
 <strong>Mon dossier</strong>
-<small>Votre suivi de santé</small>
+<small>
+Consulter mes informations de santé.
+</small>
 </div>
 
 <br>
@@ -1235,12 +1654,39 @@ L'espace patient Toppatoo est en cours de développement.
 <div class="health-item">
 📅
 <strong>Mes rendez-vous</strong>
-<small>Organiser votre suivi</small>
+<small>
+Consulter mes rendez-vous.
+</small>
+</div>
+
+<br>
+
+<div class="health-item">
+💊
+<strong>Mes traitements</strong>
+<small>
+Consulter les informations disponibles.
+</small>
+</div>
+
+<div class="modal-actions">
+
+<button
+class="btn btn-primary"
+onclick="openModal('login')">
+
+Se connecter
+
+</button>
+
 </div>
 
 `;
 
 }
+
+
+/* IA */
 
 else if(type==="ai"){
 
@@ -1249,31 +1695,43 @@ content.innerHTML=`
 <h2>🤖 Toppatoo IA</h2>
 
 <p>
-Assistant destiné à accompagner les professionnels de santé.
+Assistant destiné à accompagner les professionnels
+de santé.
 </p>
 
 <div class="form-group">
 
-<label>Votre demande</label>
+<label>
+Votre demande
+</label>
 
-<textarea id="question"
+<textarea
+id="question"
 placeholder="Écrivez votre demande..."></textarea>
 
 </div>
 
-<button class="btn btn-primary"
+<button
+class="btn btn-primary"
 onclick="askAI()">
+
 Utiliser Toppatoo IA
+
 </button>
 
 <p style="margin-top:15px;font-size:13px">
-⚠️ Toppatoo IA ne remplace pas le jugement clinique
-d'un professionnel.
+
+⚠️ Toppatoo IA ne remplace pas le jugement
+clinique d'un professionnel.
+
 </p>
 
 `;
 
 }
+
+
+/* ENFANT */
 
 else if(type==="child"){
 
@@ -1281,30 +1739,44 @@ content.innerHTML=`
 
 <h2>👶 Ajouter un enfant</h2>
 
-<p>Registre Enfants — 0 à 5 ans</p>
+<p>
+Registre Enfants — 0 à 5 ans
+</p>
 
 <div class="form-group">
-<label>Nom</label>
+<label>Nom *</label>
 <input id="childNom" type="text">
 </div>
 
 <div class="form-group">
-<label>Prénom</label>
+<label>Prénom *</label>
 <input id="childPrenom" type="text">
 </div>
 
 <div class="form-group">
-<label>Date de naissance</label>
+<label>Date de naissance *</label>
 <input id="childDate" type="date">
 </div>
 
 <div class="form-group">
 <label>Sexe</label>
+
 <select id="childSexe">
-<option value="F">Féminin</option>
-<option value="M">Masculin</option>
-<option value="Autre">Autre</option>
+
+<option value="F">
+Féminin
+</option>
+
+<option value="M">
+Masculin
+</option>
+
+<option value="Autre">
+Autre
+</option>
+
 </select>
+
 </div>
 
 <div class="form-group">
@@ -1334,7 +1806,9 @@ content.innerHTML=`
 
 <div class="form-group">
 
-<label>État vaccinal</label>
+<label>
+État vaccinal
+</label>
 
 <select id="vaccineStatus">
 
@@ -1360,16 +1834,21 @@ Non renseigné
 
 <div class="form-group">
 
-<label>Notes vaccination</label>
+<label>
+Notes vaccination
+</label>
 
-<textarea id="vaccineNotes"
+<textarea
+id="vaccineNotes"
 placeholder="Vaccins reçus, dates, observations..."></textarea>
 
 </div>
 
 <div class="form-group">
 
-<label>Antécédents</label>
+<label>
+Antécédents
+</label>
 
 <textarea id="childHistory"></textarea>
 
@@ -1377,7 +1856,9 @@ placeholder="Vaccins reçus, dates, observations..."></textarea>
 
 <div class="form-group">
 
-<label>Observations</label>
+<label>
+Observations
+</label>
 
 <textarea id="childObservations"></textarea>
 
@@ -1385,23 +1866,34 @@ placeholder="Vaccins reçus, dates, observations..."></textarea>
 
 <div class="form-group">
 
-<label>Prochain rendez-vous</label>
+<label>
+Prochain rendez-vous
+</label>
 
-<input id="childAppointment" type="date">
+<input
+id="childAppointment"
+type="date">
 
 </div>
 
 <div class="modal-actions">
 
-<button class="btn btn-primary"
+<button
+class="btn btn-primary"
 onclick="saveChild()">
+
 💾 Enregistrer l'enfant
+
 </button>
 
 </div>
+
 `;
 
 }
+
+
+/* CONSULTATION */
 
 else if(type==="consultation"){
 
@@ -1409,15 +1901,17 @@ content.innerHTML=`
 
 <h2>🩺 Consultation générale</h2>
 
-<p>Nouvelle consultation</p>
+<p>
+Nouvelle consultation
+</p>
 
 <div class="form-group">
-<label>Nom du patient</label>
+<label>Nom du patient *</label>
 <input id="patientNom" type="text">
 </div>
 
 <div class="form-group">
-<label>Prénom du patient</label>
+<label>Prénom du patient *</label>
 <input id="patientPrenom" type="text">
 </div>
 
@@ -1427,12 +1921,25 @@ content.innerHTML=`
 </div>
 
 <div class="form-group">
+
 <label>Sexe</label>
+
 <select id="patientSexe">
-<option value="F">Féminin</option>
-<option value="M">Masculin</option>
-<option value="Autre">Autre</option>
+
+<option value="F">
+Féminin
+</option>
+
+<option value="M">
+Masculin
+</option>
+
+<option value="Autre">
+Autre
+</option>
+
 </select>
+
 </div>
 
 <div class="form-group">
@@ -1452,32 +1959,49 @@ content.innerHTML=`
 
 <div class="form-group">
 <label>Tension artérielle</label>
-<input id="bp" type="text" placeholder="Ex: 120/80 mmHg">
+<input
+id="bp"
+type="text"
+placeholder="Ex : 120/80 mmHg">
 </div>
 
 <div class="form-group">
 <label>Température (°C)</label>
-<input id="temperature" type="number" step="0.1">
+<input
+id="temperature"
+type="number"
+step="0.1">
 </div>
 
 <div class="form-group">
 <label>Poids (kg)</label>
-<input id="consultWeight" type="number" step="0.1">
+<input
+id="consultWeight"
+type="number"
+step="0.1">
 </div>
 
 <div class="form-group">
 <label>Taille (cm)</label>
-<input id="consultHeight" type="number" step="0.1">
+<input
+id="consultHeight"
+type="number"
+step="0.1">
 </div>
 
 <div class="form-group">
 <label>Fréquence cardiaque</label>
-<input id="heartRate" type="number">
+<input
+id="heartRate"
+type="number">
 </div>
 
 <div class="form-group">
 <label>Saturation en oxygène (%)</label>
-<input id="oxygen" type="number" step="0.1">
+<input
+id="oxygen"
+type="number"
+step="0.1">
 </div>
 
 <div class="form-group">
@@ -1512,7 +2036,9 @@ content.innerHTML=`
 
 <div class="form-group">
 <label>Prochain rendez-vous</label>
-<input id="nextAppointment" type="date">
+<input
+id="nextAppointment"
+type="date">
 </div>
 
 <div class="form-group">
@@ -1522,24 +2048,22 @@ content.innerHTML=`
 
 <div class="modal-actions">
 
-<button class="btn btn-primary"
+<button
+class="btn btn-primary"
 onclick="saveConsultation()">
+
 💾 Enregistrer la consultation
+
 </button>
 
 </div>
+
 `;
+
 }
+
 
 modal.classList.add("show");
-}
-
-
-function closeModal(){
-
-document
-.getElementById("modal")
-.classList.remove("show");
 
 }
 
@@ -1550,29 +2074,60 @@ document
 
 async function createAccount(){
 
-const name=document.getElementById("name").value.trim();
-const phone=document.getElementById("phone").value.trim();
-const email=document.getElementById("email").value.trim();
-const password=document.getElementById("password").value;
-const role=document.getElementById("role").value;
+const name =
+document.getElementById("name").value.trim();
+
+const phone =
+document.getElementById("phone").value.trim();
+
+const email =
+document.getElementById("email").value.trim();
+
+const password =
+document.getElementById("password").value;
+
+const role =
+document.getElementById("role").value;
+
 
 if(!name || !email || !password){
 
-alert("Veuillez remplir le nom, l'e-mail et le mot de passe.");
+showMessage(
+"Veuillez remplir tous les champs obligatoires.",
+"error"
+);
 
 return;
 }
 
-if(password.length<6){
 
-alert("Le mot de passe doit contenir au moins 6 caractères.");
+if(password.length < 6){
+
+showMessage(
+"Le mot de passe doit contenir au moins 6 caractères.",
+"error"
+);
 
 return;
 }
 
-const {data,error}=await supabaseClient.auth.signUp({
+
+const button =
+document.querySelector(
+"#modalContent .btn-primary"
+);
+
+if(button){
+button.disabled=true;
+button.textContent="Création...";
+}
+
+
+const {data,error} =
+await supabaseClient.auth.signUp({
 
 email:email,
+
 password:password,
 
 options:{
@@ -1585,19 +2140,51 @@ role:role
 
 });
 
+
+if(button){
+button.disabled=false;
+button.textContent="Créer mon compte";
+}
+
+
 if(error){
 
-alert("Erreur : "+error.message);
+showMessage(
+"Erreur : "+error.message,
+"error"
+);
 
 return;
 }
 
+
+/*
+   Si Supabase demande une confirmation
+   par e-mail, l'utilisateur devra confirmer.
+*/
+
+if(data.session){
+
 alert(
-"✅ Compte Toppatoo créé avec succès !\n\n"+
-"Vérifiez votre e-mail si une confirmation est demandée."
+"✅ Compte créé avec succès !"
 );
 
 closeModal();
+
+await showDashboard(data.user);
+
+}else{
+
+alert(
+"✅ Compte créé !\n\n"+
+"Si la confirmation e-mail est activée dans Supabase, "+
+"consultez votre boîte mail puis revenez vous connecter."
+);
+
+closeModal();
+
+}
+
 }
 
 
@@ -1607,140 +2194,235 @@ closeModal();
 
 async function login(){
 
-const email=document.getElementById("loginEmail").value.trim();
-const password=document.getElementById("loginPassword").value;
+const email =
+document.getElementById("loginEmail").value.trim();
+
+const password =
+document.getElementById("loginPassword").value;
+
 
 if(!email || !password){
 
-alert("Veuillez entrer votre e-mail et votre mot de passe.");
+showMessage(
+"Veuillez entrer votre e-mail et votre mot de passe.",
+"error"
+);
 
 return;
 }
 
-const {data,error}=await supabaseClient.auth.signInWithPassword({
+
+const button =
+document.querySelector(
+"#modalContent .btn-primary"
+);
+
+if(button){
+button.disabled=true;
+button.textContent="Connexion...";
+}
+
+
+const {data,error} =
+await supabaseClient.auth.signInWithPassword({
 email,
 password
 });
 
+
+if(button){
+button.disabled=false;
+button.textContent="Se connecter";
+}
+
+
 if(error){
 
-alert("Erreur de connexion : "+error.message);
+showMessage(
+"Erreur de connexion : "+error.message,
+"error"
+);
 
 return;
 }
+
 
 closeModal();
 
 await showDashboard(data.user);
+
 }
 
 
 /* =====================================================
-   AFFICHAGE TABLEAU DE BORD
+   TABLEAU DE BORD
 ===================================================== */
 
 async function showDashboard(user){
 
-document.getElementById("dashboard").classList.add("show");
+if(!user){
+return;
+}
 
-let name=
+
+const dashboard =
+document.getElementById("dashboard");
+
+dashboard.classList.add("show");
+
+
+const name =
 user.user_metadata?.full_name ||
 user.email ||
 "Utilisateur";
 
-document.getElementById("dashboardUser").textContent=
+
+document.getElementById(
+"dashboardUser"
+).textContent =
 "Bienvenue "+name;
 
-document.getElementById("welcomeName").textContent=
+
+document.getElementById(
+"welcomeName"
+).textContent =
 "Bienvenue "+name;
 
-document
-.getElementById("dashboard")
-.scrollIntoView({behavior:"smooth"});
+
+dashboard.scrollIntoView({
+behavior:"smooth"
+});
 
 }
 
 
 /* =====================================================
-   AJOUT ENFANT
+   ENREGISTRER ENFANT
 ===================================================== */
 
 async function saveChild(){
 
-const userResult=await supabaseClient.auth.getUser();
+const userResult =
+await supabaseClient.auth.getUser();
 
-if(!userResult.data.user){
+const user =
+userResult.data.user;
 
-alert("Votre session a expiré. Reconnectez-vous.");
 
-return;
-}
+if(!user){
 
-const user=userResult.data.user;
+alert(
+"Votre session a expiré. Reconnectez-vous."
+);
 
-const date=document.getElementById("childDate").value;
+closeModal();
 
-if(!document.getElementById("childNom").value.trim() ||
-!document.getElementById("childPrenom").value.trim() ||
-!date){
-
-alert("Nom, prénom et date de naissance sont obligatoires.");
+openModal("login");
 
 return;
 }
 
 
-/* Vérification 0–5 ans */
+const nom =
+document.getElementById("childNom").value.trim();
 
-const birth=new Date(date);
-const today=new Date();
+const prenom =
+document.getElementById("childPrenom").value.trim();
 
-let age=today.getFullYear()-birth.getFullYear();
+const date =
+document.getElementById("childDate").value;
 
-const month=today.getMonth()-birth.getMonth();
 
-if(month<0 ||
-(month===0 && today.getDate()<birth.getDate())){
+if(!nom || !prenom || !date){
+
+showMessage(
+"Nom, prénom et date de naissance sont obligatoires.",
+"error"
+);
+
+return;
+}
+
+
+/* CALCUL AGE */
+
+const birth =
+new Date(date);
+
+const today =
+new Date();
+
+let age =
+today.getFullYear() -
+birth.getFullYear();
+
+const month =
+today.getMonth() -
+birth.getMonth();
+
+if(
+month < 0 ||
+(
+month === 0 &&
+today.getDate() < birth.getDate()
+)
+){
 age--;
 }
 
-if(age<0 || age>5){
 
-alert("Cet enfant doit avoir entre 0 et 5 ans.");
+if(age < 0 || age > 5){
+
+showMessage(
+"Le registre Enfants accepte uniquement les enfants de 0 à 5 ans.",
+"error"
+);
 
 return;
 }
 
+
+/* DONNEES */
 
 const payload={
 
 professionnel_id:user.id,
 
-nom:document.getElementById("childNom").value.trim(),
+nom:nom,
 
-prenom:document.getElementById("childPrenom").value.trim(),
+prenom:prenom,
 
 date_naissance:date,
 
-sexe:document.getElementById("childSexe").value,
+sexe:
+document.getElementById("childSexe").value,
 
-nom_parent:document.getElementById("parentName").value.trim(),
+nom_parent:
+document.getElementById("parentName").value.trim(),
 
-telephone_parent:document.getElementById("parentPhone").value.trim(),
+telephone_parent:
+document.getElementById("parentPhone").value.trim(),
 
-adresse:document.getElementById("childAddress").value.trim(),
+adresse:
+document.getElementById("childAddress").value.trim(),
 
-poids:document.getElementById("childWeight").value || null,
+poids:
+document.getElementById("childWeight").value || null,
 
-taille:document.getElementById("childHeight").value || null,
+taille:
+document.getElementById("childHeight").value || null,
 
-etat_vaccinal:document.getElementById("vaccineStatus").value,
+etat_vaccinal:
+document.getElementById("vaccineStatus").value,
 
-notes_vaccination:document.getElementById("vaccineNotes").value.trim(),
+notes_vaccination:
+document.getElementById("vaccineNotes").value.trim(),
 
-antecedents:document.getElementById("childHistory").value.trim(),
+antecedents:
+document.getElementById("childHistory").value.trim(),
 
-observations:document.getElementById("childObservations").value.trim(),
+observations:
+document.getElementById("childObservations").value.trim(),
 
 prochain_rendez_vous:
 document.getElementById("childAppointment").value || null
@@ -1748,67 +2430,130 @@ document.getElementById("childAppointment").value || null
 };
 
 
-const {error}=await supabaseClient
+const {error} =
+await supabaseClient
 .from("registre_enfants")
 .insert(payload);
 
+
 if(error){
 
-alert("Erreur lors de l'enregistrement : "+error.message);
+alert(
+"Erreur lors de l'enregistrement :\n"+
+error.message
+);
 
 return;
 }
 
-alert("✅ Enfant enregistré avec succès.");
+
+alert(
+"✅ Enfant enregistré avec succès."
+);
 
 closeModal();
 
-loadChildren();
+await loadChildren();
+
 }
 
 
 /* =====================================================
-   LISTE ENFANTS
+   AFFICHER ENFANTS
 ===================================================== */
 
 async function loadChildren(){
 
-const list=document.getElementById("dataList");
+const list =
+document.getElementById("dataList");
 
-list.innerHTML="<div class='empty'>Chargement...</div>";
 
-const userResult=await supabaseClient.auth.getUser();
+list.innerHTML =
+"<div class='empty'>Chargement...</div>";
 
-if(!userResult.data.user){
 
-list.innerHTML="<div class='empty'>Veuillez vous connecter.</div>";
+const userResult =
+await supabaseClient.auth.getUser();
+
+const user =
+userResult.data.user;
+
+
+if(!user){
+
+list.innerHTML =
+"<div class='empty'>Veuillez vous connecter.</div>";
 
 return;
 }
 
-const {data,error}=await supabaseClient
+
+/*
+   IMPORTANT :
+   On filtre par professionnel_id.
+   Chaque professionnel voit uniquement
+   ses propres patients.
+*/
+
+const {data,error} =
+await supabaseClient
 .from("registre_enfants")
 .select("*")
+.eq("professionnel_id",user.id)
 .order("created_at",{ascending:false});
+
 
 if(error){
 
-list.innerHTML=
-"<div class='empty'>Erreur : "+escapeHtml(error.message)+"</div>";
+list.innerHTML =
+"<div class='empty'>Erreur : "+
+escapeHtml(error.message)+
+"</div>";
 
 return;
 }
 
-if(!data.length){
 
-list.innerHTML=
-"<div class='empty'>Aucun enfant enregistré.</div>";
+if(!data || !data.length){
+
+list.innerHTML =
+`
+<div class="empty">
+
+👶
+
+<h3>
+Aucun enfant enregistré
+</h3>
+
+<p>
+Commencez par ajouter un enfant
+dans le registre.
+</p>
+
+<br>
+
+<button
+class="btn btn-primary"
+onclick="openModal('child')">
+
+Ajouter un enfant
+
+</button>
+
+</div>
+`;
 
 return;
 }
+
 
 list.innerHTML=`
-<h3>👶 Registre Enfants</h3>
+
+<h3>
+👶 Registre Enfants
+</h3>
+
 ${data.map(child=>`
 
 <div class="patient-row">
@@ -1816,15 +2561,21 @@ ${data.map(child=>`
 <div>
 
 <strong>
-${escapeHtml(child.prenom)} ${escapeHtml(child.nom)}
+${escapeHtml(child.prenom)}
+${escapeHtml(child.nom)}
 </strong>
 
 <small>
-Né(e) le ${escapeHtml(child.date_naissance)}
+Né(e) le
+${escapeHtml(child.date_naissance)}
 </small>
 
 <small>
-Parent : ${escapeHtml(child.nom_parent || "Non renseigné")}
+Parent :
+${escapeHtml(
+child.nom_parent ||
+"Non renseigné"
+)}
 </small>
 
 </div>
@@ -1832,14 +2583,20 @@ Parent : ${escapeHtml(child.nom_parent || "Non renseigné")}
 <div>
 
 <span class="status ${
-child.etat_vaccinal==="À jour"
-?"green":
-child.etat_vaccinal==="En retard"
-?"orange":
-child.etat_vaccinal==="Incomplet"
-?"red":"orange"
+child.etat_vaccinal === "À jour"
+? "green"
+: child.etat_vaccinal === "En retard"
+? "orange"
+: child.etat_vaccinal === "Incomplet"
+? "red"
+: "orange"
 }">
-${escapeHtml(child.etat_vaccinal)}
+
+${escapeHtml(
+child.etat_vaccinal ||
+"Non renseigné"
+)}
+
 </span>
 
 </div>
@@ -1847,37 +2604,58 @@ ${escapeHtml(child.etat_vaccinal)}
 </div>
 
 `).join("")}
+
 `;
 
 }
 
 
 /* =====================================================
-   AJOUT CONSULTATION
+   ENREGISTRER CONSULTATION
 ===================================================== */
 
 async function saveConsultation(){
 
-const userResult=await supabaseClient.auth.getUser();
+const userResult =
+await supabaseClient.auth.getUser();
 
-if(!userResult.data.user){
+const user =
+userResult.data.user;
 
-alert("Votre session a expiré. Reconnectez-vous.");
+
+if(!user){
+
+alert(
+"Votre session a expiré. Reconnectez-vous."
+);
+
+closeModal();
+
+openModal("login");
 
 return;
 }
 
-const user=userResult.data.user;
 
-const nom=document.getElementById("patientNom").value.trim();
-const prenom=document.getElementById("patientPrenom").value.trim();
+const nom =
+document.getElementById("patientNom")
+.value.trim();
+
+const prenom =
+document.getElementById("patientPrenom")
+.value.trim();
+
 
 if(!nom || !prenom){
 
-alert("Le nom et le prénom du patient sont obligatoires.");
+showMessage(
+"Le nom et le prénom sont obligatoires.",
+"error"
+);
 
 return;
 }
+
 
 const payload={
 
@@ -1947,67 +2725,122 @@ document.getElementById("consultObservations").value.trim()
 };
 
 
-const {error}=await supabaseClient
+const {error} =
+await supabaseClient
 .from("consultations_generales")
 .insert(payload);
 
+
 if(error){
 
-alert("Erreur lors de l'enregistrement : "+error.message);
+alert(
+"Erreur lors de l'enregistrement :\n"+
+error.message
+);
 
 return;
 }
 
-alert("✅ Consultation enregistrée avec succès.");
+
+alert(
+"✅ Consultation enregistrée avec succès."
+);
 
 closeModal();
 
-loadConsultations();
+await loadConsultations();
+
 }
 
 
 /* =====================================================
-   LISTE CONSULTATIONS
+   AFFICHER CONSULTATIONS
 ===================================================== */
 
 async function loadConsultations(){
 
-const list=document.getElementById("dataList");
+const list =
+document.getElementById("dataList");
 
-list.innerHTML="<div class='empty'>Chargement...</div>";
 
-const userResult=await supabaseClient.auth.getUser();
+list.innerHTML =
+"<div class='empty'>Chargement...</div>";
 
-if(!userResult.data.user){
 
-list.innerHTML="<div class='empty'>Veuillez vous connecter.</div>";
+const userResult =
+await supabaseClient.auth.getUser();
+
+const user =
+userResult.data.user;
+
+
+if(!user){
+
+list.innerHTML =
+"<div class='empty'>Veuillez vous connecter.</div>";
 
 return;
 }
 
-const {data,error}=await supabaseClient
+
+const {data,error} =
+await supabaseClient
 .from("consultations_generales")
 .select("*")
+.eq("professionnel_id",user.id)
 .order("date_consultation",{ascending:false});
+
 
 if(error){
 
-list.innerHTML=
-"<div class='empty'>Erreur : "+escapeHtml(error.message)+"</div>";
+list.innerHTML =
+"<div class='empty'>Erreur : "+
+escapeHtml(error.message)+
+"</div>";
 
 return;
 }
 
-if(!data.length){
 
-list.innerHTML=
-"<div class='empty'>Aucune consultation enregistrée.</div>";
+if(!data || !data.length){
+
+list.innerHTML =
+`
+<div class="empty">
+
+🩺
+
+<h3>
+Aucune consultation
+</h3>
+
+<p>
+Commencez par enregistrer
+une consultation.
+</p>
+
+<br>
+
+<button
+class="btn btn-primary"
+onclick="openModal('consultation')">
+
+Nouvelle consultation
+
+</button>
+
+</div>
+`;
 
 return;
 }
+
 
 list.innerHTML=`
-<h3>🩺 Consultations générales</h3>
+
+<h3>
+🩺 Consultations générales
+</h3>
 
 ${data.map(item=>`
 
@@ -2021,15 +2854,26 @@ ${escapeHtml(item.nom_patient)}
 </strong>
 
 <small>
-Consultation :
-${escapeHtml(
-new Date(item.date_consultation).toLocaleString("fr-FR")
-)}
+Date :
+${
+item.date_consultation
+?
+escapeHtml(
+new Date(
+item.date_consultation
+).toLocaleString("fr-FR")
+)
+:
+"Non renseignée"
+}
 </small>
 
 <small>
 Motif :
-${escapeHtml(item.motif_consultation || "Non renseigné")}
+${escapeHtml(
+item.motif_consultation ||
+"Non renseigné"
+)}
 </small>
 
 </div>
@@ -2041,91 +2885,96 @@ ${escapeHtml(item.motif_consultation || "Non renseigné")}
 </div>
 
 `).join("")}
+
 `;
 
 }
 
 
 /* =====================================================
-   DÉCONNEXION
+   DECONNEXION
 ===================================================== */
 
 async function logout(){
 
 await supabaseClient.auth.signOut();
 
-document.getElementById("dashboard").classList.remove("show");
 
-alert("Vous êtes déconnecté.");
+document
+.getElementById("dashboard")
+.classList.remove("show");
+
+
+document.getElementById(
+"welcomeName"
+).textContent =
+"Bienvenue sur Toppatoo";
+
 
 window.scrollTo({
 top:0,
 behavior:"smooth"
 });
 
-}
-
-
-/* =====================================================
-   IA — PLACEHOLDER
-===================================================== */
-
-function askAI(){
-
-const question=document.getElementById("question").value.trim();
-
-if(!question){
-
-alert("Écrivez votre demande.");
-
-return;
-}
 
 alert(
-"🤖 Toppatoo IA\n\n"+
-"L'assistant IA sera connecté dans une prochaine étape."
+"Vous êtes déconnecté."
 );
 
 }
 
 
 /* =====================================================
-   SÉCURITÉ AFFICHAGE
+   TOPPATOO IA
 ===================================================== */
 
-function escapeHtml(value){
+function askAI(){
 
-if(value===null || value===undefined){
+const question =
+document
+.getElementById("question")
+.value
+.trim();
 
-return "";
 
+if(!question){
+
+alert(
+"Écrivez votre demande."
+);
+
+return;
 }
 
-return String(value)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+
+alert(
+"🤖 Toppatoo IA\n\n"+
+"Votre demande a été enregistrée.\n\n"+
+"L'intégration du véritable moteur IA sera ajoutée dans l'étape suivante.\n\n"+
+"⚠️ Cet assistant ne remplace pas le jugement clinique."
+);
 
 }
 
 
 /* =====================================================
-   FERMETURE MODALE
+   FERMETURE MODALE EN CLIQUANT À L'EXTÉRIEUR
 ===================================================== */
 
 document
 .getElementById("modal")
-.addEventListener("click",function(event){
+.addEventListener(
+"click",
+function(event){
 
-if(event.target===this){
+if(event.target === this){
 
 closeModal();
 
 }
 
-});
+}
+);
 
 
 /* =====================================================
@@ -2134,15 +2983,49 @@ closeModal();
 
 (async function(){
 
-const {data}=await supabaseClient.auth.getSession();
+const {data,error} =
+await supabaseClient.auth.getSession();
+
+
+if(error){
+
+console.error(
+"Erreur session :",
+error.message
+);
+
+return;
+}
+
 
 if(data.session){
 
-await showDashboard(data.session.user);
+await showDashboard(
+data.session.user
+);
 
 }
 
 })();
+
+
+/* =====================================================
+   ÉCOUTE DES CHANGEMENTS DE SESSION
+===================================================== */
+
+supabaseClient.auth.onAuthStateChange(
+async(event,session)=>{
+
+if(event === "SIGNED_OUT"){
+
+document
+.getElementById("dashboard")
+.classList.remove("show");
+
+}
+
+}
+);
 
 </script>
 
