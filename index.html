@@ -3167,4 +3167,784 @@ ${esc(error.message)}
 <br><br>
 
 <button
-class="
+class="btn primary"
+onclick="openModal('appointment')">
+Créer un rendez-vous
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+if(!data||!data.length){
+
+list.innerHTML=`
+
+<h3>📅 Rendez-vous</h3>
+
+<div class="empty">
+Aucun rendez-vous enregistré.
+<br><br>
+
+<button
+class="btn primary"
+onclick="openModal('appointment')">
++ Nouveau rendez-vous
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+list.innerHTML=`
+
+<h3>📅 Rendez-vous</h3>
+
+<div class="search-box">
+
+<input
+id="appointmentSearch"
+placeholder="Rechercher un patient..."
+oninput="filterAppointments()">
+
+</div>
+
+<div id="appointmentRows">
+${renderAppointmentRows(data)}
+</div>
+
+`;
+
+window.allAppointments=data;
+
+}
+
+function renderAppointmentRows(data){
+
+return data.map(r=>{
+
+const p=r.patients||{};
+
+return `
+
+<div
+class="row appointment-row"
+data-search="${esc(
+(
+(p.first_name||"")+" "+
+(p.last_name||"")+" "+
+(p.patient_code||"")
+).toLowerCase()
+)}">
+
+<div class="row-main">
+
+<strong>
+${esc(p.first_name||"")}
+${" "}
+${esc(p.last_name||"")}
+</strong>
+
+<small>
+🆔 ${esc(p.patient_code||"")}
+</small>
+
+<small>
+📅 ${formatDate(r.date_rendez_vous)}
+à ${esc(r.heure||"")}
+</small>
+
+<small>
+🩺 ${esc(r.motif||"Motif non renseigné")}
+</small>
+
+</div>
+
+<div class="row-actions">
+
+<button
+class="btn secondary"
+onclick="openAppointmentEdit('${r.id}')">
+✏️ Modifier
+</button>
+
+<button
+class="btn primary"
+onclick="openPatientHistory('${r.patient_id}')">
+📋 Historique
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+function filterAppointments(){
+
+const q=
+(document.getElementById("appointmentSearch").value||"")
+.toLowerCase();
+
+document
+.querySelectorAll(".appointment-row")
+.forEach(row=>{
+
+row.style.display=
+row.dataset.search.includes(q)
+?""
+:"none";
+
+});
+
+}
+
+async function openAppointmentEdit(id){
+
+const {data,error}=
+await supabaseClient
+.from("rendez_vous")
+.select("*")
+.eq("id",id)
+.single();
+
+if(error){
+
+alert(
+"Impossible de récupérer le rendez-vous : "+
+error.message
+);
+
+return;
+
+}
+
+renderAppointmentForm(data);
+
+}
+
+
+/* =========================================================
+   HISTORIQUE PATIENT
+========================================================= */
+
+async function openPatientHistory(patientId){
+
+const {data:patient,error:patientError}=
+await supabaseClient
+.from("patients")
+.select("*")
+.eq("id",patientId)
+.single();
+
+if(patientError){
+
+alert(
+"Impossible de récupérer le patient : "+
+patientError.message
+);
+
+return;
+
+}
+
+renderPatientHistory(patient);
+
+}
+
+async function renderPatientHistory(patient){
+
+const c=
+document.getElementById("modalContent");
+
+c.innerHTML=`
+
+<h2>
+📋 Historique de ${esc(patient.first_name)}
+${" "}
+${esc(patient.last_name)}
+</h2>
+
+<div class="patient-summary">
+
+<h3>
+👤 ${esc(patient.first_name)}
+${" "}
+${esc(patient.last_name)}
+</h3>
+
+<div class="patient-summary-grid">
+
+<div class="patient-summary-item">
+<span>Code patient</span>
+<strong>${esc(patient.patient_code)}</strong>
+</div>
+
+<div class="patient-summary-item">
+<span>Date de naissance</span>
+<strong>${formatDate(patient.date_of_birth)}</strong>
+</div>
+
+<div class="patient-summary-item">
+<span>Téléphone</span>
+<strong>${esc(patient.phone||"Non renseigné")}</strong>
+</div>
+
+</div>
+
+</div>
+
+<div id="patientHistoryContent">
+
+<div class="empty">
+Chargement de l'historique...
+</div>
+
+</div>
+
+`;
+
+document
+.getElementById("modal")
+.classList.add("show");
+
+const [appointmentsResult,consultationsResult]=
+await Promise.all([
+
+supabaseClient
+.from("rendez_vous")
+.select("*")
+.eq("patient_id",patient.id)
+.order("date_rendez_vous",{ascending:false}),
+
+supabaseClient
+.from("consultations_generales")
+.select("*")
+.eq("patient_id",patient.id)
+.order("date_consultation",{ascending:false})
+
+]);
+
+if(appointmentsResult.error){
+
+document.getElementById("patientHistoryContent")
+.innerHTML=
+'<div class="empty">Erreur lors du chargement des rendez-vous.</div>';
+
+return;
+
+}
+
+const appointments=
+appointmentsResult.data||[];
+
+const consultations=
+consultationsResult.data||[];
+
+const consultationByDate={};
+
+consultations.forEach(c=>{
+
+const date=
+c.date_consultation
+?
+new Date(c.date_consultation)
+.toISOString()
+.slice(0,10)
+:null;
+
+if(date){
+consultationByDate[date]=c;
+}
+
+});
+
+document.getElementById("patientHistoryContent")
+.innerHTML=`
+
+<h3 class="section-title">
+📅 Historique des rendez-vous
+</h3>
+
+${
+appointments.length
+?
+appointments.map(r=>{
+
+const consultation =
+r.consultation_id
+?
+consultations.find(c=>c.id===r.consultation_id)
+:
+consultationByDate[r.date_rendez_vous];
+
+return `
+
+<div class="history-card">
+
+<h4>
+📅 ${formatDate(r.date_rendez_vous)}
+ à ${esc(r.heure||"")}
+</h4>
+
+<div class="history-meta">
+🩺 Motif :
+${esc(r.motif||"Non renseigné")}
+</div>
+
+<div class="history-meta">
+📝 ${esc(r.observations||"Aucune observation")}
+</div>
+
+${
+consultation
+?
+
+`
+
+<hr style="border:0;border-top:1px solid var(--border);margin:12px 0">
+
+<strong>
+🩺 Consultation associée
+</strong>
+
+<div class="history-meta">
+Motif :
+${esc(consultation.motif_consultation||"Non renseigné")}
+</div>
+
+<div class="history-meta">
+Diagnostic :
+${esc(consultation.diagnostic||"Non renseigné")}
+</div>
+
+<div class="history-meta">
+Traitement :
+${esc(consultation.traitement||"Non renseigné")}
+</div>
+
+<button
+class="btn primary"
+style="margin-top:10px"
+onclick="editConsultation('${consultation.id}')">
+✏️ Ouvrir la consultation
+</button>
+
+`
+
+:
+
+`
+
+<div class="info" style="margin-top:12px">
+Aucune consultation associée à ce rendez-vous.
+</div>
+
+<button
+class="btn secondary"
+onclick="startConsultationForPatient('${patient.id}')">
+🩺 Commencer une consultation
+</button>
+
+`
+
+}
+
+</div>
+
+`;
+
+}).join("")
+
+:
+
+'<div class="empty">Aucun rendez-vous enregistré pour ce patient.</div>'
+}
+
+<h3 class="section-title">
+🩺 Historique des consultations
+</h3>
+
+${
+consultations.length
+?
+consultations.map(c=>`
+
+<div class="history-card">
+
+<h4>
+🩺 ${formatDateTime(c.date_consultation)}
+</h4>
+
+<div class="history-meta">
+Motif :
+${esc(c.motif_consultation||"Non renseigné")}
+</div>
+
+<div class="history-meta">
+Diagnostic :
+${esc(c.diagnostic||"Non renseigné")}
+</div>
+
+<div class="history-meta">
+Traitement :
+${esc(c.traitement||"Non renseigné")}
+</div>
+
+<button
+class="btn primary"
+style="margin-top:10px"
+onclick="editConsultation('${c.id}')">
+✏️ Modifier / compléter
+</button>
+
+</div>
+
+`).join("")
+
+:
+
+'<div class="empty">Aucune consultation enregistrée.</div>'
+}
+
+`;
+
+}
+
+
+/* =========================================================
+   ORDONNANCE / TRAITEMENT
+========================================================= */
+
+function renderPrescriptionForm(){
+
+const c=
+document.getElementById("modalContent");
+
+c.innerHTML=`
+
+<h2>💊 Traitement & ordonnance</h2>
+
+<p style="color:var(--muted);margin:10px 0 18px">
+
+Vous pouvez soit saisir l'ordonnance,
+soit photographier une ordonnance existante.
+
+</p>
+
+<div class="form-group">
+
+<label>Code patient</label>
+
+<input
+id="rxCode"
+placeholder="TOP-...">
+
+</div>
+
+<div class="info">
+💊 Option 1 : saisir les médicaments et leur posologie.
+</div>
+
+<div id="medications">
+
+${renderMedicationRow(0)}
+
+</div>
+
+<button
+class="btn secondary"
+onclick="addMedication()"
+style="margin-top:5px">
+
++ Ajouter un médicament
+
+</button>
+
+<div class="section-title">
+📷 Option 2 : photographier l'ordonnance
+</div>
+
+<div class="form-group">
+
+<label>Photo de l'ordonnance</label>
+
+<input
+id="rxPhoto"
+type="file"
+accept="image/*"
+capture="environment">
+
+</div>
+
+<div class="form-actions">
+
+<button
+class="btn secondary"
+onclick="closeModal()">
+Annuler
+</button>
+
+<button
+class="btn primary"
+onclick="savePrescription()">
+💾 Enregistrer
+</button>
+
+</div>
+
+`;
+
+document
+.getElementById("modal")
+.classList.add("show");
+
+}
+
+function renderMedicationRow(index){
+
+return `
+
+<div class="prescription-item">
+
+<div class="form-group">
+
+<label>Médicament ${index+1}</label>
+
+<input
+class="med-name"
+placeholder="Nom du médicament">
+
+</div>
+
+<div class="form-group">
+
+<label>Dosage</label>
+
+<input
+class="med-dose"
+placeholder="Ex : 500 mg">
+
+</div>
+
+<div class="form-group">
+
+<label>Posologie</label>
+
+<input
+class="med-posology"
+placeholder="Ex : 1 comprimé matin et soir">
+
+</div>
+
+<div class="form-group">
+
+<label>Durée</label>
+
+<input
+class="med-duration"
+placeholder="Ex : 7 jours">
+
+</div>
+
+</div>
+
+`;
+
+}
+
+function addMedication(){
+
+const container=
+document.getElementById("medications");
+
+const index=
+container.querySelectorAll(".prescription-item").length;
+
+container.insertAdjacentHTML(
+"beforeend",
+renderMedicationRow(index)
+);
+
+}
+
+async function savePrescription(){
+
+const patientCode=
+document.getElementById("rxCode")
+.value
+.trim();
+
+const file=
+document.getElementById("rxPhoto")
+.files[0];
+
+const names=
+[...document.querySelectorAll(".med-name")]
+.map(x=>x.value.trim())
+.filter(Boolean);
+
+const doses=
+[...document.querySelectorAll(".med-dose")]
+.map(x=>x.value.trim());
+
+const posologies=
+[...document.querySelectorAll(".med-posology")]
+.map(x=>x.value.trim());
+
+const durations=
+[...document.querySelectorAll(".med-duration")]
+.map(x=>x.value.trim());
+
+if(!patientCode){
+
+alert("Veuillez renseigner le code patient.");
+return;
+
+}
+
+if(!names.length && !file){
+
+alert(
+"Ajoutez au moins un médicament ou une photo."
+);
+
+return;
+
+}
+
+let prescriptionText="";
+
+names.forEach((name,i)=>{
+
+prescriptionText+=
+`${i+1}. ${name}`+
+(doses[i]?" — "+doses[i]:"")+
+(posologies[i]?" — "+posologies[i]:"")+
+(durations[i]?" — "+durations[i]:"")+
+"\n";
+
+});
+
+if(file){
+
+alert(
+"📷 Photo sélectionnée.\n\n"+
+(
+prescriptionText
+?
+"Prescription saisie :\n"+prescriptionText
+:
+""
+)+
+"\nLe stockage sécurisé de la photo sera connecté au module Supabase Storage."
+);
+
+}else{
+
+alert(
+"✅ Ordonnance saisie :\n\n"+
+prescriptionText
+);
+
+}
+
+closeModal();
+
+}
+
+
+/* =========================================================
+   IA
+========================================================= */
+
+function askAI(){
+
+const q=
+document
+.getElementById("question")
+.value
+.trim();
+
+if(!q){
+
+alert("Écrivez votre demande.");
+return;
+
+}
+
+alert(
+"🤖 Le service Toppatoo IA sera connecté à une solution IA sécurisée."
+);
+
+}
+
+
+/* =========================================================
+   CLIC EXTÉRIEUR
+========================================================= */
+
+document
+.getElementById("modal")
+.addEventListener(
+"click",
+function(e){
+
+if(e.target.id==="modal"){
+closeModal();
+}
+
+}
+);
+
+
+/* =========================================================
+   SESSION
+========================================================= */
+
+(async()=>{
+
+const {data}=
+await supabaseClient.auth.getSession();
+
+if(data.session){
+
+showDashboard(
+data.session.user
+);
+
+}
+
+})();
+
+
+supabaseClient.auth.onAuthStateChange(
+(event,session)=>{
+
+if(session){
+
+showDashboard(
+session.user
+);
+
+}
+
+}
+);
+
+</script>
+
+</body>
+  </html>
