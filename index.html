@@ -63,10 +63,18 @@ header{
 }
 
 .logo{
-  font-size:25px;
-  font-weight:900;
-  color:var(--p);
+  display:flex;
+  align-items:center;
   text-decoration:none;
+  height:52px;
+}
+
+.logo-img{
+  display:block;
+  width:auto;
+  height:46px;
+  max-width:180px;
+  object-fit:contain;
 }
 
 .navlinks{
@@ -375,7 +383,7 @@ h1 span{
 
 .modalbox{
   background:#fff;
-  width:min(720px,100%);
+  width:min(760px,100%);
   max-height:94vh;
   overflow:auto;
   border-radius:23px;
@@ -503,6 +511,32 @@ h1 span{
   border-radius:12px;
 }
 
+.history-card{
+  background:#f8fbfa;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:17px;
+  margin:12px 0;
+}
+
+.history-card h4{
+  margin-bottom:7px;
+}
+
+.history-meta{
+  color:var(--muted);
+  font-size:13px;
+  margin:3px 0;
+}
+
+.prescription-item{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+  margin:10px 0;
+  background:#fafdfc;
+}
+
 .hidden{
   display:none!important;
 }
@@ -536,6 +570,11 @@ footer{
 @media(max-width:600px){
   .nav{
     min-height:62px;
+  }
+
+  .logo-img{
+    height:40px;
+    max-width:150px;
   }
 
   .actions .secondary{
@@ -580,6 +619,18 @@ footer{
     flex-direction:column;
     align-items:flex-start;
   }
+
+  .row-actions{
+    width:100%;
+  }
+
+  .row-actions .btn{
+    flex:1;
+  }
+
+  .form-actions{
+    flex-direction:column;
+  }
 }
 </style>
 </head>
@@ -589,7 +640,9 @@ footer{
 <header>
 <div class="container nav">
 
-<a class="logo" href="#accueil">TOPPATOO</a>
+<a class="logo" href="#accueil">
+  <img src="./logo.png" alt="Toppatoo" class="logo-img">
+</a>
 
 <nav class="navlinks">
 <a href="#accueil">Accueil</a>
@@ -610,7 +663,6 @@ Créer un compte
 
 </div>
 </header>
-
 
 <main>
 
@@ -650,7 +702,6 @@ onclick="openModal('patient')">
 
 </div>
 
-
 <div class="card">
 
 <strong>Mon espace santé</strong>
@@ -666,19 +717,19 @@ onclick="openModal('patient')">
 <div class="preview">
 🩺
 <b>Consultations</b>
-<small>Adaptées à l'âge</small>
+<small>Suivi complet</small>
 </div>
 
 <div class="preview">
 📅
 <b>Rendez-vous</b>
-<small>Suivi organisé</small>
+<small>Historique organisé</small>
 </div>
 
 <div class="preview">
 💊
 <b>Ordonnances</b>
-<small>Photo de l'ordonnance</small>
+<small>Photo ou saisie</small>
 </div>
 
 </div>
@@ -687,7 +738,6 @@ onclick="openModal('patient')">
 
 </div>
 </section>
-
 
 <section class="section" id="fonctionnalites">
 
@@ -729,7 +779,8 @@ récupérées lors d'une nouvelle consultation.
 <div class="feature-icon">📅</div>
 <h3>Rendez-vous</h3>
 <p>
-Créer, consulter et modifier les rendez-vous des patients.
+Créer, modifier et consulter l'historique
+des rendez-vous.
 </p>
 </div>
 
@@ -737,14 +788,14 @@ Créer, consulter et modifier les rendez-vous des patients.
 <div class="feature-icon">💊</div>
 <h3>Ordonnances</h3>
 <p>
-Conserver une photo de l'ordonnance dans le suivi.
+Saisie des médicaments avec posologie ou
+conservation d'une photo.
 </p>
 </div>
 
 </div>
 </div>
 </section>
-
 
 <section class="section" id="utilisateurs">
 
@@ -776,14 +827,13 @@ Accéder à l'espace
 
 </div>
 
-
 <div class="audience-card">
 
 <h3>👤 Patients</h3>
 
 <p>
 Accès aux informations de santé qui leur sont
-partagées par le professionnel.
+partagées par les professionnels.
 </p>
 
 <br>
@@ -799,7 +849,6 @@ Espace patient
 </div>
 </div>
 </section>
-
 
 <section class="section" id="ia" style="background:#eef8f6">
 
@@ -824,7 +873,6 @@ Découvrir
 
 </div>
 </section>
-
 
 <section class="dashboard" id="dashboard">
 
@@ -852,7 +900,6 @@ Se déconnecter
 
 </div>
 
-
 <div class="dash-grid">
 
 <div class="dash-card"
@@ -860,9 +907,7 @@ onclick="openModal('patients')">
 
 <div class="ico">👥</div>
 
-<h3>
-Patients
-</h3>
+<h3>Patients</h3>
 
 <p>
 Créer, rechercher et consulter les dossiers patients.
@@ -870,15 +915,12 @@ Créer, rechercher et consulter les dossiers patients.
 
 </div>
 
-
 <div class="dash-card"
 onclick="openNewConsultation()">
 
 <div class="ico">🩺</div>
 
-<h3>
-Nouvelle consultation
-</h3>
+<h3>Nouvelle consultation</h3>
 
 <p>
 Sélectionner un patient puis commencer directement la consultation.
@@ -886,63 +928,51 @@ Sélectionner un patient puis commencer directement la consultation.
 
 </div>
 
-
 <div class="dash-card"
 onclick="loadAllConsultations()">
 
 <div class="ico">📋</div>
 
-<h3>
-Toutes les consultations
-</h3>
+<h3>Toutes les consultations</h3>
 
 <p>
-Historique journalier, mensuel ou complet.
+Modifier ou compléter chaque consultation enregistrée.
 </p>
 
 </div>
 
-
 <div class="dash-card"
-onclick="openModal('appointment')">
+onclick="loadAppointments()">
 
 <div class="ico">📅</div>
 
-<h3>
-Rendez-vous
-</h3>
+<h3>Rendez-vous</h3>
 
 <p>
-Créer et gérer les rendez-vous.
+Créer, modifier et consulter les rendez-vous.
 </p>
 
 </div>
-
 
 <div class="dash-card"
 onclick="openModal('prescription')">
 
 <div class="ico">💊</div>
 
-<h3>
-Traitements & ordonnances
-</h3>
+<h3>Traitements & ordonnances</h3>
 
 <p>
-Ajouter une photo d'ordonnance.
+Saisir une ordonnance ou photographier celle-ci.
 </p>
 
 </div>
-
 
 <div class="dash-card"
 onclick="loadPatients()">
 
 <div class="ico">🔎</div>
 
-<h3>
-Recherche patients
-</h3>
+<h3>Recherche patients</h3>
 
 <p>
 Nom, téléphone ou code patient.
@@ -951,7 +981,6 @@ Nom, téléphone ou code patient.
 </div>
 
 </div>
-
 
 <div class="list" id="dataList">
 
@@ -966,7 +995,6 @@ Choisissez une fonction.
 
 </main>
 
-
 <footer>
 
 <div class="container">
@@ -976,7 +1004,6 @@ TOPPATOO — Sama Wergu Yaram · © 2026
 </div>
 
 </footer>
-
 
 <div class="modal" id="modal">
 
@@ -991,7 +1018,6 @@ TOPPATOO — Sama Wergu Yaram · © 2026
 </div>
 
 </div>
-
 
 <script>
 
@@ -1030,25 +1056,18 @@ return String(value)
 
 }
 
-
 function ageOf(date){
 
-if(!date)
-return null;
+if(!date) return null;
 
-const birth =
-new Date(date+"T00:00:00");
-
-const today =
-new Date();
+const birth = new Date(date+"T00:00:00");
+const today = new Date();
 
 let years =
-today.getFullYear() -
-birth.getFullYear();
+today.getFullYear() - birth.getFullYear();
 
 let months =
-today.getMonth() -
-birth.getMonth();
+today.getMonth() - birth.getMonth();
 
 if(today.getDate() < birth.getDate()){
 months--;
@@ -1066,11 +1085,9 @@ months
 
 }
 
-
 function formatDate(date){
 
-if(!date)
-return "";
+if(!date) return "";
 
 try{
 
@@ -1091,11 +1108,9 @@ return date;
 
 }
 
-
 function formatDateTime(date){
 
-if(!date)
-return "";
+if(!date) return "";
 
 try{
 
@@ -1131,20 +1146,15 @@ document
 
 }
 
-
-function openModal(type, data=null){
+function openModal(type,data=null){
 
 const c =
 document.getElementById("modalContent");
 
 
-/* =========================================================
-   REGISTER
-========================================================= */
-
 if(type==="register"){
 
-c.innerHTML = `
+c.innerHTML=`
 
 <h2>📝 Créer un compte</h2>
 
@@ -1176,27 +1186,17 @@ Créez votre compte Toppatoo.
 <label>Type de compte</label>
 
 <select id="role">
-
-<option value="patient">
-Patient
-</option>
-
-<option value="professional">
-Professionnel
-</option>
-
+<option value="patient">Patient</option>
+<option value="professional">Professionnel</option>
 </select>
 
 </div>
 
 <div class="form-actions">
 
-<button
-class="btn primary"
+<button class="btn primary"
 onclick="createAccount()">
-
 Créer mon compte
-
 </button>
 
 </div>
@@ -1205,14 +1205,9 @@ Créer mon compte
 
 }
 
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
 else if(type==="login"){
 
-c.innerHTML = `
+c.innerHTML=`
 
 <h2>🔐 Se connecter</h2>
 
@@ -1232,12 +1227,9 @@ Accédez à votre espace.
 
 <div class="form-actions">
 
-<button
-class="btn primary"
+<button class="btn primary"
 onclick="login()">
-
 Se connecter
-
 </button>
 
 </div>
@@ -1246,116 +1238,79 @@ Se connecter
 
 }
 
-
-/* =========================================================
-   PROFESSIONAL
-========================================================= */
-
 else if(type==="professional"){
 
-c.innerHTML = `
+c.innerHTML=`
 
 <h2>👨‍⚕️ Espace professionnel</h2>
 
 <p style="color:var(--muted);margin:8px 0 18px">
-
 Gérez les dossiers patients,
 les consultations et les rendez-vous.
-
 </p>
 
-<button
-class="btn primary"
+<button class="btn primary"
 onclick="openModal('login')">
-
 Se connecter
-
 </button>
 
 `;
 
 }
 
-
-/* =========================================================
-   PATIENT
-========================================================= */
-
 else if(type==="patient"){
 
-c.innerHTML = `
+c.innerHTML=`
 
 <h2>👤 Espace patient</h2>
 
 <p style="color:var(--muted);margin:10px 0">
-
 Votre espace patient permettra de retrouver
 les informations qui vous sont partagées
 par les professionnels.
-
 </p>
 
 `;
 
 }
 
-
-/* =========================================================
-   IA
-========================================================= */
-
 else if(type==="ai"){
 
-c.innerHTML = `
+c.innerHTML=`
 
 <h2>🤖 Toppatoo IA</h2>
 
 <p style="color:var(--muted);margin:10px 0">
-
 Assistant destiné à accompagner le professionnel.
 Il ne remplace pas le jugement clinique.
-
 </p>
 
 <div class="form-group">
-
 <label>Votre demande</label>
-
 <textarea id="question"></textarea>
-
 </div>
 
-<button
-class="btn primary"
+<button class="btn primary"
 onclick="askAI()">
-
 Utiliser Toppatoo IA
-
 </button>
 
 `;
 
 }
 
-
-/* =========================================================
-   PATIENT
-========================================================= */
-
 else if(type==="patients"){
 
-c.innerHTML = `
+c.innerHTML=`
 
 <h2>
 👥 ${data ? "Modifier le dossier patient" : "Créer un dossier patient"}
 </h2>
 
 <p style="color:var(--muted);margin:8px 0 18px">
-
 Le dossier patient est permanent.
 Il sera automatiquement utilisé lors
 des prochaines consultations.
-
 </p>
 
 ${data ? `
@@ -1377,11 +1332,11 @@ ${data ? `
 
 <div class="form-group">
 <label>Date de naissance *</label>
-<input id="pDob" type="date" value="${esc(data?.date_of_birth || "")}">
+<input id="pDob" type="date"
+value="${esc(data?.date_of_birth || "")}">
 </div>
 
 <div class="form-group">
-
 <label>Sexe</label>
 
 <select id="pGender">
@@ -1422,21 +1377,31 @@ Autre
 
 <div class="form-group">
 <label>Contact urgence</label>
-<input id="pEmergency" value="${esc(data?.emergency_contact_name || "")}">
+<input id="pEmergency"
+value="${esc(data?.emergency_contact_name || "")}">
 </div>
 
 <div class="form-group">
 <label>Téléphone urgence</label>
-<input id="pEmergencyPhone" value="${esc(data?.emergency_contact_phone || "")}">
+<input id="pEmergencyPhone"
+value="${esc(data?.emergency_contact_phone || "")}">
 </div>
 
 <div class="form-actions">
 
-<button
-class="btn primary"
-onclick="${data ? `updatePatient('${data.id}')` : "savePatient()"}">
+<button class="btn secondary"
+onclick="closeModal()">
+Annuler
+</button>
 
-💾 ${data ? "Enregistrer les modifications" : "Créer le dossier"}
+<button class="btn primary"
+onclick="${data ?
+`updatePatient('${data.id}')` :
+"savePatient()"}">
+
+💾 ${data ?
+"Enregistrer les modifications" :
+"Créer le dossier"}
 
 </button>
 
@@ -1446,22 +1411,15 @@ onclick="${data ? `updatePatient('${data.id}')` : "savePatient()"}">
 
 }
 
-
-/* =========================================================
-   NOUVELLE CONSULTATION
-========================================================= */
-
 else if(type==="newConsultation"){
 
-c.innerHTML = `
+c.innerHTML=`
 
 <h2>🩺 Nouvelle consultation</h2>
 
 <p style="color:var(--muted);margin:8px 0 18px">
-
 Commencez par sélectionner le patient.
 Son dossier sera automatiquement récupéré.
-
 </p>
 
 <div class="search-box">
@@ -1485,84 +1443,31 @@ Recherchez un patient pour commencer.
 
 }
 
-
-/* =========================================================
-   FORMULAIRE CONSULTATION
-========================================================= */
-
 else if(type==="consultationForm"){
 
 renderConsultationForm(data);
-
 return;
 
 }
-
-
-/* =========================================================
-   RENDEZ-VOUS
-========================================================= */
 
 else if(type==="appointment"){
 
 renderAppointmentForm(data);
-
 return;
 
 }
 
-
-/* =========================================================
-   ORDONNANCE
-========================================================= */
-
 else if(type==="prescription"){
 
-c.innerHTML = `
+renderPrescriptionForm(data);
+return;
 
-<h2>💊 Traitement & ordonnance</h2>
+}
 
-<p style="color:var(--muted);margin:10px 0 18px">
+else if(type==="patientHistory"){
 
-Ajoutez simplement une photo de l'ordonnance.
-
-</p>
-
-<div class="form-group">
-
-<label>Code patient</label>
-
-<input
-id="rxCode"
-placeholder="TOP-...">
-
-</div>
-
-<div class="form-group">
-
-<label>Photo de l'ordonnance</label>
-
-<input
-id="rxPhoto"
-type="file"
-accept="image/*"
-capture="environment">
-
-</div>
-
-<div class="form-actions">
-
-<button
-class="btn primary"
-onclick="savePrescription()">
-
-📷 Enregistrer
-
-</button>
-
-</div>
-
-`;
+renderPatientHistory(data);
+return;
 
 }
 
@@ -1594,7 +1499,7 @@ document.getElementById("password").value;
 const role =
 document.getElementById("role").value;
 
-if(!name || !email || password.length < 6){
+if(!name || !email || password.length<6){
 
 alert(
 "Nom, email et mot de passe de 6 caractères minimum sont obligatoires."
@@ -1635,11 +1540,6 @@ closeModal();
 
 }
 
-
-/* =========================================================
-   CONNEXION
-========================================================= */
-
 async function login(){
 
 const email =
@@ -1674,11 +1574,6 @@ showDashboard(data.user);
 
 }
 
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
 function showDashboard(user){
 
 document
@@ -1702,11 +1597,6 @@ behavior:"smooth"
 });
 
 }
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
 
 async function logout(){
 
@@ -1821,11 +1711,6 @@ loadPatients();
 
 }
 
-
-/* =========================================================
-   MODIFIER PATIENT
-========================================================= */
-
 async function updatePatient(id){
 
 const payload={
@@ -1854,8 +1739,7 @@ document.getElementById("pEmergency").value.trim(),
 emergency_contact_phone:
 document.getElementById("pEmergencyPhone").value.trim(),
 
-updated_at:
-new Date().toISOString()
+updated_at:new Date().toISOString()
 
 };
 
@@ -1891,11 +1775,6 @@ loadPatients();
 
 }
 
-
-/* =========================================================
-   LISTE PATIENTS
-========================================================= */
-
 async function loadPatients(){
 
 const list =
@@ -1930,7 +1809,7 @@ return;
 
 }
 
-list.innerHTML = `
+list.innerHTML=`
 
 <h3>👥 Patients</h3>
 
@@ -1944,40 +1823,36 @@ oninput="filterPatientList()">
 </div>
 
 <div id="patientsRows">
-
 ${renderPatientRows(data)}
-
 </div>
 
 `;
 
-window.allPatients = data;
+window.allPatients=data;
 
 }
-
 
 function renderPatientRows(data){
 
 return data.map(p=>{
 
-const age =
-ageOf(p.date_of_birth);
+const age=ageOf(p.date_of_birth);
 
-const pediatric =
-age && age.years < 5;
+const pediatric=
+age && age.years<5;
 
 return `
 
 <div
 class="row patient-row"
-data-search="
-${esc(
-(p.first_name+" "+p.last_name+" "+
+data-search="${esc(
+(
+(p.first_name||"")+" "+
+(p.last_name||"")+" "+
 (p.phone||"")+" "+
-(p.patient_code||""))
-.toLowerCase()
-)}
-">
+(p.patient_code||"")
+).toLowerCase()
+)}">
 
 <div class="row-main">
 
@@ -1996,11 +1871,13 @@ ${esc(p.last_name)}
 </small>
 
 <small>
-📞 ${esc(p.phone || "Non renseigné")}
+📞 ${esc(p.phone||"Non renseigné")}
 </small>
 
 <span class="tag">
-${pediatric ? "👶 Moins de 5 ans" : "👤 Patient"}
+${pediatric ?
+"👶 Moins de 5 ans" :
+"👤 Patient"}
 </span>
 
 </div>
@@ -2010,17 +1887,22 @@ ${pediatric ? "👶 Moins de 5 ans" : "👤 Patient"}
 <button
 class="btn primary"
 onclick="startConsultationForPatient('${p.id}')">
-
 🩺 Consultation
-
 </button>
 
 <button
 class="btn secondary"
-onclick="openModal('patients',window.allPatients.find(x=>x.id==='${p.id}'))">
-
+onclick="openModal(
+'patients',
+window.allPatients.find(x=>x.id==='${p.id}')
+)">
 Modifier
+</button>
 
+<button
+class="btn secondary"
+onclick="openPatientHistory('${p.id}')">
+📅 Historique
 </button>
 
 </div>
@@ -2033,10 +1915,9 @@ Modifier
 
 }
 
-
 function filterPatientList(){
 
-const q =
+const q=
 (document.getElementById("patientListSearch").value||"")
 .toLowerCase();
 
@@ -2044,10 +1925,10 @@ document
 .querySelectorAll(".patient-row")
 .forEach(row=>{
 
-row.style.display =
+row.style.display=
 row.dataset.search.includes(q)
-? ""
-: "none";
+?""
+:"none";
 
 });
 
@@ -2064,21 +1945,19 @@ openModal("newConsultation");
 
 }
 
-
 async function searchPatientsForConsultation(){
 
-const input =
+const input=
 document.getElementById("consultPatientSearch");
 
-const results =
+const results=
 document.getElementById("consultPatientResults");
 
-const q =
-input.value.trim();
+const q=input.value.trim();
 
-if(q.length < 2){
+if(q.length<2){
 
-results.innerHTML =
+results.innerHTML=
 '<div class="empty">Tapez au moins 2 caractères.</div>';
 
 return;
@@ -2096,7 +1975,7 @@ await supabaseClient
 
 if(error){
 
-results.innerHTML =
+results.innerHTML=
 '<div class="empty">Erreur : '+
 esc(error.message)+
 '</div>';
@@ -2107,18 +1986,16 @@ return;
 
 if(!data.length){
 
-results.innerHTML =
+results.innerHTML=
 '<div class="empty">Aucun patient trouvé.</div>';
 
 return;
 
 }
 
-results.innerHTML =
-data.map(p=>{
+results.innerHTML=data.map(p=>{
 
-const age =
-ageOf(p.date_of_birth);
+const age=ageOf(p.date_of_birth);
 
 return `
 
@@ -2142,7 +2019,7 @@ ${esc(p.last_name)}
 </small>
 
 <small>
-📞 ${esc(p.phone || "Non renseigné")}
+📞 ${esc(p.phone||"Non renseigné")}
 </small>
 
 </div>
@@ -2150,9 +2027,7 @@ ${esc(p.last_name)}
 <button
 class="btn primary"
 onclick="startConsultationForPatient('${p.id}')">
-
 Sélectionner
-
 </button>
 
 </div>
@@ -2163,10 +2038,9 @@ Sélectionner
 
 }
 
-
 async function startConsultationForPatient(patientId){
 
-const {data,error} =
+const {data,error}=
 await supabaseClient
 .from("patients")
 .select("*")
@@ -2175,7 +2049,11 @@ await supabaseClient
 
 if(error){
 
-alert("Impossible de récupérer le patient : "+error.message);
+alert(
+"Impossible de récupérer le patient : "+
+error.message
+);
+
 return;
 
 }
@@ -2194,42 +2072,36 @@ consultation:null
 
 function renderConsultationForm(obj){
 
-const patient =
-obj.patient;
+const patient=obj.patient;
+const consultation=obj.consultation;
 
-const consultation =
-obj.consultation;
+const c=document.getElementById("modalContent");
 
-const c =
-document.getElementById("modalContent");
+const age=ageOf(patient.date_of_birth);
 
-const age =
-ageOf(patient.date_of_birth);
+const pediatric=age && age.years<5;
 
-const pediatric =
-age && age.years < 5;
-
-const sexe =
+const sexe=
 patient.gender==="male"
-? "M"
-: patient.gender==="female"
-? "F"
-: "Autre";
+?"M":
+patient.gender==="female"
+?"F":
+"Autre";
 
-
-c.innerHTML = `
+c.innerHTML=`
 
 <h2>
-🩺 ${consultation ? "Modifier / compléter la consultation" : "Nouvelle consultation"}
+🩺 ${
+consultation
+?"Modifier / compléter la consultation"
+:"Nouvelle consultation"
+}
 </h2>
 
 <p style="color:var(--muted);margin:8px 0 18px">
-
 Les informations ci-dessous proviennent
 automatiquement du dossier patient.
-
 </p>
-
 
 <div class="patient-summary">
 
@@ -2258,25 +2130,26 @@ ${esc(patient.last_name)}
 
 <div class="patient-summary-item">
 <span>Téléphone</span>
-<strong>${esc(patient.phone || "Non renseigné")}</strong>
+<strong>${esc(patient.phone||"Non renseigné")}</strong>
 </div>
 
 <div class="patient-summary-item">
 <span>Adresse</span>
-<strong>${esc(patient.address || "Non renseignée")}</strong>
+<strong>${esc(patient.address||"Non renseignée")}</strong>
 </div>
 
 <div class="patient-summary-item">
 <span>Âge</span>
 <strong>
-${age ? age.years+" an(s) "+age.months+" mois" : ""}
+${age ?
+age.years+" an(s) "+age.months+" mois":
+""}
 </strong>
 </div>
 
 </div>
 
 </div>
-
 
 <input
 type="hidden"
@@ -2286,344 +2159,227 @@ value="${esc(patient.id)}">
 <input
 type="hidden"
 id="consultationId"
-value="${esc(consultation?.id || "")}">
-
+value="${esc(consultation?.id||"")}">
 
 <div class="info">
 
-${pediatric
-? "👶 Consultation pédiatrique — enfant de moins de 5 ans"
-: "👤 Consultation générale"}
+${
+pediatric
+?
+"👶 Consultation pédiatrique — enfant de moins de 5 ans"
+:
+"👤 Consultation générale"
+}
 
 </div>
-
 
 <h3 class="section-title">
 🩺 Motif et histoire
 </h3>
 
-
 <div class="form-group">
-
 <label>Motif de consultation</label>
-
 <textarea id="consultMotif">${esc(
-consultation?.motif_consultation || ""
+consultation?.motif_consultation||""
 )}</textarea>
-
 </div>
-
 
 <div class="form-group">
-
 <label>Antécédents</label>
-
 <textarea id="consultHistory">${esc(
-consultation?.antecedents || ""
+consultation?.antecedents||""
 )}</textarea>
-
 </div>
 
-
-${pediatric ? `
+${
+pediatric
+?
+`
 
 <div class="pediatric">
 
-<h3>
-👶 Évaluation enfant de moins de 5 ans
-</h3>
+<h3>👶 Évaluation enfant de moins de 5 ans</h3>
 
 <div class="form-group">
-
-<label>
-Allaitement / alimentation
-</label>
-
+<label>Allaitement / alimentation</label>
 <textarea id="feeding"></textarea>
-
 </div>
 
 <div class="form-group">
-
-<label>
-Développement psychomoteur
-</label>
-
+<label>Développement psychomoteur</label>
 <textarea id="development"></textarea>
-
 </div>
 
 <div class="form-group">
-
-<label>
-Statut vaccinal
-</label>
+<label>Statut vaccinal</label>
 
 <select id="childVaccination">
-
 <option>Non renseigné</option>
 <option>À jour</option>
 <option>En retard</option>
 <option>Incomplet</option>
-
 </select>
 
 </div>
 
 <div class="form-group">
-
-<label>
-Antécédents pédiatriques
-</label>
-
+<label>Antécédents pédiatriques</label>
 <textarea id="pediatricHistory"></textarea>
-
 </div>
 
 <div class="form-group">
-
-<label>
-Conseils aux parents / tuteur
-</label>
-
+<label>Conseils aux parents / tuteur</label>
 <textarea id="parentAdvice"></textarea>
-
 </div>
 
 </div>
 
-` : ""}
-
+`
+:
+""
+}
 
 <h3 class="section-title">
 📊 Constantes
 </h3>
 
-
 <div class="form-group">
-
-<label>
-Tension artérielle
-</label>
-
+<label>Tension artérielle</label>
 <input
 id="bp"
-value="${esc(consultation?.tension_arterielle || "")}"
+value="${esc(consultation?.tension_arterielle||"")}"
 placeholder="120/80 mmHg">
-
 </div>
 
-
 <div class="form-group">
-
-<label>
-Température (°C)
-</label>
-
+<label>Température (°C)</label>
 <input
 id="temperature"
 type="number"
 step=".1"
-value="${esc(consultation?.temperature || "")}">
-
+value="${esc(consultation?.temperature||"")}">
 </div>
 
-
 <div class="form-group">
-
-<label>
-Poids (kg)
-</label>
-
+<label>Poids (kg)</label>
 <input
 id="consultWeight"
 type="number"
 step=".1"
-value="${esc(consultation?.poids || "")}">
-
+value="${esc(consultation?.poids||"")}">
 </div>
 
-
 <div class="form-group">
-
-<label>
-Taille (cm)
-</label>
-
+<label>Taille (cm)</label>
 <input
 id="consultHeight"
 type="number"
 step=".1"
-value="${esc(consultation?.taille || "")}">
-
+value="${esc(consultation?.taille||"")}">
 </div>
 
-
 <div class="form-group">
-
-<label>
-Fréquence cardiaque
-</label>
-
+<label>Fréquence cardiaque</label>
 <input
 id="heartRate"
 type="number"
-value="${esc(consultation?.frequence_cardiaque || "")}">
-
+value="${esc(consultation?.frequence_cardiaque||"")}">
 </div>
 
-
 <div class="form-group">
-
-<label>
-Saturation (%)
-</label>
-
+<label>Saturation (%)</label>
 <input
 id="oxygen"
 type="number"
 step=".1"
-value="${esc(consultation?.saturation_oxygene || "")}">
-
+value="${esc(consultation?.saturation_oxygene||"")}">
 </div>
-
 
 <h3 class="section-title">
 🔎 Évaluation clinique
 </h3>
 
-
 <div class="form-group">
-
-<label>
-Examen clinique
-</label>
-
+<label>Examen clinique</label>
 <textarea id="clinicalExam">${esc(
-consultation?.examen_clinique || ""
+consultation?.examen_clinique||""
 )}</textarea>
-
 </div>
 
-
 <div class="form-group">
-
-<label>
-Diagnostic / hypothèse
-</label>
-
+<label>Diagnostic / hypothèse</label>
 <textarea id="diagnosis">${esc(
-consultation?.diagnostic || ""
+consultation?.diagnostic||""
 )}</textarea>
-
 </div>
-
 
 <div class="form-group">
-
-<label>
-Soins réalisés
-</label>
-
+<label>Soins réalisés</label>
 <textarea id="care">${esc(
-consultation?.soins_realises || ""
+consultation?.soins_realises||""
 )}</textarea>
-
 </div>
-
 
 <h3 class="section-title">
 💊 Traitement et conseils
 </h3>
 
-
 <div class="form-group">
-
-<label>
-Traitement / prescription
-</label>
-
+<label>Traitement / prescription</label>
 <textarea id="treatment">${esc(
-consultation?.traitement || ""
+consultation?.traitement||""
 )}</textarea>
-
 </div>
 
-
 <div class="form-group">
-
-<label>
-Conseils
-</label>
-
+<label>Conseils</label>
 <textarea id="advice">${esc(
-consultation?.conseils || ""
+consultation?.conseils||""
 )}</textarea>
-
 </div>
-
 
 <div class="form-group">
-
-<label>
-Orientation
-</label>
-
+<label>Orientation</label>
 <textarea id="orientation">${esc(
-consultation?.orientation || ""
+consultation?.orientation||""
 )}</textarea>
-
 </div>
-
 
 <h3 class="section-title">
 📅 Suivi
 </h3>
 
-
 <div class="form-group">
-
-<label>
-Prochain rendez-vous
-</label>
-
+<label>Prochain rendez-vous</label>
 <input
 id="nextAppointment"
 type="date"
-value="${esc(consultation?.prochain_rendez_vous || "")}">
-
+value="${esc(consultation?.prochain_rendez_vous||"")}">
 </div>
-
 
 <div class="form-group">
-
-<label>
-Observations
-</label>
-
+<label>Observations</label>
 <textarea id="consultObservations">${esc(
-consultation?.observations || ""
+consultation?.observations||""
 )}</textarea>
-
 </div>
-
 
 <div class="form-actions">
 
 <button
 class="btn secondary"
 onclick="closeModal()">
-
 Annuler
-
 </button>
 
 <button
 class="btn primary"
 onclick="saveConsultation()">
-
-💾 ${consultation ? "Enregistrer les modifications" : "Enregistrer la consultation"}
-
+💾 ${
+consultation
+?"Enregistrer les modifications"
+:"Enregistrer la consultation"
+}
 </button>
 
 </div>
@@ -2634,16 +2390,15 @@ onclick="saveConsultation()">
 
 
 /* =========================================================
-   SAUVEGARDE / MODIFICATION CONSULTATION
+   SAUVEGARDE CONSULTATION
 ========================================================= */
 
 async function saveConsultation(){
 
-const {data:userData} =
+const {data:userData}=
 await supabaseClient.auth.getUser();
 
-const user =
-userData.user;
+const user=userData.user;
 
 if(!user){
 
@@ -2652,10 +2407,10 @@ return;
 
 }
 
-const patientId =
+const patientId=
 document.getElementById("consultPatientId").value;
 
-const consultationId =
+const consultationId=
 document.getElementById("consultationId").value;
 
 if(!patientId){
@@ -2665,7 +2420,7 @@ return;
 
 }
 
-const patientQuery =
+const patientQuery=
 await supabaseClient
 .from("patients")
 .select("*")
@@ -2683,65 +2438,50 @@ return;
 
 }
 
-const patient =
-patientQuery.data;
+const patient=patientQuery.data;
 
-const age =
-ageOf(patient.date_of_birth);
+const age=ageOf(patient.date_of_birth);
 
-const pediatric =
-age && age.years < 5;
+const pediatric=age && age.years<5;
 
-
-/*
-Les informations identité sont prises
-directement depuis le dossier patient.
-*/
-
-let antecedents =
+let antecedents=
 document.getElementById("consultHistory")
-.value
-.trim();
-
+.value.trim();
 
 if(pediatric){
 
-const feeding =
+const feeding=
 document.getElementById("feeding")?.value.trim();
 
-const development =
+const development=
 document.getElementById("development")?.value.trim();
 
-const vaccination =
+const vaccination=
 document.getElementById("childVaccination")?.value;
 
-const pediatricHistory =
+const pediatricHistory=
 document.getElementById("pediatricHistory")?.value.trim();
 
-const extra = [
+const extra=[
 
-feeding
-? "Alimentation/allaitement : "+feeding
-: "",
+feeding?
+"Alimentation/allaitement : "+feeding:"",
 
-development
-? "Développement psychomoteur : "+development
-: "",
+development?
+"Développement psychomoteur : "+development:"",
 
 vaccination &&
-vaccination!=="Non renseigné"
-? "Statut vaccinal : "+vaccination
-: "",
+vaccination!=="Non renseigné"?
+"Statut vaccinal : "+vaccination:"",
 
-pediatricHistory
-? "Antécédents pédiatriques : "+pediatricHistory
-: ""
+pediatricHistory?
+"Antécédents pédiatriques : "+pediatricHistory:""
 
 ].filter(Boolean).join("\n");
 
 if(extra){
 
-antecedents =
+antecedents=
 [antecedents,extra]
 .filter(Boolean)
 .join("\n");
@@ -2750,23 +2490,19 @@ antecedents =
 
 }
 
-
-let advice =
+let advice=
 document.getElementById("advice")
-.value
-.trim();
-
+.value.trim();
 
 if(pediatric){
 
-const parentAdvice =
+const parentAdvice=
 document.getElementById("parentAdvice")
-?.value
-.trim();
+?.value.trim();
 
 if(parentAdvice){
 
-advice =
+advice=
 [advice,
 "Conseils aux parents : "+parentAdvice]
 .filter(Boolean)
@@ -2776,20 +2512,12 @@ advice =
 
 }
 
-
-/*
-IMPORTANT :
-La table consultations_generales
-utilise F / M / Autre.
-*/
-
-const sexe =
+const sexe=
 patient.gender==="male"
-? "M"
-: patient.gender==="female"
-? "F"
-: "Autre";
-
+?"M":
+patient.gender==="female"
+?"F":
+"Autre";
 
 const payload={
 
@@ -2805,82 +2533,78 @@ date_naissance:patient.date_of_birth,
 
 sexe:sexe,
 
-telephone:patient.phone || null,
+telephone:patient.phone||null,
 
 motif_consultation:
 document.getElementById("consultMotif")
 .value.trim(),
 
 antecedents:
-
-antecedents || null,
+antecedents||null,
 
 tension_arterielle:
 document.getElementById("bp")
-.value.trim() || null,
+.value.trim()||null,
 
 temperature:
 document.getElementById("temperature")
-.value || null,
+.value||null,
 
 poids:
 document.getElementById("consultWeight")
-.value || null,
+.value||null,
 
 taille:
 document.getElementById("consultHeight")
-.value || null,
+.value||null,
 
 frequence_cardiaque:
 document.getElementById("heartRate")
-.value || null,
+.value||null,
 
 saturation_oxygene:
 document.getElementById("oxygen")
-.value || null,
+.value||null,
 
 examen_clinique:
 document.getElementById("clinicalExam")
-.value.trim() || null,
+.value.trim()||null,
 
 diagnostic:
 document.getElementById("diagnosis")
-.value.trim() || null,
+.value.trim()||null,
 
 soins_realises:
 document.getElementById("care")
-.value.trim() || null,
+.value.trim()||null,
 
 traitement:
 document.getElementById("treatment")
-.value.trim() || null,
+.value.trim()||null,
 
 conseils:
-advice || null,
+advice||null,
 
 orientation:
 document.getElementById("orientation")
-.value.trim() || null,
+.value.trim()||null,
 
 prochain_rendez_vous:
 document.getElementById("nextAppointment")
-.value || null,
+.value||null,
 
 observations:
 document.getElementById("consultObservations")
-.value.trim() || null,
+.value.trim()||null,
 
 updated_at:
 new Date().toISOString()
 
 };
 
-
-/* MODIFICATION */
-
 if(consultationId){
 
-const {error} =
+const {error}=
 await supabaseClient
 .from("consultations_generales")
 .update(payload)
@@ -2897,21 +2621,14 @@ return;
 
 }
 
-alert(
-"✅ Consultation modifiée et complétée."
-);
+alert("✅ Consultation modifiée et complétée.");
 
-}
+}else{
 
-
-/* NOUVELLE CONSULTATION */
-
-else{
-
-payload.date_consultation =
+payload.date_consultation=
 new Date().toISOString();
 
-const {error} =
+const {error}=
 await supabaseClient
 .from("consultations_generales")
 .insert(payload);
@@ -2927,9 +2644,7 @@ return;
 
 }
 
-alert(
-"✅ Consultation enregistrée."
-);
+alert("✅ Consultation enregistrée.");
 
 }
 
@@ -2946,26 +2661,21 @@ loadAllConsultations();
 
 async function loadAllConsultations(){
 
-const list =
+const list=
 document.getElementById("dataList");
 
-list.innerHTML =
+list.innerHTML=
 '<div class="empty">Chargement des consultations...</div>';
 
-
-const {data,error} =
+const {data,error}=
 await supabaseClient
 .from("consultations_generales")
 .select("*")
-.order(
-"date_consultation",
-{ascending:false}
-);
-
+.order("date_consultation",{ascending:false});
 
 if(error){
 
-list.innerHTML =
+list.innerHTML=
 '<div class="empty">Erreur : '+
 esc(error.message)+
 '</div>';
@@ -2974,10 +2684,9 @@ return;
 
 }
 
+if(!data||!data.length){
 
-if(!data || !data.length){
-
-list.innerHTML = `
+list.innerHTML=`
 
 <h3>📋 Toutes les consultations</h3>
 
@@ -2991,18 +2700,12 @@ return;
 
 }
 
+list.innerHTML=`
 
-list.innerHTML = `
-
-<h3>
-📋 Toutes les consultations
-</h3>
+<h3>📋 Toutes les consultations</h3>
 
 <p style="color:var(--muted);margin:5px 0 15px">
-
-${data.length}
-consultation(s) enregistrée(s).
-
+${data.length} consultation(s) enregistrée(s).
 </p>
 
 <div class="search-box">
@@ -3015,131 +2718,100 @@ oninput="filterConsultations()">
 </div>
 
 <div id="consultationRows">
-
 ${renderConsultationRows(data)}
-
 </div>
 
 `;
 
-window.allConsultations =
-data;
+window.allConsultations=data;
 
 }
 
-
 function renderConsultationRows(data){
 
-return data.map(x=>{
-
-return `
+return data.map(x=>`
 
 <div
 class="row consultation-row"
-data-search="
-${esc(
+data-search="${esc(
 (
 (x.prenom_patient||"")+" "+
 (x.nom_patient||"")+" "+
 (x.motif_consultation||"")+" "+
 (x.diagnostic||"")
 ).toLowerCase()
-)}
-">
+)}">
 
 <div class="row-main">
 
 <strong>
-
 ${esc(x.prenom_patient)}
 ${" "}
 ${esc(x.nom_patient)}
-
 </strong>
 
 <small>
-
 📅 ${formatDateTime(x.date_consultation)}
-
 </small>
 
 <small>
-
 🩺 Motif :
-${esc(x.motif_consultation || "Non renseigné")}
-
+${esc(x.motif_consultation||"Non renseigné")}
 </small>
 
 <small>
-
 🔎 Diagnostic :
-${esc(x.diagnostic || "Non renseigné")}
-
+${esc(x.diagnostic||"Non renseigné")}
 </small>
 
-${x.prochain_rendez_vous ? `
+${x.prochain_rendez_vous?`
 
 <span class="tag">
-
-📅 Suivi :
-${formatDate(x.prochain_rendez_vous)}
-
+📅 Suivi : ${formatDate(x.prochain_rendez_vous)}
 </span>
 
-` : ""}
+`:""}
 
 </div>
-
 
 <div class="row-actions">
 
 <button
 class="btn primary"
 onclick="editConsultation('${x.id}')">
-
 ✏️ Modifier / compléter
-
 </button>
 
 </div>
 
 </div>
 
-`;
-
-}).join("");
+`).join("");
 
 }
 
-
 function filterConsultations(){
 
-const q =
-(document.getElementById("consultationSearch")
-.value || "")
+const q=
+(document.getElementById("consultationSearch").value||"")
 .toLowerCase();
 
 document
 .querySelectorAll(".consultation-row")
 .forEach(row=>{
 
-row.style.display =
+row.style.display=
 row.dataset.search.includes(q)
-? ""
-: "none";
+?""
+:"none";
 
 });
 
 }
 
-
-/* =========================================================
-   MODIFIER CONSULTATION
-========================================================= */
-
 async function editConsultation(id){
 
-const {data,error} =
+const {data,error}=
 await supabaseClient
 .from("consultations_generales")
 .select("*")
@@ -3157,7 +2829,6 @@ return;
 
 }
 
-
 if(!data.patient_id){
 
 alert(
@@ -3168,14 +2839,12 @@ return;
 
 }
 
-
-const patientQuery =
+const patientQuery=
 await supabaseClient
 .from("patients")
 .select("*")
 .eq("id",data.patient_id)
 .single();
-
 
 if(patientQuery.error){
 
@@ -3187,11 +2856,9 @@ return;
 
 }
 
-
 renderConsultationForm({
 
 patient:patientQuery.data,
-
 consultation:data
 
 });
@@ -3205,29 +2872,25 @@ consultation:data
 
 async function renderAppointmentForm(data=null){
 
-const c =
+const c=
 document.getElementById("modalContent");
 
-
-const patientsQuery =
+const patientsQuery=
 await supabaseClient
 .from("patients")
 .select("id,first_name,last_name,patient_code")
 .order("last_name")
 .limit(500);
 
-
 if(patientsQuery.error){
 
-c.innerHTML = `
+c.innerHTML=`
 
 <h2>📅 Rendez-vous</h2>
 
 <div class="empty">
-
 Impossible de charger les patients :
 ${esc(patientsQuery.error.message)}
-
 </div>
 
 `;
@@ -3236,29 +2899,26 @@ return;
 
 }
 
+const patients=patientsQuery.data||[];
 
-const patients =
-patientsQuery.data || [];
-
-
-c.innerHTML = `
+c.innerHTML=`
 
 <h2>
-📅 ${data ? "Modifier le rendez-vous" : "Nouveau rendez-vous"}
+📅 ${
+data
+?"Modifier le rendez-vous"
+:"Nouveau rendez-vous"
+}
 </h2>
 
 <p style="color:var(--muted);margin:8px 0 18px">
-
 Un rendez-vous est toujours associé à un patient.
-
 </p>
-
 
 <input
 type="hidden"
 id="appointmentId"
-value="${esc(data?.id || "")}">
-
+value="${esc(data?.id||"")}">
 
 <div class="form-group">
 
@@ -3274,7 +2934,7 @@ ${patients.map(p=>`
 
 <option
 value="${esc(p.id)}"
-${data?.patient_id===p.id ? "selected" : ""}>
+${data?.patient_id===p.id?"selected":""}>
 
 ${esc(p.first_name)}
 ${" "}
@@ -3290,7 +2950,6 @@ ${esc(p.patient_code)}
 
 </div>
 
-
 <div class="form-group">
 
 <label>Date *</label>
@@ -3298,10 +2957,9 @@ ${esc(p.patient_code)}
 <input
 id="aDate"
 type="date"
-value="${esc(data?.date_rendez_vous || "")}">
+value="${esc(data?.date_rendez_vous||"")}">
 
 </div>
-
 
 <div class="form-group">
 
@@ -3310,48 +2968,47 @@ value="${esc(data?.date_rendez_vous || "")}">
 <input
 id="aTime"
 type="time"
-value="${esc(data?.heure || "")}">
+value="${esc(data?.heure||"")}">
 
 </div>
-
 
 <div class="form-group">
 
 <label>Motif</label>
 
 <textarea id="aReason">${esc(
-data?.motif || ""
+data?.motif||""
 )}</textarea>
 
 </div>
-
 
 <div class="form-group">
 
 <label>Observations</label>
 
 <textarea id="aNotes">${esc(
-data?.observations || ""
+data?.observations||""
 )}</textarea>
 
 </div>
-
 
 <div class="form-actions">
 
 <button
 class="btn secondary"
 onclick="closeModal()">
-
 Annuler
-
 </button>
 
 <button
 class="btn primary"
 onclick="saveAppointment()">
 
-💾 ${data ? "Modifier le rendez-vous" : "Créer le rendez-vous"}
+💾 ${
+data
+?"Modifier le rendez-vous"
+:"Créer le rendez-vous"
+}
 
 </button>
 
@@ -3359,27 +3016,18 @@ onclick="saveAppointment()">
 
 `;
 
-}
-
-
-function openAppointmentForm(data=null){
-
-renderAppointmentForm(data);
+document
+.getElementById("modal")
+.classList.add("show");
 
 }
-
-
-/* =========================================================
-   SAUVEGARDER RENDEZ-VOUS
-========================================================= */
 
 async function saveAppointment(){
 
-const {data:userData} =
+const {data:userData}=
 await supabaseClient.auth.getUser();
 
-const user =
-userData.user;
+const user=userData.user;
 
 if(!user){
 
@@ -3388,27 +3036,25 @@ return;
 
 }
 
-
-const id =
+const id=
 document.getElementById("appointmentId").value;
 
-const patientId =
+const patientId=
 document.getElementById("aPatient").value;
 
-const date =
+const date=
 document.getElementById("aDate").value;
 
-const time =
+const time=
 document.getElementById("aTime").value;
 
-const reason =
+const reason=
 document.getElementById("aReason").value.trim();
 
-const notes =
+const notes=
 document.getElementById("aNotes").value.trim();
 
-
-if(!patientId || !date || !time){
+if(!patientId||!date||!time){
 
 alert(
 "Patient, date et heure sont obligatoires."
@@ -3417,7 +3063,6 @@ alert(
 return;
 
 }
-
 
 const payload={
 
@@ -3429,19 +3074,17 @@ date_rendez_vous:date,
 
 heure:time,
 
-motif:reason || null,
+motif:reason||null,
 
-observations:notes || null,
+observations:notes||null,
 
-updated_at:
-new Date().toISOString()
+updated_at:new Date().toISOString()
 
 };
 
-
 if(id){
 
-const {error} =
+const {error}=
 await supabaseClient
 .from("rendez_vous")
 .update(payload)
@@ -3462,10 +3105,10 @@ alert("✅ Rendez-vous modifié.");
 
 }else{
 
-payload.created_at =
+payload.created_at=
 new Date().toISOString();
 
-const {error} =
+const {error}=
 await supabaseClient
 .from("rendez_vous")
 .insert(payload);
@@ -3491,40 +3134,30 @@ loadAppointments();
 
 }
 
-
-/* =========================================================
-   LISTE RENDEZ-VOUS
-========================================================= */
-
 async function loadAppointments(){
 
-const list =
+const list=
 document.getElementById("dataList");
 
-list.innerHTML =
+list.innerHTML=
 '<div class="empty">Chargement des rendez-vous...</div>';
 
-
-const {data,error} =
+const {data,error}=
 await supabaseClient
 .from("rendez_vous")
 .select(`
 *,
-patients (
+patients(
 first_name,
 last_name,
 patient_code
 )
 `)
-.order(
-"date_rendez_vous",
-{ascending:true}
-);
-
+.order("date_rendez_vous",{ascending:true});
 
 if(error){
 
-list.innerHTML = `
+list.innerHTML=`
 
 <div class="empty">
 
@@ -3534,334 +3167,4 @@ ${esc(error.message)}
 <br><br>
 
 <button
-class="btn primary"
-onclick="openModal('appointment')">
-
-Créer un rendez-vous
-
-</button>
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-if(!data || !data.length){
-
-list.innerHTML = `
-
-<h3>📅 Rendez-vous</h3>
-
-<div class="empty">
-Aucun rendez-vous enregistré.
-</div>
-
-`;
-
-return;
-
-}
-
-
-list.innerHTML = `
-
-<h3>
-📅 Rendez-vous
-</h3>
-
-<div class="search-box">
-
-<input
-id="appointmentSearch"
-placeholder="Rechercher un patient..."
-oninput="filterAppointments()">
-
-</div>
-
-<div id="appointmentRows">
-
-${renderAppointmentRows(data)}
-
-</div>
-
-`;
-
-window.allAppointments =
-data;
-
-}
-
-
-function renderAppointmentRows(data){
-
-return data.map(r=>{
-
-const p =
-r.patients || {};
-
-return `
-
-<div
-class="row appointment-row"
-data-search="
-${esc(
-(
-(p.first_name||"")+" "+
-(p.last_name||"")+" "+
-(p.patient_code||"")
-).toLowerCase()
-)}
-">
-
-<div class="row-main">
-
-<strong>
-
-${esc(p.first_name || "")}
-${" "}
-${esc(p.last_name || "")}
-
-</strong>
-
-<small>
-🆔 ${esc(p.patient_code || "")}
-</small>
-
-<small>
-📅 ${formatDate(r.date_rendez_vous)}
-à ${esc(r.heure || "")}
-</small>
-
-<small>
-🩺 ${esc(r.motif || "Motif non renseigné")}
-</small>
-
-</div>
-
-
-<div class="row-actions">
-
-<button
-class="btn secondary"
-onclick="openAppointmentEdit('${r.id}')">
-
-✏️ Modifier
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}).join("");
-
-}
-
-
-function filterAppointments(){
-
-const q =
-(document.getElementById("appointmentSearch")
-.value || "")
-.toLowerCase();
-
-document
-.querySelectorAll(".appointment-row")
-.forEach(row=>{
-
-row.style.display =
-row.dataset.search.includes(q)
-? ""
-: "none";
-
-});
-
-}
-
-
-async function openAppointmentEdit(id){
-
-const {data,error} =
-await supabaseClient
-.from("rendez_vous")
-.select("*")
-.eq("id",id)
-.single();
-
-if(error){
-
-alert(
-"Impossible de récupérer le rendez-vous : "+
-error.message
-);
-
-return;
-
-}
-
-renderAppointmentForm(data);
-
-}
-
-
-/* =========================================================
-   CARTE RENDEZ-VOUS DU DASHBOARD
-========================================================= */
-
-document
-.querySelectorAll(".dash-card")
-.forEach(card=>{
-
-});
-
-
-/*
-On remplace le comportement du quatrième
-dashboard-card afin d'afficher la liste.
-*/
-
-const dashboardCards =
-document.querySelectorAll(".dash-card");
-
-if(dashboardCards[3]){
-
-dashboardCards[3].onclick =
-function(){
-
-loadAppointments();
-
-};
-
-}
-
-
-/* =========================================================
-   ORDONNANCE
-========================================================= */
-
-function savePrescription(){
-
-const file =
-document
-.getElementById("rxPhoto")
-.files[0];
-
-if(!file){
-
-alert(
-"Choisissez une photo de l'ordonnance."
-);
-
-return;
-
-}
-
-alert(
-"📷 Photo sélectionnée.\n\n"+
-"Le stockage sécurisé de l'ordonnance sera connecté "+
-"au module de fichiers lors de l'étape suivante."
-);
-
-closeModal();
-
-}
-
-
-/* =========================================================
-   IA
-========================================================= */
-
-function askAI(){
-
-const q =
-document
-.getElementById("question")
-.value
-.trim();
-
-if(!q){
-
-alert(
-"Écrivez votre demande."
-);
-
-return;
-
-}
-
-alert(
-"🤖 Le service Toppatoo IA sera connecté "+
-"à une solution IA sécurisée."
-);
-
-}
-
-
-/* =========================================================
-   MODAL CLIC EXTÉRIEUR
-========================================================= */
-
-document
-.getElementById("modal")
-.addEventListener(
-"click",
-function(e){
-
-if(e.target.id==="modal"){
-
-closeModal();
-
-}
-
-}
-);
-
-
-/* =========================================================
-   SESSION AUTOMATIQUE
-========================================================= */
-
-(async()=>{
-
-const {data} =
-await supabaseClient.auth.getSession();
-
-if(data.session){
-
-showDashboard(
-data.session.user
-);
-
-}
-
-})();
-
-
-/* =========================================================
-   AUTH STATE
-========================================================= */
-
-supabaseClient.auth.onAuthStateChange(
-(event,session)=>{
-
-if(session){
-
-showDashboard(
-session.user
-);
-
-}
-
-}
-);
-
-</script>
-
-</body>
-  </html>
+class="
