@@ -3,607 +3,3203 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Toppatoo — Sama Wergu Yaram">
 <title>Toppatoo — Sama Wergu Yaram</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  box-sizing:border-box;
+  margin:0;
+  padding:0
 }
 
 :root{
-    --primary:#087f78;
-    --primary-dark:#05645f;
-    --primary-light:#e8f7f5;
-    --text:#173b3a;
-    --muted:#6c817f;
-    --background:#f7fbfa;
-    --white:#fff;
-    --border:#e2eeec;
-    --shadow:0 18px 50px rgba(8,127,120,.10);
-}
-
-html{
-    scroll-behavior:smooth;
+  --p:#087f78;
+  --pd:#05645f;
+  --pl:#e8f7f5;
+  --bg:#f7fbfa;
+  --text:#173b3a;
+  --muted:#6c817f;
+  --border:#e2eeec;
+  --danger:#c0392b;
+  --warning:#b7791f;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--background);
-    color:var(--text);
-    line-height:1.6;
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.5
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit
 }
 
 button{
-    font-family:inherit;
-    cursor:pointer;
+  cursor:pointer
 }
 
 .container{
-    width:min(1120px,92%);
-    margin:auto;
+  width:min(1120px,92%);
+  margin:auto
 }
 
 header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:rgba(255,255,255,.96);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#fff;
+  border-bottom:1px solid var(--border)
 }
 
-.navbar{
-    min-height:74px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
+.nav{
+  min-height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    text-decoration:none;
-    min-width:150px;
+  font-size:25px;
+  font-weight:900;
+  color:var(--p);
+  text-decoration:none
 }
 
-.logo-image{
-    height:52px;
-    width:auto;
-    max-width:210px;
-    object-fit:contain;
+.navlinks{
+  display:flex;
+  gap:22px
 }
 
-.logo-fallback{
-    display:none;
-    color:var(--primary);
-    font-size:24px;
-    font-weight:900;
+.navlinks a{
+  text-decoration:none;
+  color:#496361;
+  font-weight:600;
+  font-size:14px
 }
 
-.nav-links{
-    display:flex;
-    gap:24px;
-}
-
-.nav-links a{
-    text-decoration:none;
-    color:#496361;
-    font-size:14px;
-    font-weight:600;
-}
-
-.nav-links a:hover{
-    color:var(--primary);
-}
-
-.nav-buttons{
-    display:flex;
-    gap:10px;
+.actions{
+  display:flex;
+  gap:8px
 }
 
 .btn{
-    border:0;
-    border-radius:13px;
-    padding:12px 18px;
-    font-weight:700;
-    font-size:14px;
-    transition:.2s ease;
+  border:0;
+  border-radius:12px;
+  padding:11px 16px;
+  font-weight:700;
+  cursor:pointer
 }
 
-.btn:hover{
-    transform:translateY(-2px);
+.primary{
+  background:var(--p);
+  color:#fff
 }
 
-.btn-primary{
-    background:var(--primary);
-    color:white;
+.primary:hover{
+  background:var(--pd)
 }
 
-.btn-primary:hover{
-    background:var(--primary-dark);
+.secondary{
+  background:#fff;
+  color:var(--p);
+  border:1px solid #c8dfdc
 }
 
-.btn-secondary{
-    background:white;
-    color:var(--primary);
-    border:1px solid #c8dfdc;
-}
-
-.btn-light{
-    background:white;
-    color:var(--primary);
+.danger{
+  background:#fff0ef;
+  color:var(--danger);
+  border:1px solid #f1c5c1
 }
 
 .hero{
-    padding:75px 0;
+  padding:75px 0
 }
 
 .hero-grid{
-    display:grid;
-    grid-template-columns:1.05fr .95fr;
-    align-items:center;
-    gap:55px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:55px;
+  align-items:center
 }
 
 .badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:var(--primary-light);
-    color:var(--primary);
-    padding:8px 14px;
-    border-radius:30px;
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:22px;
+  display:inline-block;
+  background:var(--pl);
+  color:var(--p);
+  padding:8px 13px;
+  border-radius:30px;
+  font-weight:700;
+  font-size:13px;
+  margin-bottom:18px
 }
 
-.hero h1{
-    font-size:clamp(44px,6vw,70px);
-    line-height:1.03;
-    letter-spacing:-2.5px;
-    margin-bottom:23px;
+h1{
+  font-size:clamp(44px,6vw,68px);
+  line-height:1.03;
+  margin-bottom:20px
 }
 
-.hero h1 span{
-    color:var(--primary);
+h1 span{
+  color:var(--p)
 }
 
-.hero-description{
-    color:var(--muted);
-    font-size:18px;
-    max-width:600px;
-    margin-bottom:30px;
+.hero p{
+  color:var(--muted);
+  font-size:18px;
+  margin-bottom:25px
 }
 
 .hero-actions{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap
 }
 
-.hero-actions .btn{
-    padding:14px 20px;
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:25px;
+  box-shadow:0 18px 50px rgba(8,127,120,.08)
 }
 
-.health-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:30px;
-    padding:24px;
-    box-shadow:var(--shadow);
+.preview-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:18px
 }
 
-.health-card-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:22px;
+.preview{
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:17px
 }
 
-.health-card-title{
-    font-weight:800;
+.preview b{
+  display:block
 }
 
-.active{
-    background:#e7f8ef;
-    color:#278154;
-    padding:7px 11px;
-    border-radius:30px;
-    font-size:12px;
-    font-weight:700;
-}
-
-.profile{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    background:var(--primary-light);
-    padding:18px;
-    border-radius:20px;
-    margin-bottom:15px;
-}
-
-.avatar{
-    width:52px;
-    height:52px;
-    border-radius:17px;
-    display:grid;
-    place-items:center;
-    background:white;
-    font-size:24px;
-}
-
-.profile strong{
-    display:block;
-}
-
-.profile small{
-    color:var(--muted);
-}
-
-.health-items{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.health-item{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:17px;
-}
-
-.health-icon{
-    font-size:22px;
-    margin-bottom:8px;
-}
-
-.health-item strong{
-    display:block;
-    font-size:15px;
-}
-
-.health-item small{
-    color:var(--muted);
+.preview small{
+  color:var(--muted)
 }
 
 .section{
-    padding:80px 0;
+  padding:70px 0
 }
 
-.section-heading{
-    text-align:center;
-    max-width:700px;
-    margin:0 auto 45px;
+.heading{
+  text-align:center;
+  max-width:680px;
+  margin:0 auto 35px
 }
 
-.section-heading .tag{
-    color:var(--primary);
-    font-weight:800;
-    font-size:13px;
-    text-transform:uppercase;
-    letter-spacing:1px;
+.heading h2{
+  font-size:36px
 }
 
-.section-heading h2{
-    font-size:38px;
-    line-height:1.15;
-    margin:10px 0 14px;
+.heading p{
+  color:var(--muted);
+  margin-top:8px
 }
 
-.section-heading p{
-    color:var(--muted);
-}
-
-.features{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:17px;
+.features,
+.audience{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px
 }
 
 .feature{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:23px;
-    padding:25px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px
 }
 
 .feature-icon{
-    width:52px;
-    height:52px;
-    border-radius:16px;
-    display:grid;
-    place-items:center;
-    background:var(--primary-light);
-    font-size:24px;
-    margin-bottom:19px;
+  font-size:25px;
+  margin-bottom:10px
 }
 
-.feature h3{
-    margin-bottom:8px;
-}
-
-.feature p{
-    color:var(--muted);
-    font-size:14px;
+.feature p,
+.audience p{
+  color:var(--muted);
+  font-size:14px
 }
 
 .audience{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+  grid-template-columns:1fr 1fr
 }
 
 .audience-card{
-    border-radius:28px;
-    padding:35px;
-    background:white;
-    border:1px solid var(--border);
+  padding:30px;
+  border-radius:24px;
+  background:#fff;
+  border:1px solid var(--border)
 }
 
-.audience-card.professional{
-    background:var(--primary);
-    color:white;
+.audience-card.prof{
+  background:var(--p);
+  color:#fff
 }
 
-.audience-icon{
-    font-size:35px;
-    margin-bottom:18px;
+.audience-card.prof p{
+  color:rgba(255,255,255,.8)
 }
 
-.audience-card h3{
-    font-size:25px;
-    margin-bottom:10px;
+.dashboard{
+  display:none;
+  padding:45px 0 75px
 }
 
-.audience-card p{
-    margin-bottom:22px;
-    color:var(--muted);
+.dashboard.show{
+  display:block
 }
 
-.professional p{
-    color:rgba(255,255,255,.78);
+.dash-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:22px
 }
 
-.ai-section{
-    background:#eef8f6;
+.dash-head p{
+  color:var(--muted)
 }
 
-.ai-card{
-    display:grid;
-    grid-template-columns:.8fr 1.2fr;
-    align-items:center;
-    gap:45px;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:30px;
-    padding:42px;
-    box-shadow:var(--shadow);
+.dash-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-bottom:20px
 }
 
-.ai-symbol{
-    min-height:230px;
-    border-radius:25px;
-    background:var(--primary-light);
-    display:grid;
-    place-items:center;
-    font-size:80px;
+.dash-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  cursor:pointer;
+  transition:.2s
 }
 
-.ai-card h2{
-    font-size:35px;
-    margin-bottom:12px;
+.dash-card:hover{
+  box-shadow:0 15px 35px rgba(8,127,120,.08);
+  transform:translateY(-2px)
 }
 
-.ai-card p{
-    color:var(--muted);
-    margin-bottom:20px;
+.dash-card .ico{
+  font-size:28px;
+  margin-bottom:8px
 }
 
-.cta{
-    padding:75px 0;
+.dash-card p{
+  color:var(--muted);
+  font-size:13px
 }
 
-.cta-box{
-    background:var(--primary);
-    color:white;
-    border-radius:30px;
-    padding:48px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:30px;
+.list{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:23px
 }
 
-.cta-box h2{
-    font-size:34px;
-    line-height:1.2;
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:25px
 }
 
-.cta-box p{
-    margin-top:8px;
-    opacity:.82;
+.row{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+  margin:10px 0;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center
 }
 
-footer{
-    background:white;
-    border-top:1px solid var(--border);
-    padding:40px 0;
-}
-
-.footer-content{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
-
-.footer-brand{
-    color:var(--primary);
-    font-weight:800;
-}
-
-.footer-text{
-    color:var(--muted);
-    font-size:13px;
+.row small{
+  display:block;
+  color:var(--muted)
 }
 
 .modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:2000;
-    background:rgba(23,59,58,.45);
-    padding:20px;
-    align-items:center;
-    justify-content:center;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(23,59,58,.45);
+  z-index:50;
+  padding:18px;
+  align-items:center;
+  justify-content:center
 }
 
 .modal.show{
-    display:flex;
+  display:flex
 }
 
-.modal-box{
-    width:min(650px,100%);
-    max-height:92vh;
-    overflow-y:auto;
-    background:white;
-    border-radius:25px;
-    padding:30px;
-    box-shadow:0 25px 80px rgba(0,0,0,.18);
-    position:relative;
+.modalbox{
+  background:#fff;
+  width:min(700px,100%);
+  max-height:92vh;
+  overflow:auto;
+  border-radius:23px;
+  padding:27px;
+  position:relative
 }
 
-.modal-close{
-    position:absolute;
-    top:15px;
-    right:18px;
-    border:0;
-    background:transparent;
-    font-size:25px;
-    color:var(--muted);
-}
-
-.modal-box h2{
-    margin-bottom:8px;
-}
-
-.modal-box>p{
-    color:var(--muted);
-    margin-bottom:20px;
+.close{
+  position:absolute;
+  right:15px;
+  top:10px;
+  border:0;
+  background:none;
+  font-size:26px;
+  color:var(--muted);
+  cursor:pointer
 }
 
 .form-group{
-    margin-bottom:16px;
+  margin:0 0 13px
 }
 
 .form-group label{
-    display:block;
-    font-size:14px;
-    font-weight:700;
-    margin-bottom:6px;
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:5px
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea{
-    width:100%;
-    padding:13px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    font-size:15px;
-    outline:none;
-    font-family:inherit;
-    background:white;
+  width:100%;
+  padding:11px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  outline:none
 }
 
 .form-group textarea{
-    min-height:90px;
-    resize:vertical;
+  min-height:75px;
+  resize:vertical
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus{
-    border-color:var(--primary);
+  border-color:var(--p)
 }
 
-.modal-actions{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
+.form-actions{
+  display:flex;
+  gap:10px;
+  margin-top:18px
 }
 
-.modal-actions .btn{
-    flex:1;
+.form-actions .btn{
+  flex:1
 }
 
-.dashboard{
-    display:none;
-    padding:45px 0 80px;
+.info{
+  background:var(--pl);
+  color:var(--p);
+  padding:10px 12px;
+  border-radius:11px;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:13px
 }
 
-.dashboard.show{
-    display:block;
+.pediatric{
+  background:#fff8e8;
+  border:1px solid #f0dfb3;
+  padding:15px;
+  border-radius:14px;
+  margin-bottom:14px
 }
 
-.dashboard-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-    margin-bottom:25px;
+.pediatric h3{
+  font-size:16px;
+  margin-bottom:10px
 }
 
-.dashboard-header h2{
-    font-size:32px;
+.filter-bar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:15px 0
 }
 
-.dashboard-header p{
-    color:var(--muted);
+.filter-btn{
+  border:1px solid var(--border);
+  background:#fff;
+  color:var(--text);
+  border-radius:10px;
+  padding:9px 13px;
+  font-weight:700
 }
 
-.dashboard-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
-    margin-bottom:25px;
+.filter-btn.active{
+  background:var(--p);
+  color:#fff;
+  border-color:var(--p)
 }
 
-.dashboard-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:23px;
-    cursor:pointer;
-    transition:.2s;
+.search-box{
+  margin-bottom:15px
 }
 
-.dashboard-card:hover{
-    transform:translateY(-3px);
-    box-shadow:var(--shadow);
+.search-box input{
+  width:100%;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:11px
 }
 
-.dashboard-card .big{
-    font-size:30px;
-    margin-bottom:10px;
+.photo-preview{
+  margin-top:12px;
+  text-align:center
 }
 
-.dashboard-card h3{
-    margin-bottom:5px;
+.photo-preview img{
+  max-width:100%;
+  max-height:300px;
+  border-radius:14px;
+  border:1px solid var(--border)
 }
 
-.dashboard-card p{
-    color:var(--muted);
-    font-size:13px;
+footer{
+  padding:35px 0;
+  border-top:1px solid var(--border);
+  background:#fff;
+  color:var(--muted);
+  font-size:13px
 }
 
-.list-box
+@media(max-width:900px){
+  .navlinks{
+    display:none
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr
+  }
+
+  .features{
+    grid-template-columns:1fr 1fr
+  }
+
+  .dash-grid{
+    grid-template-columns:1fr 1fr
+  }
+}
+
+@media(max-width:600px){
+  .nav{
+    min-height:62px
+  }
+
+  .actions .secondary{
+    display:none
+  }
+
+  .hero{
+    padding:48px 0
+  }
+
+  .hero-actions{
+    flex-direction:column
+  }
+
+  .hero-actions .btn{
+    width:100%
+  }
+
+  .features,
+  .audience,
+  .dash-grid,
+  .preview-grid{
+    grid-template-columns:1fr
+  }
+
+  .section{
+    padding:50px 0
+  }
+
+  .heading h2{
+    font-size:29px
+  }
+
+  .dash-head{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px
+  }
+
+  .form-actions{
+    flex-direction:column
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav">
+
+<a class="logo" href="#accueil">TOPPATOO</a>
+
+<nav class="navlinks">
+<a href="#accueil">Accueil</a>
+<a href="#fonctionnalites">Fonctionnalités</a>
+<a href="#utilisateurs">Utilisateurs</a>
+<a href="#ia">Toppatoo IA</a>
+</nav>
+
+<div class="actions">
+<button class="btn secondary" onclick="openModal('login')">
+Se connecter
+</button>
+
+<button class="btn primary" onclick="openModal('register')">
+Créer un compte
+</button>
+</div>
+
+</div>
+</header>
+
+
+<main>
+
+<section class="hero" id="accueil">
+
+<div class="container hero-grid">
+
+<div>
+
+<div class="badge">
+🩺 Sama Wergu Yaram
+</div>
+
+<h1>
+Votre santé,<br>
+<span>plus simple.</span>
+</h1>
+
+<p>
+Toppatoo rapproche patients et professionnels,
+centralise le parcours de santé et adapte
+la consultation aux besoins du patient.
+</p>
+
+<div class="hero-actions">
+
+<button class="btn primary"
+onclick="openModal('professional')">
+👨‍⚕️ Je suis professionnel
+</button>
+
+<button class="btn secondary"
+onclick="openModal('patient')">
+👤 Je suis patient
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<strong>Mon espace santé</strong>
+
+<div class="preview-grid">
+
+<div class="preview">
+👥
+<b>Patients</b>
+<small>Enfants et adultes</small>
+</div>
+
+<div class="preview">
+🩺
+<b>Consultations</b>
+<small>Adaptées à l'âge</small>
+</div>
+
+<div class="preview">
+📅
+<b>Rendez-vous</b>
+<small>Suivi organisé</small>
+</div>
+
+<div class="preview">
+💊
+<b>Ordonnances</b>
+<small>Photo de l'ordonnance</small>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+<section class="section" id="fonctionnalites">
+
+<div class="container">
+
+<div class="heading">
+<h2>Tout au même endroit</h2>
+<p>
+Une organisation simple pour le professionnel et le patient.
+</p>
+</div>
+
+<div class="features">
+
+<div class="feature">
+<div class="feature-icon">👥</div>
+<h3>Patients</h3>
+<p>
+Un seul registre pour les enfants et les adultes
+avec un code patient unique.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🩺</div>
+<h3>Consultations</h3>
+<p>
+Le formulaire s'adapte automatiquement à l'âge du patient.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">📅</div>
+<h3>Rendez-vous</h3>
+<p>
+Créer et suivre les rendez-vous des patients.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">💊</div>
+<h3>Ordonnances</h3>
+<p>
+Préparer la conservation d'une photo de l'ordonnance.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section class="section" id="utilisateurs">
+
+<div class="container">
+
+<div class="heading">
+<h2>Pour patients et professionnels</h2>
+</div>
+
+<div class="audience">
+
+<div class="audience-card prof">
+
+<h3>👨‍⚕️ Professionnels</h3>
+
+<p>
+Patients, consultations, rendez-vous,
+ordonnances et historique dans un seul espace.
+</p>
+
+<br>
+
+<button class="btn"
+style="background:#fff;color:var(--p)"
+onclick="openModal('professional')">
+Accéder à l'espace
+</button>
+
+</div>
+
+
+<div class="audience-card">
+
+<h3>👤 Patients</h3>
+
+<p>
+Accès aux informations de santé qui leur sont
+partagées par le professionnel.
+</p>
+
+<br>
+
+<button class="btn primary"
+onclick="openModal('patient')">
+Espace patient
+</button>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section class="section" id="ia" style="background:#eef8f6">
+
+<div class="container">
+
+<div class="card">
+
+<h2>🤖 Toppatoo IA</h2>
+
+<p style="color:var(--muted);margin:10px 0 18px">
+Assistant destiné à accompagner le professionnel.
+Il ne remplace pas le jugement clinique.
+</p>
+
+<button class="btn primary"
+onclick="openModal('ai')">
+Découvrir
+</button>
+
+</div>
+</div>
+</section>
+
+
+<section class="dashboard" id="dashboard">
+
+<div class="container">
+
+<div class="dash-head">
+
+<div>
+<h2>👨‍⚕️ Espace Professionnel</h2>
+<p id="dashboardUser">Bienvenue.</p>
+</div>
+
+<button class="btn secondary" onclick="logout()">
+Se déconnecter
+</button>
+
+</div>
+
+
+<div class="dash-grid">
+
+<div class="dash-card" onclick="openModal('patients')">
+<div class="ico">👥</div>
+<h3>Patients</h3>
+<p>Créer, rechercher et consulter les patients.</p>
+</div>
+
+<div class="dash-card" onclick="openModal('consultation')">
+<div class="ico">🩺</div>
+<h3>Nouvelle consultation</h3>
+<p>Formulaire adapté automatiquement à l'âge.</p>
+</div>
+
+<div class="dash-card" onclick="loadAllConsultations()">
+<div class="ico">📋</div>
+<h3>Toutes les consultations</h3>
+<p>Journalier, mensuel ou toutes les consultations.</p>
+</div>
+
+<div class="dash-card" onclick="openModal('appointment')">
+<div class="ico">📅</div>
+<h3>Rendez-vous</h3>
+<p>Créer et consulter les rendez-vous.</p>
+</div>
+
+<div class="dash-card" onclick="openModal('prescription')">
+<div class="ico">💊</div>
+<h3>Traitements & ordonnances</h3>
+<p>Ajouter une photo d'ordonnance.</p>
+</div>
+
+<div class="dash-card" onclick="loadPatients()">
+<div class="ico">🔎</div>
+<h3>Recherche patients</h3>
+<p>Nom, téléphone ou code patient.</p>
+</div>
+
+</div>
+
+<div class="list" id="dataList">
+<div class="empty">
+Choisissez une fonction.
+</div>
+</div>
+
+</div>
+</section>
+
+</main>
+
+
+<footer>
+<div class="container">
+TOPPATOO — Sama Wergu Yaram · © 2026
+</div>
+</footer>
+
+
+<div class="modal" id="modal">
+
+<div class="modalbox">
+
+<button class="close" onclick="closeModal()">×</button>
+
+<div id="modalContent"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+"https://dgehholykcfyfwgpbbto.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"sb_publishable_f1ucxryKg1O2JjwIovX69g_oip3hsip";
+
+const supabaseClient =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_ANON_KEY
+);
+
+
+/* =========================================================
+   OUTILS
+========================================================= */
+
+function esc(value){
+
+if(value === null || value === undefined){
+return "";
+}
+
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+}
+
+
+function closeModal(){
+
+document
+.getElementById("modal")
+.classList.remove("show");
+
+}
+
+
+function showMessage(message){
+
+alert(message);
+
+}
+
+
+/* =========================================================
+   MODALES
+========================================================= */
+
+function openModal(type){
+
+const c =
+document.getElementById("modalContent");
+
+
+/* =========================
+   CREATION COMPTE
+========================= */
+
+if(type === "register"){
+
+c.innerHTML = `
+
+<h2>📝 Créer un compte</h2>
+
+<p style="color:var(--muted);margin:8px 0 18px">
+Créez votre compte Toppatoo.
+</p>
+
+<div class="form-group">
+<label>Nom complet *</label>
+<input id="name">
+</div>
+
+<div class="form-group">
+<label>Téléphone</label>
+<input id="phone">
+</div>
+
+<div class="form-group">
+<label>Email *</label>
+<input id="email" type="email">
+</div>
+
+<div class="form-group">
+<label>Mot de passe *</label>
+<input id="password" type="password">
+</div>
+
+<div class="form-group">
+<label>Type de compte</label>
+
+<select id="role">
+
+<option value="patient">
+Patient
+</option>
+
+<option value="professional">
+Professionnel
+</option>
+
+</select>
+
+</div>
+
+<div class="form-actions">
+
+<button class="btn primary"
+onclick="createAccount()">
+Créer mon compte
+</button>
+
+</div>
+`;
+
+}
+
+
+/* =========================
+   CONNEXION
+========================= */
+
+else if(type === "login"){
+
+c.innerHTML = `
+
+<h2>🔐 Se connecter</h2>
+
+<p style="color:var(--muted);margin:8px 0 18px">
+Accédez à votre espace.
+</p>
+
+<div class="form-group">
+<label>Email</label>
+<input id="loginEmail" type="email">
+</div>
+
+<div class="form-group">
+<label>Mot de passe</label>
+<input id="loginPassword" type="password">
+</div>
+
+<div class="form-actions">
+
+<button class="btn primary"
+onclick="login()">
+Se connecter
+</button>
+
+</div>
+`;
+
+}
+
+
+/* =========================
+   PROFESSIONNEL
+========================= */
+
+else if(type === "professional"){
+
+c.innerHTML = `
+
+<h2>👨‍⚕️ Espace professionnel</h2>
+
+<p style="color:var(--muted);margin:8px 0 18px">
+Connectez-vous pour accéder au tableau de bord.
+</p>
+
+<button class="btn primary"
+onclick="openModal('login')">
+Se connecter
+</button>
+`;
+
+}
+
+
+/* =========================
+   PATIENT
+========================= */
+
+else if(type === "patient"){
+
+c.innerHTML = `
+
+<h2>👤 Espace patient</h2>
+
+<p style="color:var(--muted);margin:10px 0">
+Votre code patient permet de vous identifier
+dans Toppatoo lorsqu'un professionnel vous a enregistré.
+</p>
+
+<div class="info">
+🔐 Le patient reçoit un code unique de type TOP-...
+</div>
+
+<div class="form-group">
+<label>Code patient</label>
+<input id="patientAccessCode"
+placeholder="TOP-260825-XXXXXX">
+</div>
+
+<button class="btn primary"
+onclick="patientLookup()">
+Rechercher
+</button>
+
+<div id="patientAccessResult"></div>
+
+`;
+
+}
+
+
+/* =========================
+   IA
+========================= */
+
+else if(type === "ai"){
+
+c.innerHTML = `
+
+<h2>🤖 Toppatoo IA</h2>
+
+<p style="color:var(--muted);margin:10px 0 18px">
+Assistant destiné à accompagner le professionnel.
+Il ne remplace pas le jugement clinique.
+</p>
+
+<div class="form-group">
+<label>Votre demande</label>
+<textarea id="question"></textarea>
+</div>
+
+<button class="btn primary"
+onclick="askAI()">
+Utiliser Toppatoo IA
+</button>
+`;
+
+}
+
+
+/* =========================
+   PATIENT
+========================= */
+
+else if(type === "patients"){
+
+c.innerHTML = `
+
+<h2>👥 Ajouter un patient</h2>
+
+<div class="info">
+👶👤 Un seul registre pour les enfants et les adultes.
+Le code patient est généré automatiquement par Supabase.
+</div>
+
+<div class="form-group">
+<label>Prénom *</label>
+<input id="pFirst">
+</div>
+
+<div class="form-group">
+<label>Nom *</label>
+<input id="pLast">
+</div>
+
+<div class="form-group">
+<label>Date de naissance *</label>
+<input id="pDob" type="date">
+</div>
+
+<div class="form-group">
+<label>Sexe</label>
+
+<select id="pGender">
+
+<option value="not_specified">
+Non précisé
+</option>
+
+<option value="male">
+Masculin
+</option>
+
+<option value="female">
+Féminin
+</option>
+
+<option value="other">
+Autre
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+<label>Téléphone</label>
+<input id="pPhone">
+</div>
+
+<div class="form-group">
+<label>Adresse</label>
+<input id="pAddress">
+</div>
+
+<div class="form-group">
+<label>Contact urgence</label>
+<input id="pEmergency">
+</div>
+
+<div class="form-group">
+<label>Téléphone urgence</label>
+<input id="pEmergencyPhone">
+</div>
+
+<div class="form-actions">
+
+<button class="btn primary"
+onclick="savePatient()">
+💾 Enregistrer
+</button>
+
+</div>
+`;
+
+}
+
+
+/* =========================
+   CONSULTATION
+========================= */
+
+else if(type === "consultation"){
+
+c.innerHTML = `
+
+<h2>🩺 Nouvelle consultation</h2>
+
+<p style="color:var(--muted);margin:8px 0 18px">
+La consultation s'adapte automatiquement à l'âge.
+</p>
+
+<div class="form-group">
+<label>Code patient</label>
+<input id="consultCode"
+placeholder="TOP-260825-XXXXXX">
+</div>
+
+<div class="form-group">
+<label>Nom *</label>
+<input id="patientNom">
+</div>
+
+<div class="form-group">
+<label>Prénom *</label>
+<input id="patientPrenom">
+</div>
+
+<div class="form-group">
+<label>Date de naissance *</label>
+<input id="patientDate"
+type="date"
+onchange="adaptConsultation()">
+</div>
+
+<div id="ageIndicator"></div>
+
+
+<div class="form-group">
+
+<label>Sexe</label>
+
+<select id="patientSexe">
+
+<option value="Autre">
+Non précisé / Autre
+</option>
+
+<option value="M">
+Masculin
+</option>
+
+<option value="F">
+Féminin
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+<label>Téléphone</label>
+<input id="patientPhone">
+</div>
+
+
+<div class="form-group">
+<label>Motif de consultation</label>
+<textarea id="consultMotif"></textarea>
+</div>
+
+
+<div class="form-group">
+<label>Antécédents</label>
+<textarea id="consultHistory"></textarea>
+</div>
+
+
+<div id="pediatricFields"></div>
+
+
+<div class="form-group">
+<label>Tension artérielle</label>
+<input id="bp" placeholder="120/80 mmHg">
+</div>
+
+
+<div class="form-group">
+<label>Température (°C)</label>
+<input id="temperature" type="number" step=".1">
+</div>
+
+
+<div class="form-group">
+<label>Poids (kg)</label>
+<input id="consultWeight" type="number" step=".1">
+</div>
+
+
+<div class="form-group">
+<label>Taille (cm)</label>
+<input id="consultHeight" type="number" step=".1">
+</div>
+
+
+<div class="form-group">
+<label>Fréquence cardiaque</label>
+<input id="heartRate" type="number">
+</div>
+
+
+<div class="form-group">
+<label>Saturation (%)</label>
+<input id="oxygen" type="number" step=".1">
+</div>
+
+
+<div class="form-group">
+<label>Examen clinique</label>
+<textarea id="clinicalExam"></textarea>
+</div>
+
+
+<div class="form-group">
+<label>Diagnostic / hypothèse</label>
+<textarea id="diagnosis"></textarea>
+</div>
+
+
+<div class="form-group">
+<label>Soins réalisés</label>
+<textarea id="care"></textarea>
+</div>
+
+
+<div class="form-group">
+<label>Traitement / prescription</label>
+<textarea id="treatment"></textarea>
+</div>
+
+
+<div class="form-group">
+<label>Conseils</label>
+<textarea id="advice"></textarea>
+</div>
+
+
+<div class="form-group">
+<label>Orientation</label>
+<textarea id="orientation"></textarea>
+</div>
+
+
+<div class="form-group">
+<label>Prochain rendez-vous</label>
+<input id="nextAppointment" type="date">
+</div>
+
+
+<div class="form-group">
+<label>Observations</label>
+<textarea id="consultObservations"></textarea>
+</div>
+
+
+<div class="form-actions">
+
+<button class="btn primary"
+onclick="saveConsultation()">
+💾 Enregistrer la consultation
+</button>
+
+</div>
+`;
+
+setTimeout(adaptConsultation,50);
+
+}
+
+
+/* =========================
+   RENDEZ-VOUS
+========================= */
+
+else if(type === "appointment"){
+
+c.innerHTML = `
+
+<h2>📅 Nouveau rendez-vous</h2>
+
+<div class="info">
+📅 Préparation du module rendez-vous.
+</div>
+
+<div class="form-group">
+<label>Code patient</label>
+<input id="aCode"
+placeholder="TOP-...">
+</div>
+
+<div class="form-group">
+<label>Nom du patient *</label>
+<input id="aName">
+</div>
+
+<div class="form-group">
+<label>Date</label>
+<input id="aDate" type="date">
+</div>
+
+<div class="form-group">
+<label>Heure</label>
+<input id="aTime" type="time">
+</div>
+
+<div class="form-group">
+<label>Motif</label>
+<textarea id="aReason"></textarea>
+</div>
+
+<div class="form-actions">
+
+<button class="btn primary"
+onclick="saveAppointment()">
+💾 Enregistrer
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   ORDONNANCE
+========================= */
+
+else if(type === "prescription"){
+
+c.innerHTML = `
+
+<h2>💊 Traitement & ordonnance</h2>
+
+<p style="color:var(--muted);margin:8px 0 18px">
+Photographiez simplement l'ordonnance.
+</p>
+
+<div class="form-group">
+<label>Code patient</label>
+<input id="rxCode"
+placeholder="TOP-...">
+</div>
+
+<div class="form-group">
+<label>Photo de l'ordonnance</label>
+<input id="rxPhoto"
+type="file"
+accept="image/*"
+capture="environment"
+onchange="previewPrescription()">
+</div>
+
+<div id="rxPreview" class="photo-preview"></div>
+
+<div class="form-actions">
+
+<button class="btn primary"
+onclick="savePrescription()">
+📷 Valider
+</button>
+
+</div>
+
+`;
+
+}
+
+
+document
+.getElementById("modal")
+.classList.add("show");
+
+}
+
+
+/* =========================================================
+   CREATION COMPTE
+========================================================= */
+
+async function createAccount(){
+
+const name =
+document.getElementById("name").value.trim();
+
+const phone =
+document.getElementById("phone").value.trim();
+
+const email =
+document.getElementById("email").value.trim();
+
+const password =
+document.getElementById("password").value;
+
+const role =
+document.getElementById("role").value;
+
+
+if(!name || !email || password.length < 6){
+
+return alert(
+"Nom, email et mot de passe de 6 caractères minimum sont obligatoires."
+);
+
+}
+
+
+const {error} =
+await supabaseClient.auth.signUp({
+
+email,
+password,
+
+options:{
+data:{
+full_name:name,
+phone:phone,
+role:role
+}
+}
+
+});
+
+
+if(error){
+
+return alert(
+"Erreur : " + error.message
+);
+
+}
+
+
+alert(
+"✅ Compte créé. Vérifiez votre e-mail si nécessaire."
+);
+
+closeModal();
+
+}
+
+
+/* =========================================================
+   CONNEXION
+========================================================= */
+
+async function login(){
+
+const email =
+document.getElementById("loginEmail").value.trim();
+
+const password =
+document.getElementById("loginPassword").value;
+
+
+if(!email || !password){
+
+return alert(
+"Veuillez renseigner votre email et votre mot de passe."
+);
+
+}
+
+
+const {data,error} =
+await supabaseClient.auth.signInWithPassword({
+email,
+password
+});
+
+
+if(error){
+
+return alert(
+"Erreur : " + error.message
+);
+
+}
+
+
+closeModal();
+
+showDashboard(data.user);
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function showDashboard(user){
+
+document
+.getElementById("dashboard")
+.classList.add("show");
+
+
+const name =
+user.user_metadata?.full_name ||
+user.email ||
+"Utilisateur";
+
+
+document
+.getElementById("dashboardUser")
+.textContent =
+"Bienvenue " + name;
+
+
+document
+.getElementById("dashboard")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+async function logout(){
+
+await supabaseClient.auth.signOut();
+
+document
+.getElementById("dashboard")
+.classList.remove("show");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================================================
+   CALCUL AGE
+========================================================= */
+
+function ageOf(date){
+
+if(!date){
+return null;
+}
+
+const birth =
+new Date(date + "T00:00:00");
+
+const today =
+new Date();
+
+let years =
+today.getFullYear() -
+birth.getFullYear();
+
+let months =
+today.getMonth() -
+birth.getMonth();
+
+
+if(today.getDate() < birth.getDate()){
+months--;
+}
+
+
+if(months < 0){
+years--;
+months += 12;
+}
+
+
+return{
+y:years,
+m:months
+};
+
+}
+
+
+/* =========================================================
+   ADAPTATION PEDIATRIQUE
+========================================================= */
+
+function adaptConsultation(){
+
+const date =
+document.getElementById("patientDate")?.value;
+
+const box =
+document.getElementById("ageIndicator");
+
+const fields =
+document.getElementById("pediatricFields");
+
+
+if(!box || !fields){
+return;
+}
+
+
+const age =
+ageOf(date);
+
+
+if(!age){
+
+box.innerHTML="";
+fields.innerHTML="";
+
+return;
+}
+
+
+if(age.y < 0){
+
+box.innerHTML="";
+fields.innerHTML="";
+
+return;
+}
+
+
+/* ENFANT MOINS DE 5 ANS */
+
+if(age.y < 5){
+
+box.className="info";
+
+box.textContent =
+`👶 Consultation pédiatrique — ${age.y} an(s) ${age.m} mois`;
+
+
+fields.innerHTML = `
+
+<div class="pediatric">
+
+<h3>
+👶 Évaluation enfant de moins de 5 ans
+</h3>
+
+<div class="form-group">
+
+<label>
+Allaitement / alimentation
+</label>
+
+<textarea
+id="feeding"
+placeholder="Allaitement, diversification, alimentation...">
+</textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Développement psychomoteur
+</label>
+
+<textarea
+id="development"
+placeholder="Acquisitions et observations...">
+</textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Statut vaccinal
+</label>
+
+<select id="childVaccination">
+
+<option>
+Non renseigné
+</option>
+
+<option>
+À jour
+</option>
+
+<option>
+En retard
+</option>
+
+<option>
+Incomplet
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Antécédents pédiatriques
+</label>
+
+<textarea id="pediatricHistory">
+</textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Conseils aux parents / tuteur
+</label>
+
+<textarea id="parentAdvice">
+</textarea>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* ADULTE / ENFANT ≥ 5 ANS */
+
+else{
+
+box.className="info";
+
+box.textContent =
+`👤 Consultation générale — ${age.y} an(s)`;
+
+fields.innerHTML="";
+
+}
+
+}
+
+
+/* =========================================================
+   ENREGISTRER PATIENT
+========================================================= */
+
+async function savePatient(){
+
+const userResult =
+await supabaseClient.auth.getUser();
+
+const user =
+userResult.data.user;
+
+
+if(!user){
+
+return alert(
+"Vous devez être connecté."
+);
+
+}
+
+
+const first =
+document.getElementById("pFirst").value.trim();
+
+const last =
+document.getElementById("pLast").value.trim();
+
+const dob =
+document.getElementById("pDob").value;
+
+
+if(!first || !last || !dob){
+
+return alert(
+"Prénom, nom et date de naissance sont obligatoires."
+);
+
+}
+
+
+/*
+IMPORTANT :
+On conserve ici les valeurs originales
+pour la colonne patients.gender car
+sa contrainte n'a pas encore été vérifiée.
+*/
+
+const gender =
+document.getElementById("pGender").value;
+
+
+const payload={
+
+first_name:first,
+
+last_name:last,
+
+date_of_birth:dob,
+
+gender:gender,
+
+phone:
+document.getElementById("pPhone").value.trim(),
+
+address:
+document.getElementById("pAddress").value.trim(),
+
+emergency_contact_name:
+document.getElementById("pEmergency").value.trim(),
+
+emergency_contact_phone:
+document.getElementById("pEmergencyPhone").value.trim(),
+
+created_by:user.id
+
+};
+
+
+const {data,error} =
+await supabaseClient
+.from("patients")
+.insert(payload)
+.select("id,patient_code,first_name,last_name")
+.single();
+
+
+if(error){
+
+return alert(
+"Erreur lors de l'enregistrement du patient :\n\n"
++ error.message
+);
+
+}
+
+
+alert(
+"✅ Patient enregistré !\n\n"
++
+"Patient : "
++
+data.first_name
++
+" "
++
+data.last_name
++
+"\n\nCode patient :\n"
++
+data.patient_code
+);
+
+
+closeModal();
+
+loadPatients();
+
+}
+
+
+/* =========================================================
+   PATIENTS
+========================================================= */
+
+async function loadPatients(){
+
+const list =
+document.getElementById("dataList");
+
+
+list.innerHTML =
+"<div class='empty'>Chargement...</div>";
+
+
+const {data,error} =
+await supabaseClient
+.from("patients")
+.select("*")
+.order("created_at",{ascending:false});
+
+
+if(error){
+
+list.innerHTML =
+"<div class='empty'>Erreur : "
++
+esc(error.message)
++
+"</div>";
+
+return;
+
+}
+
+
+if(!data || !data.length){
+
+list.innerHTML =
+"<div class='empty'>Aucun patient enregistré.</div>";
+
+return;
+
+}
+
+
+window.toppatooPatients = data;
+
+
+renderPatients(data);
+
+}
+
+
+function renderPatients(data){
+
+const list =
+document.getElementById("dataList");
+
+
+list.innerHTML = `
+
+<h3>👥 Patients</h3>
+
+<div class="search-box">
+
+<input
+id="patientSearch"
+placeholder="🔎 Rechercher par nom, téléphone ou code..."
+oninput="filterPatients()">
+
+</div>
+
+<div id="patientsResults"></div>
+
+`;
+
+
+renderPatientRows(data);
+
+}
+
+
+function renderPatientRows(data){
+
+const target =
+document.getElementById("patientsResults");
+
+
+if(!target){
+return;
+}
+
+
+if(!data.length){
+
+target.innerHTML =
+"<div class='empty'>Aucun résultat.</div>";
+
+return;
+
+}
+
+
+target.innerHTML =
+data.map(p=>{
+
+const age =
+ageOf(p.date_of_birth);
+
+const isChild =
+age && age.y < 5;
+
+
+return `
+
+<div class="row">
+
+<div>
+
+<strong>
+${esc(p.first_name)}
+${esc(p.last_name)}
+</strong>
+
+<small>
+Code : ${esc(p.patient_code)}
+</small>
+
+<small>
+Né(e) le ${esc(p.date_of_birth)}
+</small>
+
+<small>
+Téléphone : ${esc(p.phone || "Non renseigné")}
+</small>
+
+</div>
+
+<div>
+${isChild ? "👶" : "👤"}
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+function filterPatients(){
+
+const search =
+(document.getElementById("patientSearch")?.value || "")
+.toLowerCase()
+.trim();
+
+
+if(!window.toppatooPatients){
+return;
+}
+
+
+if(!search){
+
+return renderPatientRows(
+window.toppatooPatients
+);
+
+}
+
+
+const filtered =
+window.toppatooPatients.filter(p=>{
+
+return [
+
+p.first_name,
+p.last_name,
+p.phone,
+p.patient_code
+
+].some(value=>
+String(value || "")
+.toLowerCase()
+.includes(search)
+);
+
+});
+
+
+renderPatientRows(filtered);
+
+}
+
+
+/* =========================================================
+   CONSULTATION
+========================================================= */
+
+async function saveConsultation(){
+
+const userResult =
+await supabaseClient.auth.getUser();
+
+const user =
+userResult.data.user;
+
+
+if(!user){
+
+return alert(
+"Session expirée. Connectez-vous."
+);
+
+}
+
+
+const nom =
+document.getElementById("patientNom")
+.value.trim();
+
+const prenom =
+document.getElementById("patientPrenom")
+.value.trim();
+
+const dob =
+document.getElementById("patientDate")
+.value;
+
+
+if(!nom || !prenom || !dob){
+
+return alert(
+"Nom, prénom et date de naissance sont obligatoires."
+);
+
+}
+
+
+const age =
+ageOf(dob);
+
+const pediatric =
+age && age.y < 5;
+
+
+/* =====================================================
+   RECHERCHE PATIENT PAR CODE
+===================================================== */
+
+const code =
+document.getElementById("consultCode")
+.value.trim();
+
+let patient_id = null;
+
+
+if(code){
+
+const result =
+await supabaseClient
+.from("patients")
+.select("id,first_name,last_name,date_of_birth")
+.eq("patient_code",code)
+.maybeSingle();
+
+
+if(result.error){
+
+return alert(
+"Erreur lors de la recherche du code patient :\n\n"
++
+result.error.message
+);
+
+}
+
+
+if(result.data){
+
+patient_id =
+result.data.id;
+
+}
+
+}
+
+
+/* =====================================================
+   DONNEES PEDIATRIQUES
+===================================================== */
+
+let pediatricNotes="";
+
+
+if(pediatric){
+
+const feeding =
+document.getElementById("feeding")?.value.trim();
+
+const development =
+document.getElementById("development")?.value.trim();
+
+const vaccination =
+document.getElementById("childVaccination")?.value;
+
+const pediatricHistory =
+document.getElementById("pediatricHistory")?.value.trim();
+
+
+pediatricNotes = [
+
+feeding
+? "Alimentation/allaitement : " + feeding
+: "",
+
+development
+? "Développement psychomoteur : " + development
+: "",
+
+vaccination
+? "Statut vaccinal : " + vaccination
+: "",
+
+pediatricHistory
+? "Antécédents pédiatriques : " + pediatricHistory
+: ""
+
+]
+.filter(Boolean)
+.join("\n");
+
+}
+
+
+/* =====================================================
+   CONSEILS
+===================================================== */
+
+const normalAdvice =
+document.getElementById("advice")
+.value.trim();
+
+
+const parentAdvice =
+pediatric
+?
+(document.getElementById("parentAdvice")?.value.trim() || "")
+:
+"";
+
+
+const advice =
+[
+normalAdvice,
+parentAdvice
+?
+"Conseils aux parents : " + parentAdvice
+:
+""
+]
+.filter(Boolean)
+.join("\n");
+
+
+/* =====================================================
+   ANTECEDENTS
+===================================================== */
+
+const history =
+document.getElementById("consultHistory")
+.value.trim();
+
+
+const antecedents =
+[
+history,
+pediatricNotes
+]
+.filter(Boolean)
+.join("\n");
+
+
+/* =====================================================
+   SEXE
+=====================================================
+
+IMPORTANT :
+
+La table consultations_generales accepte
+UNIQUEMENT :
+
+M
+F
+Autre
+
+*/
+
+const sexe =
+document.getElementById("patientSexe")
+.value;
+
+
+/* =====================================================
+   PAYLOAD
+===================================================== */
+
+const payload={
+
+professionnel_id:user.id,
+
+patient_id:patient_id,
+
+nom_patient:nom,
+
+prenom_patient:prenom,
+
+date_naissance:dob,
+
+sexe:sexe,
+
+telephone:
+document.getElementById("patientPhone")
+.value.trim(),
+
+motif_consultation:
+document.getElementById("consultMotif")
+.value.trim(),
+
+antecedents:antecedents,
+
+tension_arterielle:
+document.getElementById("bp")
+.value.trim(),
+
+temperature:
+document.getElementById("temperature")
+.value
+?
+Number(document.getElementById("temperature").value)
+:
+null,
+
+poids:
+document.getElementById("consultWeight")
+.value
+?
+Number(document.getElementById("consultWeight").value)
+:
+null,
+
+taille:
+document.getElementById("consultHeight")
+.value
+?
+Number(document.getElementById("consultHeight").value)
+:
+null,
+
+frequence_cardiaque:
+document.getElementById("heartRate")
+.value
+?
+Number(document.getElementById("heartRate").value)
+:
+null,
+
+saturation_oxygene:
+document.getElementById("oxygen")
+.value
+?
+Number(document.getElementById("oxygen").value)
+:
+null,
+
+examen_clinique:
+document.getElementById("clinicalExam")
+.value.trim(),
+
+diagnostic:
+document.getElementById("diagnosis")
+.value.trim(),
+
+soins_realises:
+document.getElementById("care")
+.value.trim(),
+
+traitement:
+document.getElementById("treatment")
+.value.trim(),
+
+conseils:advice,
+
+orientation:
+document.getElementById("orientation")
+.value.trim(),
+
+prochain_rendez_vous:
+document.getElementById("nextAppointment")
+.value || null,
+
+observations:
+document.getElementById("consultObservations")
+.value.trim()
+
+};
+
+
+/* =====================================================
+   INSERTION
+===================================================== */
+
+const {error} =
+await supabaseClient
+.from("consultations_generales")
+.insert(payload);
+
+
+if(error){
+
+console.error(
+"Erreur consultation :",
+error,
+payload
+);
+
+return alert(
+"❌ Erreur lors de l'enregistrement :\n\n"
++
+error.message
+);
+
+}
+
+
+alert(
+pediatric
+?
+"✅ Consultation pédiatrique enregistrée."
+:
+"✅ Consultation enregistrée."
+);
+
+
+closeModal();
+
+loadAllConsultations();
+
+}
+
+
+/* =========================================================
+   TOUTES LES CONSULTATIONS
+========================================================= */
+
+async function loadAllConsultations(){
+
+const list =
+document.getElementById("dataList");
+
+
+list.innerHTML =
+"<div class='empty'>Chargement des consultations...</div>";
+
+
+const {data,error} =
+await supabaseClient
+.from("consultations_generales")
+.select("*")
+.order("date_consultation",{ascending:false});
+
+
+if(error){
+
+list.innerHTML =
+"<div class='empty'>Erreur : "
++
+esc(error.message)
++
+"</div>";
+
+return;
+
+}
+
+
+window.toppatooConsultations =
+data || [];
+
+
+renderConsultations(data || []);
+
+}
+
+
+function renderConsultations(data){
+
+const list =
+document.getElementById("dataList");
+
+
+list.innerHTML = `
+
+<h3>📋 Toutes les consultations</h3>
+
+<div class="filter-bar">
+
+<button
+class="filter-btn active"
+onclick="filterConsultations('all',this)">
+Toutes
+</button>
+
+<button
+class="filter-btn"
+onclick="filterConsultations('today',this)">
+Aujourd'hui
+</button>
+
+<button
+class="filter-btn"
+onclick="filterConsultations('month',this)">
+Ce mois
+</button>
+
+</div>
+
+<div id="consultationResults"></div>
+
+`;
+
+
+renderConsultationRows(data);
+
+}
+
+
+function renderConsultationRows(data){
+
+const target =
+document.getElementById("consultationResults");
+
+
+if(!target){
+return;
+}
+
+
+if(!data.length){
+
+target.innerHTML =
+"<div class='empty'>Aucune consultation.</div>";
+
+return;
+
+}
+
+
+target.innerHTML =
+data.map(x=>{
+
+return `
+
+<div class="row">
+
+<div>
+
+<strong>
+${esc(x.prenom_patient)}
+${esc(x.nom_patient)}
+</strong>
+
+<small>
+🩺 ${esc(x.date_consultation || "")}
+</small>
+
+<small>
+Motif :
+${esc(x.motif_consultation || "Non renseigné")}
+</small>
+
+<small>
+Diagnostic :
+${esc(x.diagnostic || "Non renseigné")}
+</small>
+
+</div>
+
+<div>
+${x.sexe === "F" ? "♀️" : x.sexe === "M" ? "♂️" : "👤"}
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+function filterConsultations(type,button){
+
+document
+.querySelectorAll(".filter-btn")
+.forEach(btn=>
+btn.classList.remove("active")
+);
+
+
+if(button){
+button.classList.add("active");
+}
+
+
+const consultations =
+window.toppatooConsultations || [];
+
+
+const now =
+new Date();
+
+
+let filtered =
+consultations;
+
+
+if(type === "today"){
+
+filtered =
+consultations.filter(x=>{
+
+if(!x.date_consultation){
+return false;
+}
+
+const date =
+new Date(x.date_consultation);
+
+return (
+date.getDate() === now.getDate() &&
+date.getMonth() === now.getMonth() &&
+date.getFullYear() === now.getFullYear()
+);
+
+});
+
+}
+
+
+if(type === "month"){
+
+filtered =
+consultations.filter(x=>{
+
+if(!x.date_consultation){
+return false;
+}
+
+const date =
+new Date(x.date_consultation);
+
+return (
+date.getMonth() === now.getMonth() &&
+date.getFullYear() === now.getFullYear()
+);
+
+});
+
+}
+
+
+renderConsultationRows(filtered);
+
+}
+
+
+/* =========================================================
+   PATIENT VIA CODE
+========================================================= */
+
+async function patientLookup(){
+
+const code =
+document
+.getElementById("patientAccessCode")
+.value
+.trim();
+
+
+if(!code){
+
+return alert(
+"Entrez le code patient."
+);
+
+}
+
+
+const result =
+await supabaseClient
+.from("patients")
+.select(
+"first_name,last_name,date_of_birth,patient_code"
+)
+.eq("patient_code",code)
+.maybeSingle();
+
+
+const box =
+document.getElementById("patientAccessResult");
+
+
+if(result.error){
+
+box.innerHTML =
+`<div class="info" style="margin-top:15px">
+Erreur : ${esc(result.error.message)}
+</div>`;
+
+return;
+
+}
+
+
+if(!result.data){
+
+box.innerHTML =
+`<div class="info" style="margin-top:15px">
+❌ Aucun patient trouvé avec ce code.
+</div>`;
+
+return;
+
+}
+
+
+box.innerHTML = `
+
+<div class="info" style="margin-top:15px">
+
+✅ Patient trouvé
+
+<br><br>
+
+<strong>
+${esc(result.data.first_name)}
+${esc(result.data.last_name)}
+</strong>
+
+<br>
+
+Code :
+${esc(result.data.patient_code)}
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   RENDEZ-VOUS
+========================================================= */
+
+async function saveAppointment(){
+
+const userResult =
+await supabaseClient.auth.getUser();
+
+if(!userResult.data.user){
+
+return alert(
+"Vous devez être connecté."
+);
+
+}
+
+
+const code =
+document.getElementById("aCode")
+.value.trim();
+
+const name =
+document.getElementById("aName")
+.value.trim();
+
+const date =
+document.getElementById("aDate")
+.value;
+
+const time =
+document.getElementById("aTime")
+.value;
+
+const reason =
+document.getElementById("aReason")
+.value.trim();
+
+
+if(!name || !date){
+
+return alert(
+"Nom du patient et date obligatoires."
+);
+
+}
+
+
+/*
+La table rendez-vous n'a pas encore été fournie.
+On évite donc de faire une requête vers une table
+inconnue qui ferait planter l'application.
+*/
+
+const appointment = {
+
+code_patient:code,
+
+nom_patient:name,
+
+date:date,
+
+heure:time,
+
+motif:reason
+
+};
+
+
+const appointments =
+JSON.parse(
+localStorage.getItem("toppatoo_appointments") || "[]"
+);
+
+
+appointments.push({
+
+...appointment,
+
+created_at:new Date().toISOString()
+
+});
+
+
+localStorage.setItem(
+"toppatoo_appointments",
+JSON.stringify(appointments)
+);
+
+
+alert(
+"✅ Rendez-vous enregistré sur cet appareil.\n\n"
++
+"Il sera relié à Supabase lorsque la table Rendez-vous sera configurée."
+);
+
+
+closeModal();
+
+}
+
+
+/* =========================================================
+   ORDONNANCE
+========================================================= */
+
+function previewPrescription(){
+
+const input =
+document.getElementById("rxPhoto");
+
+const box =
+document.getElementById("rxPreview");
+
+
+if(!input || !input.files.length){
+
+box.innerHTML="";
+
+return;
+
+}
+
+
+const file =
+input.files[0];
+
+
+if(!file.type.startsWith("image/")){
+
+box.innerHTML =
+"<div class='info'>Veuillez sélectionner une image.</div>";
+
+return;
+
+}
+
+
+const url =
+URL.createObjectURL(file);
+
+
+box.innerHTML = `
+
+<img
+src="${url}"
+alt="Aperçu de l'ordonnance">
+
+`;
+
+}
+
+
+function savePrescription(){
+
+const file =
+document
+.getElementById("rxPhoto")
+.files[0];
+
+
+const code =
+document
+.getElementById("rxCode")
+.value
+.trim();
+
+
+if(!file){
+
+return alert(
+"Choisissez une photo de l'ordonnance."
+);
+
+}
+
+
+/*
+Le stockage Supabase Storage n'est pas encore
+configuré dans le code fourni.
+On conserve temporairement la sélection.
+*/
+
+const reader =
+new FileReader();
+
+
+reader.onload=function(){
+
+const prescriptions =
+JSON.parse(
+localStorage.getItem("toppatoo_prescriptions") || "[]"
+);
+
+
+prescriptions.push({
+
+code_patient:code,
+
+image:this.result,
+
+created_at:new Date().toISOString()
+
+});
+
+
+localStorage.setItem(
+"toppatoo_prescriptions",
+JSON.stringify(prescriptions)
+);
+
+
+alert(
+"📷 Ordonnance enregistrée temporairement sur cet appareil."
+);
+
+closeModal();
+
+};
+
+
+reader.readAsDataURL(file);
+
+}
+
+
+/* =========================================================
+   IA
+========================================================= */
+
+function askAI(){
+
+const question =
+document
+.getElementById("question")
+.value
+.trim();
+
+
+if(!question){
+
+return alert(
+"Écrivez votre demande."
+);
+
+}
+
+
+alert(
+"🤖 Le module Toppatoo IA est prêt côté interface. "
++
+"Il devra maintenant être relié à un service IA sécurisé."
+);
+
+}
+
+
+/* =========================================================
+   FERMETURE MODALE
+========================================================= */
+
+document
+.getElementById("modal")
+.addEventListener(
+"click",
+function(event){
+
+if(event.target.id === "modal"){
+
+closeModal();
+
+}
+
+}
+);
+
+
+/* =========================================================
+   SESSION EXISTANTE
+========================================================= */
+
+(async function(){
+
+try{
+
+const {data,error} =
+await supabaseClient.auth.getSession();
+
+
+if(error){
+
+console.error(
+"Erreur session :",
+error
+);
+
+return;
+
+}
+
+
+if(data.session){
+
+showDashboard(
+data.session.user
+);
+
+}
+
+}catch(error){
+
+console.error(
+"Erreur initialisation :",
+error
+);
+
+}
+
+})();
+
+
+/* =========================================================
+   ECOUTE AUTHENTIFICATION
+========================================================= */
+
+supabaseClient.auth.onAuthStateChange(
+(event,session)=>{
+
+if(session){
+
+showDashboard(
+session.user
+);
+
+}
+
+}
+);
+
+</script>
+
+</body>
+    </html>
