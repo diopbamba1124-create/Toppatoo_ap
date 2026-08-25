@@ -11,7 +11,7 @@
 *{
   box-sizing:border-box;
   margin:0;
-  padding:0
+  padding:0;
 }
 
 :root{
@@ -30,23 +30,20 @@ body{
   font-family:Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
-  line-height:1.5
+  line-height:1.5;
 }
 
-button,
-input,
-select,
-textarea{
-  font:inherit
+button,input,select,textarea{
+  font:inherit;
 }
 
 button{
-  cursor:pointer
+  cursor:pointer;
 }
 
 .container{
   width:min(1120px,92%);
-  margin:auto
+  margin:auto;
 }
 
 header{
@@ -54,7 +51,7 @@ header{
   top:0;
   z-index:10;
   background:#fff;
-  border-bottom:1px solid var(--border)
+  border-bottom:1px solid var(--border);
 }
 
 .nav{
@@ -62,31 +59,31 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px
+  gap:15px;
 }
 
 .logo{
   font-size:25px;
   font-weight:900;
   color:var(--p);
-  text-decoration:none
+  text-decoration:none;
 }
 
 .navlinks{
   display:flex;
-  gap:22px
+  gap:22px;
 }
 
 .navlinks a{
   text-decoration:none;
   color:#496361;
   font-weight:600;
-  font-size:14px
+  font-size:14px;
 }
 
 .actions{
   display:flex;
-  gap:8px
+  gap:8px;
 }
 
 .btn{
@@ -94,39 +91,38 @@ header{
   border-radius:12px;
   padding:11px 16px;
   font-weight:700;
-  cursor:pointer
 }
 
 .primary{
   background:var(--p);
-  color:#fff
+  color:#fff;
 }
 
 .primary:hover{
-  background:var(--pd)
+  background:var(--pd);
 }
 
 .secondary{
   background:#fff;
   color:var(--p);
-  border:1px solid #c8dfdc
+  border:1px solid #c8dfdc;
 }
 
 .danger{
-  background:#fff0ef;
+  background:#fff0ee;
   color:var(--danger);
-  border:1px solid #f1c5c1
+  border:1px solid #f1c4bd;
 }
 
 .hero{
-  padding:75px 0
+  padding:75px 0;
 }
 
 .hero-grid{
   display:grid;
   grid-template-columns:1.1fr .9fr;
   gap:55px;
-  align-items:center
+  align-items:center;
 }
 
 .badge{
@@ -137,29 +133,29 @@ header{
   border-radius:30px;
   font-weight:700;
   font-size:13px;
-  margin-bottom:18px
+  margin-bottom:18px;
 }
 
 h1{
   font-size:clamp(44px,6vw,68px);
   line-height:1.03;
-  margin-bottom:20px
+  margin-bottom:20px;
 }
 
 h1 span{
-  color:var(--p)
+  color:var(--p);
 }
 
 .hero p{
   color:var(--muted);
   font-size:18px;
-  margin-bottom:25px
+  margin-bottom:25px;
 }
 
 .hero-actions{
   display:flex;
   gap:10px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 
 .card{
@@ -167,119 +163,119 @@ h1 span{
   border:1px solid var(--border);
   border-radius:24px;
   padding:25px;
-  box-shadow:0 18px 50px rgba(8,127,120,.08)
+  box-shadow:0 18px 50px rgba(8,127,120,.08);
 }
 
 .preview-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
-  margin-top:18px
+  margin-top:18px;
 }
 
 .preview{
   border:1px solid var(--border);
   border-radius:15px;
-  padding:17px
+  padding:17px;
 }
 
 .preview b{
-  display:block
+  display:block;
 }
 
 .preview small{
-  color:var(--muted)
+  color:var(--muted);
 }
 
 .section{
-  padding:70px 0
+  padding:70px 0;
 }
 
 .heading{
   text-align:center;
   max-width:680px;
-  margin:0 auto 35px
+  margin:0 auto 35px;
 }
 
 .heading h2{
-  font-size:36px
+  font-size:36px;
 }
 
 .heading p{
   color:var(--muted);
-  margin-top:8px
+  margin-top:8px;
 }
 
 .features,
 .audience{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:15px
+  gap:15px;
 }
 
 .feature{
   background:#fff;
   border:1px solid var(--border);
   border-radius:20px;
-  padding:22px
+  padding:22px;
 }
 
 .feature-icon{
   font-size:25px;
-  margin-bottom:10px
+  margin-bottom:10px;
 }
 
 .feature p,
 .audience p{
   color:var(--muted);
-  font-size:14px
+  font-size:14px;
 }
 
 .audience{
-  grid-template-columns:1fr 1fr
+  grid-template-columns:1fr 1fr;
 }
 
 .audience-card{
   padding:30px;
   border-radius:24px;
   background:#fff;
-  border:1px solid var(--border)
+  border:1px solid var(--border);
 }
 
 .audience-card.prof{
   background:var(--p);
-  color:#fff
+  color:#fff;
 }
 
 .audience-card.prof p{
-  color:rgba(255,255,255,.8)
+  color:rgba(255,255,255,.8);
 }
 
 .dashboard{
   display:none;
-  padding:45px 0 75px
+  padding:45px 0 75px;
 }
 
 .dashboard.show{
-  display:block
+  display:block;
 }
 
 .dash-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:22px
+  margin-bottom:22px;
 }
 
 .dash-head p{
-  color:var(--muted)
+  color:var(--muted);
 }
 
 .dash-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:15px;
-  margin-bottom:20px
+  margin-bottom:20px;
 }
 
 .dash-card{
@@ -288,51 +284,78 @@ h1 span{
   border-radius:20px;
   padding:22px;
   cursor:pointer;
-  transition:.2s
+  transition:.2s;
 }
 
 .dash-card:hover{
   box-shadow:0 15px 35px rgba(8,127,120,.08);
-  transform:translateY(-2px)
+  transform:translateY(-2px);
 }
 
 .dash-card .ico{
   font-size:28px;
-  margin-bottom:8px
+  margin-bottom:8px;
 }
 
 .dash-card p{
   color:var(--muted);
-  font-size:13px
+  font-size:13px;
 }
 
 .list{
   background:#fff;
   border:1px solid var(--border);
   border-radius:22px;
-  padding:23px
+  padding:23px;
 }
 
 .empty{
   text-align:center;
   color:var(--muted);
-  padding:25px
+  padding:25px;
 }
 
 .row{
   border:1px solid var(--border);
   border-radius:14px;
-  padding:14px;
+  padding:15px;
   margin:10px 0;
   display:flex;
   justify-content:space-between;
-  gap:10px;
-  align-items:center
+  gap:15px;
+  align-items:center;
+  transition:.2s;
+}
+
+.row:hover{
+  border-color:#b7d9d5;
+  box-shadow:0 5px 18px rgba(8,127,120,.06);
+}
+
+.row-main{
+  flex:1;
 }
 
 .row small{
   display:block;
-  color:var(--muted)
+  color:var(--muted);
+}
+
+.row-actions{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.tag{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:20px;
+  background:var(--pl);
+  color:var(--p);
+  font-size:11px;
+  font-weight:700;
+  margin-top:5px;
 }
 
 .modal{
@@ -343,21 +366,21 @@ h1 span{
   z-index:50;
   padding:18px;
   align-items:center;
-  justify-content:center
+  justify-content:center;
 }
 
 .modal.show{
-  display:flex
+  display:flex;
 }
 
 .modalbox{
   background:#fff;
-  width:min(700px,100%);
-  max-height:92vh;
+  width:min(720px,100%);
+  max-height:94vh;
   overflow:auto;
   border-radius:23px;
   padding:27px;
-  position:relative
+  position:relative;
 }
 
 .close{
@@ -368,18 +391,17 @@ h1 span{
   background:none;
   font-size:26px;
   color:var(--muted);
-  cursor:pointer
 }
 
 .form-group{
-  margin:0 0 13px
+  margin:0 0 13px;
 }
 
 .form-group label{
   display:block;
   font-size:13px;
   font-weight:700;
-  margin-bottom:5px
+  margin-bottom:5px;
 }
 
 .form-group input,
@@ -389,38 +411,65 @@ h1 span{
   padding:11px;
   border:1px solid var(--border);
   border-radius:11px;
-  outline:none
+  outline:none;
 }
 
 .form-group textarea{
   min-height:75px;
-  resize:vertical
+  resize:vertical;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus{
-  border-color:var(--p)
+  border-color:var(--p);
 }
 
 .form-actions{
   display:flex;
   gap:10px;
-  margin-top:18px
+  margin-top:18px;
 }
 
 .form-actions .btn{
-  flex:1
+  flex:1;
 }
 
 .info{
   background:var(--pl);
   color:var(--p);
-  padding:10px 12px;
+  padding:12px;
   border-radius:11px;
   font-size:13px;
   font-weight:700;
-  margin-bottom:13px
+  margin-bottom:13px;
+}
+
+.patient-summary{
+  background:#f5faf9;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:17px;
+  margin-bottom:18px;
+}
+
+.patient-summary h3{
+  margin-bottom:8px;
+}
+
+.patient-summary-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  font-size:13px;
+}
+
+.patient-summary-item span{
+  color:var(--muted);
+}
+
+.patient-summary-item strong{
+  display:block;
 }
 
 .pediatric{
@@ -428,57 +477,34 @@ h1 span{
   border:1px solid #f0dfb3;
   padding:15px;
   border-radius:14px;
-  margin-bottom:14px
+  margin-bottom:14px;
 }
 
 .pediatric h3{
   font-size:16px;
-  margin-bottom:10px
+  margin-bottom:10px;
 }
 
-.filter-bar{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin:15px 0
-}
-
-.filter-btn{
-  border:1px solid var(--border);
-  background:#fff;
-  color:var(--text);
-  border-radius:10px;
-  padding:9px 13px;
-  font-weight:700
-}
-
-.filter-btn.active{
-  background:var(--p);
-  color:#fff;
-  border-color:var(--p)
+.section-title{
+  font-size:17px;
+  margin:20px 0 12px;
+  padding-bottom:7px;
+  border-bottom:1px solid var(--border);
 }
 
 .search-box{
-  margin-bottom:15px
+  margin-bottom:15px;
 }
 
 .search-box input{
   width:100%;
   padding:12px;
   border:1px solid var(--border);
-  border-radius:11px
+  border-radius:12px;
 }
 
-.photo-preview{
-  margin-top:12px;
-  text-align:center
-}
-
-.photo-preview img{
-  max-width:100%;
-  max-height:300px;
-  border-radius:14px;
-  border:1px solid var(--border)
+.hidden{
+  display:none!important;
 }
 
 footer{
@@ -486,71 +512,73 @@ footer{
   border-top:1px solid var(--border);
   background:#fff;
   color:var(--muted);
-  font-size:13px
+  font-size:13px;
 }
 
 @media(max-width:900px){
   .navlinks{
-    display:none
+    display:none;
   }
 
   .hero-grid{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 
   .features{
-    grid-template-columns:1fr 1fr
+    grid-template-columns:1fr 1fr;
   }
 
   .dash-grid{
-    grid-template-columns:1fr 1fr
+    grid-template-columns:1fr 1fr;
   }
 }
 
 @media(max-width:600px){
   .nav{
-    min-height:62px
+    min-height:62px;
   }
 
   .actions .secondary{
-    display:none
+    display:none;
   }
 
   .hero{
-    padding:48px 0
+    padding:48px 0;
   }
 
   .hero-actions{
-    flex-direction:column
+    flex-direction:column;
   }
 
   .hero-actions .btn{
-    width:100%
+    width:100%;
   }
 
   .features,
   .audience,
   .dash-grid,
-  .preview-grid{
-    grid-template-columns:1fr
+  .preview-grid,
+  .patient-summary-grid{
+    grid-template-columns:1fr;
   }
 
   .section{
-    padding:50px 0
+    padding:50px 0;
   }
 
   .heading h2{
-    font-size:29px
+    font-size:29px;
   }
 
   .dash-head{
     flex-direction:column;
     align-items:flex-start;
-    gap:12px
+    gap:12px;
   }
 
-  .form-actions{
-    flex-direction:column
+  .row{
+    flex-direction:column;
+    align-items:flex-start;
   }
 }
 </style>
@@ -587,7 +615,6 @@ Créer un compte
 <main>
 
 <section class="hero" id="accueil">
-
 <div class="container hero-grid">
 
 <div>
@@ -603,8 +630,8 @@ Votre santé,<br>
 
 <p>
 Toppatoo rapproche patients et professionnels,
-centralise le parcours de santé et adapte
-la consultation aux besoins du patient.
+centralise le parcours de santé et simplifie
+le suivi des consultations.
 </p>
 
 <div class="hero-actions">
@@ -623,6 +650,7 @@ onclick="openModal('patient')">
 
 </div>
 
+
 <div class="card">
 
 <strong>Mon espace santé</strong>
@@ -632,7 +660,7 @@ onclick="openModal('patient')">
 <div class="preview">
 👥
 <b>Patients</b>
-<small>Enfants et adultes</small>
+<small>Dossiers permanents</small>
 </div>
 
 <div class="preview">
@@ -654,6 +682,7 @@ onclick="openModal('patient')">
 </div>
 
 </div>
+
 </div>
 
 </div>
@@ -665,10 +694,15 @@ onclick="openModal('patient')">
 <div class="container">
 
 <div class="heading">
-<h2>Tout au même endroit</h2>
+
+<h2>
+Tout au même endroit
+</h2>
+
 <p>
 Une organisation simple pour le professionnel et le patient.
 </p>
+
 </div>
 
 <div class="features">
@@ -677,8 +711,8 @@ Une organisation simple pour le professionnel et le patient.
 <div class="feature-icon">👥</div>
 <h3>Patients</h3>
 <p>
-Un seul registre pour les enfants et les adultes
-avec un code patient unique.
+Un dossier permanent pour chaque patient avec
+un code patient unique.
 </p>
 </div>
 
@@ -686,7 +720,8 @@ avec un code patient unique.
 <div class="feature-icon">🩺</div>
 <h3>Consultations</h3>
 <p>
-Le formulaire s'adapte automatiquement à l'âge du patient.
+Les informations du dossier sont automatiquement
+récupérées lors d'une nouvelle consultation.
 </p>
 </div>
 
@@ -694,7 +729,7 @@ Le formulaire s'adapte automatiquement à l'âge du patient.
 <div class="feature-icon">📅</div>
 <h3>Rendez-vous</h3>
 <p>
-Créer et suivre les rendez-vous des patients.
+Créer, consulter et modifier les rendez-vous des patients.
 </p>
 </div>
 
@@ -702,7 +737,7 @@ Créer et suivre les rendez-vous des patients.
 <div class="feature-icon">💊</div>
 <h3>Ordonnances</h3>
 <p>
-Préparer la conservation d'une photo de l'ordonnance.
+Conserver une photo de l'ordonnance dans le suivi.
 </p>
 </div>
 
@@ -732,7 +767,8 @@ ordonnances et historique dans un seul espace.
 
 <br>
 
-<button class="btn"
+<button
+class="btn"
 style="background:#fff;color:var(--p)"
 onclick="openModal('professional')">
 Accéder à l'espace
@@ -752,7 +788,8 @@ partagées par le professionnel.
 
 <br>
 
-<button class="btn primary"
+<button
+class="btn primary"
 onclick="openModal('patient')">
 Espace patient
 </button>
@@ -773,16 +810,18 @@ Espace patient
 <h2>🤖 Toppatoo IA</h2>
 
 <p style="color:var(--muted);margin:10px 0 18px">
+
 Assistant destiné à accompagner le professionnel.
 Il ne remplace pas le jugement clinique.
+
 </p>
 
-<button class="btn primary"
-onclick="openModal('ai')">
+<button class="btn primary" onclick="openModal('ai')">
 Découvrir
 </button>
 
 </div>
+
 </div>
 </section>
 
@@ -794,11 +833,20 @@ Découvrir
 <div class="dash-head">
 
 <div>
-<h2>👨‍⚕️ Espace Professionnel</h2>
-<p id="dashboardUser">Bienvenue.</p>
+
+<h2>
+👨‍⚕️ Espace Professionnel
+</h2>
+
+<p id="dashboardUser">
+Bienvenue.
+</p>
+
 </div>
 
-<button class="btn secondary" onclick="logout()">
+<button
+class="btn secondary"
+onclick="logout()">
 Se déconnecter
 </button>
 
@@ -807,48 +855,110 @@ Se déconnecter
 
 <div class="dash-grid">
 
-<div class="dash-card" onclick="openModal('patients')">
+<div class="dash-card"
+onclick="openModal('patients')">
+
 <div class="ico">👥</div>
-<h3>Patients</h3>
-<p>Créer, rechercher et consulter les patients.</p>
+
+<h3>
+Patients
+</h3>
+
+<p>
+Créer, rechercher et consulter les dossiers patients.
+</p>
+
 </div>
 
-<div class="dash-card" onclick="openModal('consultation')">
+
+<div class="dash-card"
+onclick="openNewConsultation()">
+
 <div class="ico">🩺</div>
-<h3>Nouvelle consultation</h3>
-<p>Formulaire adapté automatiquement à l'âge.</p>
+
+<h3>
+Nouvelle consultation
+</h3>
+
+<p>
+Sélectionner un patient puis commencer directement la consultation.
+</p>
+
 </div>
 
-<div class="dash-card" onclick="loadAllConsultations()">
+
+<div class="dash-card"
+onclick="loadAllConsultations()">
+
 <div class="ico">📋</div>
-<h3>Toutes les consultations</h3>
-<p>Journalier, mensuel ou toutes les consultations.</p>
+
+<h3>
+Toutes les consultations
+</h3>
+
+<p>
+Historique journalier, mensuel ou complet.
+</p>
+
 </div>
 
-<div class="dash-card" onclick="openModal('appointment')">
+
+<div class="dash-card"
+onclick="openModal('appointment')">
+
 <div class="ico">📅</div>
-<h3>Rendez-vous</h3>
-<p>Créer et consulter les rendez-vous.</p>
+
+<h3>
+Rendez-vous
+</h3>
+
+<p>
+Créer et gérer les rendez-vous.
+</p>
+
 </div>
 
-<div class="dash-card" onclick="openModal('prescription')">
+
+<div class="dash-card"
+onclick="openModal('prescription')">
+
 <div class="ico">💊</div>
-<h3>Traitements & ordonnances</h3>
-<p>Ajouter une photo d'ordonnance.</p>
+
+<h3>
+Traitements & ordonnances
+</h3>
+
+<p>
+Ajouter une photo d'ordonnance.
+</p>
+
 </div>
 
-<div class="dash-card" onclick="loadPatients()">
+
+<div class="dash-card"
+onclick="loadPatients()">
+
 <div class="ico">🔎</div>
-<h3>Recherche patients</h3>
-<p>Nom, téléphone ou code patient.</p>
+
+<h3>
+Recherche patients
+</h3>
+
+<p>
+Nom, téléphone ou code patient.
+</p>
+
 </div>
 
 </div>
+
 
 <div class="list" id="dataList">
+
 <div class="empty">
 Choisissez une fonction.
 </div>
+
 </div>
 
 </div>
@@ -858,9 +968,13 @@ Choisissez une fonction.
 
 
 <footer>
+
 <div class="container">
+
 TOPPATOO — Sama Wergu Yaram · © 2026
+
 </div>
+
 </footer>
 
 
@@ -868,7 +982,9 @@ TOPPATOO — Sama Wergu Yaram · © 2026
 
 <div class="modalbox">
 
-<button class="close" onclick="closeModal()">×</button>
+<button class="close" onclick="closeModal()">
+×
+</button>
 
 <div id="modalContent"></div>
 
@@ -902,9 +1018,8 @@ SUPABASE_ANON_KEY
 
 function esc(value){
 
-if(value === null || value === undefined){
+if(value === null || value === undefined)
 return "";
-}
 
 return String(value)
 .replace(/&/g,"&amp;")
@@ -912,8 +1027,101 @@ return String(value)
 .replace(/>/g,"&gt;")
 .replace(/"/g,"&quot;")
 .replace(/'/g,"&#039;");
+
 }
 
+
+function ageOf(date){
+
+if(!date)
+return null;
+
+const birth =
+new Date(date+"T00:00:00");
+
+const today =
+new Date();
+
+let years =
+today.getFullYear() -
+birth.getFullYear();
+
+let months =
+today.getMonth() -
+birth.getMonth();
+
+if(today.getDate() < birth.getDate()){
+months--;
+}
+
+if(months < 0){
+years--;
+months += 12;
+}
+
+return {
+years,
+months
+};
+
+}
+
+
+function formatDate(date){
+
+if(!date)
+return "";
+
+try{
+
+return new Date(date).toLocaleDateString(
+"fr-FR",
+{
+day:"2-digit",
+month:"2-digit",
+year:"numeric"
+}
+);
+
+}catch(e){
+
+return date;
+
+}
+
+}
+
+
+function formatDateTime(date){
+
+if(!date)
+return "";
+
+try{
+
+return new Date(date).toLocaleString(
+"fr-FR",
+{
+day:"2-digit",
+month:"2-digit",
+year:"numeric",
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}catch(e){
+
+return date;
+
+}
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
 
 function closeModal(){
 
@@ -924,28 +1132,17 @@ document
 }
 
 
-function showMessage(message){
-
-alert(message);
-
-}
-
-
-/* =========================================================
-   MODALES
-========================================================= */
-
-function openModal(type){
+function openModal(type, data=null){
 
 const c =
 document.getElementById("modalContent");
 
 
-/* =========================
-   CREATION COMPTE
-========================= */
+/* =========================================================
+   REGISTER
+========================================================= */
 
-if(type === "register"){
+if(type==="register"){
 
 c.innerHTML = `
 
@@ -994,22 +1191,26 @@ Professionnel
 
 <div class="form-actions">
 
-<button class="btn primary"
+<button
+class="btn primary"
 onclick="createAccount()">
+
 Créer mon compte
+
 </button>
 
 </div>
+
 `;
 
 }
 
 
-/* =========================
-   CONNEXION
-========================= */
+/* =========================================================
+   LOGIN
+========================================================= */
 
-else if(type === "login"){
+else if(type==="login"){
 
 c.innerHTML = `
 
@@ -1031,154 +1232,177 @@ Accédez à votre espace.
 
 <div class="form-actions">
 
-<button class="btn primary"
+<button
+class="btn primary"
 onclick="login()">
+
 Se connecter
+
 </button>
 
 </div>
+
 `;
 
 }
 
 
-/* =========================
-   PROFESSIONNEL
-========================= */
+/* =========================================================
+   PROFESSIONAL
+========================================================= */
 
-else if(type === "professional"){
+else if(type==="professional"){
 
 c.innerHTML = `
 
 <h2>👨‍⚕️ Espace professionnel</h2>
 
 <p style="color:var(--muted);margin:8px 0 18px">
-Connectez-vous pour accéder au tableau de bord.
+
+Gérez les dossiers patients,
+les consultations et les rendez-vous.
+
 </p>
 
-<button class="btn primary"
+<button
+class="btn primary"
 onclick="openModal('login')">
+
 Se connecter
+
 </button>
+
 `;
 
 }
 
 
-/* =========================
+/* =========================================================
    PATIENT
-========================= */
+========================================================= */
 
-else if(type === "patient"){
+else if(type==="patient"){
 
 c.innerHTML = `
 
 <h2>👤 Espace patient</h2>
 
 <p style="color:var(--muted);margin:10px 0">
-Votre code patient permet de vous identifier
-dans Toppatoo lorsqu'un professionnel vous a enregistré.
+
+Votre espace patient permettra de retrouver
+les informations qui vous sont partagées
+par les professionnels.
+
 </p>
-
-<div class="info">
-🔐 Le patient reçoit un code unique de type TOP-...
-</div>
-
-<div class="form-group">
-<label>Code patient</label>
-<input id="patientAccessCode"
-placeholder="TOP-260825-XXXXXX">
-</div>
-
-<button class="btn primary"
-onclick="patientLookup()">
-Rechercher
-</button>
-
-<div id="patientAccessResult"></div>
 
 `;
 
 }
 
 
-/* =========================
+/* =========================================================
    IA
-========================= */
+========================================================= */
 
-else if(type === "ai"){
+else if(type==="ai"){
 
 c.innerHTML = `
 
 <h2>🤖 Toppatoo IA</h2>
 
-<p style="color:var(--muted);margin:10px 0 18px">
+<p style="color:var(--muted);margin:10px 0">
+
 Assistant destiné à accompagner le professionnel.
 Il ne remplace pas le jugement clinique.
+
 </p>
 
 <div class="form-group">
+
 <label>Votre demande</label>
+
 <textarea id="question"></textarea>
+
 </div>
 
-<button class="btn primary"
+<button
+class="btn primary"
 onclick="askAI()">
+
 Utiliser Toppatoo IA
+
 </button>
+
 `;
 
 }
 
 
-/* =========================
+/* =========================================================
    PATIENT
-========================= */
+========================================================= */
 
-else if(type === "patients"){
+else if(type==="patients"){
 
 c.innerHTML = `
 
-<h2>👥 Ajouter un patient</h2>
+<h2>
+👥 ${data ? "Modifier le dossier patient" : "Créer un dossier patient"}
+</h2>
 
+<p style="color:var(--muted);margin:8px 0 18px">
+
+Le dossier patient est permanent.
+Il sera automatiquement utilisé lors
+des prochaines consultations.
+
+</p>
+
+${data ? `
 <div class="info">
-👶👤 Un seul registre pour les enfants et les adultes.
-Le code patient est généré automatiquement par Supabase.
+🆔 Code patient :
+<strong>${esc(data.patient_code)}</strong>
 </div>
+` : ""}
 
 <div class="form-group">
 <label>Prénom *</label>
-<input id="pFirst">
+<input id="pFirst" value="${esc(data?.first_name || "")}">
 </div>
 
 <div class="form-group">
 <label>Nom *</label>
-<input id="pLast">
+<input id="pLast" value="${esc(data?.last_name || "")}">
 </div>
 
 <div class="form-group">
 <label>Date de naissance *</label>
-<input id="pDob" type="date">
+<input id="pDob" type="date" value="${esc(data?.date_of_birth || "")}">
 </div>
 
 <div class="form-group">
+
 <label>Sexe</label>
 
 <select id="pGender">
 
-<option value="not_specified">
+<option value="not_specified"
+${data?.gender==="not_specified"?"selected":""}>
 Non précisé
 </option>
 
-<option value="male">
+<option value="male"
+${data?.gender==="male"?"selected":""}>
 Masculin
 </option>
 
-<option value="female">
+<option value="female"
+${data?.gender==="female"?"selected":""}>
 Féminin
 </option>
 
-<option value="other">
+<option value="other"
+${data?.gender==="other"?"selected":""}>
 Autre
 </option>
 
@@ -1188,310 +1412,152 @@ Autre
 
 <div class="form-group">
 <label>Téléphone</label>
-<input id="pPhone">
+<input id="pPhone" value="${esc(data?.phone || "")}">
 </div>
 
 <div class="form-group">
 <label>Adresse</label>
-<input id="pAddress">
+<input id="pAddress" value="${esc(data?.address || "")}">
 </div>
 
 <div class="form-group">
 <label>Contact urgence</label>
-<input id="pEmergency">
+<input id="pEmergency" value="${esc(data?.emergency_contact_name || "")}">
 </div>
 
 <div class="form-group">
 <label>Téléphone urgence</label>
-<input id="pEmergencyPhone">
+<input id="pEmergencyPhone" value="${esc(data?.emergency_contact_phone || "")}">
 </div>
 
 <div class="form-actions">
 
-<button class="btn primary"
-onclick="savePatient()">
-💾 Enregistrer
+<button
+class="btn primary"
+onclick="${data ? `updatePatient('${data.id}')` : "savePatient()"}">
+
+💾 ${data ? "Enregistrer les modifications" : "Créer le dossier"}
+
 </button>
 
 </div>
+
 `;
 
 }
 
 
-/* =========================
-   CONSULTATION
-========================= */
+/* =========================================================
+   NOUVELLE CONSULTATION
+========================================================= */
 
-else if(type === "consultation"){
+else if(type==="newConsultation"){
 
 c.innerHTML = `
 
 <h2>🩺 Nouvelle consultation</h2>
 
 <p style="color:var(--muted);margin:8px 0 18px">
-La consultation s'adapte automatiquement à l'âge.
+
+Commencez par sélectionner le patient.
+Son dossier sera automatiquement récupéré.
+
 </p>
 
-<div class="form-group">
-<label>Code patient</label>
-<input id="consultCode"
-placeholder="TOP-260825-XXXXXX">
-</div>
+<div class="search-box">
 
-<div class="form-group">
-<label>Nom *</label>
-<input id="patientNom">
-</div>
-
-<div class="form-group">
-<label>Prénom *</label>
-<input id="patientPrenom">
-</div>
-
-<div class="form-group">
-<label>Date de naissance *</label>
-<input id="patientDate"
-type="date"
-onchange="adaptConsultation()">
-</div>
-
-<div id="ageIndicator"></div>
-
-
-<div class="form-group">
-
-<label>Sexe</label>
-
-<select id="patientSexe">
-
-<option value="Autre">
-Non précisé / Autre
-</option>
-
-<option value="M">
-Masculin
-</option>
-
-<option value="F">
-Féminin
-</option>
-
-</select>
+<input
+id="consultPatientSearch"
+placeholder="Rechercher par nom, téléphone ou code patient..."
+oninput="searchPatientsForConsultation()">
 
 </div>
 
+<div id="consultPatientResults">
 
-<div class="form-group">
-<label>Téléphone</label>
-<input id="patientPhone">
+<div class="empty">
+Recherchez un patient pour commencer.
 </div>
 
-
-<div class="form-group">
-<label>Motif de consultation</label>
-<textarea id="consultMotif"></textarea>
 </div>
 
-
-<div class="form-group">
-<label>Antécédents</label>
-<textarea id="consultHistory"></textarea>
-</div>
-
-
-<div id="pediatricFields"></div>
-
-
-<div class="form-group">
-<label>Tension artérielle</label>
-<input id="bp" placeholder="120/80 mmHg">
-</div>
-
-
-<div class="form-group">
-<label>Température (°C)</label>
-<input id="temperature" type="number" step=".1">
-</div>
-
-
-<div class="form-group">
-<label>Poids (kg)</label>
-<input id="consultWeight" type="number" step=".1">
-</div>
-
-
-<div class="form-group">
-<label>Taille (cm)</label>
-<input id="consultHeight" type="number" step=".1">
-</div>
-
-
-<div class="form-group">
-<label>Fréquence cardiaque</label>
-<input id="heartRate" type="number">
-</div>
-
-
-<div class="form-group">
-<label>Saturation (%)</label>
-<input id="oxygen" type="number" step=".1">
-</div>
-
-
-<div class="form-group">
-<label>Examen clinique</label>
-<textarea id="clinicalExam"></textarea>
-</div>
-
-
-<div class="form-group">
-<label>Diagnostic / hypothèse</label>
-<textarea id="diagnosis"></textarea>
-</div>
-
-
-<div class="form-group">
-<label>Soins réalisés</label>
-<textarea id="care"></textarea>
-</div>
-
-
-<div class="form-group">
-<label>Traitement / prescription</label>
-<textarea id="treatment"></textarea>
-</div>
-
-
-<div class="form-group">
-<label>Conseils</label>
-<textarea id="advice"></textarea>
-</div>
-
-
-<div class="form-group">
-<label>Orientation</label>
-<textarea id="orientation"></textarea>
-</div>
-
-
-<div class="form-group">
-<label>Prochain rendez-vous</label>
-<input id="nextAppointment" type="date">
-</div>
-
-
-<div class="form-group">
-<label>Observations</label>
-<textarea id="consultObservations"></textarea>
-</div>
-
-
-<div class="form-actions">
-
-<button class="btn primary"
-onclick="saveConsultation()">
-💾 Enregistrer la consultation
-</button>
-
-</div>
 `;
-
-setTimeout(adaptConsultation,50);
 
 }
 
 
-/* =========================
+/* =========================================================
+   FORMULAIRE CONSULTATION
+========================================================= */
+
+else if(type==="consultationForm"){
+
+renderConsultationForm(data);
+
+return;
+
+}
+
+
+/* =========================================================
    RENDEZ-VOUS
-========================= */
+========================================================= */
 
-else if(type === "appointment"){
+else if(type==="appointment"){
 
-c.innerHTML = `
+renderAppointmentForm(data);
 
-<h2>📅 Nouveau rendez-vous</h2>
-
-<div class="info">
-📅 Préparation du module rendez-vous.
-</div>
-
-<div class="form-group">
-<label>Code patient</label>
-<input id="aCode"
-placeholder="TOP-...">
-</div>
-
-<div class="form-group">
-<label>Nom du patient *</label>
-<input id="aName">
-</div>
-
-<div class="form-group">
-<label>Date</label>
-<input id="aDate" type="date">
-</div>
-
-<div class="form-group">
-<label>Heure</label>
-<input id="aTime" type="time">
-</div>
-
-<div class="form-group">
-<label>Motif</label>
-<textarea id="aReason"></textarea>
-</div>
-
-<div class="form-actions">
-
-<button class="btn primary"
-onclick="saveAppointment()">
-💾 Enregistrer
-</button>
-
-</div>
-
-`;
+return;
 
 }
 
 
-/* =========================
+/* =========================================================
    ORDONNANCE
-========================= */
+========================================================= */
 
-else if(type === "prescription"){
+else if(type==="prescription"){
 
 c.innerHTML = `
 
 <h2>💊 Traitement & ordonnance</h2>
 
-<p style="color:var(--muted);margin:8px 0 18px">
-Photographiez simplement l'ordonnance.
+<p style="color:var(--muted);margin:10px 0 18px">
+
+Ajoutez simplement une photo de l'ordonnance.
+
 </p>
 
 <div class="form-group">
+
 <label>Code patient</label>
-<input id="rxCode"
+
+<input
+id="rxCode"
 placeholder="TOP-...">
+
 </div>
 
 <div class="form-group">
+
 <label>Photo de l'ordonnance</label>
-<input id="rxPhoto"
+
+<input
+id="rxPhoto"
 type="file"
 accept="image/*"
-capture="environment"
-onchange="previewPrescription()">
-</div>
+capture="environment">
 
-<div id="rxPreview" class="photo-preview"></div>
+</div>
 
 <div class="form-actions">
 
-<button class="btn primary"
+<button
+class="btn primary"
 onclick="savePrescription()">
-📷 Valider
+
+📷 Enregistrer
+
 </button>
 
 </div>
@@ -1499,7 +1565,6 @@ onclick="savePrescription()">
 `;
 
 }
-
 
 document
 .getElementById("modal")
@@ -1509,7 +1574,7 @@ document
 
 
 /* =========================================================
-   CREATION COMPTE
+   COMPTE
 ========================================================= */
 
 async function createAccount(){
@@ -1529,15 +1594,15 @@ document.getElementById("password").value;
 const role =
 document.getElementById("role").value;
 
-
 if(!name || !email || password.length < 6){
 
-return alert(
+alert(
 "Nom, email et mot de passe de 6 caractères minimum sont obligatoires."
 );
 
-}
+return;
 
+}
 
 const {error} =
 await supabaseClient.auth.signUp({
@@ -1548,22 +1613,19 @@ password,
 options:{
 data:{
 full_name:name,
-phone:phone,
-role:role
+phone,
+role
 }
 }
 
 });
 
-
 if(error){
 
-return alert(
-"Erreur : " + error.message
-);
+alert("Erreur : "+error.message);
+return;
 
 }
-
 
 alert(
 "✅ Compte créé. Vérifiez votre e-mail si nécessaire."
@@ -1586,15 +1648,12 @@ document.getElementById("loginEmail").value.trim();
 const password =
 document.getElementById("loginPassword").value;
 
-
 if(!email || !password){
 
-return alert(
-"Veuillez renseigner votre email et votre mot de passe."
-);
+alert("Veuillez remplir les deux champs.");
+return;
 
 }
-
 
 const {data,error} =
 await supabaseClient.auth.signInWithPassword({
@@ -1602,15 +1661,12 @@ email,
 password
 });
 
-
 if(error){
 
-return alert(
-"Erreur : " + error.message
-);
+alert("Erreur : "+error.message);
+return;
 
 }
-
 
 closeModal();
 
@@ -1629,18 +1685,15 @@ document
 .getElementById("dashboard")
 .classList.add("show");
 
-
 const name =
-user.user_metadata?.full_name ||
-user.email ||
+user?.user_metadata?.full_name ||
+user?.email ||
 "Utilisateur";
-
 
 document
 .getElementById("dashboardUser")
 .textContent =
-"Bienvenue " + name;
-
+"Bienvenue "+name;
 
 document
 .getElementById("dashboard")
@@ -1651,6 +1704,10 @@ behavior:"smooth"
 }
 
 
+/* =========================================================
+   LOGOUT
+========================================================= */
+
 async function logout(){
 
 await supabaseClient.auth.signOut();
@@ -1658,6 +1715,11 @@ await supabaseClient.auth.signOut();
 document
 .getElementById("dashboard")
 .classList.remove("show");
+
+document
+.getElementById("dataList")
+.innerHTML =
+'<div class="empty">Choisissez une fonction.</div>';
 
 window.scrollTo({
 top:0,
@@ -1668,234 +1730,23 @@ behavior:"smooth"
 
 
 /* =========================================================
-   CALCUL AGE
-========================================================= */
-
-function ageOf(date){
-
-if(!date){
-return null;
-}
-
-const birth =
-new Date(date + "T00:00:00");
-
-const today =
-new Date();
-
-let years =
-today.getFullYear() -
-birth.getFullYear();
-
-let months =
-today.getMonth() -
-birth.getMonth();
-
-
-if(today.getDate() < birth.getDate()){
-months--;
-}
-
-
-if(months < 0){
-years--;
-months += 12;
-}
-
-
-return{
-y:years,
-m:months
-};
-
-}
-
-
-/* =========================================================
-   ADAPTATION PEDIATRIQUE
-========================================================= */
-
-function adaptConsultation(){
-
-const date =
-document.getElementById("patientDate")?.value;
-
-const box =
-document.getElementById("ageIndicator");
-
-const fields =
-document.getElementById("pediatricFields");
-
-
-if(!box || !fields){
-return;
-}
-
-
-const age =
-ageOf(date);
-
-
-if(!age){
-
-box.innerHTML="";
-fields.innerHTML="";
-
-return;
-}
-
-
-if(age.y < 0){
-
-box.innerHTML="";
-fields.innerHTML="";
-
-return;
-}
-
-
-/* ENFANT MOINS DE 5 ANS */
-
-if(age.y < 5){
-
-box.className="info";
-
-box.textContent =
-`👶 Consultation pédiatrique — ${age.y} an(s) ${age.m} mois`;
-
-
-fields.innerHTML = `
-
-<div class="pediatric">
-
-<h3>
-👶 Évaluation enfant de moins de 5 ans
-</h3>
-
-<div class="form-group">
-
-<label>
-Allaitement / alimentation
-</label>
-
-<textarea
-id="feeding"
-placeholder="Allaitement, diversification, alimentation...">
-</textarea>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Développement psychomoteur
-</label>
-
-<textarea
-id="development"
-placeholder="Acquisitions et observations...">
-</textarea>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Statut vaccinal
-</label>
-
-<select id="childVaccination">
-
-<option>
-Non renseigné
-</option>
-
-<option>
-À jour
-</option>
-
-<option>
-En retard
-</option>
-
-<option>
-Incomplet
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Antécédents pédiatriques
-</label>
-
-<textarea id="pediatricHistory">
-</textarea>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Conseils aux parents / tuteur
-</label>
-
-<textarea id="parentAdvice">
-</textarea>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* ADULTE / ENFANT ≥ 5 ANS */
-
-else{
-
-box.className="info";
-
-box.textContent =
-`👤 Consultation générale — ${age.y} an(s)`;
-
-fields.innerHTML="";
-
-}
-
-}
-
-
-/* =========================================================
-   ENREGISTRER PATIENT
+   PATIENTS
 ========================================================= */
 
 async function savePatient(){
 
-const userResult =
+const {data:userData} =
 await supabaseClient.auth.getUser();
 
 const user =
-userResult.data.user;
-
+userData.user;
 
 if(!user){
 
-return alert(
-"Vous devez être connecté."
-);
+alert("Connectez-vous.");
+return;
 
 }
-
 
 const first =
 document.getElementById("pFirst").value.trim();
@@ -1906,28 +1757,19 @@ document.getElementById("pLast").value.trim();
 const dob =
 document.getElementById("pDob").value;
 
-
 if(!first || !last || !dob){
 
-return alert(
+alert(
 "Prénom, nom et date de naissance sont obligatoires."
 );
 
+return;
+
 }
 
-
-/*
-IMPORTANT :
-On conserve ici les valeurs originales
-pour la colonne patients.gender car
-sa contrainte n'a pas encore été vérifiée.
-*/
-
-const gender =
-document.getElementById("pGender").value;
-
-
 const payload={
+
+user_id:user.id,
 
 first_name:first,
 
@@ -1935,7 +1777,8 @@ last_name:last,
 
 date_of_birth:dob,
 
-gender:gender,
+gender:
+document.getElementById("pGender").value,
 
 phone:
 document.getElementById("pPhone").value.trim(),
@@ -1953,7 +1796,6 @@ created_by:user.id
 
 };
 
-
 const {data,error} =
 await supabaseClient
 .from("patients")
@@ -1961,33 +1803,17 @@ await supabaseClient
 .select("id,patient_code,first_name,last_name")
 .single();
 
-
 if(error){
 
-return alert(
-"Erreur lors de l'enregistrement du patient :\n\n"
-+ error.message
-);
+alert("Erreur : "+error.message);
+return;
 
 }
 
-
 alert(
-"✅ Patient enregistré !\n\n"
-+
-"Patient : "
-+
-data.first_name
-+
-" "
-+
-data.last_name
-+
-"\n\nCode patient :\n"
-+
-data.patient_code
+"✅ Dossier patient créé.\n\n"+
+"Code patient : "+data.patient_code
 );
-
 
 closeModal();
 
@@ -1997,7 +1823,77 @@ loadPatients();
 
 
 /* =========================================================
-   PATIENTS
+   MODIFIER PATIENT
+========================================================= */
+
+async function updatePatient(id){
+
+const payload={
+
+first_name:
+document.getElementById("pFirst").value.trim(),
+
+last_name:
+document.getElementById("pLast").value.trim(),
+
+date_of_birth:
+document.getElementById("pDob").value,
+
+gender:
+document.getElementById("pGender").value,
+
+phone:
+document.getElementById("pPhone").value.trim(),
+
+address:
+document.getElementById("pAddress").value.trim(),
+
+emergency_contact_name:
+document.getElementById("pEmergency").value.trim(),
+
+emergency_contact_phone:
+document.getElementById("pEmergencyPhone").value.trim(),
+
+updated_at:
+new Date().toISOString()
+
+};
+
+if(
+!payload.first_name ||
+!payload.last_name ||
+!payload.date_of_birth
+){
+
+alert("Les champs obligatoires doivent être remplis.");
+return;
+
+}
+
+const {error} =
+await supabaseClient
+.from("patients")
+.update(payload)
+.eq("id",id);
+
+if(error){
+
+alert("Erreur : "+error.message);
+return;
+
+}
+
+alert("✅ Dossier patient modifié.");
+
+closeModal();
+
+loadPatients();
+
+}
+
+
+/* =========================================================
+   LISTE PATIENTS
 ========================================================= */
 
 async function loadPatients(){
@@ -2005,10 +1901,8 @@ async function loadPatients(){
 const list =
 document.getElementById("dataList");
 
-
 list.innerHTML =
-"<div class='empty'>Chargement...</div>";
-
+'<div class="empty">Chargement...</div>';
 
 const {data,error} =
 await supabaseClient
@@ -2016,44 +1910,25 @@ await supabaseClient
 .select("*")
 .order("created_at",{ascending:false});
 
-
 if(error){
 
 list.innerHTML =
-"<div class='empty'>Erreur : "
-+
-esc(error.message)
-+
-"</div>";
+'<div class="empty">Erreur : '+
+esc(error.message)+
+'</div>';
 
 return;
 
 }
-
 
 if(!data || !data.length){
 
 list.innerHTML =
-"<div class='empty'>Aucun patient enregistré.</div>";
+'<div class="empty">Aucun patient enregistré.</div>';
 
 return;
 
 }
-
-
-window.toppatooPatients = data;
-
-
-renderPatients(data);
-
-}
-
-
-function renderPatients(data){
-
-const list =
-document.getElementById("dataList");
-
 
 list.innerHTML = `
 
@@ -2062,80 +1937,92 @@ list.innerHTML = `
 <div class="search-box">
 
 <input
-id="patientSearch"
-placeholder="🔎 Rechercher par nom, téléphone ou code..."
-oninput="filterPatients()">
+id="patientListSearch"
+placeholder="Rechercher un patient..."
+oninput="filterPatientList()">
 
 </div>
 
-<div id="patientsResults"></div>
+<div id="patientsRows">
+
+${renderPatientRows(data)}
+
+</div>
 
 `;
 
-
-renderPatientRows(data);
+window.allPatients = data;
 
 }
 
 
 function renderPatientRows(data){
 
-const target =
-document.getElementById("patientsResults");
-
-
-if(!target){
-return;
-}
-
-
-if(!data.length){
-
-target.innerHTML =
-"<div class='empty'>Aucun résultat.</div>";
-
-return;
-
-}
-
-
-target.innerHTML =
-data.map(p=>{
+return data.map(p=>{
 
 const age =
 ageOf(p.date_of_birth);
 
-const isChild =
-age && age.y < 5;
-
+const pediatric =
+age && age.years < 5;
 
 return `
 
-<div class="row">
+<div
+class="row patient-row"
+data-search="
+${esc(
+(p.first_name+" "+p.last_name+" "+
+(p.phone||"")+" "+
+(p.patient_code||""))
+.toLowerCase()
+)}
+">
 
-<div>
+<div class="row-main">
 
 <strong>
 ${esc(p.first_name)}
+${" "}
 ${esc(p.last_name)}
 </strong>
 
 <small>
-Code : ${esc(p.patient_code)}
+🆔 Code : ${esc(p.patient_code)}
 </small>
 
 <small>
-Né(e) le ${esc(p.date_of_birth)}
+🎂 Né(e) le ${formatDate(p.date_of_birth)}
 </small>
 
 <small>
-Téléphone : ${esc(p.phone || "Non renseigné")}
+📞 ${esc(p.phone || "Non renseigné")}
 </small>
+
+<span class="tag">
+${pediatric ? "👶 Moins de 5 ans" : "👤 Patient"}
+</span>
 
 </div>
 
-<div>
-${isChild ? "👶" : "👤"}
+<div class="row-actions">
+
+<button
+class="btn primary"
+onclick="startConsultationForPatient('${p.id}')">
+
+🩺 Consultation
+
+</button>
+
+<button
+class="btn secondary"
+onclick="openModal('patients',window.allPatients.find(x=>x.id==='${p.id}'))">
+
+Modifier
+
+</button>
+
 </div>
 
 </div>
@@ -2147,150 +2034,674 @@ ${isChild ? "👶" : "👤"}
 }
 
 
-function filterPatients(){
+function filterPatientList(){
 
-const search =
-(document.getElementById("patientSearch")?.value || "")
-.toLowerCase()
-.trim();
+const q =
+(document.getElementById("patientListSearch").value||"")
+.toLowerCase();
 
+document
+.querySelectorAll(".patient-row")
+.forEach(row=>{
 
-if(!window.toppatooPatients){
-return;
-}
-
-
-if(!search){
-
-return renderPatientRows(
-window.toppatooPatients
-);
-
-}
-
-
-const filtered =
-window.toppatooPatients.filter(p=>{
-
-return [
-
-p.first_name,
-p.last_name,
-p.phone,
-p.patient_code
-
-].some(value=>
-String(value || "")
-.toLowerCase()
-.includes(search)
-);
+row.style.display =
+row.dataset.search.includes(q)
+? ""
+: "none";
 
 });
-
-
-renderPatientRows(filtered);
 
 }
 
 
 /* =========================================================
-   CONSULTATION
+   NOUVELLE CONSULTATION
+========================================================= */
+
+function openNewConsultation(){
+
+openModal("newConsultation");
+
+}
+
+
+async function searchPatientsForConsultation(){
+
+const input =
+document.getElementById("consultPatientSearch");
+
+const results =
+document.getElementById("consultPatientResults");
+
+const q =
+input.value.trim();
+
+if(q.length < 2){
+
+results.innerHTML =
+'<div class="empty">Tapez au moins 2 caractères.</div>';
+
+return;
+
+}
+
+const {data,error} =
+await supabaseClient
+.from("patients")
+.select("*")
+.or(
+`first_name.ilike.%${q}%,last_name.ilike.%${q}%,phone.ilike.%${q}%,patient_code.ilike.%${q}%`
+)
+.limit(15);
+
+if(error){
+
+results.innerHTML =
+'<div class="empty">Erreur : '+
+esc(error.message)+
+'</div>';
+
+return;
+
+}
+
+if(!data.length){
+
+results.innerHTML =
+'<div class="empty">Aucun patient trouvé.</div>';
+
+return;
+
+}
+
+results.innerHTML =
+data.map(p=>{
+
+const age =
+ageOf(p.date_of_birth);
+
+return `
+
+<div class="row">
+
+<div class="row-main">
+
+<strong>
+${esc(p.first_name)}
+${" "}
+${esc(p.last_name)}
+</strong>
+
+<small>
+🆔 ${esc(p.patient_code)}
+</small>
+
+<small>
+🎂 ${formatDate(p.date_of_birth)}
+· ${age ? age.years+" an(s)" : ""}
+</small>
+
+<small>
+📞 ${esc(p.phone || "Non renseigné")}
+</small>
+
+</div>
+
+<button
+class="btn primary"
+onclick="startConsultationForPatient('${p.id}')">
+
+Sélectionner
+
+</button>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+async function startConsultationForPatient(patientId){
+
+const {data,error} =
+await supabaseClient
+.from("patients")
+.select("*")
+.eq("id",patientId)
+.single();
+
+if(error){
+
+alert("Impossible de récupérer le patient : "+error.message);
+return;
+
+}
+
+renderConsultationForm({
+patient:data,
+consultation:null
+});
+
+}
+
+
+/* =========================================================
+   FORMULAIRE CONSULTATION
+========================================================= */
+
+function renderConsultationForm(obj){
+
+const patient =
+obj.patient;
+
+const consultation =
+obj.consultation;
+
+const c =
+document.getElementById("modalContent");
+
+const age =
+ageOf(patient.date_of_birth);
+
+const pediatric =
+age && age.years < 5;
+
+const sexe =
+patient.gender==="male"
+? "M"
+: patient.gender==="female"
+? "F"
+: "Autre";
+
+
+c.innerHTML = `
+
+<h2>
+🩺 ${consultation ? "Modifier / compléter la consultation" : "Nouvelle consultation"}
+</h2>
+
+<p style="color:var(--muted);margin:8px 0 18px">
+
+Les informations ci-dessous proviennent
+automatiquement du dossier patient.
+
+</p>
+
+
+<div class="patient-summary">
+
+<h3>
+👤 ${esc(patient.first_name)}
+${" "}
+${esc(patient.last_name)}
+</h3>
+
+<div class="patient-summary-grid">
+
+<div class="patient-summary-item">
+<span>Code patient</span>
+<strong>${esc(patient.patient_code)}</strong>
+</div>
+
+<div class="patient-summary-item">
+<span>Date de naissance</span>
+<strong>${formatDate(patient.date_of_birth)}</strong>
+</div>
+
+<div class="patient-summary-item">
+<span>Sexe</span>
+<strong>${esc(sexe)}</strong>
+</div>
+
+<div class="patient-summary-item">
+<span>Téléphone</span>
+<strong>${esc(patient.phone || "Non renseigné")}</strong>
+</div>
+
+<div class="patient-summary-item">
+<span>Adresse</span>
+<strong>${esc(patient.address || "Non renseignée")}</strong>
+</div>
+
+<div class="patient-summary-item">
+<span>Âge</span>
+<strong>
+${age ? age.years+" an(s) "+age.months+" mois" : ""}
+</strong>
+</div>
+
+</div>
+
+</div>
+
+
+<input
+type="hidden"
+id="consultPatientId"
+value="${esc(patient.id)}">
+
+<input
+type="hidden"
+id="consultationId"
+value="${esc(consultation?.id || "")}">
+
+
+<div class="info">
+
+${pediatric
+? "👶 Consultation pédiatrique — enfant de moins de 5 ans"
+: "👤 Consultation générale"}
+
+</div>
+
+
+<h3 class="section-title">
+🩺 Motif et histoire
+</h3>
+
+
+<div class="form-group">
+
+<label>Motif de consultation</label>
+
+<textarea id="consultMotif">${esc(
+consultation?.motif_consultation || ""
+)}</textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Antécédents</label>
+
+<textarea id="consultHistory">${esc(
+consultation?.antecedents || ""
+)}</textarea>
+
+</div>
+
+
+${pediatric ? `
+
+<div class="pediatric">
+
+<h3>
+👶 Évaluation enfant de moins de 5 ans
+</h3>
+
+<div class="form-group">
+
+<label>
+Allaitement / alimentation
+</label>
+
+<textarea id="feeding"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Développement psychomoteur
+</label>
+
+<textarea id="development"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Statut vaccinal
+</label>
+
+<select id="childVaccination">
+
+<option>Non renseigné</option>
+<option>À jour</option>
+<option>En retard</option>
+<option>Incomplet</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Antécédents pédiatriques
+</label>
+
+<textarea id="pediatricHistory"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Conseils aux parents / tuteur
+</label>
+
+<textarea id="parentAdvice"></textarea>
+
+</div>
+
+</div>
+
+` : ""}
+
+
+<h3 class="section-title">
+📊 Constantes
+</h3>
+
+
+<div class="form-group">
+
+<label>
+Tension artérielle
+</label>
+
+<input
+id="bp"
+value="${esc(consultation?.tension_arterielle || "")}"
+placeholder="120/80 mmHg">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Température (°C)
+</label>
+
+<input
+id="temperature"
+type="number"
+step=".1"
+value="${esc(consultation?.temperature || "")}">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Poids (kg)
+</label>
+
+<input
+id="consultWeight"
+type="number"
+step=".1"
+value="${esc(consultation?.poids || "")}">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Taille (cm)
+</label>
+
+<input
+id="consultHeight"
+type="number"
+step=".1"
+value="${esc(consultation?.taille || "")}">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Fréquence cardiaque
+</label>
+
+<input
+id="heartRate"
+type="number"
+value="${esc(consultation?.frequence_cardiaque || "")}">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Saturation (%)
+</label>
+
+<input
+id="oxygen"
+type="number"
+step=".1"
+value="${esc(consultation?.saturation_oxygene || "")}">
+
+</div>
+
+
+<h3 class="section-title">
+🔎 Évaluation clinique
+</h3>
+
+
+<div class="form-group">
+
+<label>
+Examen clinique
+</label>
+
+<textarea id="clinicalExam">${esc(
+consultation?.examen_clinique || ""
+)}</textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Diagnostic / hypothèse
+</label>
+
+<textarea id="diagnosis">${esc(
+consultation?.diagnostic || ""
+)}</textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Soins réalisés
+</label>
+
+<textarea id="care">${esc(
+consultation?.soins_realises || ""
+)}</textarea>
+
+</div>
+
+
+<h3 class="section-title">
+💊 Traitement et conseils
+</h3>
+
+
+<div class="form-group">
+
+<label>
+Traitement / prescription
+</label>
+
+<textarea id="treatment">${esc(
+consultation?.traitement || ""
+)}</textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Conseils
+</label>
+
+<textarea id="advice">${esc(
+consultation?.conseils || ""
+)}</textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Orientation
+</label>
+
+<textarea id="orientation">${esc(
+consultation?.orientation || ""
+)}</textarea>
+
+</div>
+
+
+<h3 class="section-title">
+📅 Suivi
+</h3>
+
+
+<div class="form-group">
+
+<label>
+Prochain rendez-vous
+</label>
+
+<input
+id="nextAppointment"
+type="date"
+value="${esc(consultation?.prochain_rendez_vous || "")}">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Observations
+</label>
+
+<textarea id="consultObservations">${esc(
+consultation?.observations || ""
+)}</textarea>
+
+</div>
+
+
+<div class="form-actions">
+
+<button
+class="btn secondary"
+onclick="closeModal()">
+
+Annuler
+
+</button>
+
+<button
+class="btn primary"
+onclick="saveConsultation()">
+
+💾 ${consultation ? "Enregistrer les modifications" : "Enregistrer la consultation"}
+
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   SAUVEGARDE / MODIFICATION CONSULTATION
 ========================================================= */
 
 async function saveConsultation(){
 
-const userResult =
+const {data:userData} =
 await supabaseClient.auth.getUser();
 
 const user =
-userResult.data.user;
-
+userData.user;
 
 if(!user){
 
-return alert(
-"Session expirée. Connectez-vous."
-);
+alert("Session expirée. Connectez-vous.");
+return;
 
 }
 
+const patientId =
+document.getElementById("consultPatientId").value;
 
-const nom =
-document.getElementById("patientNom")
-.value.trim();
+const consultationId =
+document.getElementById("consultationId").value;
 
-const prenom =
-document.getElementById("patientPrenom")
-.value.trim();
+if(!patientId){
 
-const dob =
-document.getElementById("patientDate")
-.value;
-
-
-if(!nom || !prenom || !dob){
-
-return alert(
-"Nom, prénom et date de naissance sont obligatoires."
-);
+alert("Patient introuvable.");
+return;
 
 }
 
-
-const age =
-ageOf(dob);
-
-const pediatric =
-age && age.y < 5;
-
-
-/* =====================================================
-   RECHERCHE PATIENT PAR CODE
-===================================================== */
-
-const code =
-document.getElementById("consultCode")
-.value.trim();
-
-let patient_id = null;
-
-
-if(code){
-
-const result =
+const patientQuery =
 await supabaseClient
 .from("patients")
-.select("id,first_name,last_name,date_of_birth")
-.eq("patient_code",code)
-.maybeSingle();
+.select("*")
+.eq("id",patientId)
+.single();
 
+if(patientQuery.error){
 
-if(result.error){
-
-return alert(
-"Erreur lors de la recherche du code patient :\n\n"
-+
-result.error.message
+alert(
+"Impossible de récupérer le dossier patient : "+
+patientQuery.error.message
 );
 
-}
-
-
-if(result.data){
-
-patient_id =
-result.data.id;
+return;
 
 }
 
-}
+const patient =
+patientQuery.data;
+
+const age =
+ageOf(patient.date_of_birth);
+
+const pediatric =
+age && age.years < 5;
 
 
-/* =====================================================
-   DONNEES PEDIATRIQUES
-===================================================== */
+/*
+Les informations identité sont prises
+directement depuis le dossier patient.
+*/
 
-let pediatricNotes="";
+let antecedents =
+document.getElementById("consultHistory")
+.value
+.trim();
 
 
 if(pediatric){
@@ -2307,193 +2718,149 @@ document.getElementById("childVaccination")?.value;
 const pediatricHistory =
 document.getElementById("pediatricHistory")?.value.trim();
 
-
-pediatricNotes = [
+const extra = [
 
 feeding
-? "Alimentation/allaitement : " + feeding
+? "Alimentation/allaitement : "+feeding
 : "",
 
 development
-? "Développement psychomoteur : " + development
+? "Développement psychomoteur : "+development
 : "",
 
-vaccination
-? "Statut vaccinal : " + vaccination
+vaccination &&
+vaccination!=="Non renseigné"
+? "Statut vaccinal : "+vaccination
 : "",
 
 pediatricHistory
-? "Antécédents pédiatriques : " + pediatricHistory
+? "Antécédents pédiatriques : "+pediatricHistory
 : ""
 
-]
+].filter(Boolean).join("\n");
+
+if(extra){
+
+antecedents =
+[antecedents,extra]
 .filter(Boolean)
 .join("\n");
 
 }
 
+}
 
-/* =====================================================
-   CONSEILS
-===================================================== */
 
-const normalAdvice =
+let advice =
 document.getElementById("advice")
-.value.trim();
+.value
+.trim();
 
+
+if(pediatric){
 
 const parentAdvice =
-pediatric
-?
-(document.getElementById("parentAdvice")?.value.trim() || "")
-:
-"";
+document.getElementById("parentAdvice")
+?.value
+.trim();
 
+if(parentAdvice){
 
-const advice =
-[
-normalAdvice,
-parentAdvice
-?
-"Conseils aux parents : " + parentAdvice
-:
-""
-]
+advice =
+[advice,
+"Conseils aux parents : "+parentAdvice]
 .filter(Boolean)
 .join("\n");
 
+}
 
-/* =====================================================
-   ANTECEDENTS
-===================================================== */
-
-const history =
-document.getElementById("consultHistory")
-.value.trim();
+}
 
 
-const antecedents =
-[
-history,
-pediatricNotes
-]
-.filter(Boolean)
-.join("\n");
-
-
-/* =====================================================
-   SEXE
-=====================================================
-
+/*
 IMPORTANT :
-
-La table consultations_generales accepte
-UNIQUEMENT :
-
-M
-F
-Autre
-
+La table consultations_generales
+utilise F / M / Autre.
 */
 
 const sexe =
-document.getElementById("patientSexe")
-.value;
+patient.gender==="male"
+? "M"
+: patient.gender==="female"
+? "F"
+: "Autre";
 
-
-/* =====================================================
-   PAYLOAD
-===================================================== */
 
 const payload={
 
 professionnel_id:user.id,
 
-patient_id:patient_id,
+patient_id:patient.id,
 
-nom_patient:nom,
+nom_patient:patient.last_name,
 
-prenom_patient:prenom,
+prenom_patient:patient.first_name,
 
-date_naissance:dob,
+date_naissance:patient.date_of_birth,
 
 sexe:sexe,
 
-telephone:
-document.getElementById("patientPhone")
-.value.trim(),
+telephone:patient.phone || null,
 
 motif_consultation:
 document.getElementById("consultMotif")
 .value.trim(),
 
-antecedents:antecedents,
+antecedents:
+
+antecedents || null,
 
 tension_arterielle:
 document.getElementById("bp")
-.value.trim(),
+.value.trim() || null,
 
 temperature:
 document.getElementById("temperature")
-.value
-?
-Number(document.getElementById("temperature").value)
-:
-null,
+.value || null,
 
 poids:
 document.getElementById("consultWeight")
-.value
-?
-Number(document.getElementById("consultWeight").value)
-:
-null,
+.value || null,
 
 taille:
 document.getElementById("consultHeight")
-.value
-?
-Number(document.getElementById("consultHeight").value)
-:
-null,
+.value || null,
 
 frequence_cardiaque:
 document.getElementById("heartRate")
-.value
-?
-Number(document.getElementById("heartRate").value)
-:
-null,
+.value || null,
 
 saturation_oxygene:
 document.getElementById("oxygen")
-.value
-?
-Number(document.getElementById("oxygen").value)
-:
-null,
+.value || null,
 
 examen_clinique:
 document.getElementById("clinicalExam")
-.value.trim(),
+.value.trim() || null,
 
 diagnostic:
 document.getElementById("diagnosis")
-.value.trim(),
+.value.trim() || null,
 
 soins_realises:
 document.getElementById("care")
-.value.trim(),
+.value.trim() || null,
 
 traitement:
 document.getElementById("treatment")
-.value.trim(),
+.value.trim() || null,
 
-conseils:advice,
+conseils:
+advice || null,
 
 orientation:
 document.getElementById("orientation")
-.value.trim(),
+.value.trim() || null,
 
 prochain_rendez_vous:
 document.getElementById("nextAppointment")
@@ -2501,46 +2868,70 @@ document.getElementById("nextAppointment")
 
 observations:
 document.getElementById("consultObservations")
-.value.trim()
+.value.trim() || null,
+
+updated_at:
+new Date().toISOString()
 
 };
 
 
-/* =====================================================
-   INSERTION
-===================================================== */
+/* MODIFICATION */
+
+if(consultationId){
+
+const {error} =
+await supabaseClient
+.from("consultations_generales")
+.update(payload)
+.eq("id",consultationId);
+
+if(error){
+
+alert(
+"Erreur lors de la modification : "+
+error.message
+);
+
+return;
+
+}
+
+alert(
+"✅ Consultation modifiée et complétée."
+);
+
+}
+
+
+/* NOUVELLE CONSULTATION */
+
+else{
+
+payload.date_consultation =
+new Date().toISOString();
 
 const {error} =
 await supabaseClient
 .from("consultations_generales")
 .insert(payload);
 
-
 if(error){
 
-console.error(
-"Erreur consultation :",
-error,
-payload
-);
-
-return alert(
-"❌ Erreur lors de l'enregistrement :\n\n"
-+
+alert(
+"Erreur lors de l'enregistrement : "+
 error.message
 );
 
+return;
+
 }
 
-
 alert(
-pediatric
-?
-"✅ Consultation pédiatrique enregistrée."
-:
 "✅ Consultation enregistrée."
 );
 
+}
 
 closeModal();
 
@@ -2558,136 +2949,158 @@ async function loadAllConsultations(){
 const list =
 document.getElementById("dataList");
 
-
 list.innerHTML =
-"<div class='empty'>Chargement des consultations...</div>";
+'<div class="empty">Chargement des consultations...</div>';
 
 
 const {data,error} =
 await supabaseClient
 .from("consultations_generales")
 .select("*")
-.order("date_consultation",{ascending:false});
+.order(
+"date_consultation",
+{ascending:false}
+);
 
 
 if(error){
 
 list.innerHTML =
-"<div class='empty'>Erreur : "
-+
-esc(error.message)
-+
-"</div>";
+'<div class="empty">Erreur : '+
+esc(error.message)+
+'</div>';
 
 return;
 
 }
 
 
-window.toppatooConsultations =
-data || [];
-
-
-renderConsultations(data || []);
-
-}
-
-
-function renderConsultations(data){
-
-const list =
-document.getElementById("dataList");
-
+if(!data || !data.length){
 
 list.innerHTML = `
 
 <h3>📋 Toutes les consultations</h3>
 
-<div class="filter-bar">
-
-<button
-class="filter-btn active"
-onclick="filterConsultations('all',this)">
-Toutes
-</button>
-
-<button
-class="filter-btn"
-onclick="filterConsultations('today',this)">
-Aujourd'hui
-</button>
-
-<button
-class="filter-btn"
-onclick="filterConsultations('month',this)">
-Ce mois
-</button>
-
+<div class="empty">
+Aucune consultation enregistrée.
 </div>
-
-<div id="consultationResults"></div>
 
 `;
 
+return;
 
-renderConsultationRows(data);
+}
+
+
+list.innerHTML = `
+
+<h3>
+📋 Toutes les consultations
+</h3>
+
+<p style="color:var(--muted);margin:5px 0 15px">
+
+${data.length}
+consultation(s) enregistrée(s).
+
+</p>
+
+<div class="search-box">
+
+<input
+id="consultationSearch"
+placeholder="Rechercher un patient, motif ou diagnostic..."
+oninput="filterConsultations()">
+
+</div>
+
+<div id="consultationRows">
+
+${renderConsultationRows(data)}
+
+</div>
+
+`;
+
+window.allConsultations =
+data;
 
 }
 
 
 function renderConsultationRows(data){
 
-const target =
-document.getElementById("consultationResults");
-
-
-if(!target){
-return;
-}
-
-
-if(!data.length){
-
-target.innerHTML =
-"<div class='empty'>Aucune consultation.</div>";
-
-return;
-
-}
-
-
-target.innerHTML =
-data.map(x=>{
+return data.map(x=>{
 
 return `
 
-<div class="row">
+<div
+class="row consultation-row"
+data-search="
+${esc(
+(
+(x.prenom_patient||"")+" "+
+(x.nom_patient||"")+" "+
+(x.motif_consultation||"")+" "+
+(x.diagnostic||"")
+).toLowerCase()
+)}
+">
 
-<div>
+<div class="row-main">
 
 <strong>
+
 ${esc(x.prenom_patient)}
+${" "}
 ${esc(x.nom_patient)}
+
 </strong>
 
 <small>
-🩺 ${esc(x.date_consultation || "")}
+
+📅 ${formatDateTime(x.date_consultation)}
+
 </small>
 
 <small>
-Motif :
+
+🩺 Motif :
 ${esc(x.motif_consultation || "Non renseigné")}
+
 </small>
 
 <small>
-Diagnostic :
+
+🔎 Diagnostic :
 ${esc(x.diagnostic || "Non renseigné")}
+
 </small>
+
+${x.prochain_rendez_vous ? `
+
+<span class="tag">
+
+📅 Suivi :
+${formatDate(x.prochain_rendez_vous)}
+
+</span>
+
+` : ""}
 
 </div>
 
-<div>
-${x.sexe === "F" ? "♀️" : x.sexe === "M" ? "♂️" : "👤"}
+
+<div class="row-actions">
+
+<button
+class="btn primary"
+onclick="editConsultation('${x.id}')">
+
+✏️ Modifier / compléter
+
+</button>
+
 </div>
 
 </div>
@@ -2699,163 +3112,89 @@ ${x.sexe === "F" ? "♀️" : x.sexe === "M" ? "♂️" : "👤"}
 }
 
 
-function filterConsultations(type,button){
+function filterConsultations(){
+
+const q =
+(document.getElementById("consultationSearch")
+.value || "")
+.toLowerCase();
 
 document
-.querySelectorAll(".filter-btn")
-.forEach(btn=>
-btn.classList.remove("active")
-);
+.querySelectorAll(".consultation-row")
+.forEach(row=>{
 
-
-if(button){
-button.classList.add("active");
-}
-
-
-const consultations =
-window.toppatooConsultations || [];
-
-
-const now =
-new Date();
-
-
-let filtered =
-consultations;
-
-
-if(type === "today"){
-
-filtered =
-consultations.filter(x=>{
-
-if(!x.date_consultation){
-return false;
-}
-
-const date =
-new Date(x.date_consultation);
-
-return (
-date.getDate() === now.getDate() &&
-date.getMonth() === now.getMonth() &&
-date.getFullYear() === now.getFullYear()
-);
+row.style.display =
+row.dataset.search.includes(q)
+? ""
+: "none";
 
 });
-
-}
-
-
-if(type === "month"){
-
-filtered =
-consultations.filter(x=>{
-
-if(!x.date_consultation){
-return false;
-}
-
-const date =
-new Date(x.date_consultation);
-
-return (
-date.getMonth() === now.getMonth() &&
-date.getFullYear() === now.getFullYear()
-);
-
-});
-
-}
-
-
-renderConsultationRows(filtered);
 
 }
 
 
 /* =========================================================
-   PATIENT VIA CODE
+   MODIFIER CONSULTATION
 ========================================================= */
 
-async function patientLookup(){
+async function editConsultation(id){
 
-const code =
-document
-.getElementById("patientAccessCode")
-.value
-.trim();
+const {data,error} =
+await supabaseClient
+.from("consultations_generales")
+.select("*")
+.eq("id",id)
+.single();
 
+if(error){
 
-if(!code){
-
-return alert(
-"Entrez le code patient."
+alert(
+"Impossible de récupérer la consultation : "+
+error.message
 );
 
+return;
+
 }
 
 
-const result =
+if(!data.patient_id){
+
+alert(
+"Cette consultation n'est pas liée à un dossier patient."
+);
+
+return;
+
+}
+
+
+const patientQuery =
 await supabaseClient
 .from("patients")
-.select(
-"first_name,last_name,date_of_birth,patient_code"
-)
-.eq("patient_code",code)
-.maybeSingle();
+.select("*")
+.eq("id",data.patient_id)
+.single();
 
 
-const box =
-document.getElementById("patientAccessResult");
+if(patientQuery.error){
 
-
-if(result.error){
-
-box.innerHTML =
-`<div class="info" style="margin-top:15px">
-Erreur : ${esc(result.error.message)}
-</div>`;
+alert(
+"Impossible de récupérer le dossier patient."
+);
 
 return;
 
 }
 
 
-if(!result.data){
+renderConsultationForm({
 
-box.innerHTML =
-`<div class="info" style="margin-top:15px">
-❌ Aucun patient trouvé avec ce code.
-</div>`;
+patient:patientQuery.data,
 
-return;
+consultation:data
 
-}
-
-
-box.innerHTML = `
-
-<div class="info" style="margin-top:15px">
-
-✅ Patient trouvé
-
-<br><br>
-
-<strong>
-${esc(result.data.first_name)}
-${esc(result.data.last_name)}
-</strong>
-
-<br>
-
-Code :
-${esc(result.data.patient_code)}
-
-</div>
-
-`;
+});
 
 }
 
@@ -2864,100 +3203,540 @@ ${esc(result.data.patient_code)}
    RENDEZ-VOUS
 ========================================================= */
 
+async function renderAppointmentForm(data=null){
+
+const c =
+document.getElementById("modalContent");
+
+
+const patientsQuery =
+await supabaseClient
+.from("patients")
+.select("id,first_name,last_name,patient_code")
+.order("last_name")
+.limit(500);
+
+
+if(patientsQuery.error){
+
+c.innerHTML = `
+
+<h2>📅 Rendez-vous</h2>
+
+<div class="empty">
+
+Impossible de charger les patients :
+${esc(patientsQuery.error.message)}
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+const patients =
+patientsQuery.data || [];
+
+
+c.innerHTML = `
+
+<h2>
+📅 ${data ? "Modifier le rendez-vous" : "Nouveau rendez-vous"}
+</h2>
+
+<p style="color:var(--muted);margin:8px 0 18px">
+
+Un rendez-vous est toujours associé à un patient.
+
+</p>
+
+
+<input
+type="hidden"
+id="appointmentId"
+value="${esc(data?.id || "")}">
+
+
+<div class="form-group">
+
+<label>Patient *</label>
+
+<select id="aPatient">
+
+<option value="">
+Sélectionner un patient
+</option>
+
+${patients.map(p=>`
+
+<option
+value="${esc(p.id)}"
+${data?.patient_id===p.id ? "selected" : ""}>
+
+${esc(p.first_name)}
+${" "}
+${esc(p.last_name)}
+—
+${esc(p.patient_code)}
+
+</option>
+
+`).join("")}
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Date *</label>
+
+<input
+id="aDate"
+type="date"
+value="${esc(data?.date_rendez_vous || "")}">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Heure *</label>
+
+<input
+id="aTime"
+type="time"
+value="${esc(data?.heure || "")}">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Motif</label>
+
+<textarea id="aReason">${esc(
+data?.motif || ""
+)}</textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Observations</label>
+
+<textarea id="aNotes">${esc(
+data?.observations || ""
+)}</textarea>
+
+</div>
+
+
+<div class="form-actions">
+
+<button
+class="btn secondary"
+onclick="closeModal()">
+
+Annuler
+
+</button>
+
+<button
+class="btn primary"
+onclick="saveAppointment()">
+
+💾 ${data ? "Modifier le rendez-vous" : "Créer le rendez-vous"}
+
+</button>
+
+</div>
+
+`;
+
+}
+
+
+function openAppointmentForm(data=null){
+
+renderAppointmentForm(data);
+
+}
+
+
+/* =========================================================
+   SAUVEGARDER RENDEZ-VOUS
+========================================================= */
+
 async function saveAppointment(){
 
-const userResult =
+const {data:userData} =
 await supabaseClient.auth.getUser();
 
-if(!userResult.data.user){
+const user =
+userData.user;
 
-return alert(
-"Vous devez être connecté."
-);
+if(!user){
+
+alert("Connectez-vous.");
+return;
 
 }
 
 
-const code =
-document.getElementById("aCode")
-.value.trim();
+const id =
+document.getElementById("appointmentId").value;
 
-const name =
-document.getElementById("aName")
-.value.trim();
+const patientId =
+document.getElementById("aPatient").value;
 
 const date =
-document.getElementById("aDate")
-.value;
+document.getElementById("aDate").value;
 
 const time =
-document.getElementById("aTime")
-.value;
+document.getElementById("aTime").value;
 
 const reason =
-document.getElementById("aReason")
-.value.trim();
+document.getElementById("aReason").value.trim();
+
+const notes =
+document.getElementById("aNotes").value.trim();
 
 
-if(!name || !date){
+if(!patientId || !date || !time){
 
-return alert(
-"Nom du patient et date obligatoires."
+alert(
+"Patient, date et heure sont obligatoires."
 );
+
+return;
 
 }
 
 
-/*
-La table rendez-vous n'a pas encore été fournie.
-On évite donc de faire une requête vers une table
-inconnue qui ferait planter l'application.
-*/
+const payload={
 
-const appointment = {
+professionnel_id:user.id,
 
-code_patient:code,
+patient_id:patientId,
 
-nom_patient:name,
-
-date:date,
+date_rendez_vous:date,
 
 heure:time,
 
-motif:reason
+motif:reason || null,
+
+observations:notes || null,
+
+updated_at:
+new Date().toISOString()
 
 };
 
 
-const appointments =
-JSON.parse(
-localStorage.getItem("toppatoo_appointments") || "[]"
+if(id){
+
+const {error} =
+await supabaseClient
+.from("rendez_vous")
+.update(payload)
+.eq("id",id);
+
+if(error){
+
+alert(
+"Erreur lors de la modification du rendez-vous : "+
+error.message
+);
+
+return;
+
+}
+
+alert("✅ Rendez-vous modifié.");
+
+}else{
+
+payload.created_at =
+new Date().toISOString();
+
+const {error} =
+await supabaseClient
+.from("rendez_vous")
+.insert(payload);
+
+if(error){
+
+alert(
+"Erreur lors de la création du rendez-vous : "+
+error.message
+);
+
+return;
+
+}
+
+alert("✅ Rendez-vous créé.");
+
+}
+
+closeModal();
+
+loadAppointments();
+
+}
+
+
+/* =========================================================
+   LISTE RENDEZ-VOUS
+========================================================= */
+
+async function loadAppointments(){
+
+const list =
+document.getElementById("dataList");
+
+list.innerHTML =
+'<div class="empty">Chargement des rendez-vous...</div>';
+
+
+const {data,error} =
+await supabaseClient
+.from("rendez_vous")
+.select(`
+*,
+patients (
+first_name,
+last_name,
+patient_code
+)
+`)
+.order(
+"date_rendez_vous",
+{ascending:true}
 );
 
 
-appointments.push({
+if(error){
 
-...appointment,
+list.innerHTML = `
 
-created_at:new Date().toISOString()
+<div class="empty">
+
+Erreur :
+${esc(error.message)}
+
+<br><br>
+
+<button
+class="btn primary"
+onclick="openModal('appointment')">
+
+Créer un rendez-vous
+
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+if(!data || !data.length){
+
+list.innerHTML = `
+
+<h3>📅 Rendez-vous</h3>
+
+<div class="empty">
+Aucun rendez-vous enregistré.
+</div>
+
+`;
+
+return;
+
+}
+
+
+list.innerHTML = `
+
+<h3>
+📅 Rendez-vous
+</h3>
+
+<div class="search-box">
+
+<input
+id="appointmentSearch"
+placeholder="Rechercher un patient..."
+oninput="filterAppointments()">
+
+</div>
+
+<div id="appointmentRows">
+
+${renderAppointmentRows(data)}
+
+</div>
+
+`;
+
+window.allAppointments =
+data;
+
+}
+
+
+function renderAppointmentRows(data){
+
+return data.map(r=>{
+
+const p =
+r.patients || {};
+
+return `
+
+<div
+class="row appointment-row"
+data-search="
+${esc(
+(
+(p.first_name||"")+" "+
+(p.last_name||"")+" "+
+(p.patient_code||"")
+).toLowerCase()
+)}
+">
+
+<div class="row-main">
+
+<strong>
+
+${esc(p.first_name || "")}
+${" "}
+${esc(p.last_name || "")}
+
+</strong>
+
+<small>
+🆔 ${esc(p.patient_code || "")}
+</small>
+
+<small>
+📅 ${formatDate(r.date_rendez_vous)}
+à ${esc(r.heure || "")}
+</small>
+
+<small>
+🩺 ${esc(r.motif || "Motif non renseigné")}
+</small>
+
+</div>
+
+
+<div class="row-actions">
+
+<button
+class="btn secondary"
+onclick="openAppointmentEdit('${r.id}')">
+
+✏️ Modifier
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+function filterAppointments(){
+
+const q =
+(document.getElementById("appointmentSearch")
+.value || "")
+.toLowerCase();
+
+document
+.querySelectorAll(".appointment-row")
+.forEach(row=>{
+
+row.style.display =
+row.dataset.search.includes(q)
+? ""
+: "none";
+
+});
+
+}
+
+
+async function openAppointmentEdit(id){
+
+const {data,error} =
+await supabaseClient
+.from("rendez_vous")
+.select("*")
+.eq("id",id)
+.single();
+
+if(error){
+
+alert(
+"Impossible de récupérer le rendez-vous : "+
+error.message
+);
+
+return;
+
+}
+
+renderAppointmentForm(data);
+
+}
+
+
+/* =========================================================
+   CARTE RENDEZ-VOUS DU DASHBOARD
+========================================================= */
+
+document
+.querySelectorAll(".dash-card")
+.forEach(card=>{
 
 });
 
 
-localStorage.setItem(
-"toppatoo_appointments",
-JSON.stringify(appointments)
-);
+/*
+On remplace le comportement du quatrième
+dashboard-card afin d'afficher la liste.
+*/
 
+const dashboardCards =
+document.querySelectorAll(".dash-card");
 
-alert(
-"✅ Rendez-vous enregistré sur cet appareil.\n\n"
-+
-"Il sera relié à Supabase lorsque la table Rendez-vous sera configurée."
-);
+if(dashboardCards[3]){
 
+dashboardCards[3].onclick =
+function(){
 
-closeModal();
+loadAppointments();
+
+};
 
 }
 
@@ -2966,53 +3745,6 @@ closeModal();
    ORDONNANCE
 ========================================================= */
 
-function previewPrescription(){
-
-const input =
-document.getElementById("rxPhoto");
-
-const box =
-document.getElementById("rxPreview");
-
-
-if(!input || !input.files.length){
-
-box.innerHTML="";
-
-return;
-
-}
-
-
-const file =
-input.files[0];
-
-
-if(!file.type.startsWith("image/")){
-
-box.innerHTML =
-"<div class='info'>Veuillez sélectionner une image.</div>";
-
-return;
-
-}
-
-
-const url =
-URL.createObjectURL(file);
-
-
-box.innerHTML = `
-
-<img
-src="${url}"
-alt="Aperçu de l'ordonnance">
-
-`;
-
-}
-
-
 function savePrescription(){
 
 const file =
@@ -3020,68 +3752,23 @@ document
 .getElementById("rxPhoto")
 .files[0];
 
-
-const code =
-document
-.getElementById("rxCode")
-.value
-.trim();
-
-
 if(!file){
 
-return alert(
+alert(
 "Choisissez une photo de l'ordonnance."
 );
 
+return;
+
 }
 
-
-/*
-Le stockage Supabase Storage n'est pas encore
-configuré dans le code fourni.
-On conserve temporairement la sélection.
-*/
-
-const reader =
-new FileReader();
-
-
-reader.onload=function(){
-
-const prescriptions =
-JSON.parse(
-localStorage.getItem("toppatoo_prescriptions") || "[]"
-);
-
-
-prescriptions.push({
-
-code_patient:code,
-
-image:this.result,
-
-created_at:new Date().toISOString()
-
-});
-
-
-localStorage.setItem(
-"toppatoo_prescriptions",
-JSON.stringify(prescriptions)
-);
-
-
 alert(
-"📷 Ordonnance enregistrée temporairement sur cet appareil."
+"📷 Photo sélectionnée.\n\n"+
+"Le stockage sécurisé de l'ordonnance sera connecté "+
+"au module de fichiers lors de l'étape suivante."
 );
 
 closeModal();
-
-};
-
-
-reader.readAsDataURL(file);
 
 }
 
@@ -3092,42 +3779,41 @@ reader.readAsDataURL(file);
 
 function askAI(){
 
-const question =
+const q =
 document
 .getElementById("question")
 .value
 .trim();
 
+if(!q){
 
-if(!question){
-
-return alert(
+alert(
 "Écrivez votre demande."
 );
 
+return;
+
 }
 
-
 alert(
-"🤖 Le module Toppatoo IA est prêt côté interface. "
-+
-"Il devra maintenant être relié à un service IA sécurisé."
+"🤖 Le service Toppatoo IA sera connecté "+
+"à une solution IA sécurisée."
 );
 
 }
 
 
 /* =========================================================
-   FERMETURE MODALE
+   MODAL CLIC EXTÉRIEUR
 ========================================================= */
 
 document
 .getElementById("modal")
 .addEventListener(
 "click",
-function(event){
+function(e){
 
-if(event.target.id === "modal"){
+if(e.target.id==="modal"){
 
 closeModal();
 
@@ -3138,28 +3824,13 @@ closeModal();
 
 
 /* =========================================================
-   SESSION EXISTANTE
+   SESSION AUTOMATIQUE
 ========================================================= */
 
-(async function(){
+(async()=>{
 
-try{
-
-const {data,error} =
+const {data} =
 await supabaseClient.auth.getSession();
-
-
-if(error){
-
-console.error(
-"Erreur session :",
-error
-);
-
-return;
-
-}
-
 
 if(data.session){
 
@@ -3169,20 +3840,11 @@ data.session.user
 
 }
 
-}catch(error){
-
-console.error(
-"Erreur initialisation :",
-error
-);
-
-}
-
 })();
 
 
 /* =========================================================
-   ECOUTE AUTHENTIFICATION
+   AUTH STATE
 ========================================================= */
 
 supabaseClient.auth.onAuthStateChange(
@@ -3202,4 +3864,4 @@ session.user
 </script>
 
 </body>
-    </html>
+  </html>
